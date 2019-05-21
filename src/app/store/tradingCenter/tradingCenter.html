@@ -1,0 +1,37 @@
+<div class="main-title">
+    <i class="iconfont icon-baojia"></i>交易中心
+</div>
+<div class="main-r-content">
+	<div class="main-r-c-title" *ngIf="purchasedListIsNull">
+		<span class="size-18">已开通交易中心</span><span class="color-jacinth float-r">续约费用：￥6800/年</span>
+	</div>
+	<div class="content-list" *ngIf="purchasedListIsNull">
+		<div class="list" *ngFor="let item of purchasedList">
+		     <div class="icon-box" [attr.id]="item.id">
+		         <img [attr.src]="item.iconUrl" alt="">
+		     </div>
+		     <div class="content-r">
+		         <span>{{item.name}}</span>
+		         <p class="color-9">有效期：{{item.endDate}}</p>
+		         <p class="small-button-line small-button-line-exactBlue" (click)="addToCart(item.id)">续费</p>
+		     </div>
+		</div>
+	</div>
+	<div class="main-r-c-title" *ngIf="unpurchasedListIsNull">
+		<span class="size-18">未开通交易中心</span><span class="color-jacinth float-r">开通费用：￥6800/年</span>
+	</div>
+	<div class="content-list" *ngIf="unpurchasedListIsNull">
+		<div class="list" *ngFor="let item of unpurchasedList">
+		     <div class="icon-box" [attr.id]="item.id">
+		         <img [attr.src]="item.iconUrl" alt="">
+		     </div>
+		     <div>
+		         <span class="ma-t10 size-18">{{item.name}}</span>
+		         <p class="ma-t15">
+		             <a class="small-button-line small-button-line-green" (click)="addToCart(item.id)">开通</a>
+		             <!-- <span class="tip-icon bg-9">开通</span> -->
+		         </p>
+		     </div>
+		</div>
+	</div>
+</div>

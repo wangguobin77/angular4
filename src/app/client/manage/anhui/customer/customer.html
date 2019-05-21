@@ -1,0 +1,246 @@
+<div class="content-box customer">
+    <div class="pageTitle">
+      <i class="iconfont icon-kehuguanlion"></i>客户详情
+      <a [routerLink]="['/client/anhui']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+    </div>
+    <div class="customer-table">
+        <a class="active" name="0" [routerLink]="['/client/anhui/customer',pageId]">客户首页</a>
+        <a class="" name="1" [routerLink]="['/client/anhui/detail/client',pageId]">客户档案</a>
+        <a class="" name="2" [routerLink]="['/client/anhui/detail/sale',pageId]">销售信息</a>
+        <a class="none" name="3">价值分析</a>
+    </div>
+    <div class="content ma-t20">
+      <div class="content-title">
+        <span class="title" name="2">基本信息</span>
+        <div class="title-r float-r ma-r30 size-14">
+          <a  class="a-button-xian" [routerLink]="['/client/anhui/detail/client',pageId]">查看详情</a>
+          <a  class="a-button ma-l10">转移客户</a>
+        </div>
+      </div>
+      <div class="grid-box" style="height:120px">
+        <div class="content-c-box" id="informationBox">
+          <p class="width-auto">
+            <span class="color-9">客户名称：</span>
+            <span>{{basicInfo.subjectName}}</span>
+          </p >
+          <p>
+            <span class="color-9">地区：</span>
+            <span>{{basicInfo.formatProviceCity}}</span>
+          </p>
+          <p>
+            <span class="color-9">用电类型：</span>
+            <span>{{basicInfo.formatUsedPowerType}}</span>
+          </p>
+
+          <p style="display:block;float:right">
+             <span class="color-9">预估年用电量：</span>
+            <span>{{basicInfo.electricityAmount}}</span>
+
+          </p>
+          <p style="display:block;float:right;margin-top: -80px;">
+             <span class="color-9">行业：</span>
+              <span>{{basicInfo.formatCategory}}</span>
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+     <!-- 用电信息 -->
+        <div class="content ma-t20">
+            <div class="content-title">
+                <span class="title" name="2">用电信息</span>
+                <div class="title-r float-r ma-r30 size-14">
+                    <input type="text" class="drop-down drop-down-s" id="years" name="years" required validationMessage="">
+               <!--     <kendo-dropdownlist
+                      [data]="PowerContract"
+                      [textField]="'text'"
+                      [valueField]="'value'"
+                      [defaultItem]="PowerContractPlaceHolder"
+                      (selectionChange)="PowerContractChange($event)"
+                    >
+                  </kendo-dropdownlist> -->
+
+                    <a [routerLink]="['/client/anhui/detail/power',pageId]" class="a-button-xian ma-l10">查看详情</a>
+                </div>
+            </div>
+            <div class="grid-box">
+                <div class="grid-box-t">
+                    <div class="float-l" id="categoryBtn">
+                        <span>单位：万千瓦时</span>
+                    </div>
+                    <div class="label-box float-r">
+                        <p><span class="bg-blue"></span>预售电量</p>
+                        <p><span class="bg-lightBlue"></span>交易电量</p>
+                        <p><span class="bg-exactGreen"></span>实用电量</p>
+                        <p><span class="bg-blue"></span>能效路由数据</p>
+                    </div>
+                </div>
+
+                <div class="demo-section k-content wide" style="background:#fff">
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+       <!-- 合约信息 -->
+        <div class="content ma-t20">
+            <div class="content-title">
+                <span class="title" name="2">合约信息</span>
+                <div class="title-r float-r ma-r30 size-14">
+                    <kendo-dropdownlist
+                      [data]="PowerContract"
+                      [textField]="'text'"
+                      [valueField]="'value'"
+                      [defaultItem]="PowerContractPlaceHolder"
+                      (selectionChange)="PowerContractChange($event)"
+                    >
+                    </kendo-dropdownlist>
+
+                    <!--  <kendo-dropdownlist name="contractType"
+                                  [data]="mdata.contractType.data"
+                                  textField="text"
+                                  valueField="value"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.contract.ContractType"
+                                  (ngModelChange)="mdata.contractType.change()"
+                                  style="width: 100%;">
+                    </kendo-dropdownlist> -->
+                    <a  class="a-button-xian ma-l10" [routerLink]="['/client/anhui/detail/contract',pageId]">查看详情</a>
+                    <a [routerLink]="['/sale/contracts/anhui/create']" class="a-button ma-l10">新建合约</a>
+                </div>
+            </div>
+            <div class="grid-box">
+                <div class="grid-box-t">
+                    <div class="float-l" id="categoryBtn">
+                        <span>单位/万元</span>
+                    </div>
+                    <div class="label-box float-r">
+                        <p><span class="bg-orange"></span>净收益</p>
+                        <p><span class="bg-blue"></span>客户承担偏差</p>
+                        <p><span class="bg-exactGreen"></span>公司承担偏差</p>
+                    </div>
+                </div>
+                <div id="chart1"></div>
+            </div>
+        </div>
+
+<!-- 最新报价 -->
+    <div class="content ma-t20">
+      <div class="content-title">
+        <span class="title" name="2">最新报价</span>
+        <div class="title-r float-r ma-r30 size-14">
+          <a href="#" class="a-button-xian ma-l10">查看详情</a>
+          <a href="#" class="a-button ma-l10">新建报价</a>
+        </div>
+      </div>
+
+
+   <!--    <div class="offer">
+        <div class="offer-l">
+          <ul>
+            <li>
+              <h3><span></span>套餐：煤电联动保底+煤电联动固定+按市场均价累进分成</h3>
+              <div class="">
+                <p><span class="color-9">保底类：</span>5 万千瓦时 - 500 万千瓦时          - 35 厘/千瓦时 </p>
+                <p><span class="color-9">保底类：</span>5 万千瓦时 - 500 万千瓦时          - 35 厘/千瓦时 </p>
+              </div>
+            </li>
+            <li>
+              <h3><span></span>套餐：煤电联动保底+煤电联动固定+按市场均价累进分成</h3>
+              <div class="">
+                <p><span class="color-9">赔偿收益：</span>500 万元 </p>
+              </div>
+            </li>
+            <li>
+              <h3><span></span>套餐：煤电联动保底+煤电联动固定+按市场均价累进分成</h3>
+              <div class="">
+                <p><span class="color-9">偏差百分比：</span>5% - 15% </p>
+                <p><span class="color-9">补偿单价：</span>0.5 元/千瓦时 </p>
+                <p><span class="color-9">担保最大金额：</span>500 万元 </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="offer-r">
+          <div class="offer-r-img">
+            <img src="assets/images/offer.png"/>
+          </div>
+          <p>贵公司暂未购买高级报价工具，购买后可计算套餐的收益。</p>
+          <p>如需使用，请联系企业管理员进入售电云商城进行购买。</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+            <div class="offer">
+              <div class="offer-l">
+                <ul>
+                  <li>
+                    <div class="offer-l-t">
+                      <p class="cf" *ngFor="let item of gridData.packageDetail.priceSet.relatedMetas">
+                        <span class="label" *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5"></span>
+                        <span class="cf-n" *ngIf="item.metaType==1">保底</span>
+                        <span class="cf-n" *ngIf="item.metaType==2">固定</span>
+                        <span class="cf-n" *ngIf="item.metaType==4||item.metaType==5">分成</span>
+                        <span class="color-9 size-12" *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5">万千瓦时</span>
+                        <span class="color-9 size-12" *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5">厘/千瓦时</span>
+                      </p>
+                    </div>
+                    <div class="offer-l-c">
+                      <div class="cf-c" *ngFor="let item of gridData.packageDetail.priceSetMetaDetail">
+                        <div *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5">
+                          <p *ngFor="let listItem of item.setDataValue"><span class="numer">{{listItem.lowerBound}} - {{listItem.upperBound}} </span><span class="numer">{{listItem.dataValue}}</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="offer-l-t">
+                      <p class="cf">
+                        <span class="label"></span>
+                        <span class="cf-n">扩展选择</span>
+                      </p>
+                    </div>
+                    <div class="offer-l-c">
+                      <div class="cf-c" *ngFor="let item of gridData.packageDetail.priceSetMetaDetail">
+                        <p *ngIf="item.id=='C83C44A6-CA2A-4F74-926D-07E950F9593E'"><span class="color-9">赔偿收益：</span><span class="">{{item.setDataValue[0].dataValue}} 万元</span></p>
+                        <p *ngIf="item.id=='5AEEC840-56F2-4FEE-A930-0B0BA55B847C'"><span class="color-9">上限价值：</span><span class="">{{item.setDataValue[0].dataValue}} 万元</span></p>
+                        <p *ngIf="item.id=='08A0F6BD-1978-4F38-A44B-EFC3C5D790B1'"><span class="color-9">下限价值：</span><span class="">{{item.setDataValue[0].dataValue}} 万元</span></p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="offer-l-t">
+                      <p class="cf">
+                        <span class="label"></span>
+                        <span class="cf-n">偏差担保 ： 百分比价差补偿</span>
+                      </p>
+                    </div>
+                    <div class="offer-l-c">
+                      <div class="cf-c" *ngFor="let item of gridData.packageDetail.priceSetMetaDetail">
+                        <div *ngIf="item.id==0||item.id=='AF77DE64-1D95-4231-B303-31619D230DB4'||item.id=='3E19EDBC-EF2F-4345-99F6-AF7D2729A235'||item.id=='873D66ED-3123-43FA-BD96-4819D0097304'||item.id=='5B0CA548-C78F-409C-88B7-DC971E4CFF89'||item.id=='5'">
+                          <p *ngFor="let listItem of item.setDataValue let i=index"><span class="color-9">{{i==0?'偏差百分比：':''}}</span><span class="">{{listItem.lowerBound}} - {{listItem.upperBound}}</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="offer-r">
+                <div class="offer-r-c">
+                  <div class="offer-r-cc">
+                    <div class="offer-r-img">
+                      <img src="assets/images/offer.png"/>
+                    </div>
+                    <p class="size-16">贵公司暂未购买高级报价工具，购买后可计算套餐的收益。如需使用，请联系企业管理员进入售电云商城进行购买。</p>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>

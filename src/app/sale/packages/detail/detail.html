@@ -1,0 +1,98 @@
+﻿<div class="content-box">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>查看套餐
+    <a [routerLink]="['/sale/packages']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+  </div>
+
+  <div class="content ma-t20">
+    <div class="title-tag content-title border-0">基础信息</div>
+    <div class="cd-box pd-t0">
+      <div class="pd-b20">
+        <p>
+          <span class="color-9">套餐名称：</span>
+          <span>{{model.basic.name}}</span>
+        </p>
+        <p>
+          <span class="color-9">合约方式：</span>
+          <span>{{model.basic.contractTypeStr}}</span>
+        </p>
+        <p>
+          <span class="color-9">建议购电区间：</span>
+          <span>{{model.basic.minAmount}} 万千瓦时</span>
+          <span class="mar5">到</span>
+          <span>{{model.basic.maxAmount}} 万千瓦时</span>
+        </p>
+        <p>
+          <span class="color-9">套餐标签：</span>
+          <span>{{model.basic.packageTagStr}}</span>
+        </p>
+        <p>
+          <span class="color-9">套餐简述：</span>
+          <span>{{model.basic.description}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content ma-t20">
+    <div class="content-title title-tag">
+      <span class="title" name="2">套餐选择</span>
+    </div>
+    <div class="cd-box pd-b20">
+      <div>
+        <div class="sub-title">套餐选择：{{packageModel.package.name}}</div>
+        <div>
+          <p *ngFor="let item of packageModel.settles.guarantees">
+            <span class="color-9">保底类：</span>
+            <span>{{item.min}}万千瓦时——{{item.max}}万千瓦时</span>
+            <span class="ma-l30">{{item.price}} {{packageModel.settles.isPrice?"元/千瓦时":"厘/千瓦时"}}</span>
+          </p>
+        </div>
+        <div>
+            <p *ngFor="let item of packageModel.settles.fixs">
+              <span class="color-9">固定类：</span>
+              <span>{{item.min}}万千瓦时——{{item.max}}万千瓦时</span>
+              <span class="ma-l30">{{item.price}} {{packageModel.settles.isPrice?"元/千瓦时":"厘/千瓦时"}}</span>
+            </p>
+        </div>
+        <div>
+            <p *ngFor="let item of packageModel.settles.rates">
+              <span class="color-9">分成类：</span>
+              <span>{{item.min}}万千瓦时——{{item.max}}万千瓦时</span>
+              <span class="ma-l30">{{item.price}} %</span>
+            </p>
+        </div>
+        <div class="sub-title" *ngIf="packageModel.extends.data.length>0">扩展选择</div>
+        <p style="width:200px" *ngFor="let item of packageModel.extends.data">
+          <span class="color-9">{{item.name}}：</span>
+          <span>{{item.value}} {{item.unit}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20" *ngIf="packageModel.offsets.items.length>0">
+    <div class="content-title title-tag">
+      <span class="title" name="2">偏差电量担保套餐</span>
+    </div>
+    <div class="cd-box pd-b20">
+      <div>
+        <div class="sub-title">套餐选择：{{packageModel.offsets.currentWay.name}}</div>
+        <div class="" *ngFor="let item of packageModel.offsets.items">
+          <p>
+            <span class="color-9">{{packageModel.offsets.currentWay.offset}}：</span>
+            <span>{{item.min}} —— {{item.max}} {{packageModel.offsets.currentWay.offset=="考核电量"?"万千瓦时":"%"}}</span>
+          </p>
+          <p>
+            <span class="color-9">{{packageModel.offsets.currentWay.fill}}：</span>
+            <span>{{item.price}} {{packageModel.offsets.currentWay.fill=="补偿单价"?"元/千瓦时":"%"}}</span>
+          </p>
+        </div>
+        <p>
+          <span class="color-9">担保最大金额：</span>
+          <span>{{packageModel.offsets.bao.value}}万元</span>
+        </p>
+      </div>
+    </div>
+  </div>
+ 
+</div>

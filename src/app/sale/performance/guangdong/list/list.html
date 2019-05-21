@@ -1,0 +1,59 @@
+
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-hetong"></i>业绩总览与统计
+	</div>
+	<div class="content">
+		<div class="content-t">
+			<div>
+				<div class="content-t-l">
+					<p>{{topData.customerSum}}</p>
+					<p class="size-18">客户总数(个)</p>
+				</div>
+				<div class="content-t-l">
+					<p>{{topData.contractSum}}</p>
+					<p class="size-18">合约总数(份)</p>
+				</div>
+				<div class="content-t-l">
+					<p>{{topData.plansAmountSum}}</p>
+					<p class="size-18">总预购电量(万千瓦时)</p>
+				</div>
+				<div class="content-t-l">
+					<p>{{topData.actualPurchaseAmountSum}}</p>
+					<p class="size-18">总交易电量(万千瓦时)</p>
+				</div>
+				<div class="content-t-l">
+					<p>{{topData.actualUsedAmountSum}}</p>
+					<p class="size-18">总实用电量(万千瓦时)</p>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="content ma-t20 pd-b20">
+		
+		<div class="grid-box no-padding">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="false"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="SaleName" title="销售人员"></kendo-grid-column>
+			    <kendo-grid-column field="CustomerCount" title="客户数"></kendo-grid-column>
+				<kendo-grid-column field="ContractCount" title="合约数"></kendo-grid-column>
+			    <kendo-grid-column field="PlansAmountTotal" title="总预购电量(万千瓦时)"></kendo-grid-column>
+			    <kendo-grid-column field="ActualPurchaseAmountTotal" title="总交易电量(万千瓦时)"></kendo-grid-column>
+			    <kendo-grid-column field="ActualUsedAmountTotal" title="总实用电量(万千瓦时)"></kendo-grid-column>
+			    <kendo-grid-column field="createDate" title="操作">
+			    	<ng-template kendoGridCellTemplate let-dataItem>
+			    	    <a *ngIf="dataItem.SaleUserId!=null" class="color-blue" [routerLink]="['/sale/performance/guangdong/detail',dataItem.SaleUserId]">查看</a>
+			    	    <a *ngIf="dataItem.SaleUserId==null" class="color-blue" [routerLink]="['/sale/performance/guangdong/detail','00000000-0000-0000-0000-000000000000']">查看</a>
+			    	</ng-template>   
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+	</div>
+</div>

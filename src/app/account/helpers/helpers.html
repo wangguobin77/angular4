@@ -1,0 +1,130 @@
+﻿<section class="main appHelp">
+  <div class="main-left">
+    <div class="m-l-top">
+      <p><i class="iconfont icon-wenhao"></i>帮助中心</p>
+    </div>
+    <div class="link-box">
+      <a (click)="switch(0)" [ngClass]="{active:index==0}">
+        <span>主要流程</span>
+      </a>
+      <a (click)="switch(1)" [ngClass]="{active:index==1}">
+        <span>特色功能</span>
+      </a>
+      <a (click)="switch(2)" [ngClass]="{active:index==2}">
+        <span>系统角色</span>
+      </a>
+    </div>
+    <div class="logo">
+      <img src="/assets/images/logo_black.png" alt="">
+    </div>
+  </div>
+  <div class="main-right">
+    <div class="main-right-box" *ngIf="index==0">
+      <div class="main-title">
+        主要流程
+      </div>
+      <div class="main-right-c">
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number">1</span><span class="size-16">客户销售</span>
+          </div>
+          <p class="">进入客户管理，查看已有客户信息，也可录入新用户。快捷管理用户的基本信息，用电信息，销售信息和合约信息。针对山 西售电公司提供园区管理的功能。
+          </p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number">2</span><span class="size-16">售电合约</span>
+          </div>
+          <p class="">进入售电合约管理，查看已有合约信息，也可录入新合约。快捷管理合约信息。合约中提供多种售电套餐的选择。</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number">3</span><span class="size-16">采购计划</span>
+          </div>
+          <p class="">进入能源采购，进入采购计划管理，可以查看已有计划，也可创建新的采购计划以指导采购。</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number">4</span><span class="size-16">采购执行</span>
+          </div>
+          <p class="">进入能源采购-采购执行，可以查看待执行计划，根据采购计划执行采购并录入采购结果，同时可以录入能源采购合约。</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number">5</span><span class="size-16">合约执行</span>
+          </div>
+          <p class="">进入售电合约管理-合约执行，填写客户实用电量和交易电量，针对山西园区用户，还可进行交易电量微调。</p>
+        </div>
+      </div>
+    </div>
+    <div class="main-right-box" *ngIf="index==1">
+      <div class="main-title">
+        特色功能
+      </div>
+      <div class="main-right-c tese">
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">智能报价</span>
+          </div>
+          <p class="">进入智能报价，可以进行报价模板设置，提供销售人员参考。同时针对销售人员的请求实时响应可以进行及时回复。</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">风险控制</span>
+          </div>
+          <p class="">进入风险控制，若已安装能效路由则可以查看路由数据信息，还可以使用风险计算，电价预测等功能。</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">财务结算</span>
+          </div>
+          <p class="">进入财务结算，可进行电网结算和客户结算，方便掌握公司的财务情况。</p>
+        </div>
+      </div>
+    </div>
+    <div class="main-right-box" *ngIf="index==2">
+      <div class="main-title">
+        系统角色
+      </div>
+      <div class="main-right-c tese">
+        <p>售电云系统为售电公司精心设计系统角色，掌握公司日常运营。</p>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">IT管理员</span>
+          </div>
+          <p class="">负责系统维护、企业信息管理、员工管理、角色权限分配、应用购买管理；</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">销售员</span>
+          </div>
+          <p class="">完成数据情报收集及销售工作；维护客户关系、沟通售电业务、完成合约签订和续约；</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">业务主管</span>
+          </div>
+          <p class="">负责维护管理公司客户信息、合约信息，根据签约电量制定采购计划，分配电量等；</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">采购员</span>
+          </div>
+          <p class="">负责维护合作电厂、执行采购计划、月度竞价工作并录入采购合约、反馈交易信息；</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">风控员</span>
+          </div>
+          <p class="">根据数据情报情况设计各种报价方案；响应销售人员上报的客户信息、设计报价方案、并对报价的收益进行预测；</p>
+        </div>
+        <div class="main-right-c-list">
+          <div class="main-right-c-t">
+            <span class="number"></span><span class="size-16">财务</span>
+          </div>
+          <p class="">负责公司财务、了解整体收支情况、管理公司票据、财务统计报表。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

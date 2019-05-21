@@ -1,0 +1,32 @@
+﻿<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-hetong"></i>客户转移记录
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title">
+			<span class="title" name="2">转移记录</span>
+		</div>
+		<div class="grid-box" style="padding:30px 40px;">
+			<kendo-grid
+		      [data]="view | async"
+	          [pageSize]="state.take"
+	          [skip]="state.skip"
+	          [pageable]="true"
+	          [scrollable]="'none'"
+	          (dataStateChange)="onStateChange($event)"
+		    >
+	            <kendo-grid-column field="createDate" title="时间">
+                <ng-template kendoGridCellTemplate let-dataItem>{{dataItem.createDate|date:"y-MM-dd"}}</ng-template>
+	            </kendo-grid-column>
+	            <kendo-grid-column field="subjectName" title="客户名称">
+	            </kendo-grid-column>
+	            <kendo-grid-column field="transferOutName" title="转出人员">
+	            </kendo-grid-column>
+	            <kendo-grid-column field="transferInName" title="转入人员">
+	            </kendo-grid-column>
+	            <kendo-grid-column field="userName" title="操作人员">
+	            </kendo-grid-column>
+	        </kendo-grid>
+		</div>
+	</div>
+</div>

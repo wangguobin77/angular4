@@ -1,0 +1,177 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-hetong"></i>客户管理
+		<a class="a-button float-r ma-r20 ma-t10" [routerLink]="['/client/shanxi/build',0]">创建</a>
+	</div>
+	<div class="content">
+		<div class="content-title">
+			<span class="title" name="2">客户列表</span>
+			<div class="title-r float-r ma-r20">
+				<span class="float-r size-14 condition color-6 cur-p" (click)="showFiltrateBox()">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+				<div class="searchBox float-r ma-r10 ma-t10">
+				  <input type="text" placeholder="用电主体，销售人员名称关键词搜索" #serchInput (keyup.enter)="searchClient(serchInput.value)">
+				  <i class="iconfont icon-sousuo" (click)="searchClient(serchInput.value)"></i>
+				</div>
+			</div>
+		</div>
+		<div class="filtrate-box" *ngIf="filtrateBoxIsSHow"> 
+			<div>
+				<div>
+					<span>所在地区：</span>
+					<kendo-dropdownlist 
+                        [data]="province"
+                        [defaultItem]="provincePlaceHolder"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        (selectionChange)="provinceChange($event)"
+                    >
+				    </kendo-dropdownlist>
+					<kendo-dropdownlist 
+				        [data]="cities"
+					    [textField]="'name'"
+      					[valueField]="'code'"
+      					[defaultItem]="citiesPlaceHolder"
+      					(selectionChange)="citiesChange($event)"
+				    >
+			        </kendo-dropdownlist>
+				</div>
+				<div>
+					<span>用电类型：</span>
+					<kendo-dropdownlist 
+					    [data]="powerUsedType" 
+					    [textField]="'text'"
+                        [valueField]="'value'"
+					    [defaultItem]="powerUsedTypePlaceHolder"
+					    (selectionChange)="powerUsedTypeChange($event)"
+					>
+				    </kendo-dropdownlist>
+				</div>
+				<div>
+					<span>销售信息：</span>
+					<kendo-dropdownlist 
+					    [data]="saleInfo" 
+					    [textField]="'text'"
+                        [valueField]="'value'"
+					    [defaultItem]="saleInfoPlaceHolder"
+					    (selectionChange)="saleInfoChange($event)"
+					>
+				    </kendo-dropdownlist>
+				</div>
+				<div>
+					<span>供电合约：</span>
+					<kendo-dropdownlist 
+					    [data]="PowerContract" 
+					    [textField]="'text'"
+                        [valueField]="'value'"
+					    [defaultItem]="PowerContractPlaceHolder"
+					    (selectionChange)="PowerContractChange($event)"
+					>
+				    </kendo-dropdownlist>
+				</div>
+				<div>
+					<span>客户等级：</span>
+					<kendo-dropdownlist 
+					    [data]="CustomerLevel" 
+					    [textField]="'text'"
+                        [valueField]="'value'"
+					    [defaultItem]="CustomerLevelPlaceHolder"
+					    (selectionChange)="CustomerLevelChange($event)"
+					>
+				    </kendo-dropdownlist>
+				</div>
+				<div>
+					<span>销售进展：</span>
+					<kendo-dropdownlist 
+					    [data]="ProgressPercent" 
+					    [textField]="'text'"
+                        [valueField]="'value'"
+					    [defaultItem]="ProgressPercentPlaceHolder"
+					    (selectionChange)="ProgressPercentChange($event)"
+					>
+				    </kendo-dropdownlist>
+				</div>
+				<div>
+					<button class="a-button" (click)='conditionSearch()'>搜索</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="sort-box">
+			<div class="sort">
+				<span *ngFor="let item of sortData let i=index" [ngClass]={active:item.isActive} (click)="sort(i)">
+					{{item.text}}
+					{{item.sortUp!=null&&item.sortUp.isChecked?item.sortUp.text:''}}
+					{{item.sortDown!=null&&item.sortDown.isChecked?item.sortDown.text:''}}
+				</span>
+			</div>
+		</div>
+		
+		<div class="grid-box client-list no-header separate-box">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="createDate" title="订单内容" width="350">
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list" [attr.id]='dataItem.id'>
+			        		<div class="list-box">
+				               <div class="t-left float-l ma-r60">
+				                    <span class="color-9">客户编号：</span>
+				                   <span>{{dataItem.customerNum}}</span>
+				               </div>
+				               <div class="t-left float-l ma-r60">
+				                    <span class="color-9">销售进展：</span>
+				                   <span>{{dataItem.progressPercent==null||dataItem.progressPercent==undefined||dataItem.progressPercent==''?0:dataItem.progressPercent}}%</span>
+				               </div>
+				               <div class="t-left float-l">
+				                    <span class="color-9">销售人员：</span>
+				                   <span>{{dataItem.saleName}}</span>
+				               </div>
+				            </div>
+				            <div class="b-box">
+					            <div class="td-l-box">
+	           						<p>
+	           			               <span class="color-9">客户名称：</span>
+	           			               <span>{{dataItem.subjectName}}</span>
+	           			               <span class="tip-icon color-blue" *ngIf="dataItem.customerLevel!=null">{{dataItem.customerLevel==1?'关键':dataItem.customerLevel==2?'主要':'普通'}}</span>
+	           			            </p>
+	           			            <p>
+	           			               <span class="color-9">所属园区：</span>
+	           			               <span>{{dataItem.sellerParkName==null||dataItem.sellerParkName==""?'--':dataItem.sellerParkName}}
+	           			               </span>
+	           			            </p>
+	           			            <p>
+	           			               <span class="color-9">地区：</span>
+	           			               <span>{{dataItem.areaName}}</span>
+	           			            </p>
+	           			            <p>
+	           			               <span class="color-9">用电类型：</span>
+	           			               <span>{{dataItem.usedPowerType}}</span>
+	           			            </p>
+	           			            <p>
+	           			               <span class="color-9">行业：</span>
+	           			               <span>{{dataItem.industryCategoryName}}</span>
+	           			            </p>
+	           			             <p>
+	           			               <span class="color-9">合约数(即将到期数)：</span>
+	           			               <span>{{dataItem.contractsCount}}({{dataItem.contractsExpiringCount}})</span>
+	           			            </p>
+	           			            <p>
+	           			               <span class="color-9">创建时间：</span>
+	           			               <span>{{dataItem.createDate|date:'y-MM-dd HH:mm:ss'}}</span>
+	           			            </p>
+		           		        </div>
+		           		        <div class="btn-box"><a [routerLink]="['/client/shanxi/detail/client',dataItem.id]" class="a-button-xian">详情</a></div>
+		           		    </div>
+			        	</div>
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+	</div>
+</div>

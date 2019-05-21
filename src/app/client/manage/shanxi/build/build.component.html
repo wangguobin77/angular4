@@ -1,0 +1,205 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-iconfontwo"></i>客户管理
+		<a (click)="goBack()" class="a-button-xian a-button-xian-grey float-r ma-t10 ma-r20">返回</a>
+	</div>
+	<div class="content" [hidden]="isNext">
+		<div class="content-title">
+			<span class="title" name="2">创建客户</span>
+		</div>
+		<div class="form-box">
+			<form #form="ngForm" (ngSubmit)="onNext($event,form)">
+				<ul>
+					<li *ngIf="id==0">客户类型<span class="color-red size-18">*</span></li>
+					<li *ngIf="id==0">
+					     <input type="radio" name="engine" id="engine1" class="k-radio" value="long" [checked]="radioChecked" (click)="radioChange(true)"> 
+	                     <label class="k-radio-label" for="engine1">&ensp;园区客户</label>
+	                     <input type="radio" name="engine" id="engine2" class="k-radio" value="bid"  [checked]="!radioChecked" (click)="radioChange(false)">
+	                     <label class="k-radio-label ma-l20" for="engine2">&ensp;非园区客户</label>
+					</li>
+					<li *ngIf="radioChecked">所属园区<span class="color-red size-18">*</span></li>
+					<li *ngIf="radioChecked">
+					    <kendo-dropdownlist 
+					    [data]="SellerParkData" 
+					    [textField]="'sellerParkName'"
+					    [(ngModel)]="sendData.SellerParkId"
+					    name="SellerParkId"
+					    [disabled]='id!=0'
+                        [valueField]="'id'"
+                        [valuePrimitive]="true"
+					    [defaultItem]="{sellerParkName:'请选择所属园区',id:null}"
+					     required class="ma-r20" style="width: 100%;">
+				        </kendo-dropdownlist>
+					</li>
+					<li *ngIf="radioChecked">参与园区打包<span class="color-red size-18">*</span></li>
+					<li *ngIf="radioChecked">
+					     <input type="radio" name="pack" id="pack1" class="k-radio" value="long" [checked]="IsPack" (click)="packChange(true)">
+	                     <label class="k-radio-label" for="pack1">&ensp;是</label>
+	                     <input type="radio" name="pack" id="pack2" class="k-radio" value="bid"  [checked]="!IsPack" (click)="packChange(true)">
+	                     <label class="k-radio-label ma-l20" for="pack2">&ensp;否</label>
+					</li>
+					<li>客户名称<span class="color-red size-18">*</span></li>
+					<li>
+					    <input type="text" [(ngModel)]="sendData.SubjectName" name="SubjectName" class="k-textbox" required placeholder="请输入客户名称" style="width: 100%;"/>
+
+					</li>
+					<li>用电类型<span class="color-red size-18">*</span></li>
+					<li>
+					    <kendo-dropdownlist 
+					    [data]="powerUsedType" 
+					    [textField]="'text'"
+					    [(ngModel)]="sendData.UsedPowerType"
+					    name="UsedPowerType"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+					    [defaultItem]="powerUsedTypePlaceHolder"
+					     required class="ma-r20" style="width: 100%;">
+				        </kendo-dropdownlist>
+					</li>
+					<li>行业<span class="color-red size-18">*</span></li>
+					<li>
+				        <kendo-dropdownlist
+	                        name="IndustryCategoryFirstId"
+	                        [data]="CategoryName"
+	                        [(ngModel)]="sendData.IndustryCategoryFirstId"
+	                        [defaultItem]="{categoryName:'请选择行业',value:null}"
+	                        [textField]="'categoryName'"
+	                        [valueField]="'id'"
+	                        [valuePrimitive]="true"
+	                        required
+	                        (selectionChange)="categoryNameChange($event)"
+	                        class="ma-r20" style="width: 187px;"
+	                    >
+	                    </kendo-dropdownlist>
+
+				        <kendo-dropdownlist
+	                        name="IndustryCategorySecondId"
+	                        [data]="subCategoryName"
+	                        [(ngModel)]="sendData.IndustryCategorySecondId"
+	                        [defaultItem]="{categoryName:'请选择行业',value:null}"
+	                        [textField]="'categoryName'"
+	                        [valueField]="'id'"
+	                        [valuePrimitive]="true"
+	                        required
+	                        style="width: 187px;"
+	                    >
+	                    </kendo-dropdownlist>
+					</li>
+					<li>地区<span class="color-red size-18">*</span></li>
+					<li>
+                        <kendo-dropdownlist 
+					    [value]="'山西'"
+					    disabled
+					    style="width: 188px;">
+				        </kendo-dropdownlist>
+				        <kendo-dropdownlist 
+					        [data]="cities"
+					        [(ngModel)]="sendData.City"
+						    [textField]="'name'"
+	      					[valueField]="'code'"
+	      					[valuePrimitive]="true"
+	      					name="City"
+	      					class="float-r" 
+	      					[defaultItem]="citiesPlaceHolder"
+					        required style="width: 188px;"
+					    >
+				        </kendo-dropdownlist>
+					</li>
+					<li>交易中心<span class="color-red size-18">*</span></li>
+					<li>
+					    <kendo-dropdownlist 
+					    [value]="'山西交易中心'"
+					    disabled
+					    class="ma-r20" style="width: 100%;">
+				        </kendo-dropdownlist>
+					</li>
+					<li>预估用电规模<span class="color-red size-18">*</span></li>
+					<li class="unit-input-list">
+					    <kendo-numerictextbox name="ElectricityAmount" [(ngModel)]="sendData.ElectricityAmount" [min]="0" required [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;" #difEndK="ngModel"></kendo-numerictextbox>
+					    <span class="unit r-20">万千瓦时</span>
+					</li>
+				</ul>
+				<button class="a-button" [disabled]="!form.form.valid">下一步</button>
+			</form>
+		</div>
+	</div>
+
+	
+	<div class="content" [hidden]="!isNext">
+		<div class="content-title">
+			<span class="title" name="2">创建客户</span>
+		</div>
+		<div class="note">
+			完善客户信息，便于您更好管理
+		</div>
+		<div class="form-box">
+			<ul>
+				<li>销售人员</li>
+				<li>
+				   <kendo-dropdownlist
+                        name="SaleUserId"
+                        [data]="SaleUserData"
+                        [(ngModel)]="sendData.SaleUserId"
+                        [defaultItem]="{fullName:'选择销售人员',id:null}"
+                        [textField]="'fullName'"
+                        [valueField]="'id'"
+                        [valuePrimitive]="true"
+                        style="width: 100%;"
+                    >
+                    </kendo-dropdownlist>
+				</li>
+				<li>法定代表人</li>
+				<li>
+				    <input type="text" [(ngModel)]="sendData.LegalPerson" name="legalRepresentative" class="k-textbox"  style="width: 100%;"/>
+				</li>
+				<li>登记工商管理局</li>
+				<li>
+				    <input type="text" [(ngModel)]="sendData.RegisterManagePlace" name="RegisterManagePlace" class="k-textbox"   style="width: 100%;"/>
+				</li>
+				<li>详细地址</li>
+				<li>
+				    <input type="text" [(ngModel)]="sendData.Address" name="Address" class="k-textbox"  style="width: 100%;" placeholder="请输入详细地址"/>
+				</li>
+				<li>电压等级</li>
+				<li>
+				    <kendo-dropdownlist
+                        name="voltageLevel"
+                        [data]="voltageLevelData"
+                        [textField]="'text'"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+                        [defaultItem]="{text:'请选择电压等级',value:null}"
+                        [(ngModel)]="sendData.VoltageLevel"
+                        style="width: 100%;"
+                    >
+                    </kendo-dropdownlist>
+				</li>
+				<li>总用电容量</li>
+				<li class="unit-input-list">
+				    <kendo-numerictextbox name="Capacitance" [(ngModel)]="sendData.Capacitance" [min]="0"  [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;" #CapacitanceK="ngModel"></kendo-numerictextbox>
+				    <span class="unit ma-r20">KW</span>
+				</li>
+				<li>变压器容量</li>
+				<li class="unit-input-list">
+				     <kendo-numerictextbox name="TransformerCapability" [(ngModel)]="sendData.TransformerCapability" [min]="0"  [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;" #TransformerCapabilityK="ngModel"></kendo-numerictextbox>
+				    <span class="unit ma-r20">KVA</span>
+				</li>
+			</ul>
+			<div class="btn-box">
+				<button class="a-button" (click)="onSubmit($event)">保存</button>
+				<a class="a-button-xian" (click)="skip()">跳过</a>
+			</div>
+		</div>
+	</div>
+</div>
+<kendo-dialog title="创建成功" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-okla.png">
+        <div style="line-height:24px;margin-top:20px;">
+            客户成功。
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button" [routerLink]="['/client/shanxi']">确定</a>
+    </kendo-dialog-actions>
+</kendo-dialog>

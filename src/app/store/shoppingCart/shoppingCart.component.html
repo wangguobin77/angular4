@@ -1,0 +1,16 @@
+<div class="main-title">
+    <i class="iconfont icon-mangouwuche"></i>购物车
+</div>
+<div class="cart">
+    <div class="step-box">
+        <div class="step-list-box" *ngFor="let item of stepList" [ngClass]="{active:item.isActive}">
+            <div>
+                <span class="circle-box" *ngIf="item.isFont"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+                <i class="iconfont color-9" [ngClass]="item.icon"></i>
+                <span class="circle-box" *ngIf="item.isAfter"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+            </div>
+            <p class="color-9">{{item.name}}</p>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

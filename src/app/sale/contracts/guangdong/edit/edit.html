@@ -1,0 +1,615 @@
+﻿<div class="content-box contractEdit">
+  <div class="pageTitle">
+    <i class="iconfont icon-guanxiaobaotubiao16"></i>编辑合约
+    <a href="" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10" [routerLink]="['/sale/contracts/guangdong/list']">返回</a>
+  </div>
+  <form (ngSubmit)="submit($event)" #editForm="ngForm">
+    <div class="content">
+      <div class="content-title  title-tag">
+        <span class="title">购电方信息</span>
+      </div>
+      <div class="select-list">
+        <div>
+          <div class="cs-list">
+            <p>用电主体<span style="color:red">*</span></p>
+            <div>
+              <kendo-combobox [data]="mdata.customer.data"
+                                  [textField]="'SubjectName'"
+                                  [valueField]="'Id'"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.Id"
+                                  [filterable]="true"
+                                  (filterChange)="mdata.customer.filter($event)"
+                                  (valueChange)="mdata.customer.change()"
+                                  [suggest]="true" 
+                                  name="SubjectName"
+                                  placeholder="输入用电主体"
+                                  style="width:100%">
+              </kendo-combobox>
+            </div>
+          </div>
+          <div class="cs-list float-r">
+            <p>所属交易中心<span style="color:red">*</span></p>
+            <div>
+              <kendo-dropdownlist [value]="'安徽交易中心'"
+                                  name="TradeCenter"
+                                  style="width: 100%;"
+                                  disabled="disabled">
+              </kendo-dropdownlist>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>用电类型<span style="color:red">*</span></p>
+            <div>
+              <kendo-dropdownlist [data]="mdata.UsedPowerTypes"
+                                  [defaultItem]="{ text: '--选择用电类型--', value: null }"
+                                  textField="text"
+                                  valueField="value"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.UsedPowerType"
+                                  name="UsedPowerType"
+                                  style="width: 100%;"
+                                  #UsedPowerType="ngModel"
+                                  required>
+              </kendo-dropdownlist>
+            </div>
+            
+          </div>
+          <div class="cs-list float-r">
+            <p>行业类别<span style="color:red">*</span></p>
+            <div>
+              <kendo-dropdownlist name="TopIndustryCategory"
+                                  [data]="mdata.industry.firs"
+                                  [defaultItem]="{ categoryName: '--请选择--', id: null }"
+                                  [textField]="'categoryName'"
+                                  [valueField]="'id'"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.IndustryCategoryFirstId"
+                                  class="ma-r20" style="width: 145px;" required
+                                  (ngModelChange)="mdata.industry.change()">
+              </kendo-dropdownlist>
+              <kendo-dropdownlist name="SecondIndustryCategory"
+                                  [data]="mdata.industry.secs"
+                                  [defaultItem]="{ categoryName: '--请选择--', id: null }"
+                                  [textField]="'categoryName'"
+                                  [valueField]="'id'"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.IndustryCategorySecondId"
+                                  style="width: 145px;"
+                                  required>
+              </kendo-dropdownlist>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>所在城市<span style="color:red">*</span></p>
+            <div>
+              <kendo-dropdownlist name="province"
+                                  [data]="mdata.area.provinces"
+                                  [defaultItem]="{ name: '--请选择--', code: null }"
+                                  [textField]="'name'"
+                                  [valueField]="'code'"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.Province"
+                                  class="ma-r20" style="width: 145px;" required
+                                  (ngModelChange)="mdata.area.change()">
+              </kendo-dropdownlist>
+              <kendo-dropdownlist name="city"
+                                  [data]="mdata.area.cities"
+                                  [defaultItem]="{ name: '--请选择--', code: null }"
+                                  [textField]="'name'"
+                                  [valueField]="'code'"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.City"
+                                  style="width: 145px;"
+                                  required>
+              </kendo-dropdownlist>
+            </div>
+          </div>
+          <div class="cs-list  float-r">
+            <p>法定代表人<span style="color:red">*</span></p>
+            <div>
+              <input type="text" id="legalPerson" name="LegalPerson" required class="k-textbox" [(ngModel)]="model.customer.LegalPerson" #LegalPerson="ngModel"/>
+            </div>
+            <div class="tishi" [hidden]="LegalPerson.valid || LegalPerson.pristine">请输入法定代表人</div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>详细地址<span style="color:red">*</span></p>
+            <div>
+              <input type="text" id="address" name="Address" required class="k-textbox" [(ngModel)]="model.customer.Address" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>登记工商管理局</p>
+            <div>
+              <input type="text" id="registerManagePlace" name="RegisterManagePlace" class="k-textbox" [(ngModel)]="model.customer.RegisterManagePlace"/>
+            </div>
+          </div>
+          <div class="cs-list float-r">
+            <p>登记号</p>
+            <div>
+              <input type="text" id="taxNumber" name="TaxNumber" class="k-textbox" [(ngModel)]="model.customer.TaxNumber"/>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>电压等级<span style="color:red">*</span></p>
+            <div>
+              <kendo-dropdownlist name="VoltageLevel"
+                                  [data]="mdata.voltage.data"
+                                  [defaultItem]="{ categoryValue: '--请选择--', categoryKey: null }"
+                                  textField="categoryValue"
+                                  valueField="categoryKey"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="model.customer.VoltageLevel"
+                                  style="width: 100%;"
+                                  required>
+              </kendo-dropdownlist>
+            </div>
+          </div>
+          <div class="cs-list float-r">
+            <p>总用电容量</p>
+            <div class="unit-input-list number-unit">
+              <kendo-numerictextbox style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="Capacitance" [(ngModel)]="model.customer.Capacitance"></kendo-numerictextbox>
+              <span class="unit r-20">KW</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>变压器容量</p>
+            <div class="unit-input-list number-unit">
+              <kendo-numerictextbox style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="TransformerCapability" [(ngModel)]="model.customer.TransformerCapability"></kendo-numerictextbox>
+              <span class="unit r-20">KVA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content ma-t20">
+      <div class="content-title  title-tag">
+        <span class="title">合约信息</span>
+      </div>
+      <div class="select-list">
+        <div>
+          <div class="cs-list">
+            <p>合约名称</p>
+            <div>
+              <input type="text" id="contractName" name="ContractName" required class="k-textbox" [(ngModel)]="model.contract.ContractName"/>
+            </div>
+          </div>
+          <div class="cs-list float-r">
+            <p>合约编号</p>
+            <div>
+              <input type="text" id="contractNumber" name="ContractNumber" required class="k-textbox" [(ngModel)]="model.contract.ContractNumber"/>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cs-list">
+            <p>合约有效期</p>
+            <div class="date-box">
+                <kendo-datepicker name="StartDate"
+                                  [max]="model.contract.EndDate"
+                                  [(ngModel)]="model.contract.StartDate"
+                                  (ngModelChange)="mdata.contractType.change()"
+                                  [format]="'yyyy/MM/dd'"
+                                  required>
+                </kendo-datepicker><span class="ma-l10 ma-r10">至</span><kendo-datepicker name="EndDate"
+                                [min]="model.contract.StartDate"
+                                [(ngModel)]="model.contract.EndDate"
+                                (ngModelChange)="mdata.contractType.change()"
+                                [format]="'yyyy/MM/dd'"
+                                required>
+              </kendo-datepicker>
+
+            </div>
+          </div>
+          <div class="cs-list float-r">
+            <p>合约方式</p>
+            <div>
+              <kendo-dropdownlist name="contractType"
+                                  [data]="mdata.contractType.data"
+                                  textField="text"
+                                  valueField="value"
+                                  [valuePrimitive]="true"
+                                  [value]="model.contract.ContractType"
+                                  [(ngModel)]="model.contract.ContractType"
+                                  (ngModelChange)="mdata.contractType.change()"
+                                  style="width: 100%;">
+              </kendo-dropdownlist>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content ma-t20">
+      <div class="content-title  title-tag">
+        <span class="title">合约分解</span>
+      </div>
+      <div class="table-box">
+        <span>
+          总预购电量：
+          <kendo-numerictextbox decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" [(ngModel)]="model.plan.PlansCount" name="PlansCount" required></kendo-numerictextbox>万千瓦时
+        </span><span style="color:red;" *ngIf="!plans.valid.check()">{{plans.valid.msg}}</span>
+
+        <div class="table-c">
+          <div class="table-t">
+            <div class="table-t-l">
+              <div class="table-t-l-p">
+                <p>时间</p>
+                <p *ngIf="model.contract.ContractType==1">长协电量(万千瓦时)</p>
+                <p *ngIf="model.contract.ContractType==2">竞价电量(万千瓦时)</p>
+              </div>
+            </div>
+            <div class="table-t-l">
+              <div class="table-t-l-p">
+                <p>时间</p>
+                <p *ngIf="model.contract.ContractType==1">长协电量(万千瓦时)</p>
+                <p *ngIf="model.contract.ContractType==2">竞价电量(万千瓦时)</p>
+              </div>
+            </div>
+          </div>
+          <div class="table-box">
+            <div class="table-box-list-c" *ngFor="let item of plans.data;let i=index;">
+              <div class="table-box-list-p">
+                <p>{{item.date}}</p>
+                <p>
+                  <kendo-numerictextbox *ngIf="model.contract.ContractType==1" style="width: 200px;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" [(ngModel)]="item.longAmount" name="planItem_{{i}}" required></kendo-numerictextbox>
+                  <kendo-numerictextbox *ngIf="model.contract.ContractType==2" style="width: 200px;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" [(ngModel)]="item.bidAmount" name="planItem_{{i}}"></kendo-numerictextbox>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content ma-t20">
+      <div class="content-title  title-tag">
+        <span class="title">套餐选择</span>
+      </div>
+      <div class="package">
+        <div class="choice">
+          <div class="choiceBox">
+            <h4>保底类</h4>
+            <ul>
+              <li *ngFor="let item of packages.guarantees" (click)="packages.selectType(item)"><p [ngClass]="{active:item.isActive}">{{item.name}}</p></li>
+            </ul>
+            <i class="iconfont icon-zengjia"></i>
+          </div>
+          <div class="choiceBox">
+            <h4>固定类</h4>
+            <ul>
+              <li *ngFor="let item of packages.fixs" (click)="packages.selectType(item)"><p [ngClass]="{active:item.isActive}">{{item.name}}</p></li>
+            </ul>
+            <i class="iconfont icon-zengjia"></i>
+          </div>
+          <div class="choiceBox">
+            <i class="iconfont icon-dengyu"></i>
+            <h4>分成类</h4>
+            <div class="SortInto">
+              <div class="SortInto-l">
+                <h5 class="engineBox" (click)="packages.switchRate(1)">
+                  <input type="radio" name="rate" class="k-radio" [checked]="packages.isMarket">
+                  <label class="k-radio-label simpleEndAgreement" for="">&ensp;按市场均价</label>
+                </h5>
+                <ul [ngClass]="{prohibit:!packages.isMarket,forbidden:!packages.isMarket}">
+                  <li *ngFor="let item of packages.markets" (click)="packages.selectType(item)"><p [ngClass]="{active:item.isActive}">{{item.name}}</p></li>
+                </ul>
+              </div>
+              <span class="xian"></span>
+              <div class="SortInto-l">
+                <h5 class="engineBox" (click)="packages.switchRate(0)">
+                  <input type="radio" name="rate" class="k-radio" [checked]="!packages.isMarket">
+                  <label class="k-radio-label simpleEndAgreement" for="">&ensp;按中标价</label>
+                </h5>
+                <ul [ngClass]="{prohibit:packages.isMarket,forbidden:packages.isMarket}">
+                  <li *ngFor="let item of packages.bids" (click)="packages.selectType(item)"><p [ngClass]="{active:item.isActive}">{{item.name}}</p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="result">
+          <h4><span><input type="radio" name="engine" id="" class="k-radio" checked="checked"></span>可选套餐列表</h4>
+          <div class="result-c">
+            <ul>
+              <li *ngFor="let item of packages.data" (click)="packages.select(item)"><p [ngClass]="{active:item.isActive}">{{item.name}}</p></li>
+            </ul>
+          </div>
+          <div class="result-b">
+            <p class="size-16">套餐说明：</p>
+            <p>未成交电量享受保底单价 , 成交电量享受固定单价。</p>
+          </div>
+        </div>
+      </div>
+      <div class="extend" id="packExtend">
+        <div class="extend-t">
+          <span class="title">扩展选择</span>
+        </div>
+        <div class="extend-c">
+          <div class="extend-box">
+            <div class="extend-c-label">
+              <span class="extend-check">
+                <input type="checkbox" class="k-checkbox" id="extendMaxQ" name="extendMaxQ" [disabled]="packageExtends.maxQ.disabled" [(ngModel)]="packageExtends.maxQ.checked" (ngModelChange)="packageExtends.maxQ.change()"/><label class="k-checkbox-label" for="extendMaxQ"></label>
+              </span>
+              <p>
+                下限电量
+                <i class="iconfont icon-zhuyi"></i>
+                <span>约定获取收益的最小电量</span>
+              </p>
+            </div>
+            <div class="extend-input">
+              <kendo-numerictextbox placeholder="输入下限电量" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" [disabled]="!packageExtends.maxQ.checked" autoCorrect="true" [(ngModel)]="packageExtends.maxQ.value" name="txtMaxQ" required></kendo-numerictextbox>
+              <span class="unit r-20">万千瓦时</span>
+            </div>
+          </div>
+          <div class="extend-box">
+            <div class="extend-c-label">
+              <span class="extend-check" id="">
+                <input type="checkbox" class="k-checkbox" id="extendMinQ" name="extendMinQ" [disabled]="packageExtends.minQ.disabled" [(ngModel)]="packageExtends.minQ.checked" (ngModelChange)="packageExtends.minQ.change()"/><label class="k-checkbox-label" for="extendMinQ"></label>
+              </span>
+              <p>
+                上限收益
+                <i class="iconfont icon-zhuyi"></i>
+                <span>约定用户收益的最大上限</span>
+              </p>
+            </div>
+            <div class="extend-input">
+              <kendo-numerictextbox placeholder="输入最大上限收益" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" [disabled]="!packageExtends.minQ.checked" autoCorrect="true" [(ngModel)]="packageExtends.minQ.value" name="txtMinQ" required></kendo-numerictextbox>
+              <span class="unit r-20">万元</span>
+            </div>
+          </div>
+          <div class="extend-box">
+            <div class="extend-c-label">
+              <span class="extend-check" id="">
+                <input type="checkbox" class="k-checkbox" id="extendComp" name="extendComp" [disabled]="packageExtends.compQ.disabled" [(ngModel)]="packageExtends.compQ.checked" (ngModelChange)="packageExtends.compQ.change()"/><label class="k-checkbox-label" for="extendComp"></label>
+              </span>
+              <p>
+                赔偿收益
+                <i class="iconfont icon-zhuyi"></i>
+                <span>约定购电失败的赔偿金额</span>
+              </p>
+            </div>
+            <div class="extend-input">
+              <kendo-numerictextbox placeholder="输入赔偿收益" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" [disabled]="!packageExtends.compQ.checked" autoCorrect="true" [(ngModel)]="packageExtends.compQ.value" name="txtComp" required></kendo-numerictextbox>
+              <span class="unit r-20">万元</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="extend">
+        <div class="extend-t">
+          <span class="title">选择结算方式</span>
+        </div>
+        <div class="settlement">
+          <p class="engineBox" (click)="packageSettles.switch(1)">
+            <input type="radio" name="settle" class="k-radio" [checked]="packageSettles.isPrice">
+            <label class="k-radio-label simpleEndAgreement">&ensp;按价格结算</label>
+          </p>
+          <p class="engineBox" (click)="packageSettles.switch(0)">
+            <input type="radio" name="settle" class="k-radio" [checked]="!packageSettles.isPrice">
+            <label class="k-radio-label simpleEndAgreement">&ensp;按价差结算</label>
+          </p>
+        </div>
+        <div class="settlement-c">
+          <div class="settlement-list" *ngIf="!packageSettles.guarantees.disabled">
+            <p class="pd-b10 size-16">保底类：</p>
+            <div class="settlement-ss" *ngFor="let item of packageSettles.guarantees.items; let i=index;">
+              <span>从</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入下限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="sgminA_{{i}}" [(ngModel)]="item.min" required></kendo-numerictextbox>
+                <span class="unit r-20">万千瓦时</span>
+              </div>
+              <span>到</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入上限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="sgmaxA_{{i}}" [(ngModel)]="item.max" required></kendo-numerictextbox>
+                <span class="unit r-20">万千瓦时</span>
+              </div>
+              <span>用</span>
+              <div class="extend-input">
+                <kendo-numerictextbox [placeholder]="packageSettles.isPrice?'输入保底价格':'输入保底价差'" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="sgprice_{{i}}" [(ngModel)]="item.price" required></kendo-numerictextbox>
+                <span class="unit r-20">{{packageSettles.isPrice?"元/千瓦时":"厘/千瓦时"}}</span>
+              </div>
+              <span>结算</span>
+              <p class="zengjia" (click)="packageSettles.guarantees.add()" *ngIf="i==0"><i class="iconfont icon-zengjia"></i>新增</p>
+              <p class="delete" (click)="packageSettles.guarantees.remove(i)" *ngIf="i!=0"><i class="iconfont icon-shanchu1"></i>删除</p>
+            </div>
+          </div>
+          <div class="settlement-list" *ngIf="!packageSettles.fixs.disabled">
+            <p class="pd-b10 size-16">固定类：</p>
+            <div class="settlement-ss" *ngFor="let item of packageSettles.fixs.items; let i=index;">
+              <span>从</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入下限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="sfminA_{{i}}" [(ngModel)]="item.min" required></kendo-numerictextbox>
+                <span class="unit r-20">万千瓦时</span>
+              </div>
+              <span>到</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入上限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="sfmaxA_{{i}}" [(ngModel)]="item.max" required></kendo-numerictextbox>
+                <span class="unit r-20">万千瓦时</span>
+              </div>
+              <span>用</span>
+              <div class="extend-input">
+                <kendo-numerictextbox [placeholder]="packageSettles.isPrice?'输入固定价格':'输入固定价差'" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="sfprice_{{i}}" [(ngModel)]="item.price" required></kendo-numerictextbox>
+                <span class="unit r-20">{{packageSettles.isPrice?"元/千瓦时":"厘/千瓦时"}}</span>
+              </div>
+              <span>结算</span>
+              <p class="zengjia" (click)="packageSettles.fixs.add()" *ngIf="i==0"><i class="iconfont icon-zengjia"></i>新增</p>
+              <p class="delete" (click)="packageSettles.fixs.remove(i)" *ngIf="i!=0"><i class="iconfont icon-shanchu1"></i>删除</p>
+            </div>
+          </div>
+          <div class="settlement-list" *ngIf="!packageSettles.rates.disabled">
+            <p class="pd-b10 size-16">分成类：</p>
+            <div class="settlement-ss" *ngFor="let item of packageSettles.rates.items; let i=index;">
+              <span>从</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入下限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="srminA_{{i}}" [(ngModel)]="item.min" required></kendo-numerictextbox>
+                <span class="unit r-20">万千瓦时</span>
+              </div>
+              <span>到</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入上限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="srmaxA_{{i}}" [(ngModel)]="item.max" required></kendo-numerictextbox>
+                <span class="unit r-20">万千瓦时</span>
+              </div>
+              <span>用</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入分成比例" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="srprice_{{i}}" [(ngModel)]="item.price" required></kendo-numerictextbox>
+                <span class="unit r-20">%</span>
+              </div>
+              <span>结算</span>
+              <p class="zengjia" (click)="packageSettles.rates.add()" *ngIf="i==0"><i class="iconfont icon-zengjia"></i>新增</p>
+              <p class="delete" (click)="packageSettles.rates.remove(i)" *ngIf="i!=0"><i class="iconfont icon-shanchu1"></i>删除</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="content ma-t20">
+      <div class="content-title  title-tag">
+        <span class="title">偏差电量担保套餐</span>
+      </div>
+      <div class="package-c">
+        <div class="package-list">
+          <div class="package-box">
+            <p>担保方式</p>
+            <div class="input-box">
+              <kendo-dropdownlist [data]="offsets.ways"
+                                  [textField]="'text'"
+                                  [valueField]="'value'"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="offsets.currentWay"
+                                  (ngModelChange)="offsets.swidth()"
+                                  name="offsetway"
+                                  style="width: 100%;">
+              </kendo-dropdownlist>
+            </div>
+            <span class="remarks">依照考核电量用户需支付赔偿金给售电公司</span>
+          </div>
+        </div>
+        <div class="package-list" *ngFor="let item of offsets.items;let i=index;">
+          <div class="package-box float-l">
+            <p *ngIf="!offsets.types.offset">考核电量<i class="iconfont icon-zhuyi"></i> <span>实际计算偏差惩罚的电量值</span></p>
+            <p *ngIf="offsets.types.offset">偏差百分比<i class="iconfont icon-zhuyi"></i> <span>用户补偿售电公司的偏差惩罚金额补偿</span></p>
+            <div class="">
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入下限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="ominA_{{i}}" [(ngModel)]="item.min" required></kendo-numerictextbox>
+                <span class="unit r-20">{{ offsets.types.offset?"%":"万千瓦时"}}</span>
+              </div>
+              <span class="color-9 pd-20">——</span>
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入上限值" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="omaxA_{{i}}" [(ngModel)]="item.max" required></kendo-numerictextbox>
+                <span class="unit r-20">{{ offsets.types.offset?"%":"万千瓦时"}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="package-box float-l ma-l20" *ngIf="!offsets.types.bao">
+            <p *ngIf="offsets.types.fill">补偿单价<i class="iconfont icon-zhuyi"></i><span>用户支付给售电公司的价格</span></p>
+            <p *ngIf="!offsets.types.fill">电网惩罚金额的百分比<i class="iconfont icon-zhuyi"></i><span>售电公司承担偏差电量考核费用的百分比</span></p>
+            <div class="">
+              <div class="extend-input">
+                <kendo-numerictextbox [placeholder]="!offsets.types.fill?'输入惩罚百分比':'输入补偿价差'" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="oprice_{{i}}" [(ngModel)]="item.price" required></kendo-numerictextbox>
+                <span class="unit r-20">{{ !offsets.types.fill?"%":"元/千瓦时"}}</span>
+              </div>
+              <span class="color-blue ma-l20 cur-p" (click)="offsets.add()" *ngIf="i==0">新增</span>
+              <span class="color-9 ma-l20 cur-p" (click)="offsets.remove(i)" *ngIf="i!=0">删除</span>
+            </div>
+          </div>
+          <div class="package-box float-l ma-l20" *ngIf="offsets.types.bao">
+            <p>&nbsp;<span>&nbsp;</span></p>
+            <div class="">
+              <div class="extend-input" style="width:0;font-size:0;margin-top: 5px;">&nbsp;</div>
+              <span class="color-blue ma-l20 cur-p" (click)="offsets.add()">新增</span>
+              <span class="color-9 ma-l20 cur-p" (click)="offsets.remove(i)" *ngIf="i!=0">删除</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="package-list" *ngIf="!offsets.types.none">
+          <div class="package-box float-l">
+            <p>担保最大金额<i class="iconfont icon-zhuyi"></i> <span>售电公司承担偏差电量考核费用的最大上限</span></p>
+            <div class="">
+              <div class="extend-input">
+                <kendo-numerictextbox placeholder="输入补偿价格" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" name="baoP" [(ngModel)]="offsets.bao.value" required></kendo-numerictextbox>
+                <span class="unit r-20">元/万千瓦时</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+        
+      </div>
+    
+    
+    
+    <div class="content ma-t20">
+      <div class="content-title  title-tag">
+        <span class="title">单方终止协议</span>
+      </div>
+      <div class="select-list" id="breakContractBox" data-flag=[1]>
+        <div class="engineBox" (click)="agreements.switch(1)">
+          <input type="radio" name="agreement" class="k-radio" [checked]="agreements.isFixed">
+          <label class="k-radio-label simpleEndAgreement">&ensp;固定金额</label>
+        </div>
+        <div [ngClass]="{forbidden:!agreements.isFixed}">
+          <div class="cs-list">
+            <p>赔付金额</p>
+            <div class="unit-input-list number-unit">
+              <kendo-numerictextbox name="compensatePrice" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" required [disabled]="!agreements.isFixed" [(ngModel)]="agreements.price"></kendo-numerictextbox>
+              <span class="unit r-20">万</span>
+            </div>
+          </div>
+        </div>
+        <div class="engineBox" (click)="agreements.switch(0)">
+          <input type="radio" name="agreement" class="k-radio" [checked]="!agreements.isFixed">
+          <label class="k-radio-label simpleEndAgreement">&ensp;按总预购电量</label>
+        </div>
+        <div [ngClass]="{forbidden:agreements.isFixed}">
+          <div class="cs-list">
+            <p>赔付金额</p>
+            <div class="unit-input-list number-unit">
+              <kendo-numerictextbox name="compensateAmount" style="width: 100%;" decimals="4" [format]="'#.####'" [max]="100000000000" autoCorrect="true" required [disabled]="agreements.isFixed" [(ngModel)]="agreements.amount"></kendo-numerictextbox>
+              <span class="unit r-20">厘/千瓦时</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content ma-t20">
+      <div class="content-title  title-tag">
+        <span class="title">合约文本</span>
+      </div>
+      <div class="select-list">
+        <div class="demo-section k-content wide">
+          <div class="wrapper">
+            <div id="products"></div>
+            <div class="dropZoneElement">
+            </div>
+          </div>
+        </div>
+
+        <input name="files" id="files" type="file" />
+      </div>
+    </div>
+    <div class="content ma-t20">
+      <div class="btn-box">
+        <button class="a-button ma-r10" [disabled]="!editForm.form.valid || !plans.valid.pass">保存</button>
+        <a class="a-button-xian a-button-xian-grey" [routerLink]="['/sale/contracts/guangdong/list']">返回</a>
+      </div>
+    </div>
+  </form>
+</div>
+<div id="dialog"></div>

@@ -1,0 +1,101 @@
+<div class="main-title">
+    <i class="iconfont icon-yingyong"></i>应用商城
+</div>
+<div class="banner">
+  <img src="/assets/images/appStore-banner.png" alt="">
+</div>
+<div class="main-r-box pd-3-5">
+    <div class="list-box" *ngFor="let item of Data">
+        <div class="title">
+            {{item.name}}
+            <a *ngIf="item.sort==1" class="float-r size-14 color-blue" [routerLink]="['basicPackage']">套餐详情<i class="iconfont icon-you size-12"></i></a>
+        </div>
+        <div class="content-list">
+            <div class="list" *ngFor="let bubItem of item.apps">
+                <div class="icon-box" [attr.id]="bubItem.id" [attr.paymentType]="bubItem.paymentType" *ngIf="bubItem.isOnline==2">
+                    <img [attr.src]="bubItem.iconUrl" alt="">
+                </div>
+                <div class="icon-box" [attr.id]="bubItem.id" [attr.paymentType]="bubItem.paymentType" *ngIf="bubItem.isOnline==3" (click)="unopen()">
+                    <img [attr.src]="bubItem.iconUrl" alt="">
+                </div>
+                <a class="icon-box" [routerLink]="['detail',bubItem.id]" [attr.paymentType]="bubItem.paymentType" [routerLink]="['detail']" *ngIf="bubItem.isOnline==1&&!bubItem.isSellTool">
+                    <img [attr.src]="bubItem.iconUrl" alt="">
+                </a>
+                <a class="icon-box" [routerLink]="['saleTool',bubItem.id]" [attr.paymentType]="bubItem.paymentType" [routerLink]="['detail']" *ngIf="bubItem.isSellTool">
+                    <img [attr.src]="bubItem.iconUrl" alt="">
+                </a>
+                <div class="content-r">
+                    <span>{{bubItem.name}}</span>
+                    <p>
+                        <span class="tips-icon color-blue" *ngIf="bubItem.isPaid">付费</span>
+                        <span class="tips-icon color-blue" *ngIf="!bubItem.isPaid">限时免费</span>
+                        <span class="tips-icon color-blue" *ngIf="bubItem.isOfficial">官方</span>
+                    </p>
+                    <p>{{bubItem.introduction}}</p>
+                </div>
+            </div>
+       </div>
+    </div>
+    <div class="list-box">
+       <div class="title">
+           企业自建
+       </div>
+       <div class="c-box">
+           <div class="content-left">
+               <img src="assets/images/building.png" alt="">
+               <p>此应用正在创建中</p>
+           </div>
+           <div class="content-right">
+               <div class="color-6">量身定制，创建自己的企业应用</div>
+               <div>
+                   <i class="iconfont icon-kuaijie bg-blue"></i>
+                   <div>
+                        <p>应用快捷入口</p>
+                        <p class="color-6">在应用频道快速添加已有系统入口</p>
+                   </div>
+               </div>
+               <div>
+                   <i class="iconfont icon-ziyuan bg-blue"></i>
+                   <div>
+                        <p>企业业务数据对接</p>
+                        <p class="color-6">内部系统与售电云平台对接，互通数据。</p>
+                   </div>
+               </div>
+               <!-- <div>
+                   <button>立即创建</button>
+               </div> -->
+           </div>
+       </div>
+    </div>
+    <div class="list-box">
+       <div class="title">
+           规划建设
+       </div>
+       <div class="foot-list-box">
+           <div class="foot-list">
+               <i class="iconfont icon-zhishiku bg-blue"></i>
+               <div>
+                    <p class="size-16">企业知识库</p>
+                    <p class="color-6 size-12">企业内部知识管理平台</p>
+               </div>
+           </div>
+           <div class="foot-list">
+               <i class="iconfont icon-biaodan bg-green"></i>
+               <div>
+                    <p class="size-16">表单系统</p>
+                    <p class="color-6 size-12">表单设计及数据收集工具</p>
+               </div>
+           </div>
+           <div class="foot-list">
+               <i class="iconfont icon-che bg-orange"></i>
+               <div>
+                    <p class="size-16">滴滴企业版</p>
+                    <p class="color-6 size-12">快捷方便的企业用车平台</p>
+               </div>
+           </div>
+       </div>
+    </div>
+    <div class="list-box">
+        <p class="color-9">您还有其他的应用需求吗？<a class="color-blue">反馈需求</a></p>
+    </div>
+</div>

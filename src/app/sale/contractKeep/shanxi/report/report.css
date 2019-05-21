@@ -1,0 +1,112 @@
+﻿.content-box.contractStatistics .content {
+  min-width: 1100px;
+}
+.content-box.contractStatistics .filtrate-box {
+  padding: 40px 20px 0;
+}
+.content-box.contractStatistics .filtrate-box > div {
+  text-align: right;
+}
+.content-box.contractStatistics .filtrate-box > div > div {
+  display: inline-block;
+  margin-right: 20px;
+  text-align: left;
+}
+.content-box.contractStatistics .filtrate-box > div > div label {
+  margin-right: 10px;
+}
+.content-box.contractStatistics .grid-box {
+  padding: 40px 30px;
+}
+.content-box.contractStatistics .grid-box .k-grid-content {
+  overflow: hidden;
+}
+.content-box.contractStatistics .grid-box .k-grid-header {
+  padding: 0 !important;
+}
+.content-box.contractStatistics .grid-box th.k-header {
+  border-width: 0;
+  background: #ddd;
+  line-height: 24px;
+  color: #333;
+  vertical-align:inherit;
+}
+.content-box.contractStatistics .grid-box th.k-header .k-link {
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+}
+.content-box.contractStatistics .grid-box th.k-header:first-child {
+  text-align: center;
+}
+.content-box.contractStatistics .grid-box th.k-header:last-child {
+  text-align: center;
+}
+.content-box.contractStatistics .grid-box td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+}
+.content-box.contractStatistics .grid-box tr td:first-child {
+  text-align: center;
+}
+.content-box.contractStatistics .grid-box tr td:last-child {
+  text-align: center;
+}
+.content-box.contractStatistics .content-t {
+  padding: 30px 20px;
+}
+.content-box.contractStatistics .content-t > div {
+  font-size: 0;
+  width: 49%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: top;
+}
+.content-box.contractStatistics .content-t > div .content-t-l {
+  padding: 20px;
+  font-size: 14px;
+  display: inline-block;
+  width: 36%;
+  height: 100px;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: top;
+  height: 100%;
+}
+.content-box.contractStatistics .content-t > div .content-t-l p:first-child {
+  font-size: 40px;
+  color: #33ccff;
+  line-height: 62px;
+}
+.content-box.contractStatistics .content-t > div .content-t-r {
+  padding: 20px 20px 20px 0;
+  display: inline-block;
+  min-height: 100px;
+  border-left: 1px solid #ddd;
+  width: 64%;
+  box-sizing: border-box;
+}
+.content-box.contractStatistics .content-t > div .content-t-r > div {
+  font-size: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.content-box.contractStatistics .content-t > div .content-t-r p {
+  font-size: 14px;
+  line-height: 30px;
+  padding-left: 30px;
+}
+.content-box.contractStatistics .content-t > div .l-r p {
+  width: 120px;
+  display: inline-block;
+}
+.content-box.contractStatistics .content-t .tRight .content-t-r p:first-child {
+  padding-top: 16px;
+}
+.content-box.contractStatistics .k-grid-header .k-header{
+  line-height:24px;
+  vertical-align:inherit;
+}

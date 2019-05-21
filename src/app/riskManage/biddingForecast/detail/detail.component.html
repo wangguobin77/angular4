@@ -1,0 +1,60 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-fengxian size-24"></i>竞价价格预测
+		<a [routerLink]="['/riskManage/bid']" class="a-button ma-r20 ma-t10 float-r">返回</a>
+	</div>
+	<div class="content">
+		<div class="content-r">
+			<div class="content-title">
+				<a class="title" name="2">价格预测</a>
+				<div class="title-r float-r ma-r20">
+					<input id="datePicker" />
+				</div>
+			</div>
+			<div class="list-box">
+				<div class="demo-section k-content wide">
+			        <kendo-chart [categoryAxis]="{ categories: categories }">
+			            <!-- <kendo-chart-title text="Gross domestic product growth /GDP annual %/"></kendo-chart-title> -->
+			            <kendo-chart-legend position="top" orientation="horizontal"></kendo-chart-legend>
+			            <kendo-chart-tooltip></kendo-chart-tooltip>
+			            <kendo-chart-series>
+			                <kendo-chart-series-item *ngFor="let item of series"
+			                    type="line" [data]="item.data" [name]="item.name">
+			                </kendo-chart-series-item>
+			            </kendo-chart-series>
+			        </kendo-chart>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-r">
+			<div class="content-title">
+				<a class="title" name="2">价格概率分布</a>
+				<button class="a-button float-r ma-r20 ma-t10" id="startPrediced">开始预测</button>
+				<p class="float-r size-14 ma-r20"><input type="text" id="predictionModel" name="dateType" class="drop-down"></p>
+				<p class="float-r size-14 ma-r20"><input type="text" id="dateType" name="dateType" class="drop-down"></p>
+			</div>
+			<div class="list-box">
+				<div class="demo-section k-content wide float-l" style="width: 65%;">
+			        <kendo-chart [categoryAxis]="{ categories: categories }">
+			            <!-- <kendo-chart-title text="Gross domestic product growth /GDP annual %/"></kendo-chart-title> -->
+			            <!-- <kendo-chart-legend position="top" orientation="horizontal"></kendo-chart-legend> -->
+			            <!-- <kendo-chart-tooltip></kendo-chart-tooltip> -->
+			            <kendo-chart-series>
+			                <kendo-chart-series-item *ngFor="let item of series"
+			                    type="line" style="smooth" markers="line" [data]="item.data" [name]="item.name">
+			                </kendo-chart-series-item>
+			            </kendo-chart-series>
+			        </kendo-chart>
+			    </div>
+			    <div class="float-r" style="width: 35%;">
+			    	<h4>0.35 元/度</h4>
+			    	<p>预计平均值</p>
+			    	<h4>0.22 － 0.4万元</h4>
+			    	<p>在置信水平90%的情况下，置信区间</p>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

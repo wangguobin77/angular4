@@ -1,0 +1,17 @@
+<section class="messagelist">
+    <div class="title">
+        <span>消息管理</span>
+        <button class="a-button-xian a-button-xian-grey float-r ma-t10" style="padding-left:0;padding-right: 0;"><a [routerLink]="['/workbench']" routerLinkActive="active" style="color:#000;display: inline-block;width:100%;height:100%">返回</a></button>
+    </div>
+    <div class="filtrate-box">
+        <span class="ma-r10">类别</span><input id="massageTypeSelect" value="1" style="width: 140px;"  (change)="filterTypeRead()"/>
+        <span class="ma-r10 time">时间</span><input id="start" type="date" style="width: 150px" /><span class="line"></span><input id="end" type="date" style="width: 150px"/>
+        <div class="searchBox float-r">
+            <input type="text" id="content" placeholder="搜索标题">
+            <i class="iconfont icon-sousuo" id="iSearch" (click)="filterTitleRead()"></i>
+        </div>
+    </div>
+    <div class="grid-box">
+        <div id="grid"></div>
+    </div>
+</section>

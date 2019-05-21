@@ -1,0 +1,106 @@
+﻿.purchaseList .filtrate-box {
+  padding: 10px 20px 10px;
+}
+.purchaseList .filtrate-box > div {
+  text-align: right;
+}
+.purchaseList .filtrate-box > div > div {
+  display: inline-block;
+  margin: 20px 10px 0 10px;
+  text-align: left;
+}
+.purchaseList .filtrate-box > div > div label {
+  margin-right: 10px;
+}
+.purchaseList .content-box .content {
+  min-width: 900px;
+}
+.purchaseList .grid-box {
+  border: 0 !important;
+  padding: 0 30px 40px;
+}
+.purchaseList .grid-box > div {
+  border: 0 !important;
+}
+.purchaseList .grid-box table {
+  border: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+.purchaseList .grid-box .k-grid-content {
+  overflow: hidden;
+}
+.purchaseList .grid-box .k-grid-header {
+  padding: 0 !important;
+}
+.purchaseList .grid-box .k-grid-header {
+  display: none;
+}
+.purchaseList .grid-box td {
+  border: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 20px !important;
+}
+.purchaseList .grid-box.cM-client-trace td {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.purchaseList .cM-box-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.purchaseList .cM-box-list .list-box {
+  height: 40px;
+  line-height: 40px;
+  background: #f4f4f4;
+}
+.purchaseList .cM-box-list .del {
+  opacity: 0;
+}
+.purchaseList .cM-box-list .td-l-box {
+  width: 73%;
+  padding: 21px 20px 4px 20px;
+  box-sizing: border-box;
+  float: left;
+  font-size: 0;
+}
+.purchaseList .cM-box-list .td-l-box > p {
+  width: 33%;
+  display: inline-block;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.purchaseList .cM-box-list .td-l-box > .width-two {
+  width: 66%;
+}
+.purchaseList .cM-box-list .btn-box {
+  width: 22%;
+  float: right;
+  height: 96px;
+  box-sizing: border-box;
+  padding-top: 30px;
+  text-align: center;
+}
+.purchaseList .cM-box-list:hover .del {
+  opacity: 1;
+}
+.purchaseList .k-radio:checked + .k-radio-label:after {
+  top: 4px;
+  left: 4px;
+  background: #00cc99;
+}
+.purchaseList .k-radio:checked + .k-radio-label:before,
+.purchaseList .k-radio:checked + .k-radio-label:hover:before {
+  border-color: #00cc99;
+}
+.purchaseList .remark {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}

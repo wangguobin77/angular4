@@ -1,0 +1,44 @@
+@import "../../../assets/style/setscss";
+@import "../../../assets/style/style";
+.main-r-content{
+    padding:40px 45px;
+    .main-r-c-title{
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+    .content-list{
+        margin-bottom:50px;
+    }
+    .list{
+        width:49%;
+        display:inline-block;
+        margin-top:38px;
+        vertical-align: text-bottom;
+        .icon-box{
+            float:left;
+            margin-right:10px;
+            display: block;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            font-size: 36px;
+            text-align: center;
+            line-height: 60px;
+            color: #fff;
+            overflow: hidden;
+            img{
+                width:100%;
+                height:100%;
+            }
+        }
+        .content-r{
+            margin-top:-6px;
+            &>span{
+                font-size:16px;
+            }
+            &>p{
+                margin-top:6px;
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+﻿<div class="content-box contractExecutionImplement">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>售电合约执行
+    <a href="#" class="float-r a-button-xian ma-r20 ma-t10" [routerLink]="['/sale/contractexecute/guangdong/list']">返回</a>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <span class="title" name="2">电量信息</span>
+      <span class="size-14 color-9 ma-l30"><i class="iconfont icon-zhuyi ma-r10"></i>提示：当前用电时间尚未有能源采购结果，请联系贵公司采购员添加并执行相应采购计划。</span>
+      <div class="float-r ma-r30 size-14">
+        <span class="color-9">用电时间：</span><span>{{contractInfo.year}}年{{contractInfo.month}}月  </span>
+      </div>
+    </div>
+    <div class="EI">
+      <div class="EI-box">
+        <div class="float-l">
+          <h3 id="needTobeDistriAmountLong">{{contractInfo.actualPurchaseAmountLongFixed}}</h3>
+          <div class="size-16 EI-p">
+            长协总可分配电量
+           
+          </div>
+          <p>（万千瓦时）</p>
+        </div>
+        <div class="float-r">
+          <div class="size-16 EI-p">
+           已分配电量： <span id="dLongAmount" [attr.data-num]="contractInfo.distributedAmountLongFixed">{{contractInfo.distributedAmountLongFixed}}</span>万千瓦时
+            
+          </div>
+          <div class="size-16 EI-p">
+            未分配电量：<span id="undLongAmount" [attr.data-num]="contractInfo.undisLong">{{contractInfo.undisLong > 0 ? contractInfo.undisLong : 0}}</span>万千瓦时
+           
+          </div>
+        </div>
+      </div>
+      <div class="EI-box">
+        <div class="float-l">
+          <h3 id="needTobeDistriAmountBid">{{contractInfo.actualPurchaseAmountBidFixed}}</h3>
+          <div class="size-16 EI-p">
+            竞价总电量
+            <span class="allBidAmount" [attr.data-num]="contractInfo.actualPurchaseAmountBidFixed"></span>
+          </div>
+          <p>（万千瓦时）</p>
+        </div>
+        <div class="float-r">
+          <div class="size-16 EI-p">
+            已分配电量： <span id="dBidAmount" [attr.data-num]="contractInfo.distributedAmountBidFixed">{{contractInfo.distributedAmountBidFixed}}</span>万千瓦时
+
+          </div>
+          <div class="size-16 EI-p">
+            未分配电量： <span id="undBidAmount" [attr.data-num]="contractInfo.undisBid">{{contractInfo.undisBid}}</span>万千瓦时
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <span class="title" name="2">分配电量</span>
+    </div>
+    <div class="pd-20 ma-l10">
+      <input type="text" class="drop-down" id="contract" name="contract" required validationMessage="">
+      <input type="text" class="drop-down" id="type" name="type" required validationMessage="">
+      <div class="searchBox float-l ma-r10">
+        <input type="text" placeholder="售电合约名称 / 客户名称关键词检索" id="SearchVal" >
+        <i class="iconfont icon-sousuo"  id="iSearch"></i>
+      </div>
+    </div>
+    <div class="grid-box">
+      <div id="grid"></div>
+    </div>
+    <div class="pd-b20" style="text-align: center;">
+      <a class="a-button" style="padding:  0 50px;" id="submitDistribution">提交</a>
+    </div>
+  </div>
+</div>
+
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popNoSign">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>客户电量分配</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required size-16">长协预售电量：10000 万千瓦时</label>
+          <label class="required size-16">竞价预售电量：10000 万千瓦时</label>
+        </li>
+        <li>
+          <label class="required">实用总电量</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="" value="" placeholder="" /><span class="company">万千瓦时</span>
+          </div>
+        </li>
+        <li>
+          <label class="required">交易总电量</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="" value="" placeholder="" /><span class="company">万千瓦时</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">保存</a>
+    </div>
+  </div>
+</div>
+<div id="demoDialog"></div>
+<div id="dialog"></div>
+<div id="dialogSubmit"></div>
+<div id="contractyear" style="display:none">{{contractInfo.year}}</div>
+<div id="contractmonth" style="display:none">{{contractInfo.month}}</div>
+

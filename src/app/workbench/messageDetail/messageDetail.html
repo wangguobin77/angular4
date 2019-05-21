@@ -1,0 +1,19 @@
+
+<section class="messageDetail">
+        <div class="title">
+            <span>消息管理</span>
+
+            <a [routerLink]="['/messagelist']" routerLinkActive="active"><button class="a-button-xian a-button-xian-grey float-r ma-t10"><i class="iconfont icon-fanhui ma-r10">   </i>返回</button></a>
+        </div>
+        <article>
+
+            <p class="content-title">
+                {{data.title}}
+                <span class="float-r">{{data.loaclPublishDate}}</span>
+            </p>
+            <p>{{data.content}}</p>
+          
+           
+           
+        </article>
+    </section>

@@ -1,0 +1,103 @@
+﻿.content-box .content {
+  min-width: 960px;
+}
+.purchaseExecute .filtrate-box {
+  padding: 10px 20px 10px;
+}
+.purchaseExecute .filtrate-box > div {
+  text-align: right;
+}
+.purchaseExecute .filtrate-box > div > div {
+  display: inline-block;
+  margin: 20px 10px 0 10px;
+  text-align: left;
+}
+.purchaseExecute .filtrate-box > div > div label {
+  margin-right: 10px;
+}
+.purchaseExecute .grid-box {
+  border: 0 !important;
+  padding: 0 30px 40px;
+}
+.purchaseExecute .grid-box > div {
+  border: 0 !important;
+}
+.purchaseExecute .grid-box table {
+  border: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+.purchaseExecute .grid-box .k-grid-content {
+  overflow: hidden;
+}
+.purchaseExecute .grid-box .k-grid-header {
+  padding: 0 !important;
+}
+.purchaseExecute .grid-box .k-grid-header {
+  display: none;
+}
+.purchaseExecute .grid-box td {
+  border: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 20px !important;
+}
+.purchaseExecute .grid-box.cM-client-trace td {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.purchaseExecute .cM-box-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.purchaseExecute .cM-box-list .list-box {
+  height: 40px;
+  line-height: 40px;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+.purchaseExecute .cM-box-list .list-box > div span:last-child {
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+.purchaseExecute .cM-box-list .td-l-box {
+  width: 73%;
+  padding: 21px 20px;
+  display: inline-block;
+  font-size: 0;
+}
+.purchaseExecute .cM-box-list .td-l-box p {
+  width: 33%;
+  display: inline-block;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.purchaseExecute .cM-box-list .btn-box {
+  width: 22%;
+  float: right;
+  box-sizing: border-box;
+  text-align: center;
+}
+.purchaseExecute .k-radio:checked + .k-radio-label:after {
+  top: 4px;
+  left: 4px;
+  background: #00cc99;
+}
+.purchaseExecute .k-radio:checked + .k-radio-label:before,
+.purchaseExecute .k-radio:checked + .k-radio-label:hover:before {
+  border-color: #00cc99;
+}
+.purchaseExecute .remark {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}

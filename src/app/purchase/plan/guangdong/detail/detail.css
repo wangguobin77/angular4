@@ -1,0 +1,248 @@
+﻿.content-box .content {
+  min-width: 950px;
+}
+.planDetail .cM-box-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.planDetail .cM-box-list .list-box {
+  height: 40px;
+  line-height: 40px;
+  background: #f4f4f4;
+}
+.planDetail .cM-box-list .list-box > div span:last-child {
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+.planDetail .cM-box-list .td-l-box {
+  padding: 21px 20px;
+  font-size: 0;
+  width: 100%;
+  line-height: 32px;
+}
+.planDetail .cM-box-list .td-l-box p {
+  width: 33%;
+  display: inline-block;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.planDetail .cM-box-list .td-l-box div {
+  font-size: 14px;
+}
+.planDetail .cM-box-list .td-l-box div .remark {
+  display: inline-block;
+  width: 90%;
+  vertical-align: top;
+  margin-bottom: 12px;
+}
+.planDetail .set-in-box {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.planDetail .set-in-box li:nth-child(2n-1) {
+  margin: 20px 0 10px;
+}
+.planDetail .set-in-box .r-20 {
+  right: 20px !important;
+}
+.planDetail .set-in-box input[type=text] {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  text-indent: 10px;
+  overflow: hidden;
+}
+.planDetail .set-in-box .k-numeric-wrap {
+  border-color: #ddd;
+}
+.planDetail .set-in-box .k-numeric-wrap .k-select {
+  padding: 0;
+}
+.planDetail .set-in-box .k-select {
+  height: 38px;
+  padding-top: 4px;
+}
+.planDetail .set-in-box .k-select .k-icon {
+  height: 20px;
+  line-height: 18px;
+}
+.planDetail .set-in-box .k-autocomplete.k-state-default {
+  border-color: #ddd;
+}
+.planDetail .dropZoneElement {
+  position: relative;
+  display: inline-block;
+  background-color: #f8f8f8;
+  border: 1px solid #c7c7c7;
+  width: 230px;
+  height: 110px;
+  text-align: center;
+}
+.planDetail .textWrapper {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 100%;
+  font-size: 24px;
+  line-height: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+.planDetail .dropImageHereText {
+  color: #c7c7c7;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.planDetail .product {
+  float: left;
+  position: relative;
+  margin: 0 10px 10px 0;
+  padding: 0;
+}
+.planDetail .product img {
+  width: 110px;
+  height: 110px;
+}
+.planDetail .wrapper:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.planDetail .k-widget.k-tooltip-validation {
+  border-color: #fdefba;
+  background-color: #fdefba;
+  color: #816704;
+  position: absolute;
+  top: 41px;
+  left: -2px;
+  padding-right: 27px;
+}
+.planDetail .k-tooltip-validation .k-i-warning {
+  position: relative;
+  vertical-align: text-top;
+  margin-right: 3px;
+  float: left;
+  top: 4px;
+  height: 18px;
+  margin-top: -3px;
+}
+.planDetail .select-list {
+  width: 727px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+.planDetail .product {
+  float: left;
+  position: relative;
+  margin: 0 10px 10px 0;
+  padding: 0;
+}
+.planDetail .product .del {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 0 0 0 10px;
+  background: rgba(0, 0, 0, 0.5);
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+.planDetail .grid-box {
+  padding: 20px 30px 40px;
+  position: relative;
+}
+.planDetail .grid-box .as-select-all {
+  position: absolute;
+  top: 66px;
+  left: 100px;
+  z-index: 99;
+}
+.planDetail .grid-box .k-grid-header {
+  padding: 0 !important;
+}
+.planDetail .grid-box th.k-header {
+  border-width: 0;
+  background: #ddd;
+  line-height: 40px;
+  color: #333;
+}
+.planDetail .grid-box th.k-header .k-link {
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+}
+.planDetail .grid-box th.k-header:first-child {
+  padding-left: 70px;
+}
+.planDetail .grid-box td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+}
+.planDetail .grid-box tr td:first-child {
+  padding-left: 70px;
+}
+.planDetail .table-box {
+  width: 900px;
+  margin: 30px auto;
+  padding-bottom: 30px;
+}
+.planDetail .table-box table {
+  width: 100%;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+.planDetail .table-box table tr td:first-child {
+  width: 100px;
+}
+.planDetail .table-box table tr td {
+  height: 60px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+.planDetail .table-box table tr td input {
+  height: 25px;
+}
+.planDetail .table-box table tr th:first-child {
+  width: 100px;
+}
+.planDetail .table-box table tr th {
+  background: #ddd;
+  line-height: 40px;
+}
+.planDetail .table-box table tr .k-numerictextbox .k-icon {
+  height: 14px;
+}
+.planDetail .filtrate-box {
+  padding: 10px 20px 10px;
+}
+.planDetail .filtrate-box > div {
+  text-align: right;
+}
+.planDetail .filtrate-box > div > div {
+  display: inline-block;
+  margin: 20px 10px 0 10px;
+  text-align: left;
+}
+.planDetail .filtrate-box > div > div label {
+  margin-right: 10px;
+}
+.planDetail .k-upload {
+  width: 300px;
+  margin: 20px 0;
+}

@@ -1,0 +1,82 @@
+<div class="content-box newBiddingForecast">
+	<div class="pageTitle">
+		<i class="iconfont icon-dian"></i>竞价价格预测
+		<a href="/powerPlantManageList.html" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+	</div>
+	<div class="content">
+		<div class="content-title">
+			<span class="title" name="2">竞价价格预测</span>
+		</div>
+		<div class="time">
+			<div class="time-box">
+				<h4 class="color-blue">2017年/ 7月</h4>
+				<p>能源价格大数据库，最后更新时间</p>
+			</div>
+			<div class="time-box">
+				<h4 class="color-exactGreen">2017年/ 7月</h4>
+				<p>市场供需大数据库，最后更新时间</p>
+			</div>
+		</div>
+		<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+			<ul class="set-in-box">
+				<li>预测名称</li>
+				<li>
+					<input type="text" name="forecastName" class="k-textbox" placeholder="输入预测名称" [(ngModel)]="postData.forecastName" required style="width: 100%;" />
+				</li>
+				<li>行政区域</li>
+				<li>
+					<kendo-dropdownlist 
+					name="administrativeArea"
+				    [data]="area"
+				    [(ngModel)]="postData.administrativeArea"
+				    [textField]="'text'"
+                    [valueField]="'value'"
+                    [valuePrimitive]="true"
+				    disabled
+				    class="ma-r20" style="width: 100%;">
+			        </kendo-dropdownlist>
+				</li>
+				<li>时间跨度</li>
+				<li>
+					<kendo-dropdownlist
+						name="dateDur"
+                        [data]="dateDuring"
+                        [(ngModel)] = "dateDur"
+                        [textField]="'text'"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+                        required
+                        (selectionChange)="dateDuringChange($event)"
+                        style="width: 26%;margin-right: 14px;"
+                    >
+                    </kendo-dropdownlist>
+                    <kendo-datepicker [value]="value" style="width:32%;" disabled [format]="'yyyy-MM-dd'"></kendo-datepicker>
+					<span>至</span>
+					<kendo-datepicker	  
+		                [format]="'yyyy MM dd'"
+		                disabled
+		                [value]="endDate"
+		                style="width: 32%;"
+		            ></kendo-datepicker>
+				</li>
+				<li>预测模型</li>
+				<li>
+					<kendo-dropdownlist
+						name="predictionModel"
+                        [data]="predictionModelData"
+                        [(ngModel)] = "predictionModel"
+                        [textField]="'categoryValue'"
+                        [valueField]="'categoryKey'"
+                        required
+                        [defaultItem] = "{categoryValue:'请选择预测模型',categoryKey:'null'}"
+                        style="width: 100%;"
+                    >
+                    </kendo-dropdownlist>
+				</li>
+				<li>
+					<button class="a-button" [disabled]="!form.form.valid">开始预测</button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>

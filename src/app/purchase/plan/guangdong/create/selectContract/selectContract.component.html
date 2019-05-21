@@ -1,0 +1,71 @@
+<div class="content-box">
+	<div class="pageTitle">
+        <i class="iconfont icon-30"></i>采购计划管理
+        <a class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r" [routerLink]="['/purchase/plan/guangdong/create']">返回</a>
+    </div>
+    <div class="content">
+        <div class="content-title">
+            <a class="title ma-r60">选择合约</a>
+            <div class="title-r float-r ma-r20">
+               <!--  <button class="a-button float-r ma-t10">查询</button>
+                <kendo-dropdownlist
+                    name="eleUsedType"
+                    [data]="eleUsedTypeData"
+                    [textField]="'name'"
+                    [valueField]="'value'"
+                    [valuePrimitive]="true"
+                    [(ngModel)]="eleUsedType"
+                    [defaultItem]=eleUsedTypePlaceHolder
+                    class="float-r ma-t10 ma-l10"
+                >
+                </kendo-dropdownlist> -->
+                <div class="searchBox float-r ma-t10 ma-r10">
+                  <input type="text" placeholder="公司名称，合约名称关键词搜索" [(ngModel)]="searchContent">
+                  <i class="iconfont icon-sousuo" (click)="searchContract()"></i>
+                </div>
+            </div>
+        </div>
+        <div class="table-title">总计电量：<span id="totle">{{totleCount}}</span>  万千瓦时 <a class="a-button float-r" (click)="submitTotleCount()">确定选择</a></div>
+        <div class="grid-box selectContract">
+            <div class="as-select-all">
+                <input type="checkbox" id="eq0" class="k-checkbox" [(ngModel)]="allChecked"  (ngModelChange)="onAllChange(allChecked)">
+                <label class="k-checkbox-label" for="eq0" id="selectAll"></label>
+            </div>
+            <kendo-grid
+			      [data]="gridData"
+            	>
+                <kendo-grid-column field="ProductID" title="" width="60">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                		<input type="checkbox" class="k-checkbox" [attr.id]="dataItem.contractId" [attr.checked]="dataItem.isChecked" [(ngModel)]="dataItem.isChecked"  (ngModelChange)="onChange(dataItem.isChecked)">
+		                <label class="k-checkbox-label" [attr.for]="dataItem.contractId"></label>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="contractName" title="合约名称">
+                </kendo-grid-column>
+                <kendo-grid-column field="contractType" title="合约方式">
+                </kendo-grid-column>
+                <kendo-grid-column field="subjectName" title="公司名称">
+                </kendo-grid-column>
+                <kendo-grid-column field="usedPowerTypeString" title="用电类型">
+                </kendo-grid-column>
+                <kendo-grid-column field="dAmount" title="应购电量(万千瓦时)">
+                    <ng-template kendoGridCellTemplate let-dataItem> 
+                        <span *ngIf="!(isBid&&dataItem.dAmount==0)">{{dataItem.dAmount}}</span>
+                        <button class="a-button" *ngIf="isBid&&dataItem.dAmount==0" (click)="remindToDeclare(dataItem)">提醒申报</button>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+	</div>
+</div>
+<kendo-dialog title="申报成功" *ngIf="opened" (close)="close()" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-okla.png">
+        <div style="line-height:24px;margin-top:20px;">
+            恭喜！提醒申报成功。
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button" (click)="close()">确定</a>
+    </kendo-dialog-actions>
+</kendo-dialog>

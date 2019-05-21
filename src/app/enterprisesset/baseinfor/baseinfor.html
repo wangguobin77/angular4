@@ -1,0 +1,140 @@
+﻿<div class="content-box">
+  <div class="pageTitle"><i class="iconfont icon-qiye"></i>营业厅配置</div>
+  <div class="content">
+    <div class=content>
+
+      <div class="content-title">
+        <ul>
+          <li class="active" id="domain-btn">域名配置</li>
+          <li id="hallSetting-btn">营业厅信息</li>
+
+        </ul>
+      </div>
+
+
+
+      <!-- 域名配置 -->
+      <div class="content-c" id="domain">
+
+        <form id="ticketsForm" #form="ngForm">
+          <ul id="fieldlist">
+            <li>
+
+              <div class=unit-input-list style=width:400px;>
+                <label for="fullname" class="required">*营业厅域名：</label>
+                <input type=text id="domainTxt" name="domain" class=k-textbox required validationmessage=请输入正确的域名 required pattern="^(?!.*-$)(([0-9a-z][0-9a-z-]{1,63})|[0-9a-z]{2,63})$"
+                  maxlength="63" placeholder=请输入营业厅域名 style="margin-left: 92px;margin-top: -34px;text-align: left;border-right: none;"
+                />
+
+                <span class=unit style="margin-top: -9px;border: 1px;margin-left: -21px;border-style: solid;border-color: rgba(200,200,200,0.5);border-left-style: none;">
+                  .yyt.gaoenergy.com</span>
+              </div>
+              <p id="validate" style="margin-left: 93px;display:none;color:red">请输入正确的域名</p>
+            </li>
+            <li>
+              <pre style="color:#A3A3A3">
+              1、请配置您的营业厅域名，域名最少为2位，最多为63位，只能是数字、字母与半角符（-）组合，
+              且头尾不能是半角符，以便用户可以通过域名访问您的营业厅。例如 kdd.yyt.gaoenergy.com,  不需要填写www. 。
+
+              2、域名设置完成后一般需要24-48小时才能生效。请您耐心等待。
+              </pre>
+
+            </li>
+            <li class="confirm">
+              <button style=" background-color:#3399FF;line-height: 30px" class="k-button k-primary" id="btnOpen" (click)="OpenDomain()">开通</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+
+
+      <!-- 营业厅信息-->
+
+      <div class="content-c" id="hallSetting" style="display: none;">
+        <form id="linceForm" (ngSubmit)="editclience($event);" #lince="ngForm">
+          <ul id="fieldlist" enctype="multipart/form-data">
+            <li>
+              <p class="note">请配置您的营业厅信息，以便向用户展示您企业品牌，使用您的营业厅。企业信息也要填写完成哦~</p>
+            </li>
+
+
+
+
+            <!-- banner图 -->
+
+            <li>
+              <label>banner图:</label>
+              <div>
+                <div class='product' *ngFor="let imgSrc of bannerSrc let i = index">
+                  <img [src]="imgSrc.imageDataList[0].data" alt="image preview" />
+                  <i class='iconfont icon-guanbipsd del' (click)="deleteImg(bannerSrc,imgSrc.fileDataId[0],2)"></i>
+                </div>
+              </div>
+              <kendo-upload style="margin-top:125px" [autoUpload]="false" (select)="selectEventHandler($event,bannerSrc,5)" [restrictions]="myRestrictions">
+              </kendo-upload>
+
+
+              <div style="height:30px; width:100%;   font-size:12px;  line-height:30px; display:block;vertical-align: middle; ">
+                <span id="business_uploadText"></span>
+                <span id="business_uploadProcess" style="height:14px;  background:rgba(44,160,62, .6); max-width:120px; vertical-align: middle; display:inline-block; ">
+                    </span>
+              </div>
+              <p>上传banner图，在营业厅展示您的企业信息，banner图尺寸为1920*350。banner图最多只能 上传三张，每张图大小不超过2M
+              </p>
+            </li>
+
+
+            <!-- 微信二维码 -->
+            <li id="hideIt1" name="hideIt">
+              <label class="required">微信二维码：</label>
+
+              <!-- 上传 -->
+              <div class="upload-logo">
+                <div class='product' *ngFor="let oimage of weixinSrc let i = index">
+                  <img [src]="oimage.imageDataList[0].data" alt="image preview" />
+                  <i class='iconfont icon-guanbipsd del' (click)="deleteImg(weixinSrc,oimage.fileDataId,3)"></i>
+                </div>
+                <kendo-upload style="margin-top:125px" [autoUpload]="false" (select)="selectEventHandler($event,weixinSrc,6)" [restrictions]="myRestrictions">
+                </kendo-upload>
+
+                <div style="height:30px; width:100%;   font-size:12px;  line-height:30px; display:block;vertical-align: middle; ">
+                  <span id="organization_uploadText"></span>
+                  <span id="organization_uploadProcess" style="height:14px;  background:rgba(44,160,62, .6); max-width:120px; vertical-align: middle; display:inline-block; "></span>
+                </div>
+              </div>
+              <p>上传您的企业微信二维码，格式为jpg、png、jgp，大小不超过2M</p>
+            </li>
+
+
+
+
+            <!-- 服务热线-->
+            <li id="hideIt2" name="hideIt" style="display:inline-flex;">
+              <label for="serviceNum" class="required">服务热线：</label>
+
+              <input type="text" id="serviceNum" class="k-textbox" placeholder="请设置您的服务热线" required="" validationmessage="请设置您的服务热线" maxlength="20"
+                [(ngModel)]="item.bussinessHallTel" name="serviceNum" style="margin-top: -10px;">
+              <p id="pNum" style="display:none;color:red;" class='tishi'>格式不正确，请重新填写</p>
+            </li>
+
+
+
+            <li class="confirm" id="confirm"><button class="k-button k-primary" type="submit" style="background:#4798EF;color:#fff;line-height: 30px ">保存</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popPrompt">
+  <div class="pop-box">
+    
+    <div class="pop-content">
+      
+     <p id="prompt" style="text-align:center;">保存成功！</p>
+    </div>
+    
+  </div>
+</div>
+
+    </div>
+  </div>

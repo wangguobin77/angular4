@@ -1,0 +1,92 @@
+﻿<div class="content-box purchaseExecuteDetail">
+  <div class="pageTitle">
+    <i class="iconfont icon-30"></i>采购执行
+    <a class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r" [routerLink]="['/purchase/execute/guangdong/list']">返回</a>
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <a class="title ma-r60">执行详情</a>
+    </div>
+    <div class="pd-20">
+      <div class="cM-box-list">
+        <div class="list-box">
+          <div class="t-left float-l ma-l20">
+            <span class="color-9">计划名称：</span>
+            <span>{{model.purchasePlanName}}</span>
+          </div>
+          <div class="t-left float-l ma-l130">
+            <span class="color-9">交易中心：</span>
+            <span>{{model.tradeCenterName}}</span>
+          </div>
+        </div>
+        <div class="td-l-box">
+          <p>
+            <span class="color-9">采购方式：</span>
+            <span>{{model.purchasePlanStyle}}</span>
+          </p>
+          <p>
+            <span class="color-9">用电时间：</span>
+            <span>{{model.timeShow}}</span>
+          </p>
+          <p>
+            <span class="color-9">采购电量：</span>
+            <span>{{model.amount}}万千瓦时</span>
+          </p>
+          <div>
+            <span class="color-9">备注：</span>
+            <span class="remark">{{model.remark}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form #form="ngForm" (ngSubmit)="submit($event,form)">
+    <div class="content ma-t20">
+      <div class="content-title">
+        <a class="title ma-r60">录入采购结果</a>
+      </div>
+      <ul class="set-in-box">
+        <li>实购电量</li>
+        <li class="unit-input-list number-unit">
+          <kendo-numerictextbox name="eleBought" [(ngModel)]="eleBought" [min]="0" required [max]="10000000" [format]="'#.####'" decimals="4" style="width: 100%;" #eleBoughtK="ngModel"></kendo-numerictextbox>
+          <span class="unit r-20">万千瓦时</span>
+        </li>
+        <li>交易价差</li>
+        <li class="unit-input-list number-unit">
+         <!--  <input id="difEnd" name="difEnd" type="number" required validationMessage="请输入实购电量" value="30" min="0" max="100000" style="width: 100%;" /> -->
+          <kendo-numerictextbox name="price" [(ngModel)]="price" [min]="-99999" required [max]="99999" [format]="'#.####'" decimals="4" style="width: 100%;" #priceK="ngModel"></kendo-numerictextbox>
+          <span class="unit r-20">厘/千瓦时</span>
+        </li>
+      </ul>
+
+    </div>
+    <div class="content ma-t20 ma-b30">
+      <div class="content-title">
+        <a class="title ma-r60">竞价确认书</a>
+      </div>
+      <ul class="pd-20">
+        <li>
+          <div class="demo-section k-content wide">
+            <div class="wrapper">
+              <div id="products"></div>
+              <div class="dropZoneElement">
+              </div>
+            </div>
+          </div>
+          <input name="files" id="files" type="file" />
+        </li>
+        <li class="text-center">
+          <button class="a-button ma-r20">保存采购结果</button>
+        <!--<button class="a-button">保存并关联能源合约</button> 改成点击保存后，显示提示框 是否关联能源合约-->
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>
+<div id="dialog"></div>
+<div id="errorDialog"></div>
+<div id="template" style="display:none">
+  <div class="product">
+    <img />
+  </div>
+</div>

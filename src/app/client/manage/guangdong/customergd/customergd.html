@@ -1,0 +1,167 @@
+﻿<div class="content-box customer">
+    <div class="pageTitle">
+      <i class="iconfont icon-kehuguanlion"></i>客户详情
+      <a [routerLink]="['/client/guangdong']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+    </div>
+    <div class="customer-table">
+      <a class="active" name="0" [routerLink]="['/client/guangdong/customer',pageId]">客户首页</a>
+      <a class="" name="1" [routerLink]="['/client/guangdong/detail/client',pageId]">>客户档案</a>
+
+
+      <a class="" name="2" [routerLink]="['/client/guangdong/detail/sale',pageId]">销售信息</a>
+      <a class="none" name="3">价值分析</a>
+    </div>
+    <div class="content ma-t20">
+      <div class="content-title">
+        <span class="title" name="2">基本信息</span>
+        <div class="title-r float-r ma-r30 size-14">
+          <a [routerLink]="['/client/guangdong/detail/client',pageId]" class="a-button-xian">查看详情</a>
+          <a href="#" class="a-button ma-l10">转移客户</a>
+        </div>
+      </div>
+      <div class="grid-box" style="height:120px">
+        <div class="content-c-box" id="informationBox">
+          <p class="width-auto">
+            <span class="color-9">客户名称：</span>
+            <span>{{basicInfo.subjectName}}</span>
+          </p >
+          <p>
+            <span class="color-9">地区：</span>
+            <span>{{basicInfo.formatProviceCity}}</span>
+          </p>
+          <p>
+            <span class="color-9">用电类型：</span>
+            <span>{{basicInfo.formatUsedPowerType}}</span>
+          </p>
+
+          <p style="display:block;float:right">
+             <span class="color-9">预估年用电量：</span>
+            <span>{{basicInfo.electricityAmount}}</span>
+
+          </p>
+          <p style="display:block;float:right;margin-top: -80px;">
+             <span class="color-9">行业：</span>
+              <span>{{basicInfo.formatCategory}}</span>
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+     <!-- 用电信息 -->
+        <div class="content ma-t20">
+            <div class="content-title">
+                <span class="title" name="2">用电信息</span>
+                <div class="title-r float-r ma-r30 size-14">
+                    <input type="text" class="drop-down drop-down-s" id="years" name="years" required validationMessage="">
+               <!--     <kendo-dropdownlist
+                      [data]="PowerContract"
+                      [textField]="'text'"
+                      [valueField]="'value'"
+                      [defaultItem]="PowerContractPlaceHolder"
+                      (selectionChange)="PowerContractChange($event)"
+                    >
+                  </kendo-dropdownlist> -->
+
+                    <a [routerLink]="['/client/guangdong/detail/power',pageId]"  class="a-button-xian ma-l10">查看详情</a>
+                </div>
+            </div>
+            <div class="grid-box">
+                <div class="grid-box-t">
+                    <div class="float-l" id="categoryBtn">
+                        <span>单位：万千瓦时</span>
+                    </div>
+                    <div class="label-box float-r">
+                        <p><span class="bg-blue"></span>预售电量</p>
+                        <p><span class="bg-lightBlue"></span>交易电量</p>
+                        <p><span class="bg-exactGreen"></span>实用电量</p>
+                        <p><span class="bg-blue"></span>能效路由数据</p>
+                    </div>
+                </div>
+
+                <div class="demo-section k-content wide" style="background:#fff">
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+       <!-- 合约信息 -->
+        <div class="content ma-t20">
+            <div class="content-title">
+                <span class="title" name="2">合约信息</span>
+                <div class="title-r float-r ma-r30 size-14">
+                    <kendo-dropdownlist
+                      [data]="PowerContract"
+                      [textField]="'text'"
+                                [valueField]="'value'"
+                      [defaultItem]="PowerContractPlaceHolder"
+                      (selectionChange)="PowerContractChange($event)"
+                    >
+                    </kendo-dropdownlist>
+                    <a  class="a-button-xian ma-l10" [routerLink]="['/sale/contracts/anhui/detail/',pageId]">查看详情</a>
+                    <a [routerLink]="['/sale/contracts/guangdong/create']" class="a-button ma-l10">新建合约</a>
+                </div>
+            </div>
+            <div class="grid-box">
+                <div class="grid-box-t">
+                    <div class="float-l" id="categoryBtn">
+                        <span>单位/万元</span>
+                    </div>
+                    <div class="label-box float-r">
+                        <p><span class="bg-orange"></span>净收益</p>
+                        <p><span class="bg-blue"></span>客户承担偏差</p>
+                        <p><span class="bg-exactGreen"></span>公司承担偏差</p>
+                    </div>
+                </div>
+                <div id="chart1"></div>
+            </div>
+        </div>
+
+
+    <div class="content ma-t20">
+      <div class="content-title">
+        <span class="title" name="2">最新报价</span>
+        <div class="title-r float-r ma-r30 size-14">
+          <a [routerLink]="['/client/anhui/detail/record',pageId]" class="a-button-xian ma-l10">查看详情</a>
+          <a href="#" class="a-button ma-l10">新建报价</a>
+        </div>
+      </div>
+      <div class="offer">
+        <div class="offer-l">
+          <ul>
+            <li>
+              <h3><span></span>套餐：煤电联动保底+煤电联动固定+按市场均价累进分成</h3>
+              <div class="">
+                <p><span class="color-9">保底类：</span>5 万千瓦时 - 500 万千瓦时          - 35 厘/千瓦时 </p>
+                <p><span class="color-9">保底类：</span>5 万千瓦时 - 500 万千瓦时          - 35 厘/千瓦时 </p>
+              </div>
+            </li>
+            <li>
+              <h3><span></span>套餐：煤电联动保底+煤电联动固定+按市场均价累进分成</h3>
+              <div class="">
+                <p><span class="color-9">赔偿收益：</span>500 万元 </p>
+              </div>
+            </li>
+            <li>
+              <h3><span></span>套餐：煤电联动保底+煤电联动固定+按市场均价累进分成</h3>
+              <div class="">
+                <p><span class="color-9">偏差百分比：</span>5% - 15% </p>
+                <p><span class="color-9">补偿单价：</span>0.5 元/千瓦时 </p>
+                <p><span class="color-9">担保最大金额：</span>500 万元 </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="offer-r">
+          <div class="offer-r-img">
+            <img src="assets/images/offer.png"/>
+          </div>
+          <p>贵公司暂未购买高级报价工具，购买后可计算套餐的收益。</p>
+          <p>如需使用，请联系企业管理员进入售电云商城进行购买。</p>
+        </div>
+      </div>
+    </div>
+  </div>

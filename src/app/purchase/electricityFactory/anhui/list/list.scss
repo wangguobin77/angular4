@@ -1,0 +1,35 @@
+.cM-box-list{
+	border:1px solid #ddd;
+	border-radius:4px;
+	min-height:80px;
+	.table-bottom-box{
+		display:flex;
+		align-items: center;
+	}
+	.list-box{
+		height:40px;
+		line-height:40px;
+		background:#f4f4f4;
+	}
+	.td-l-box{
+		width:73%;
+		padding:21px 20px;
+		font-size:0;
+		&>p{
+			width:33%;
+			display:inline-block;
+			font-size: 14px;
+			overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		}
+	}
+	.btn-box{
+		width:22%;
+		box-sizing: border-box;
+		text-align:center;
+	}
+}
+.grid-box{
+	padding:0 30px 40px;
+}

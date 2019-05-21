@@ -1,0 +1,75 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-hetong"></i>电力客户
+		<a class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10" onclick="javascript:history.back(-1);">返回</a>
+	</div>
+	<div class="content">
+		<div class="content-title">
+			<span>已选择套餐数：(<span class="color-blue">{{service.checkedArr.length}}</span>/5)</span>
+			<span class="a-button-xian ma-l30" *ngIf="service.checkedArr.length>0" [routerLink]="['/client/guangdong/newPrice/result',pageId]">创建报价方案</span>
+            <span class="a-button a-button-grey forbidden ma-l30" *ngIf="service.checkedArr.length==0">创建报价方案</span>
+		</div>
+		<div class="grid-box separate-box client-list no-header" style="padding: 20px 30px 40px;">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="createDate" title="" width="350">
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list" [attr.id]='dataItem.SalePackagesId'>
+			        		<div class="list-box">
+				        		<input type="checkbox" class="k-checkbox" [attr.id]="dataItem.SalePackagesId" disabled={{dataItem.isDisabled}} [(ngModel)]="dataItem.isChecked" (ngModelChange)='onChange(dataItem,this)'>
+			                	<label class="k-checkbox-label float-l" [attr.for]="dataItem.SalePackagesId"></label>
+                                <div class="t-left float-l ma-l10 ma-r130">
+                                    <span class="color-9">模板名称：</span>
+                                    <span> {{dataItem.Name}}</span>
+                                </div>
+                                <div class="t-left float-l ma-l20 ma-r130">
+                                    <span class="color-9">类型：</span>
+                                    <span> {{dataItem.DisplayType}}</span>
+                                </div>
+                                <div class="t-left float-l ma-l20 ma-r130">
+                                    <span class="color-9">使用次数：</span>
+                                    <span> {{dataItem.UsedCount}}</span>
+                                </div>
+                                <div class="t-left float-l ma-l20 ma-r130">
+                                    <span class="color-9">使用次数：</span>
+                                    <span> {{index}}</span>
+                                </div>
+				           </div>
+                           <div class="b-box">
+    				           <div class="td-l-box">
+                                    <p>
+                                    <span class="color-9">套餐：</span>
+                                    <span>{{dataItem.Description}} </span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">合约方式：</span>
+                                    <span>{{dataItem.ContractType}}  </span>
+                                    </p>
+                                    
+                                    <p>
+                                    <span class="color-9">建议购电区间：</span>
+                                    <span>{{dataItem.PurchaseInterval}}  </span>
+                                    </p>
+                                    <p class="width-auto">
+                                    <span class="color-9">标签：</span>
+                                    <span>{{dataItem.PackageTag}} </span>
+                                    </p>
+    	           		        </div>
+                                <div class="btn-box">
+                                    <a class="a-button-xian" [routerLink]="['/purchase/contract/guangdong/detail',dataItem.id]" >查看</a>
+                                </div>
+                            </div>
+			        	</div>
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+.main-r-box{
+	.list-box{
+		clear: both;
+		.title{
+			height: 34px;
+			border-bottom: 1px #ddd solid;
+			font-size: 18px;
+		}
+		.content{
+		    padding: 40px 20px;
+		    .list{
+		    	display: inline-block;
+		    	width: 100px;
+		    	margin-right: 20px;
+		    	text-align: center;
+		    	.icon-box{
+		    		width: 60px;
+		    		height: 60px;
+		    		border-radius: 16px;
+		    		font-size: 36px;
+		    		text-align: center;
+		    		line-height: 60px;
+		    		margin: 0 auto 10px;
+		    		overflow: hidden;
+		    		color: #fff;
+		    		img{
+		    			width:100%;
+		    		}
+		    	}
+		    }
+		}
+	}
+}

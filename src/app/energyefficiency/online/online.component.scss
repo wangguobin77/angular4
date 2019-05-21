@@ -1,0 +1,441 @@
+@import "../../../assets/style/setscss";
+.content-l{
+  width: 360px;
+  float: left;
+  .c-l-box{
+    width:358px;
+    max-height:900px;
+    border:1px solid #ddd;
+    background:#fff;
+    .content-title{
+      border:0;
+    }
+    .searchBox{
+      width:100%;
+      background:#f4f4f4;
+      border-radius:0;
+      border-left:0;
+      border-right: 0;
+      input{
+        width:300px;
+        background:#f4f4f4;
+      }
+    }
+  }
+  .k-grid-header{
+    display:none;
+  }
+  .select-all{
+    height:58px;
+    line-height: 58px;
+    text-align:center;
+    cursor:pointer;
+    margin-top:-3px;
+    &.active{
+      background:#d1e8ff;
+    }
+  }
+
+}
+
+.content-r{
+  padding-left: 380px;
+  min-width:670px;
+  background:#eee;
+  .data-show-box{
+    margin-bottom: 20px;
+  }
+  &>div{
+    background:#fff;
+  }
+  &.arePredicted-r{
+    padding-left:0;
+  }
+  .echart-t{
+    height: 60px;
+    padding-top: 20px;
+    position: absolute;
+    right: 15px;
+    top: -6px;
+    z-index: 99;
+    .drop-down{
+      width:100px;
+      margin-right:20px;
+    }
+    i{
+      color:#999;
+      cursor: pointer;
+      margin-right:20px;
+      &.active{
+        color:$blue;
+      }
+    }
+  }
+  .echart-small{
+    border:1px solid #ddd;
+    border-radius: 4px;
+    background:#f4f4f4;
+    overflow: hidden;
+  }
+  .list-box{
+    padding:0 30px 30px 30px;
+    position:relative;
+  }
+  .table-content{
+    margin-top:20px;
+    &>div{
+      background:#fff;
+    }
+  }
+}
+.k-chart-tooltip{
+  box-shadow: 0 0 9px #ddd !important;
+  text-align:left;
+  padding-right: 20px;
+  .color-9{
+    display: inline-block;
+    width:100px;
+    text-align:right;
+  }
+}
+.grid-box{
+  width:358px;
+  overflow: hidden;
+  .td-list{
+    height:48px;
+    padding: .4em .6em;
+    border-bottom: 1px solid #ddd;
+  }
+  thead{
+    display:none !important;
+  }
+    .company-name{
+      display:inline-block;
+      width:200px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    i{
+      position: relative;
+      top:-4px;
+      margin-left:10px;
+    }
+  .k-grid-content{
+    tr.active{
+      background:#d1e8ff;
+      .company-name{
+        color:#333;
+      }
+    }
+  }
+  .k-grid-header{
+    padding:0 !important;
+  }
+  td{
+    border:0;
+    height:48px;
+    overflow:initial;
+    border-bottom: 1px solid #ddd;
+  }
+  .table-overflow-box{
+    width:378px;
+    height:500px;
+    overflow-y:scroll;
+    overflow-x:hidden;
+  }
+}
+.mCSB_inside > .mCSB_container{
+  margin-right: 0 !important;
+}
+.mCSB_scrollTools{
+  width:0 !important;
+}
+.table-box{
+  &.price-table{
+    td{
+      border-left:0 !important;
+    }
+  }
+  .table-c{
+    display:flex;
+    width:100%;
+  }
+  .table-title{
+    height:91px;
+    border:1px solid #ddd;
+    border-radius:4px 0 0 4px;
+    border-right:0;
+    min-width:100px;
+    margin-top:10px;
+      white-space: nowrap;
+      p{
+        padding:0 20px;
+        border-top:1px solid #ddd;
+      height:50px;
+      line-height:50px;
+      text-align:center;
+      background-color:#fff;
+      }
+    p:first-child{
+      height:39px;
+      line-height:41px;
+      text-align:center;
+      background:#ddd;
+    }
+    &.dw-table-title{
+      height:143px;
+      width:375px;
+      p:first-child{
+        height:39px;
+      }
+    }
+  }
+  .table-impose{
+    display:inline-block;
+    overflow-x:scroll;
+    position:relative;
+    border:1px solid #ddd;
+    margin-top:10px;
+  }
+  table{
+    border-collapse: collapse;
+      vertical-align: top;
+      overflow-x: scroll;
+    th{
+      text-align:left;
+      height:40px;
+      background:#ddd;
+      min-width:100px;
+      text-align:center;
+      white-space: nowrap;
+      font-size: 14px;
+      &:last-child{
+        padding-right:20px;
+      }
+      // &:first-child{
+      //  position:absolute;
+      //  line-height:40px;
+      // }
+    }
+    td{
+      height:50px;
+      min-width:100px;
+      text-align:center;
+      border-top:1px solid #ddd;
+        white-space: nowrap;
+        background:#fff;
+      &:last-child{
+        padding-right:20px;
+      }
+    }
+    thead{
+      width:100%;
+    }
+    tbody{
+      width:100%;
+    }
+  }
+}
+.dialog-box{
+  .drop-down{
+    width:80px;
+    text-align:left;
+    margin:0 10px;
+  }
+}
+
+
+.filtrate-box{
+  padding:30px 20px 0;
+  text-align:right;
+  &>div{
+    &>div{
+      display:inline-block;
+      text-align:left;
+      label{
+        margin-right: 10px;
+      }
+    }
+    .k-datepicker{
+      width: 200px;
+      height:36px;
+      margin-top: -8px;
+      input{
+        height:36px;
+        line-height:36px;
+      }
+      .k-select{
+        line-height:40px;
+      }
+      .k-picker-wrap{
+        border-radius:4px;
+      }
+    }
+    .drop-down{
+      text-align:left;
+      width:100px;
+    }
+  }
+}
+.grid-c-box{
+  .k-grid-content{
+    height:auto;
+    overflow:hidden;
+  }
+  .k-grid-header{
+    padding:0 !important;
+  }
+  th.k-header{
+    border-width:0;
+    background:#ddd;
+    line-height:40px;
+    color:#333;
+    text-align: center;
+    .k-link{
+      height:40px;
+      line-height:40px;
+      color:#333;
+    }
+  }
+  td{
+    border:0;
+    height:48px;
+    border-bottom: 1px solid #ddd;
+    text-align:center;
+  }
+}
+
+.data-show-box{
+  .data-show-box-l{
+    height:140px;
+    margin-right:400px;
+    background:#fff;
+    border-radius:4px;
+    p{
+      width:33%;
+      float:left;
+      padding-top:65px;
+      position:relative;
+      text-align:center;
+      span{
+        line-height:60px;
+        &.num{
+          font-size: 40px;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 30px;
+        }
+      }
+    }
+  }
+  .data-show-box-r{
+    width:350px;
+    height:110px;
+    background:#fff;
+    float:right;
+    border-radius:4px;
+    background:url(/assets/images/5860c13baeea5.png) no-repeat center center;
+    background-size: 100% 100%;
+    padding:15px;
+    .data-show-box-r-impose{
+      height:80px;
+      border:1px solid rgba(255,255,255,.5);
+      border-radius:2px;
+      padding:15px 17px;
+      color:#fff;
+      p{
+        &:last-child{
+          line-height: 65px;
+            letter-spacing: 6px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:1556px){
+  .data-show-box{
+    .data-show-box-l{
+      p{
+          width: 100%;
+          text-align: left;
+          padding-left: 20px;
+          padding-top: 0;
+          line-height: 0px;
+          height: 40px;
+        span{
+          display:inline;
+          text-align:left;
+          &.num{
+            font-size:18px;
+              position: initial;
+          }
+          &:first-child{
+            font-size:14px;
+            display:inline-block;
+            width:100px;
+            text-align:right;
+          }
+          &:last-child{
+            
+          }
+        }
+      }
+    }
+  }
+}
+
+.text-list-box{
+  padding:30px;
+  background:#fff;
+  &>div{
+    width:650px;
+    margin:0 auto;
+  }
+  p{
+    display:inline-block;
+    width:49%;
+    span{
+      line-height:30px;
+      &:first-child{
+        display:inline-block;
+        width:200px;
+        text-align:right;
+      }
+    }
+  }
+}
+
+.echart-small{
+  .k-selector{
+    top:0 !important;
+    height:91px !important;
+  }
+  .k-selection-bg{
+    background-color: rgba(51,153,255,.3) !important;
+  }
+  .k-handle{
+    background:#3399ff;
+  }
+}
+
+.data-box{
+  padding-top:20px !important;
+  &>div{
+    border:1px solid #ddd;
+    border-radius:4px;
+    font-size:0;
+  }
+  p{
+    width:25%;
+    font-size:14px;
+    display:inline-block;
+    line-height:40px;
+    white-space:nowrap;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}

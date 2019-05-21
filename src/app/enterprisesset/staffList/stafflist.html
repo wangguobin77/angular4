@@ -1,0 +1,133 @@
+
+<div class="staffList">
+	<div class="content-box">
+		<div class="pageTitle">
+			<i class="iconfont icon-iconshezhi01"></i>角色管理
+			<div class="float-r ma-r10" style="padding-right: 32px">
+				<span style="color:gray" class="size-14">当前交易中心：</span>
+				<kendo-dropdownlist name="tradecenter"
+								[data]="tcs.data"
+								textField="name"
+								valueField="id"
+								[valuePrimitive]="true"
+								[(ngModel)]="tcs.value"
+								(ngModelChange)="tcs.change()"
+								style="width: 200px;">
+				</kendo-dropdownlist>
+			</div>
+		</div>
+
+		<div class="content ma-t20" style="padding-top: 50px;">
+			<div class="note" style="background: #D1EEFE;border:1px solid #4399FC;height: 40px;width:800px;margin:0 auto;line-height: 40px;">
+				<span class="title" name="2" style="font-size: 12px">说明： IT管理员不区分交易中心，其他角色区分交易中心，即IT管理员分配后在所有交易中心都有IT管理员权限。</span>
+
+			</div>
+
+			<div class="grid-box">
+				<div id="grid"></div>
+			</div>
+		</div>
+
+
+		<!-- 分配 -->
+		<div class="content-boxa" *ngIf="opened">
+			<kendo-dialog title="分配角色" (close)="close('cancel')">
+				<div class="content-box">
+					<div class="content">
+						<div class="content-title">
+							<a class="title ma-r60 cur-p" name="2" [ngClass]="{active:allot.isSaler,'color-9':!allot.isSaler}" (click)="allot.switch(true)">分配{{allot.rolefname}}</a>
+							<a class="title ma-r60 cur-p" name="2" [ngClass]="{active:!allot.isSaler,'color-9':allot.isSaler}" (click)="allot.switch(false)" *ngIf="allot.isSellerAgent()">分配销售工具</a>
+						</div>
+						<div class="c-b">
+							<div class="card" style="display:none;">
+								<div class="head-img">
+									<img src="assets/images/banner.png" alt="">
+								</div>
+								<p class="identity">报价员</p>
+								<p class="count">授权人数：<span>6</span>人</p>
+								<p class="introduce">售电经纪人，负责市场跑客户的人员, 售电经纪人,负责市场跑客户的人员。</p>
+							</div>
+							<div class="staff-select-box">
+								<p class="note" *ngIf="!allot.isSaler">可分配员工数量为销售工具（pad版）的数量，您还可以分配 {{allot.terminalCount}} 人。分配员工一旦添加就不可移除，请谨慎添加。您可以在商城购买销售工具来增加可分配数量。</p>
+								<div>
+									<div class="select-box">
+										<div class="uselect">
+											<div class="searchBox ma-r10 ma-t10">
+												<input placeholder="未选员工用户名/姓名" type="text" [(ngModel)]="allot.filterKey.un" (keyup.enter)="allot.filter(0)">
+												<i class="iconfont icon-sousuo" (click)="allot.filter(0)"></i>
+											</div>
+										</div>
+										<div id="staffNoSelect">
+											<kendo-grid
+												[kendoGridBinding]="allot.unSelected"
+												[pageable]="false"
+												[scrollable]="'virtual'"
+												[height]="400"
+												style="width:340px">
+												<kendo-grid-column field="userId" width="60">
+													<ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+														<input type="checkbox" [(ngModel)]="allot.checked.un" (change)="allot.selectAll(0)"/>
+													</ng-template>
+													<ng-template kendoGridCellTemplate let-dataItem>
+														<input type="checkbox" [checked]="allot.checked.un" (change)="allot.select(dataItem,$event,0)"/>
+													</ng-template>
+												</kendo-grid-column>
+												<kendo-grid-column field="fullName" [width]="100" title="真实姓名"></kendo-grid-column>
+												<kendo-grid-column field="userName" [width]="120" title="用户名"></kendo-grid-column>
+											</kendo-grid>
+										</div>
+										<div class="bot" [hidden]="true">
+											<span>
+													<input type="checkbox" id="totle0" class="k-checkbox"><label class="k-checkbox-label select-all" for="totle0"></label>全选
+												</span>
+											<span class="all">共<span>0</span>项</span>
+										</div>
+									</div>
+									<div class="cmd">
+										<p><button id="addStaff" class="a-button" (click)="allot.add()" [ngClass]="{'a-button-grey':!allot.isSaler && allot.terminalCount==0}" [disabled]="!allot.isSaler && allot.terminalCount==0">添加>></button></p>
+										<p><button id="removeStaff" class="a-button a-button-grey" (click)="allot.remove()" *ngIf="allot.isSaler"><<移出</button></p>
+									</div>
+									<div class="select-box">
+										<div class="uselect">
+											<div class="searchBox ma-r10 ma-t10">
+												<input placeholder="已选员工用户名/姓名" type="text" [(ngModel)]="allot.filterKey.has" (keyup.enter)="allot.filter(1)">
+												<i class="iconfont icon-sousuo" (click)="allot.filter(1)"></i>
+											</div>
+										</div>
+										<div id="staffSelected">
+											<kendo-grid
+												[kendoGridBinding]="allot.hasSelected"
+												[pageable]="false"
+												[scrollable]="'virtual'"
+												[height]="400"
+												style="width:340px">
+												<kendo-grid-column field="userId" width="60">
+													<ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+														<input type="checkbox" [(ngModel)]="allot.checked.has" (change)="allot.selectAll(1)"/>
+													</ng-template>
+													<ng-template kendoGridCellTemplate let-dataItem>
+														<input type="checkbox" [checked]="allot.checked.has" (change)="allot.select(dataItem,$event,1)"/>
+													</ng-template>
+												</kendo-grid-column>
+												<kendo-grid-column field="fullName" [width]="100" title="真实姓名"></kendo-grid-column>
+												<kendo-grid-column field="userName" [width]="120" title="用户名"></kendo-grid-column>
+											</kendo-grid>
+										</div>
+										<div class="bot" [hidden]="true">
+											<span>
+													<input type="checkbox" id="totle1" class="k-checkbox"><label class="k-checkbox-label select-all" for="totle1"></label>
+													全选
+												</span>
+											<span class="all">共<span>0</span>项</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</kendo-dialog>
+		</div>
+	</div>
+
+</div>

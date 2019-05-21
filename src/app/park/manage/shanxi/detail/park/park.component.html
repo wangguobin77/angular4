@@ -1,0 +1,299 @@
+﻿<div class="content">
+	<div class="title-tag title-list border-0">园区信息
+		<span class="color-blue cur-p size-14 float-r ma-r60" (click)="baseInEdit()">编辑</span>
+	</div>
+	<div class="content-c-box" id="informationBox">
+		<p>
+			<span class="color-9">园区名称：</span>
+			<span>{{basicInfo.sellerParkName}}</span>
+		</p >
+		<p>
+			<span class="color-9">客户编号：</span>
+			<span>{{basicInfo.customerNum}}</span>
+		</p>
+		<p>
+			<span class="color-9">密钥：</span>
+			<span>{{basicInfo.secretKey}}</span>
+		</p>
+		<p>
+			<span class="color-9">所在城市：</span>
+			<span>{{basicInfo.areaName}}</span>
+		</p>
+		<p>
+			<span class="color-9">创建时间：</span>
+			<span>{{basicInfo.createDate}}</span>
+		</p>
+		<p class="width-auto">
+			<span class="color-9">详细地址：</span>
+			<span *ngIf="!isEdit&&basicInfo.address!=null">{{basicInfo.address}}</span>
+			<span *ngIf="!isEdit&&basicInfo.address==null||!isEdit&&basicInfo.address==''">未填写</span>
+			<span *ngIf="isEdit">
+				<input type="text" [(ngModel)]='editInfo.address' [attr.value]='basicInfo.address' class="k-textbox" required validationMessage="请输入详细地址" style="width: 200px;" />
+			</span>
+		</p>
+		<div class="btn-box" *ngIf="isEdit">
+			<button class="a-button ma-r20" (click)='submitBaseInfo()'>保存</button>
+			<span class="a-button-xian a-button-xian-grey" (click)='cancelBaseInfo()'>取消</span>
+		</div>
+	</div>
+</div>
+
+<div class="ma-t20 ma-r20 double-box content ma-b30" style="min-width: 1040px;">
+	<div class="c-right" style="width: 100%">
+				<div>
+					<div class="title-tag title-list border-0" style="background:#F2F2F2">联系人
+						<span class="color-blue cur-p size-14 float-r ma-r20" id="addNewContractMan" (click)="addContent($event)">新增联系人</span>
+					</div>
+					<div class="c-content">
+						<table class="ele-used">
+							<thead>
+								<tr>
+									<th>姓名</th>
+									<th>职务</th>
+									<th>联系方式</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let parkCon of basicInfo.parkContacts; let i = index">
+									<td>{{parkCon.contacts}}</td>
+									<td>{{parkCon.position}}</td>
+									<td>{{parkCon.tel}}</td>
+									<td>{{parkCon.remark}}</td>
+									<td>
+										<i class="iconfont icon-dingdan ma-r10 cur-p edit-list"></i>
+										<i class="iconfont icon-shanchu1 cur-p del-list"></i>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+	</div>
+	<div class="c-left" style="width: 100%">
+		<div>
+			<div class="title-tag title-list border-0" style="background:#F2F2F2">园区客户
+				<span style="display:inline-block;margin-left:10%">园区客户数：100</span>
+				<span style="display:inline-block;margin-left:20%">最高电压等级：100KV</span>
+				<span style="display:inline-block;margin-right:10%">创建客户</span>
+			</div>
+			<div class="c-content">
+						<table class="ele-used">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>园区客户名称</th>
+									<th>电压等级<span class="size-12">（KV）</span></th>
+									<th>参与园区打包</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>安徽省合肥市第一公司</td>
+									<td>10</td>
+									<td>	
+										<kendo-switch 
+											[onLabel]="'是'"
+					          				[offLabel]="'否'"
+					          				(click)="switchChange()"
+										>
+										</kendo-switch>
+									</td>
+									<td><a class="color-blue" href="">查看</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>安徽省合肥市第一公司</td>
+									<td>10</td>
+									<td>
+										<kendo-switch 
+											[onLabel]="'是'"
+					          				[offLabel]="'否'"
+					          				(click)="switchChange()"
+										>
+										</kendo-switch>
+
+									</td>
+									<td><a class="color-blue" href="">查看</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>安徽省合肥市第一公司</td>
+									<td>10</td>
+									<td>
+										<kendo-switch style="background: black"
+											[onLabel]="'是'"
+					          				[offLabel]="'否'"
+					          				(click)="switchChange()"
+										>
+										</kendo-switch>
+
+									</td>
+									<td><a class="color-blue" href="">查看</a></td>
+								</tr>
+							</tbody>
+						</table>
+					<div class="grid-box contractMan"><div id="grid" class="date-Grid"></div></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div id="dialog"></div> -->
+
+<!-- 添加用户 -->
+<form  style="margin:0;padding:0" *ngIf="add" (ngSubmit)="add($event)">
+  <kendo-dialog title="添加员工" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          <h4>员工姓名</h4>
+          <p>
+            <input value="fullName"
+            class="k-textbox" placeholder="请输入员工姓名" style="width: 300px;height:40px"  />
+          </p>
+          <span style="background:red">*</span>
+          <h4>账号</h4>
+          <p>
+            <input value="userName"
+            class="k-textbox" placeholder="请输入员工账号" style="width: 300px;height:40px"/>
+          </p>
+          <h4>密码</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="请输入员工密码" style="width: 300px;height:40px"  />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:100px">
+        <button class="a-button" style="margin-right:10px">更新</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+<!-- 编辑联系人 -->
+
+<form  style="margin:0;padding:0" *ngIf="edit" (ngSubmit)="edit($event)">
+  <kendo-dialog title="创建客户" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          	
+          <h4><span style="background:red">*</span>姓名</h4>
+          <p>
+            <input value="fullName"
+            class="k-textbox" placeholder="姓名" style="width: 300px;height:40px"  />
+          </p>
+         
+
+          <h4>职位</h4>
+          <p>
+            <input value="userName"
+            class="k-textbox" placeholder="职位(选填)" style="width: 300px;height:40px"/>
+          </p>
+
+          <h4><span style="background:red">*</span>联系方式</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="联系方式" style="width: 300px;height:40px"  />
+          </p>
+
+
+           <h4>备注</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="备注(选填)" style="width: 300px;height:40px"  />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:100px">
+        <button class="a-button" style="margin-right:10px">确定</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+
+<!-- 删除 -->
+<form  style="margin:0;padding:0" *ngIf="dellist" (ngSubmit)="dellist($event)">
+  <kendo-dialog title="创建客户" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          	
+          <h4><span style="background:red">*</span>姓名</h4>
+          <p>
+            <input value="fullName"
+            class="k-textbox" placeholder="姓名" style="width: 300px;height:40px"  />
+          </p>
+         
+
+          <h4>职位</h4>
+          <p>
+            <input value="userName"
+            class="k-textbox" placeholder="职位(选填)" style="width: 300px;height:40px"/>
+          </p>
+
+          <h4><span style="background:red">*</span>联系方式</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="联系方式" style="width: 300px;height:40px"  />
+          </p>
+
+
+           <h4>备注</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="备注(选填)" style="width: 300px;height:40px"  />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:100px">
+        <button class="a-button" style="margin-right:10px">确定</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+
+<!-- 创建客户 -->
+
+
+<form  style="margin:0;padding:0" *ngIf="creat" (ngSubmit)="add($event)">
+  <kendo-dialog title="创建客户" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          	
+          <h4><span style="background:red">*</span>姓名</h4>
+          <p>
+            <input value="fullName"
+            class="k-textbox" placeholder="姓名" style="width: 300px;height:40px"  />
+          </p>
+         
+
+          <h4>职位</h4>
+          <p>
+            <input value="userName"
+            class="k-textbox" placeholder="职位(选填)" style="width: 300px;height:40px"/>
+          </p>
+
+          <h4><span style="background:red">*</span>联系方式</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="联系方式" style="width: 300px;height:40px"  />
+          </p>
+
+
+           <h4>备注</h4>
+          <p>
+            <input value="newPassword"
+            class="k-textbox" placeholder="备注(选填)" style="width: 300px;height:40px"  />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:100px">
+        <button class="a-button" style="margin-right:10px">确定</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>

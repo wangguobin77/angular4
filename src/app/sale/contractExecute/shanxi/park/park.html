@@ -1,0 +1,102 @@
+﻿<div class="content-box contractExecutionImplement conEIPark">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>售电合约执行
+    <a href="#" class="float-r a-button-xian ma-r20 ma-t10" [routerLink]="['/sale/contractexecute/shanxi/list']">返回</a>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <span class="title" name="2">电量信息</span>
+      <div class="float-r ma-r30 size-14">
+        <span class="color-9">用电时间：</span><span>{{paramDetail.year}}年{{paramDetail.month}}月  </span>
+      </div>
+    </div>
+   
+      <div class="cd-box">
+      <div class="line-box">
+      <p>
+        <span class="color-9">园区名称：</span>
+        <span>{{paramDetail.parkname}}</span>
+      </p>
+      <p>
+        <span class="color-9">用电时间：</span>
+        <span>{{paramDetail.year}}年{{paramDetail.month}}月 </span>
+      </p>
+      <p>
+        <span class="color-9">总申报电量：</span>
+        <span class="color-red" id="totaldeal">{{paramDetail.bidamount}}</span>万千瓦时
+      </p>
+      <p>
+        <span class="color-9">总成交电量：</span>
+        <span><span id="totalpower">{{paramDetail.dealamount}}</span>万千瓦时</span>
+      </p>
+      <p>
+        <span class="color-9">已分配成交电量：</span>
+        <span><span id="hasassignment">{{powerinfo.hasassignment}}</span>万千瓦时</span>
+      </p>
+      <p>
+        <span class="color-9">未分配成交电量：</span>
+        <span><span id="leftpower">{{powerinfo.leftpower}}</span>万千瓦时</span>
+      </p>
+      </div>
+    </div>
+  
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <span class="title" name="2">分配电量</span>
+    </div>
+    <div class="pd-t20" style="overflow:hidden">
+      <div class="ma-r30 float-r">
+        <input type="text" class="drop-down" id="type" name="type" required validationMessage="" [hidden]="true">
+        <div class="searchBox float-l ma-r10">
+          <input type="text" placeholder="园区客户名称检索" id="SearchVal" >
+          <i class="iconfont icon-sousuo"  id="iSearch"></i>
+        </div>
+      </div>
+    </div>
+    <div class="grid-box">
+      <div id="grid"></div>
+    </div>
+    <div class="pd-b20" style="text-align: center;">
+      <a class="a-button" style="padding:  0 50px;" id="submitDistribution">提交</a>
+    </div>
+  </div>
+</div>
+
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popNoSign">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>客户电量分配</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required size-16">长协预售电量：10000 万千瓦时</label>
+          <label class="required size-16">竞价预售电量：10000 万千瓦时</label>
+        </li>
+        <li>
+          <label class="required">实用总电量</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="" value="" placeholder="" /><span class="company">万千瓦时</span>
+          </div>
+        </li>
+        <li>
+          <label class="required">交易总电量</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="" value="" placeholder="" /><span class="company">万千瓦时</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">保存</a>
+    </div>
+  </div>
+</div>
+<div id=".+
+"></div>
+<div id="dialogpark"></div>
+<div id="dialogSubmit"></div>
+ 

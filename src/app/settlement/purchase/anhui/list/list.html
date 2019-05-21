@@ -1,0 +1,78 @@
+﻿
+<div class="content-box powerGridEnd">
+    <div class="pageTitle">
+        <i class="iconfont icon-hetong"></i>结算明细
+    </div>
+    <div class="content">
+        <div class="content-title">
+            <a class="title active cur-p ma-r60" name="2" [routerLink]="['/settlement/purchase/anhui/list']">电网结算分析</a>
+            <a class="title color-9 cur-p" name="2" [routerLink]="['/settlement/sale/anhui/list']">客户结算分析</a>
+            <div class="title-r float-r ma-r20">
+                <input id="datePicker" value="{{year}}" />
+            </div>
+        </div>
+        <div class="chart-box">
+            <div class="chart-box-r">
+                <div id="chartLine" class="chart"></div>
+            </div>
+            <div class="chart-box-l">
+                <div id="chart" class="chart"></div>
+                <div class="chart-data-text">
+                    <span class="size-24"><span id="spProfits">0</span><span class="size-14">元</span></span>
+                    <span class="color-6 ma-t10">购电收益</span>
+                    <span class="size-24 ma-t30 color-lightGreen"><span id="spPaidPrice">0</span><span class="size-14 color-lightGreen">元</span></span>
+                    <span class="color-6 ma-t10">已结金额</span>
+                    <span class="size-24 ma-t30 color-exactBlue"><span id="spUnPaidPrice">0</span><span class="size-14 color-exactBlue">元</span></span>
+                    <span class="color-6 ma-t10">未结金额</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content ma-t20">
+        <div class="content-title">结算列表<span class="a-button size-14 float-r ma-r30 ma-t10" id="clearing">合并清算</span><span class="a-button-xian float-r ma-r20 ma-t10" id="yearTotle">年度合计</span></div>
+        <div class="data-list-box" id="totleBox" style="display: none;">
+            <div>
+                <div class="data-list">
+                    <span class="size-24" id="spOffa">15533.4</span>（万千瓦时） <p class="color-9 size-14">偏差电量</p>
+                </div>
+                <div class="data-list">
+                    <span class="size-24" id="spProf">15533.4</span>元 <p class="color-9 size-14">购电收益</p>
+                </div>
+                <div class="data-list">
+                    <span class="size-24" id="spOffp">15533.4</span>元 <p class="color-9 size-14">偏差金额</p>
+                </div>
+                <div class="data-list">
+                    <span class="size-24" id="spFact">15533.4</span>元 <p class="color-9 size-14">实际收益</p>
+                </div>
+                <div class="data-list"  style="padding-top:22px;">
+                    <span class="size-18 color-red" id="spPaid">未结</span>
+                    <p class="color-9 size-14">状态</p>
+                </div>
+                <div class="button-box" id="btnDo">
+                    <button class="a-button-xian ma-r10" id="lookV">查看票据</button>
+                    <button class="a-button" id="addV">结算</button>
+                </div>
+            </div>
+        </div>
+        <div class="data-box" style="display: none;" id="dataBox">
+            <input type="checkbox" id="eq0" class="k-checkbox">
+            <label class="k-checkbox-label" id="selectAll" for="eq0">&ensp;全部</label>
+            <div class="float-r">
+                <span>已选&ensp;<span id="selectedCount">0</span>&ensp;项</span>
+                <span class="ma-r20 ma-l10">总计 <span class="color-blue size-24" id="totleAmount">0</span>元</span>
+                <button class="a-button-xian ma-r10" id="cancel">取消</button>
+                <button class="a-button" id="submit">确定</button>
+            </div>
+        </div>
+        <div class="grid-box"><div id="grid"></div></div>
+    </div>
+</div>
+<div id="endDialog"></div>
+<div id="searchDialog"></div>
+<div class="popup-cart center" style="display: none;" id="popBigImg">
+    <span class="arrow" id="arrowLeft"><i class="iconfont icon-arrowleft"></i></span>
+    <div class="img-big" id="imgImpose">
+        <div id="imgBox" class="img-box"></div>
+    </div>
+    <span class="arrow" id="arrowRight"><i class="iconfont icon-arrowright"></i></span>
+</div>

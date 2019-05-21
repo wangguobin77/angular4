@@ -1,0 +1,105 @@
+<div class="pd-20 detail-box">
+<div class="list-box">
+       <div class="title">
+           应用详情
+           <a class="float-r a-button-xian a-button-xian-grey size-16" style="margin-top: -13px;" [routerLink]="['/store/appStore']">返回</a>
+       </div>
+       <div class="main-content">
+			<div class="mc-top">
+				<div class="icon-box" [attr.id]="saleToolData.iconId">
+                    <img [attr.src]="saleToolData.iconUrl" alt="">
+                </div>
+				<div class="mc-top-c">
+					<p class="siz-18">{{saleToolData.name}}</p>
+					<p>
+						<span class="tip-icon color-pink" *ngIf="saleToolData.isOfficial">官方</span>
+						<span class="tip-icon color-orange" *ngIf="saleToolData.isPaid">付费</span>
+					</p>
+					<p class="color-9">{{saleToolData.introduction}}</p>
+				</div>
+				<div class="mc-top-r ma-t10">
+					<div class="sell-tool-btn-box float-r">
+						<button class="a-button" (click)="addToCart(saleToolData.wifiVersion,saleToolData.lteVersion)">加入购物车</button>
+					</div>
+					<p>
+						<input type="checkbox" id="eq1" class="k-checkbox" [(ngModel)]="wifiModel">
+			          	<label class="k-checkbox-label" for="eq1">WiFi版</label>
+		          	</p>
+		          	<p class="ma-t20">
+			          	<input type="checkbox" id="eq4" class="k-checkbox" [(ngModel)]="lteModel">
+			          	<label class="k-checkbox-label" for="eq4">LTE版</label>
+		          	</p>
+				</div>
+			</div>
+       </div>
+    </div>
+    <shuffling [shufflingPic]='shufflingPic'></shuffling>
+   <div class="sub-title">
+       功能描述
+   </div>
+   <article class="color-6">{{saleToolData.description}}</article>
+	<div class="sub-title">
+       收费详情
+   </div>
+   <article class="color-6">{{saleToolData.paymentDescription}}</article>
+      <div>
+      		<div class="img-show-div">
+      			<img src="assets/images/u52608.png" alt="">
+      		</div>
+      		<div class="table-box">
+           		<table>
+           			<tr>
+           				<td></td>
+           				<td>WiFi版</td>
+           				<td>LTE版</td>
+           			</tr>
+           			<tr>
+           				<td>系统</td>
+           				<td>安卓5.1</td>
+           				<td>安卓5.1</td>
+           			</tr>
+           			<tr>
+           				<td>内存</td>
+           				<td>3GB</td>
+           				<td>3GB</td>
+           			</tr>
+           			<tr>
+           				<td>容量</td>
+           				<td>32GB</td>
+           				<td>32GB</td>
+           			</tr>
+           			<tr>
+           				<td>尺寸</td>
+           				<td>8英寸</td>
+           				<td>8英寸</td>
+           			</tr>
+           			<tr>
+           				<td>颜色</td>
+           				<td>香槟金</td>
+           				<td>香槟金</td>
+           			</tr>
+           			<tr>
+           				<td>网络</td>
+           				<td>仅支持WIFI</td>
+           				<td>支持移动/联通双4G</td>
+           			</tr>
+           		</table>
+      		</div>
+      </div>
+   <div class="sub-title">
+       开发商信息
+   </div>
+    <p>
+      <span class="color-9 ma-r10">全称</span>
+      <span class="color-6">上海朋迈能源科技有限公司</span>
+   </p>
+   <p>
+      <span class="color-9 ma-r10">官网</span>
+      <a href="http://www.gaoenergy.com/" class="color-blue">http://www.gaoenergy.com/</a>
+   </p>
+   <p>
+      <span class="color-9 ma-r10">简介</span>
+      <span class="color-6">上海朋迈能源科技有限公司致力于打造一个以信息技术及大数据分析为基础的、公平、公正、开放的第三方服务平台，为购
+售双方提供撮合交易、售电经营、用电服务、电力咨询等一站式智慧电力交易服务。</span>
+   </p>
+</div>

@@ -1,0 +1,80 @@
+﻿<div class="content-box planDetail">
+  <div class="pageTitle">
+    <i class="iconfont icon-30"></i>采购计划管理
+    <a [routerLink]="['/purchase/plan/guangdong/list']" class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r">返回</a>
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <a class="title ma-r60">执行详情</a>
+    </div>
+    <div class="pd-20">
+      <div class="cM-box-list">
+        <div class="list-box">
+          <div class="t-left float-l ma-l20">
+            <span class="color-9">计划名称：</span>
+            <span>{{detailData.name}}</span>
+          </div>
+          <div class="t-left float-l ma-l130">
+            <span class="color-9">交易中心：</span>
+            <span>{{detailData.tradeCenterIdString}}</span>
+          </div>
+        </div>
+        <div class="td-l-box">
+          <p>
+            <span class="color-9">采购方式：</span>
+            <span>{{detailData.typeString}}</span>
+          </p>
+          <p>
+            <span class="color-9">用电时间：</span>
+            <span> {{detailData.durationString}}</span>
+          </p>
+          <p style="overflow: inherit;">
+            <span class="color-9">采购电量： </span>
+            <span> {{detailData.dAmount}}万千瓦时</span>
+            <i *ngIf="detailData.detail != null && detailData.detail.length > 0" class="iconfont icon-zhuyi attention-box">
+              <span class="attention-tip">
+                <span *ngFor="let item of detailData.detail">{{item.usePowerTypeString}}:{{item.dAmount}}万千瓦时</span>
+              </span>
+            </i>
+          </p>
+          <p>
+            <span class="color-9">计划创建员：</span>
+            <span> {{detailData.createUserName}}</span>
+          </p>
+          <p>
+            <span class="color-9">创建时间：</span>
+            <span>{{detailData.createTime|date:"y-MM-dd"}}</span>
+          </p>
+          <div>
+            <span class="color-9">备注：</span>
+            <span class="remark">{{detailData.remark}}</span>
+          </div>
+          <p>
+            <span class="color-9">计划执行状态：</span>
+            <span>{{detailData.executeStatusString}}</span>
+          </p>
+          <p>
+            <span class="color-9">执行人员：</span>
+            <span>{{detailData.executeUserName}}</span>
+          </p>
+          <p>
+            <span class="color-9">执行时间：</span>
+            <span>{{detailData.executeTime|date:"y-MM-dd"}}</span>
+          </p>
+          <p>
+            <span class="color-9">电量分配状态：</span>
+            <span> {{detailData.allotStatusString}}</span>
+          </p>
+          <p>
+            <span class="color-9">电量分配员：</span>
+            <span> {{detailData.allotUserName}}</span>
+          </p>
+          <p>
+            <span class="color-9">分配时间： </span>
+            <span> {{detailData.allotTime|date:"y-MM-dd"}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

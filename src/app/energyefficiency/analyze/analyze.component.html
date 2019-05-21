@@ -1,0 +1,52 @@
+<div class="content-box">
+    <div class="pageTitle"><i class="iconfont icon-fuhe"></i>能耗分析</div>
+    <div class="content">
+        <div class="content-r">
+            <div class="content-title">
+                <a class="title active ma-r60 cur-p" name="2">能耗分析</a>
+                <a class="title ma-r60 color-9 cur-p" name="2">历史对比</a>
+            </div>
+            <div class="filtrate-box pd-b20" id="filtrateBox">
+                <div>
+                    <span>时间选择：</span><input type="text" id="dateType" name="dateType" class="drop-down">
+                    <div class="ma-t20 pd-b20">
+                        <span class="ma-l30">时间段：</span>
+                        <input id="monthpicker" value="November 2011" />
+                        <span class="color-blue ma-l10 ma-r10">至</span>
+                        <input id="endMonthpicker" value="November 2011" />
+                    </div>
+                    <span id="searchButton" class="a-button ma-l20">查询</span>
+                </div>
+            </div>
+            <div class="list-box">
+                <div class="select-show-data-type" id="selectShowDataType">
+                    <span id="dayActive" class="active">日</span>
+                    <span id="monthActive">月</span>
+                    <span id="yearActive">年</span>
+                </div>
+                <div class="echart-t ec-echart-t">
+                    <div class="float-r">
+                        <i class="iconfont icon-zhexianicon active changeType" data-type="line"></i>
+                        <i class="iconfont icon-zhuzhuangtuicon changeType" data-type="column"></i>
+                        <i class="iconfont icon-xiazaiicon export-pdf"></i>
+                    </div>
+                </div>
+                <div class="demo-section k-content wide">
+                    <div class="chart" id="chart"></div>
+                </div>
+            </div>
+            <div class="list-box">
+                <div class="echart-small">
+                    <div id="chartSmall" style="height: 120px;"></div>
+                </div>
+            </div>
+            <div class="pd-b20">
+                <i class="iconfont icon-xiazaiicon color-9 cur-p float-r ma-r30" id="saveTable"></i>
+            </div>
+            <div class="list-box">
+                <div class="grid-c-box set-other-line"><div id="gridT"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialog"></div>

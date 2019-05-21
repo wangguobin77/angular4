@@ -1,0 +1,158 @@
+<div class="content-box">
+  <div class="pageTitle"><i class="iconfont icon-fengxianpingguguanli"></i>能耗在线监测</div>
+  <div class="content">
+    <div class="content-l">
+      <div class="c-l-box">
+        <div class="content-title">
+          <span class="title" name="2">客户列表</span>
+        </div>
+        <div class="searchBox">
+          <input type="text" placeholder="输入用户名称进行检索">
+          <i class="iconfont icon-sousuo"></i>
+        </div>
+        <div class="select-all active">全部用户</div>
+        <div class="grid-box no-header">
+            <div class="table-overflow-box">
+                <kendo-grid [data]="gridData">
+                    <kendo-grid-column field="Discontinued" title="Discontinued">
+                        <ng-template kendoGridCellTemplate let-dataItem>
+                            <div class="td-list">
+                                <p><span class="color-6 company-name">合肥大新科技有限公司</span><i class="iconfont icon-hezi color-lightGreen"></i><i class="iconfont icon-shouquan"></i></p>
+                                <p><span class="color-9">预估年用电：</span><span>220000万千瓦时</span></p>
+                            </div>
+                        </ng-template>
+                    </kendo-grid-column>
+                </kendo-grid>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-r">
+      <section class="data-show-box">
+        <div class="data-show-box-r">
+          <div class="data-show-box-r-impose">
+            <p class="size-18">当前电量</p>
+            <p class="size-24">999999.999 <span class="size-18">万千瓦时</span></p>
+          </div>
+        </div>
+        <div class="data-show-box-l">
+          <p>
+            <span class="color-6">月计划用电量</span>
+            <span class="color-blue num">10000</span>
+            <span>(万千瓦时)</span>
+          </p>
+          <p>
+            <span class="color-6">月实际用电量</span>
+            <span class="color-blue num">10000</span>
+            <span>(万千瓦时)</span>
+          </p>
+          <p>
+            <span class="color-6">用电完成率</span>
+            <span class="color-blue num">10000%</span>
+          </p>
+        </div>
+      </section>
+      <div class="content-title">
+        <a class="title ma-r60 color-9 cur-p">实时负荷曲线图</a>
+      </div>
+      <div class="list-box data-box">
+        <div>
+          <p>
+            <span class="color-9">今日用电量：</span>
+            <span class="size-18">330.3</span>
+            <span class="color-9">千瓦时</span>
+          </p>
+          <p>
+            <span class="color-9">平均负荷：</span>
+            <span class="size-18">330.3</span>
+            <span class="color-9">千瓦</span>
+          </p>
+          <p>
+            <span class="color-9">最小负荷：</span>
+            <span class="size-18">330.3</span>
+            <span class="color-9">千瓦</span>
+          </p>
+          <p>
+            <span class="color-9">最大负荷：</span>
+            <span class="size-18">330.3</span>
+            <span class="color-9">千瓦</span>
+          </p>
+        </div>
+      </div>
+      <div class="list-box">
+        <div class="echart-t">
+          <div class="float-r">
+            <i class="iconfont icon-zhexianicon active changeType" data-type="line"></i>
+            <i class="iconfont icon-zhuzhuangtuicon changeType" data-type="column"></i>
+            <i class="iconfont icon-xiazaiicon export-pdf"></i>
+          </div>
+        </div>
+        <div class="demo-section k-content wide">
+              <div id="chart"></div>
+          </div>
+      </div>
+      <div class="list-box">
+        <div class="echart-small">
+              <div id="chartSmall" style="height: 120px;"></div>
+          </div>
+      </div>
+      <div class="list-box table-box">
+        <div class="text-center">实时负荷数据表<i class="iconfont icon-xiazaiicon float-r color-9 cur-p ma-r10" id="saveTable"></i></div>
+        <div class="table-c">
+          <div class="table-title">
+            <p>时间 min</p>
+            <p>负荷 kw</p>
+          </div>
+          <div class="table-impose">
+            <table>
+              <thead>
+                <tr>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                  <th>0.05</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

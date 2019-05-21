@@ -1,0 +1,81 @@
+<div class="content">
+	<div class="title-tag title-list border-0">销售人员</div>
+	<div class="content-c-box" style="text-align: center;width: auto;">
+		<p>
+			<span class="color-9">姓名：</span>
+			<span>李霸道</span>
+		</p>
+		<p>
+			<span class="color-9">联系方式：</span>
+			<span>12316545646</span>
+		</p>
+		
+		<span class="a-button-xian float-r" id="transferButton">转移客户</span>
+	</div>
+</div>
+<div class="ma-t20 ma-r20 double-box content" style="min-width: 1040px;">
+	<div class="centerLine"></div>
+	<div class="c-left">
+		<div>
+			<div class="title-tag title-list border-0">客户追踪
+				<span class="color-blue cur-p size-14 float-r ma-r20">新建</span>
+			</div>
+			<div class="c-content">
+				<div class="grid-box template-all-grid">
+					<div class="client-sale">
+						 <kendo-grid [data]="gridData" [pageable]="true" [pageable]="true" [pageSize]="5">
+				            <kendo-grid-column field="Discontinued" title="Discontinued">
+				                <ng-template kendoGridCellTemplate let-dataItem>
+				                    <div class="client-list">
+										<div class="client-list-t">
+											<p class="float-l">
+												<span class="color-9">姓名：</span>
+												<span>李霸道</span>
+											</p>
+											<p class="float-r">2117-12-12  19:15</p>
+										</div>
+										<div class="client-list-b">
+											<div class="client-list-l">
+												续约提醒
+											</div>
+											<div class="client-list-r">
+												续约提醒续约提醒续约提醒续约提醒续续约提醒续约提醒续约提醒续约提醒续约提醒续约提醒续约提醒续约提醒
+											</div>
+										</div>
+									</div>
+				                </ng-template>
+				            </kendo-grid-column>
+				        </kendo-grid>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="c-right">
+		<div>
+			<div class="title-tag title-list border-0">
+				操作日志
+				<div class="float-r">
+					<input id="monthpicker" value="10/10/2011" class="ma-r20" />
+				</div>
+			</div>
+			<div class="c-content">
+				<div class="grid-box">
+					<div class="date-Grid">
+						 <kendo-grid [data]="gridData" [pageable]="true" [pageable]="true" [pageSize]="5">
+				            <kendo-grid-column field="ProductID" title="操作" width="20%">
+				            </kendo-grid-column>
+				            <kendo-grid-column field="UnitPrice" title="姓名" width="20%">
+				            </kendo-grid-column>
+				            <kendo-grid-column field="UnitsInStock" title="时间" width="20%">
+				            </kendo-grid-column>
+				            <kendo-grid-column field="ProductID" title="内容" width="40%">
+				            </kendo-grid-column>
+				        </kendo-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

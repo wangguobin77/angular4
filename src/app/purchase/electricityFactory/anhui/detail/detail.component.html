@@ -1,0 +1,318 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-dian"></i>电厂详情
+		<a class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10" [routerLink]="['/purchase/eFactory/list']">返回</a>
+	</div>
+	<div class="content">
+		<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+			<div class="content-title">
+				<span class="title" name="2">基本信息</span>
+				<span class="float-r size-14 ma-r30 color-blue"><button class="cur-p" *ngIf="isEdit" (click)="submitEdit()">保存</button></span>
+				<span class="float-r size-14 ma-r30 color-blue"><span class="cur-p" *ngIf="!isEdit" (click)="setIsEdit()">编辑</span></span>
+			</div>
+			<div class="p-list-box">
+				<div>
+					<span class="color-9">名称：</span>
+					<span *ngIf="!isEdit">{{detailModel.name}}</span>
+					<input *ngIf="isEdit" type="text" class="k-textbox" required [(ngModel)]="detailModel.name" name="name"/>
+				</div>
+				<div>
+					<span class="color-9">发电类型：</span>
+					<span *ngIf="!isEdit">{{detailModel.typeName}}</span>
+					<kendo-multiselect 
+						[data]="types" 
+						[(ngModel)]="detailModel.type" 
+						textField="text"
+	    				valueField="value" 
+	    				name="type"
+	    				required
+						[valuePrimitive]="true"
+						placeholder="请选择发电类型"
+	    				#typeT = "ngModel" 
+	    				(valueChange)="typeNameChange($event)"
+	    				*ngIf="isEdit"
+	    				style="width: 290px;">
+	    			</kendo-multiselect>
+				</div>
+				<div>
+					<span class="color-9">总装机容量：</span>
+					<span *ngIf="!isEdit">{{detailModel.totalCapacity}}兆瓦</span>
+					<div class="unit-input-list number-unit">
+			          	<kendo-numerictextbox name="totalCapacity" *ngIf="isEdit" [(ngModel)]="detailModel.totalCapacity" [min]="0" required [max]="9999999999" [format]="'#.####'" decimals="4" 	style="width: 290px;" #totalCapacityK="ngModel"></kendo-numerictextbox>
+			          	<span class="unit r-20">兆瓦</span>
+			        </div>
+				</div>
+				<div>
+					<span class="color-9">电压等级：</span>
+					<span *ngIf="!isEdit">{{detailModel.voltageLevelName}}</span>
+					<kendo-dropdownlist
+	                    name="voltageLevel"
+	                    [data]="voltageLevelData"
+	                    [textField]="'text'"
+	                    [valueField]="'value'"
+	                    [valuePrimitive]="true"
+	                    *ngIf="isEdit"
+	                    [defaultItem]="voltageLevelPlaceHolder"
+	                    [(ngModel)]="detailModel.voltageLevel"
+	                    #voltageLevelT="ngModel"
+	                    (valueChange)="voltageLevelChange($event)"
+	                    required
+	                    style="width: 290px;"
+	                >
+	                </kendo-dropdownlist>
+				</div>
+				<div>
+					<span class="color-9">地区：</span>
+					<span *ngIf="!isEdit">{{detailModel.provinceName}}&ensp;{{detailModel.cityName}}</span>
+					<kendo-dropdownlist
+	                    name="province"
+	                    [data]="provinceData"
+	                    [textField]="'name'"
+	                    [valueField]="'code'"
+	                    *ngIf="isEdit"
+	                    [valuePrimitive]="true"
+	                    [(ngModel)]="detailModel.province"
+	                    [defaultItem]="provincePlaceHolder"
+	                    #provinceT="ngModel"
+	                    required
+	                    style="width: 140px;margin-right: 4px;"
+	                    (selectionChange)="provinceChange($event)"
+	                >
+	                </kendo-dropdownlist>
+	                <kendo-dropdownlist
+	                    name="city"
+	                    [data]="cities"
+	                    [textField]="'name'"
+	                    *ngIf="isEdit"
+	                    [valueField]="'code'"
+	                    [valuePrimitive]="true"
+	                    [defaultItem]="cityPlaceHolder"
+	                    [(ngModel)]="detailModel.city"
+	                    #cityT="ngModel"
+	                    (selectionChange)="cityChange($event)"
+	                    required
+	                    style="width: 140px;"
+	                >
+	                </kendo-dropdownlist>
+				</div>
+				<div class="width-two">
+					<span class="color-9">详细地址：</span>
+					<span *ngIf="!isEdit">{{detailModel.address}}</span>
+					<input *ngIf="isEdit" type="text" required class="k-textbox" [(ngModel)]="detailModel.address" name="address"/>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title">
+			<span class="title" name="2">联系信息</span>
+		</div>
+		<div class="grid-box no-padding">
+			<kendo-grid
+		          [data]="view"
+		          (edit)="editHandler($event)" (remove)="removeHandler($event)"
+		          (add)="addHandler($event)"
+		        >
+		        <ng-template kendoGridToolbarTemplate>
+		            <span kendoGridAddCommand>添加联系人</span>
+		        </ng-template>
+		        <kendo-grid-column field="contactName" title="姓名"></kendo-grid-column>
+		        <kendo-grid-column field="position" title="职务"></kendo-grid-column>
+		        <kendo-grid-column field="contactTel" title="联系方式"></kendo-grid-column>
+		        <kendo-grid-column field="remark" title="备注"></kendo-grid-column>
+		        <kendo-grid-command-column title="操作" width="220">
+		            <ng-template kendoGridCellTemplate>
+		                <button kendoGridEditCommand class="k-primary">编辑</button>
+		                <button kendoGridRemoveCommand>删除</button>
+		            </ng-template>
+		        </kendo-grid-command-column>
+		    </kendo-grid>
+		</div>
+	</div>
+	<!-- <div class="content ma-t20">
+		<div class="content-title">
+			<span class="title" name="2">机组信息</span>
+		</div>
+		<div class="grid-box">
+			<kendo-grid
+		          [data]="crewView"
+		          (edit)="crewEditHandler($event)" (remove)="crewRemoveHandler($event)"
+		          (add)="crewAddHandler($event)"
+		        >
+		        <ng-template kendoGridToolbarTemplate>
+		            <span kendoGridAddCommand>添加机组</span>
+		        </ng-template>
+		        <kendo-grid-column field="crewName" title="机组名称"></kendo-grid-column>
+		        <kendo-grid-column field="crewCode" title="机组编号"></kendo-grid-column>
+		        <kendo-grid-column field="voltageLevelName" title="电压等级"></kendo-grid-column>
+		        <kendo-grid-column field="generationTypeName" title="发电类型"></kendo-grid-column>
+		        <kendo-grid-column field="isBundlingMachine" title="是否打捆机组">
+		        	<ng-template kendoGridCellTemplate let-dataItem>
+		        	    <span>{{dataItem.isBundlingMachine?'是':'否'}}</span>
+		        	</ng-template>
+		        </kendo-grid-column>
+		        <kendo-grid-column field="isRenewableEnergy" title="是否可再生能源">
+		        	<ng-template kendoGridCellTemplate let-dataItem>
+		        	    <span>{{dataItem.isRenewableEnergy?'是':'否'}}</span>
+		        	</ng-template>
+		        </kendo-grid-column>
+		        <kendo-grid-command-column title="操作" width="220">
+		            <ng-template kendoGridCellTemplate>
+		                <button kendoGridEditCommand class="k-primary">编辑</button>
+		                <button kendoGridRemoveCommand>删除</button>
+		            </ng-template>
+		        </kendo-grid-command-column>
+		    </kendo-grid>
+		</div>
+	</div> -->
+</div>
+<kendo-dialog *ngIf="active" (close)="closeForm()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    {{ isNew ? '新增' : '编辑' }}
+  </kendo-dialog-titlebar>
+
+    <form novalidate [formGroup]="editForm">
+        <div class="form-group">
+            <label for="contactName" class="control-label">姓名</label>
+
+            <input type="text" class="k-textbox" required formControlName="contactName" />
+
+            <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.contactName.valid || editForm.controls.contactName.pristine">
+            	<i class="iconfont icon-zhuyi"></i>
+                请输入姓名
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="position" class="control-label">职务</label>
+
+            <input type="text" class="k-textbox" required formControlName="position" />
+            <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.position.valid || editForm.controls.position.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入职务
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contactTel" class="control-label">联系方式</label>
+
+            <input type="text" class="k-textbox" required pattern="(\d{3}-)?\d{5,20}" formControlName="contactTel" />
+
+            <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.contactTel.valid || editForm.controls.contactTel.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入联系方式
+            </div>
+        </div>
+        <div class="form-group  last-form-group">
+            <label for="remark" class="control-label">备注</label>
+			<textarea name="" id="" cols="30" rows="10" formControlName="remark"></textarea>
+
+            <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.remark.valid || editForm.controls.remark.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入备注
+            </div>
+        </div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="onCancel($event)">取消</button>
+        <button class="a-button" [disabled]="!editForm.valid" (click)="onSave($event)">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<kendo-dialog *ngIf="crewActive" (close)="crewCloseForm()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    {{ isCrewNew ? '新增' : '编辑' }}
+  </kendo-dialog-titlebar>
+
+    <form #form="ngForm">
+        <div class="form-group">
+            <label class="control-label">机组名称</label>
+
+            <input type="text" class="k-textbox" required name="crewName"  [(ngModel)]="formValue.crewName" #crewNameT="ngModel"/>
+
+            <div class="k-tooltip k-tooltip-validation" [hidden]="crewNameT.valid || crewNameT.pristine">
+            	<i class="iconfont icon-zhuyi"></i>
+                请输入姓名
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">机组编号</label>
+
+            <input type="text" class="k-textbox" required  [(ngModel)]="formValue.crewCode" name="crewCode" #crewCodeT="ngModel"/>
+            <div class="k-tooltip k-tooltip-validation" [hidden]="crewCodeT.valid || crewCodeT.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入机组编号
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">电压等级</label>
+            <kendo-dropdownlist
+                name="voltageLevel"
+                [data]="voltageLevelData"
+                [textField]="'text'"
+                [valueField]="'value'"
+                [valuePrimitive]="true"
+                required
+                [defaultItem]="voltageLevelPlaceHolder"
+                [(ngModel)]="formValue.voltageLevel"
+                #voltageLevelT="ngModel"
+                style="width: 100%;"
+            >
+            </kendo-dropdownlist>
+
+            <div class="k-tooltip k-tooltip-validation" [hidden]="voltageLevelT.valid || voltageLevelT.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入联系方式
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">发电类型</label>
+			<kendo-dropdownlist 
+				[data]="types" 
+				[(ngModel)]="formValue.generationType" 
+				textField="text"
+				valueField="value" 
+				name="generationType"
+				[valuePrimitive]="true"
+				[defaultItem]="typePlaceHolder"
+				#generationTypeT="ngModel"
+				required
+				style="width: 100%;">
+			</kendo-dropdownlist>
+            <div class="k-tooltip k-tooltip-validation" [hidden]="generationTypeT.valid || generationTypeT.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入备注
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">是否打捆机组</label>
+			<input type="radio" name="isBundlingMachine" id="engine1" class="k-radio" (click)="setBundlingMachine(true)" [checked]="formValue.isBundlingMachine" >
+            <label class="k-radio-label" for="engine1">&ensp;是</label>
+
+            <input type="radio" name="isBundlingMachine" id="engine2" class="k-radio" (click)="setBundlingMachine(false)" [checked]="!formValue.isBundlingMachine">
+            <label class="k-radio-label ma-l20" for="engine2">&ensp;否</label>
+
+            <!-- <div class="k-tooltip k-tooltip-validation" [hidden]="crewEditForm.controls.isBundlingMachine.valid || crewEditForm.controls.isBundlingMachine.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入备注
+            </div> -->
+        </div>
+        <div class="form-group last-form-group">
+            <label  class="control-label">是否可再生能源</label>
+			<input type="radio" name="isRenewableEnergy" id="engine3" class="k-radio" (click)="setRenewableEnergy(true)" [checked]="formValue.isRenewableEnergy">
+            <label class="k-radio-label" for="engine3">&ensp;是</label>
+
+            <input type="radio" name="isRenewableEnergy" id="engine4" class="k-radio" (click)="setRenewableEnergy(false)" [checked]="!formValue.isRenewableEnergy">
+            <label class="k-radio-label ma-l20" for="engine4">&ensp;否</label>
+
+            <!-- <div class="k-tooltip k-tooltip-validation" [hidden]="crewEditForm.controls.isRenewableEnergy.valid || crewEditForm.controls.isRenewableEnergy.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入备注
+            </div> -->
+        </div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="crewOnCancel($event)">取消</button>
+        <button class="a-button" [disabled]="!editForm.valid" (click)="crewOnSave($event)">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

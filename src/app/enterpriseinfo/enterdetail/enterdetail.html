@@ -1,0 +1,15 @@
+﻿
+ <section>
+    <div class="title">
+      <span>详情</span>
+            <button class="a-button-xian a-button-xian-grey float-r ma-t10"><a style="text-decoration:none;color:#666" [routerLink]="['/enterprisesset/enterpriseannouncement']" routerLinkActive="active"><i class="iconfont icon-fanhui ma-r10"></i>返回</a></button>
+    </div>
+    <article>
+        <p class="content-title">
+                {{data.title}}
+                <span class="float-r">{{data.formatPublishDate}}</span>
+            </p>
+      <p>内容</p>
+      <p>{{data.content}}</p>
+    </article>
+</section>

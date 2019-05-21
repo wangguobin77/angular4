@@ -1,0 +1,271 @@
+﻿
+<section class="main accountInformation">
+  <div class="main-center">
+    <div class="content-title">账户信息设置</div>
+    <div class="accountIF">
+      <form id="ticketsForm">
+        <ul id="fieldlist">
+          <li>
+            <label for="search" class="required">头像：</label>
+            <div class="headPortrait">
+
+              <div class="headPortrait-box">
+                <img id="imgHeadPic" src="{{user.headPicSrc}}">
+                <p class="modify" id="modifyHead">修改</p>
+              </div>
+
+              <input class="modify-input" type="file" id="fileHeadPic" name="HeadPic">
+
+              <p class="remarks">支持上传<span>jpg</span>，<span>jpeg</span>，<span>png</span>，大小<span>小于2M</span>，建议上传<span>正方形</span>图片</p>
+            </div>
+          </li>
+
+
+          <li>
+            <label for="fullname" class="required">姓名</label>
+            <div class="input-box">
+              <input type="text" class="k-textbox" placeholder="{{user.fullName}}" disabled="disabled" id="lbFullName" />
+              <button class="k-button modify" id="modifyFullName">修改</button>
+            </div>
+          </li>
+
+          <!-- 手机 -->
+          <li>
+            <label for="fullname" class="required">手机号码</label>
+            <div class="input-box">
+              <input type="text" class="k-textbox" placeholder="{{user.phoneNumber}}" disabled="disabled" id="lbTel" />
+
+              <button class="k-button modify" id="addTel" [style.display]="user.phoneNumber==null? 'block' : 'none'">立即提交</button>
+              <button class="k-button modify" id="updTel" [style.display]="user.phoneNumber!=null? 'block' : 'none'">改绑手机</button>
+             <!--  <button class="k-button modify" id="removeTel" [style.display]="user.phoneNumber!=null && !user.isAdmin? 'block' : 'none'">解绑</button> -->
+            </div>
+          </li>
+
+
+
+          <!-- 邮箱信息 -->
+          <li>
+            <label for="fullname" class="required">电子邮箱</label>
+            <div class="input-box">
+              <input type="text" class="k-textbox" placeholder="{{user.email}}" disabled="disabled" id="lbEmail" />
+              <button class="k-button modify" id="addEmail" [style.display]="user.email==null? 'block' : 'none'">立即提交</button>
+
+              <button class="k-button modify" id="updEmail" [style.display]="user.email!=null? 'block' : 'none'">改绑邮箱</button>
+              <button class="k-button modify" id="removeEmail" [style.display]="user.email!=null? 'block' : 'none'">解绑</button>
+            </div>
+          </li>
+
+
+          <li>
+            <label for="fullname" class="required">用户名</label>
+            <div class="input-box">
+              <input type="text" class="k-textbox" placeholder="{{user.userName}}" disabled="disabled" />
+            </div>
+          </li>
+
+
+          <li>
+            <label for="fullname" class="required">登录密码</label>
+            <div class="input-box">
+              <input type="password" class="k-textbox" placeholder="**********" disabled="disabled" />
+              <button class="k-button modify" id="modifyPwd">修改</button>
+            </div>
+          </li>
+
+        </ul>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!--手机号码 add fix 手机 -->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popTel">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p id="titleTel">手机号码</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">手机号码</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtTel" value="" placeholder="请输入您的手机号码" />
+            <button class="verification">发送验证码</button>
+            <span class="tishi"></span>
+          </div>
+        </li>
+
+
+        <li>
+          <label class="required">验证码</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtTelCode" value="" placeholder="请填写您收到的短信验证码" />
+            <span class="tishi"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+
+<!--姓名-->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popFullName">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>姓名</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">姓名</label>
+          <div class="input-box">
+            <input type="text" class="pop-input k-textbox" id="txtFullName" value="" placeholder="请输入您的名字" />
+            <span class="tishi"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+
+<!--邮箱-->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popEmail">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p id="titleEmail">邮箱</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">邮箱地址</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtEmail" value="" placeholder="请输入您的新邮箱" />
+            <button class="verification">发送验证码</button>
+            <span class="tishi"></span>
+          </div>
+        </li>
+        <li>
+          <label class="required">验证码</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtEmailCode" value="" placeholder="请填写您收到的邮箱验证码" />
+            <span class="tishi"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+
+
+<!--修改密码-->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popPwd">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>修改密码</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">当前密码</label>
+          <div class="input-box">
+            <input type="password" class="pop-input" id="txtPwd" value="" placeholder="请输入您的当前密码" />
+            <span class="tishi"></span>
+          </div>
+        </li>
+        <li>
+          <label class="required">新密码</label>
+          <div class="input-box">
+            <input type="password" class="pop-input" id="txtNewPwd" value="" placeholder="请输入您的新密码" maxlength="20" />
+            <span class="tishi-show">支持数字，大小写字母和标点符号，长度6-20字符，不能有空格。</span>
+            <span class="tishi" style="margin-top:33px;"></span>
+          </div>
+        </li>
+        <li>
+          <label class="required">确认密码</label>
+          <div class="input-box">
+            <input type="password" class="pop-input" id="txtComfPwd" value="" placeholder="请再次输入您的新密码" />
+            <span class="tishi"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+
+<!--解绑手机号码-->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popRemoveTel">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>解绑手机</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">验证码</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtCodeByRemoveTel" value="" placeholder="请填写您收到的短信验证码" />
+            <button class="verification">发送验证码</button>
+            <span class="tishi"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+
+<!--解绑邮箱-->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="popRemoveEmail">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>解绑邮箱</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">验证码</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtCodeByRemoveEmail" value="" placeholder="请填写您收到的邮箱验证码" />
+            <button class="verification">发送验证码</button>
+            <span class="tishi"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>

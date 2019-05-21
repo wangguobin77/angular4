@@ -1,0 +1,72 @@
+@import (less) "../../../assets/style/setLess.less";
+.main-left{
+	width:300px;
+	float:left;
+	.m-l-top{
+		height:220px;
+		text-align: center;
+		border:1px solid #ddd;
+		border-bottom:0;
+		background:#fff;
+		.img-impose{
+			width:100px;
+			height:100px;
+			border-radius: 50%;
+			overflow:hidden;
+			margin:40px auto 0;
+			border:1px solid #ccc;
+		}
+		img{
+			width:100px;
+			height:100px;
+		}
+		p{
+			font-size:18px;
+			margin-top:24px;
+		}
+	}
+	.link-box{
+		min-height:350px;
+		padding-top: 20px;
+		background:#fff;
+		border:1px solid #ddd;
+		a{
+			display:block;
+			height:50px;
+			line-height: 50px;
+			padding-left: 93px;
+			font-size:18px;
+			color:#666;
+			-webkit-user-select:none;
+			cursor: pointer;
+			&.active{
+				background:#f5f5f5;
+				color:@blue;
+			}
+			&>span{
+				position: relative;
+				margin-left:6px;
+			}
+			&.new span:after{
+				content:"new";
+				font-size:12px;
+				background:red;
+				padding: 0 8px;
+				line-height:16px;
+				color:#fff;
+				border-radius:10px;
+				position:absolute;
+				top:0px;
+				right:-50px;
+			}
+		}
+	}
+	.logo{
+		border:1px solid #ddd;
+		height:150px;
+		padding-top:30px;
+		box-sizing: border-box;
+		margin-top:20px;
+		text-align:center;
+	}
+}

@@ -1,0 +1,107 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-30"></i>合作电厂管理
+		<span class="a-button float-r ma-r20 ma-t10" [routerLink]="['/purchase/eFactory/create']">创建</span>
+	</div>
+	<div class="content">
+        <div class="content-title">
+            <span class="title" name="2">电厂列表</span>
+            <div class="title-r float-r ma-r20">
+				 <span class="float-r size-14 condition color-6 cur-p" (click)="showFiltrateBox()">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+				<div class="searchBox float-r ma-r10 ma-t10">
+				  <input type="text" placeholder="电厂名称关键词检索" #serchInput (keyup.enter)="searchFactory(serchInput.value)">
+				  <i class="iconfont icon-sousuo" (click)="searchFactory(serchInput.value)"></i>
+				</div>
+            </div>
+        </div>
+        <div class="filtrate-box" id="filtrateBox" *ngIf="filtrateBoxIsSHow">
+            <div>
+                <div>
+					<span>地区：</span>
+					<kendo-dropdownlist 
+                        id="province"
+                        [data]="province"
+                        [defaultItem]="provincePlaceHolder"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        [(ngModel)]="ngProvince"
+                        (selectionChange)="provinceChange($event)"
+                    >
+				    </kendo-dropdownlist>
+					<kendo-dropdownlist 
+                        id="city"
+				        [data]="cities"
+					    [textField]="'name'"
+      					[valueField]="'code'"
+      					[defaultItem]="citiesPlaceHolder"
+                          [(ngModel)]="ngCity"
+      					(selectionChange)="citiesChange($event)"
+				    >
+			        </kendo-dropdownlist>
+                </div>
+                <div class="line-h40">
+                    <span>发电类型：</span>
+                    <input type="checkbox" id="eq1" class="k-checkbox" value="火电" (click)="checkChange($event)">
+                    <label class="k-checkbox-label" for="eq1">&ensp;火电</label>
+                    <input type="checkbox" id="eq2" class="k-checkbox" value="水电" (click)="checkChange($event)">
+                    <label class="k-checkbox-label" for="eq2">&ensp;水电</label>
+                    <input type="checkbox" id="eq3" class="k-checkbox" value="风电" (click)="checkChange($event)">
+                    <label class="k-checkbox-label" for="eq3">&ensp;风电</label>
+                    <input type="checkbox" id="eq4" class="k-checkbox" value="光伏" (click)="checkChange($event)">
+                    <label class="k-checkbox-label" for="eq4">&ensp;光伏</label>
+                </div>
+                <div>
+                    <button class="a-button-xian ma-r20" (click)='searchReset()'>重置</button>
+                    <button class="a-button" (click)='conditionSearch()'>查询</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-box separate-box client-list no-header">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="createDate" title="电厂" width="350">
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list" [attr.id]='dataItem.id'>
+			        		<div class="list-box">
+				               <div class="t-right float-r ma-r30">
+                                </div>
+                                <div class="t-left float-l ma-l20">
+                                    <span class="color-9">电厂名称：</span>
+                                    <span> {{dataItem.name}} </span>
+                                </div>
+				           </div>
+                           <div class="table-bottom-box">
+    				           <div class="td-l-box">
+                                    <p>
+                                    <span class="color-9">地区：</span>
+                                    <span> {{dataItem.provinceName}} {{dataItem.cityName}}</span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">发电类型：</span>
+                                    <span> {{dataItem.typeName}} </span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">地址：</span>
+                                    <span> {{dataItem.address}}</span>
+                                    </p>
+                                   
+    	           		        </div>
+                                <div class="btn-box">
+                                    <a class="a-button-xian" [routerLink]="['/purchase/eFactory/detail',dataItem.id]" >查看</a>
+                                </div>
+                            </div>
+			        	</div>
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+    </div>
+</div>

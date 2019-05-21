@@ -1,0 +1,203 @@
+<div class="content pd-20">
+	<div class="sf">
+		<div class="sf-c">
+			<div class="sf-c-box">
+				<div class="sf-c-box-p float-l">
+					<p><span>销售员：</span> {{salePeople.salerName}}</p>
+					<p><span>联系方式：</span> {{salePeople.phoneNumber}}</p>
+				</div>
+				<span class="a-button-xian float-r" (click)="transfer()" *ngIf="isTransfer">转移客户</span>
+			</div>
+		</div>
+		<div class="sf-c">
+			<div class="sf-c-box">
+				<div class="sf-c-box-p float-l">
+					<p><span>客户等级：</span>  {{totleData.customerLevel==null?'--':totleData.customerLevel==1?'关键客户':totleData.customerLevel==2?'主要客户':'普通客户'}}</p>
+					<p><span>进展百分比：</span> {{totleData.progressPercent==null?'--':totleData.progressPercent+'%'}}</p>
+				</div>
+				<span class="a-button-xian float-r" (click)="setProgress()">设置</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ma-t20 ma-r20 double-box content" style="min-width: 1040px;">
+	<div class="centerLine"></div>
+	<div class="c-left">
+		<div>
+			<div class="title-tag title-list border-0">客户追踪
+				<span class="color-blue cur-p size-14 float-r ma-r20" (click)="showDialog()">新建</span>
+			</div>
+			<div class="c-content">
+				<div class="grid-box template-all-grid">
+					<div class="client-sale">
+						 <kendo-grid
+					      [data]="view | async"
+				          [pageSize]="state.take"
+				          [skip]="state.skip"
+				          [pageable]="true"
+				          [scrollable]="'none'"
+				          (dataStateChange)="dataStateChange($event)"
+					    >
+				            <kendo-grid-column field="Discontinued" title="Discontinued">
+				                <ng-template kendoGridCellTemplate let-dataItem>
+				                    <div class="client-list">
+										<div class="client-list-t">
+											<p class="float-l">
+												<span class="color-9">姓名：</span>
+												<span>{{dataItem.userName}}</span>
+											</p>
+											<p class="float-r">{{dataItem.createDate|date:'y-MM-dd hh:mm'}}</p>
+										</div>
+										<div class="client-list-b">
+											<div class="client-list-l">
+												{{dataItem.type==1?'销售进展':dataItem.type==2?'关系维护':'续约提醒'}}
+											</div>
+											<div class="client-list-r">
+												{{dataItem.description}}
+											</div>
+										</div>
+									</div>
+				                </ng-template>
+				            </kendo-grid-column>
+				        </kendo-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="c-right">
+		<div>
+			<div class="title-tag title-list border-0">
+				操作日志
+				<div class="float-r">
+					<input id="monthpicker" class="ma-r20" />
+				</div>
+			</div>
+			<div class="c-content">
+				<div class="grid-box no-padding">
+					<div class="date-Grid">
+						<kendo-grid
+					      [data]="logInfoView | async"
+				          [pageSize]="loginfoState.take"
+				          [skip]="loginfoState.skip"
+				          [pageable]="true"
+				          [scrollable]="'none'"
+				          (dataStateChange)="logInfoDataStateChange($event)"
+					    >
+				            <kendo-grid-column field="userName" title="操作" width="20%">
+				            </kendo-grid-column>
+				            <kendo-grid-column field="userName" title="姓名" width="20%">
+				            </kendo-grid-column>
+				            <kendo-grid-column field="createDate" title="时间" width="20%">
+				            	<ng-template kendoGridCellTemplate let-dataItem>
+				            		<span>{{dataItem.createDate|date:'y-MM-dd hh:mm'}}</span>
+				            	</ng-template>
+				            </kendo-grid-column>
+				            <kendo-grid-column field="description" title="内容" width="40%">
+				            </kendo-grid-column>
+				        </kendo-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<kendo-dialog *ngIf="active" (close)="closeForm()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    新建
+  </kendo-dialog-titlebar>
+    <form #form="ngForm">
+        <div class="dialog-c-box">
+			<kendo-dropdownlist
+                name="type"
+                [data]="TypeData"
+                [textField]="'text'"
+                [valueField]="'value'"
+                [valuePrimitive]="true"
+                required
+                [defaultItem]="TypePlaceHolder"
+                [(ngModel)]="newClientLoad.type"
+                #personT="ngModel"
+                style="width: 100%;"
+            >
+            </kendo-dropdownlist>
+			<textarea name="" id="" cols="30" rows="10" required [(ngModel)]="newClientLoad.Description" name="Description"></textarea>
+			<!-- <input type="checkbox" id="eq1" class="k-checkbox" [(ngModel)]="newClientLoad.IsPushToSale" name="IsPushToSale">
+	        <label class="k-checkbox-label" for="eq1">将此消息推送给销售人员</label> -->
+	    </div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="closeForm()">取消</button>
+        <button class="a-button" [disabled]="!form.form.valid" (click)="onSave($event,form)">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<kendo-dialog *ngIf="TransferDialog" (close)="transferDialogClose()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    客户转移
+  </kendo-dialog-titlebar>
+    <form #clientChangeForm="ngForm">
+        <div class="dialog-c-box">
+			<kendo-dropdownlist
+                name="SaleUserId"
+                [data]="TransferData"
+                [textField]="'fullName'"
+                [valueField]="'id'"
+                [valuePrimitive]="true"
+                required
+                [defaultItem]="TransferPlaceHolder"
+                [(ngModel)]="transferData.SaleUserId"
+                #TransferT="ngModel"
+                style="width: 100%;"
+            >
+            </kendo-dropdownlist>
+	    </div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="transferDialogClose()">取消</button>
+        <button class="a-button" [disabled]="!clientChangeForm.form.valid" (click)="onTransferSave($event,clientChangeForm)">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<kendo-dialog *ngIf="progressDialog" (close)="progressDialogClose()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    销售进展
+  </kendo-dialog-titlebar>
+    <form #progressChangeForm="ngForm">
+	    <div class="form-group">
+	    	<label class="control-label">客户等级</label>
+			<kendo-dropdownlist
+                name="customerLevel"
+                [data]="CustomerLevel"
+                [textField]="'text'"
+                [valueField]="'value'"
+                [valuePrimitive]="true"
+                required
+                [defaultItem]="CustomerLevelPlaceHolder"
+                [(ngModel)]="progressData.customerLevel"
+                #TransferT="ngModel"
+                style="width: 100%;"
+            >
+            </kendo-dropdownlist>
+	    </div>
+	     <div class="form-group">
+	    	<label class="control-label">进展百分比</label>
+	    	<p class="text-center">{{progressData.progressPercent}}</p>
+			<kendo-slider
+	            [fixedTickWidth]="60"
+	            [min]="min"
+	            [max]="max"
+	            [smallStep]="smallStep"
+	            name="progressPercent"
+	            [(ngModel)] = "progressData.progressPercent"
+	        ></kendo-slider>
+	    </div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="progressDialogClose()">取消</button>
+        <button class="a-button" [disabled]="!progressChangeForm.form.valid" (click)="onProgressSave(progressChangeForm)">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

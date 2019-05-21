@@ -1,0 +1,114 @@
+
+<section class="slideBar" id="slideBar" style="margin-top:100px;padding-top:0;">
+  <div class="link-box main-left" >
+        <a *ngFor="let menu of menuList let i = index" [ngClass]="{active:menu.isActive,new:menu.isNew}" [routerLink]='menu.url' (click)='changeActive($event,i)'>
+            <i [attr.class]="menu.icon"></i>
+            <span>{{menu.text}}</span>
+        </a>
+    </div>
+  <div class="logo"></div>
+</section>
+
+
+	
+	<div class="content-box" >
+		<div class="pageTitle">
+			<i class="iconfont icon-jiaoseguanli1"></i>角色管理
+			<!-- <div class="float-r ma-r10 ma-t10" style="padding-right: 32px">
+		     	<span style="color:gray" style="font-size:16px">当前交易中心：</span>
+		     	 <select *ngFor="let tc of tradingCenters" onchange="operatorListChange(this)" >
+	                    <option value="0">安徽</option>
+	                    <option value="1">山西</option>
+	                    <option value="2">广东</option>
+	            </select>
+			</div> -->
+		</div>
+		 
+		<div class="content ma-t20" style="padding-top: 50px;">
+			<div class="content-title" style="background: #D1EEFE;border:1px solid #4399FC;height: 40px;width:800px;margin:0 auto;line-height: 40px;">
+				<span class="title" name="2" style="font-size: 12px">说明： IT管理员不区分交易中心，其他角色区分交易中心，即IT管理员分配后在所有交易中心都有IT管理员权限。</span>
+			    
+			</div>
+
+			<div class="grid-box">
+                <div id="grid"></div>
+            </div>
+		</div>
+	</div>
+
+
+
+<!-- 分配 -->
+	<div class="content-box" *ngIf="opened">
+		<kendo-dialog title="新增IT管理员" (close)="close('cancel')">
+		<div class="content">
+			<div class="c-b">
+				<div class="staff-select-box">
+					<div>
+						<div class="select-box">
+							<div id="staffNoSelect"></div>
+							<div class="bot">
+								<span>
+									<input type="checkbox" id="totle0" class="k-checkbox"><label class="k-checkbox-label select-all" for="totle0"></label>全选
+								</span>
+								<span class="all">共<span>0</span>项</span>
+							</div>
+						</div>
+						<div class="select-box">
+							<button id="addStaff" class="a-button">添加</button>
+							<button id="removeStaff" class="a-button-grey">移出</button>
+						</div>
+						<div class="select-box">
+							<div id="staffSelected"></div>
+							<div class="bot">
+								<span>
+									<input type="checkbox" id="totle1" class="k-checkbox"><label class="k-checkbox-label select-all" for="totle1"></label>
+									全选
+								</span>
+								<span class="all">共<span>0</span>项</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</kendo-dialog>
+	</div>
+	
+						
+		 
+
+
+<!-- 分配 -->
+
+
+<!-- <div class="content-box" *ngIf="opened">
+		<kendo-dialog title="新增IT管理员" (close)="close('cancel')">
+			<div class="container">
+				<div class="content">
+					<select name="select1" id="select1" multiple style="width:100px;height:160px">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
+					<div >
+						<span id="add" >选中添加到右边&gt;&gt;</span>
+						<span id="add_all">全部添加到右边&gt;&gt;</span>
+					</div>
+				</div>
+
+				<div class="content" style="margin-left:40px">
+					<select name="select2" multiple id="select2" style="width:100px;height:160px"></select>
+					<div >
+						<span id="remove">&lt;&lt;选中删除到左边</span>
+						<span id="remove_all">&lt;&lt;全部删除到左边</span>
+					</div>
+				</div>
+			</div>
+		</kendo-dialog>
+	</div>
+ -->
+
+
+

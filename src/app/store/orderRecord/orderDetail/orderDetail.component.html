@@ -1,0 +1,39 @@
+<div class="main-title">
+      <i class="iconfont icon-yingyongguanli"></i>订单详情
+      <button class="a-button-xian a-button-xian-grey float-r ma-t10 ma-r10" [routerLink]="['/store/orderRecord']">返回</button>
+  </div>
+  <div class="grid-box pd-30">
+    <div class="grid-head">
+        <p class="">
+            <span class="color-9">订单号：</span>
+            <span>{{orderDetailData.orderNo}}</span>
+        </p>
+        <p class="float-r">
+            <span class="color-9">订单时间：</span>
+            <span>{{orderDetailData.orderTime|date:'y-MM-dd hh:mm'}}</span>
+        </p>
+    </div>
+    <kendo-grid [data]="gridData">
+        <kendo-grid-column field="Discontinued" title="应用" width="300">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="icon-box">
+                <img src="assets/images/application.png" alt="" *ngIf="dataItem.iconUrl==undefined||dataItem.iconUrl==null">
+                <img [attr.src]="dataItem.iconUrl" alt="" *ngIf="dataItem.iconUrl!=undefined&&dataItem.iconUrl!=null">
+            </div>
+            <p class="p-t"><span class="title-name">{{dataItem.name}}</span></p>
+            <p class="p-t">
+                <span class="tips-icon color-blue" *ngIf="!dataItem.isPaid">限时免费</span>
+                <span class="tips-icon color-blue" *ngIf="dataItem.isOfficial">官方</span>
+            </p>
+            </ng-template>
+        </kendo-grid-column>
+	    <kendo-grid-column field="count" title="数量" width="60">
+	    </kendo-grid-column>
+        <kendo-grid-column field="amount" title="小计" width="120">
+        </kendo-grid-column>
+    </kendo-grid>
+    <p class="totle-price ma-t10">
+        <span>总金额：</span>
+        <span class="color-red">￥<span id="totlePrice">{{totlePrice}}</span></span>
+    </p>
+</div>

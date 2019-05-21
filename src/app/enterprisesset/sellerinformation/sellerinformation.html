@@ -1,0 +1,259 @@
+﻿<div class="content-box">
+      <div class="pageTitle"><i class="iconfont icon-iconshezhi01"></i>企业信息</div>
+      <div class="content">
+        <div class=content>
+
+        <div class="content-title">
+          <ul>
+            <li class="active" id="basic-btn">基本信息</li>
+            <li id="licence-btn">证照信息</li>
+            <!--<li id="card-btn">企业名片</li>-->
+          </ul>
+          <div class="entry" id="entry" style="width:100%;height: 50px;margin-left:30%;line-height: 50px;font-size: 16px" >
+             <p id="status" style="font-size: 16px;color:red;display: block;height:100%" *ngIf='formData.authorizationStatus==0'>请填写企业信息，上传证照信息进行审核，审核通过后将获得授权</p>
+             <p id="status" style="font-size: 16px;color:red;display: block;height:100%" *ngIf='formData.authorizationStatus==2'>运营人员正在积极审核中，请耐心等待</p>
+             <p id="status" style="font-size: 16px;color:red;display: block;height:100%" *ngIf='formData.authorizationStatus==3'>"很抱歉，您的授权未通过审核，失败原因:{{formData.remark}}"</p>
+          </div>
+        </div>
+
+      <!-- 基本信息 -->
+        <div class="content-c" id="Basic">
+          <form id="ticketsForm" #form="ngForm" (ngSubmit)="submit($event)">
+            <ul id="fieldlist">
+              <li>
+                <label for="fullname" class="">公司名称</label>
+                <input type="text" id=SellerName name=sellerName  class="k-textbox" placeholder="请输入公司名称"  validationMessage="公司名称必须与营业执照保持一致。一旦保存后，将不可再修改。" style="width: 100%;" maxlength="50"  [(ngModel)]="formData.sellerName" id="confirm1"/>
+              </li>
+              <li>
+                <label for="search" class="required">公司LOGO</label>
+                <div class="demo-section k-content wide" >
+                  <div class="wrapper">
+                    <div id="picThree">
+                      <div class='product' *ngIf="logoImg.imageDataList.length>0">
+                        <img [src]="logoImg.imageDataList[0].data" alt="image preview" />
+                      </div>
+                    </div>
+                  </div>
+                  <kendo-upload [autoUpload]="false"
+                                (select)="selectEventHandler($event,logoImg,1)"
+                                [restrictions]="myRestrictions">
+                  </kendo-upload>
+                </div>
+              </li>
+              <li>
+                <label for="time">所在城市</label>
+                <kendo-dropdownlist [data]="province"
+                                    [defaultItem]="provincePlaceHolder"
+                                    [textField]="'name'"
+                                    [valueField]="'code'"
+                                    name="province"
+                                    [(ngModel)]="editprovince"
+                                    (selectionChange)="provinceChange($event)">
+                </kendo-dropdownlist>
+                <kendo-dropdownlist [data]="cities"
+                                    [textField]="'name'"
+                                    [valueField]="'code'"
+                                    [(ngModel)]="editcities"
+                                    name="cities"
+                                    [defaultItem]="citiesPlaceHolder"
+                                    (selectionChange)="citiesChange($event)">
+                </kendo-dropdownlist>
+                <span class="k-invalid-msg" data-for="time"></span>
+              </li>
+              <li>
+                <label for="" class="">公司地址</label>
+                <input type="text" id='sellerAddress'  class="k-textbox" placeholder="请输入公司地址"  validationMessage="公司地址不能为空" style="width: 100%;"
+                [value]="formData.sellerAddress"
+                               [(ngModel)]="formData.sellerAddress"
+                               name="sellerAddress"
+                               #sellerAddress="ngModel"
+                               value="{{data.sellerAddress}}"  id="confirm2" />
+              </li>
+              <li>
+                <label for="" class="">公司简述</label>
+                <div class="textarea-box" style="width:100%">
+                  <textarea name="sellerDescription" id="sellerDescription" rows="6" cols="" style="width:98%;"  validationMessage="公司简述不能为空" [(ngModel)]="formData.sellerDescription"  id="confirm3">{{data.sellerDescription}}</textarea>
+                </div>
+              </li>
+              <li class="confirm" id="confirm">
+                <!-- <button style=" background-color:#3399FF;line-height: 30px"class="k-button k-primary" type="submit">保存</button> -->
+
+
+              <button class="a-button ma-r20" type="submit" style="width:170px;height:40px">保存</button>
+
+
+
+
+              </li>
+            </ul>
+          </form>
+        </div>
+
+
+
+
+
+
+
+        <!-- 证照信息-->
+
+        <div class="content-c" id="Licence" style="display: none;">
+          <div class='content'>
+          </div>
+
+          <form id="linceForm" (ngSubmit)="editclience($event);" #lince="ngForm">
+            <ul id="fieldlist">
+              <li>
+                <p class="note">说明：各类证照请上传原件扫描件。要求为jpg, png或gif格式，单张图片小于2M。</p>
+              </li>
+              <li>
+                <p class="checkbox-c" style="line-height: 40px">
+                  <kendo-switch [(ngModel)]="linceData.formatIsCertcateMerge" style="width: 48px;height:26px;margin-left: 20px"
+                                name="formatIsCertcateMerge"
+                                [onLabel]="'是'"
+                                [offLabel]="'否'"
+                                (click)="switchChange()">
+                  </kendo-switch>
+                  <!-- <input type="checkbox"   (click)="switchChange()"> -->
+                  <span class="color-red" style="line-hieht:26px">多证合一</span>
+                </p>
+              </li>
+
+
+              <!--营业执照 -->
+              <li>
+                <label for="fullname" class="required">营业执照</label>
+                <input type="text" id="businessLicense" maxlength="50" name="businessLicense" class="k-textbox" placeholder="" required="" validationmessage="公司名称必须与营业执照保持一致。一旦保存后，将不可再修改" style="width: 100%;"
+                      [(ngModel)]="linceData.businessLicense" id="confirm5">
+                <div class="demo-section k-content wide">
+                  <div class="wrapper">
+                    <div>
+                      <div class='product' *ngFor="let bimage of businessLicenseImg let i = index">
+                        <img [src]="bimage.imageDataList[0].data" alt="image preview" />
+                        <i class='iconfont icon-guanbipsd del' (click)="deleteImg(businessLicenseImg,bimage.fileDataId[0],2)"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <kendo-upload [autoUpload]="false"
+                                (select)="selectEventHandler($event,businessLicenseImg,2)"
+                                [restrictions]="myRestrictions">
+                  </kendo-upload>
+                </div>
+              </li>
+
+              <!-- 组织机构代码 -->
+              <li *ngIf="!linceData.formatIsCertcateMerge">
+                <label for="fullname" class="required">组织机构代码</label>
+                <input type="text" id="organizationCode" name="organizationCode" class="k-textbox" maxlength="50" placeholder="请填写企业组织机构代码" required="" validationmessage="公司名称必须与组织机构代码保持一致。一旦保存后，将不可再修改。" style="width: 100%;"  [(ngModel)]="linceData.organizationCode" id="confirm6">
+                <!-- 上传 -->
+                <div class="demo-section k-content wide">
+                  <div class="wrapper">
+                    <div>
+                      <div class='product' *ngFor="let oimage of organizationCodeImg let i = index">
+                        <img [src]="oimage.imageDataList[0].data" alt="image preview" />
+                        <i class='iconfont icon-guanbipsd del' (click)="deleteImg(organizationCodeImg,oimage.fileDataId[0],3)"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <kendo-upload [autoUpload]="false"
+                                (select)="selectEventHandler($event,organizationCodeImg,3)"
+                                [restrictions]="myRestrictions">
+                  </kendo-upload>
+                </div>
+              </li>
+
+
+
+
+          <!-- 税务登记证-->
+              <li *ngIf="!linceData.formatIsCertcateMerge">
+                <label for="fullname" class="required">税务登记证</label>
+                <input type="text" id="taxNumber" name="taxNumber" class="k-textbox" placeholder="请填写营业执照代码" required=""
+                       validationmessage="公司名称必须与税务登记证保持一致。一旦保存后，将不可再修改。" maxlength="50" style="width: 100%;"
+                       [(ngModel)]="linceData.taxNumber" id="confirm7">
+                <div class="demo-section k-content wide">
+                  <div class="wrapper">
+                    <div>
+                      <div class='product' *ngFor="let timage of taxNumberImg let i = index">
+                        <img [src]="timage.imageDataList[0].data" alt="image preview" />
+                        <i class='iconfont icon-guanbipsd del' (click)="deleteImg(taxNumberImg,timage.fileDataId[0],4)"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <kendo-upload [autoUpload]="false"
+                                (select)="selectEventHandler($event,taxNumberImg,4)"
+                                [restrictions]="myRestrictions">
+                  </kendo-upload>
+                </div>
+              </li>
+              <li class="confirm">
+                <!-- <button class="k-button k-primary" type="submit" style="background:#4798EF;color:#fff;line-height: 30px " id="confirm4">提交</button> -->
+
+                <button class="a-button ma-r20" type="submit" style="width:170px;height:40px" id="confirm4">提交</button>
+             </li>
+            </ul>
+          </form>
+        </div>
+
+            <!-- 
+            <div class="content-c" id="card" style="display: none;">
+              <form id="cardForm" (ngSubmit)="eCard.submit($event);" #card="ngForm">
+                <div class="main-box">
+
+                  <p>在销售工具（PAD）上向用户展示企业多元化信息，让客户全方位了解您的实力</p>
+                  <ul id=fieldlist>
+                    <li style="height:190px;">
+                      <label>上传企业PPT</label>
+                      <div class="demo-section k-content wide">
+                        <div class="wrapper">
+                          <div>
+                            <div class='product' *ngFor="let timage of pptData; let i = index">
+                              <img src="/assets/images/PPTcardImg.jpg">
+                              <i class='iconfont icon-guanbipsd del' (click)="eCard.ppt.delete(i)"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <kendo-upload [autoUpload]="true"
+                                      [multiple]="false"
+                                      [saveUrl]="eCard.ppt.saveUrl"
+                                      (success)="eCard.ppt.success($event,pptData,7)"
+                                      [restrictions]="eCard.ppt.myRestrictions">
+                        </kendo-upload>
+                      </div>
+                    </li>
+
+                    <li style="height:190px;">
+                      <label>上传企业视频</label>
+                      <div class="demo-section k-content wide">
+                        <div class="wrapper">
+                          <div>
+                            <div class='product' *ngFor="let timage of movieData; let i = index">
+                              <img src="/assets/images/AVICardImg.jpg">
+                              <i class='iconfont icon-guanbipsd del' (click)="eCard.video.delete(i)"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <kendo-upload [autoUpload]="true"
+                                      [multiple]="false"
+                                      [saveUrl]="eCard.video.saveUrl"
+                                      (success)="eCard.video.success($event,movieData,8)"
+                                      [restrictions]="eCard.video.myRestrictions">
+                        </kendo-upload>
+                      </div>
+                    </li>
+                    <li class="confirm">
+                      <button class="k-button k-primary" type="submit" style="width: 220px;height: 40px;line-height: 30px;text-align: center;background:#4798EF" >保存</button>
+
+                       <button class="a-button ma-r20" type="submit" style="width:170px;height:40px" id="confirm4">提交</button>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+            -->
+
+
+
+
+</div>
+</div>

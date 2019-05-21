@@ -1,0 +1,41 @@
+.cM-box-list{
+	border:1px solid #ddd;
+	border-radius:4px;
+	height:147px;
+	.list-box{
+		height:40px;
+		line-height:40px;
+		background:#f4f4f4;
+	}
+	.b-box{
+		display:flex;
+	    align-items: center;
+	}
+	.td-l-box{
+		width:73%;
+		padding:14px 20px;
+		float:left;
+		font-size:0;
+		&>p{
+			width:33%;
+			line-height:40px;
+			display:inline-block;
+			font-size: 14px;
+			overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		}
+	}
+	.btn-box{
+		width:22%;
+		float:right;
+		box-sizing: border-box;
+		text-align:center;
+		.a-button-xian{
+			margin:5px;
+		}
+	}
+}
+.grid-box{
+	padding:0 30px 40px;
+}

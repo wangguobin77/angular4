@@ -1,0 +1,39 @@
+﻿<section class="main">
+  <div class="main-center">
+    <h4 class="top-t">欢迎使用售电云系统</h4>
+    <div class="accountIF">
+      <form id="ticketsForm" #form="ngForm" (ngSubmit)="submit($event)">
+        <ul id="fieldlist">
+          <li>
+            <label for="fullname" class="required">企业名称</label>
+            <div class="input-box">
+              <input type="text" id="fullname" name="fullname" class="k-textbox" placeholder="请输入企业名称" required  [(ngModel)]="formData.sellerName" />
+              <span>公司名称必须与营业执照保持一致</span>
+              <span id="fullnameHint" class="tishi" style="margin-top: 22px;">请填写企业名称</span>
+            </div>
+          </li>
+          <li>
+            <label for="authcode" class="required">授权码</label>
+            <div class="input-box">
+              <input type="text" id="authcode"  class="k-textbox" placeholder="请输入您的授权码" />
+              <span id="authcodeHint" class="tishi">请填写授权码</span>
+            </div>
+          </li>
+          <li>
+            <label for="VerifyCode" class="required">验证码</label>
+            <div class="input-box">
+              <input type="text"  id="VerifyCode" name="VerifyCode" class="k-textbox" placeholder="请输入验证码"  style="height:55px;"/>
+              <div class="yanzheng" style="top: 2px; right: 2px;height: 60px;"><div id="container" style="height:52px;"></div></div>
+              <span id="liVerifyCode" class="tishi"style="margin-top: 18px">验证码错误，请重新填写</span>
+            </div>
+          </li>
+          <li>
+            <button type="submit" class="a-button ma-r10">确定</button>
+            <button type="button" onclick="javascript:history.back(-1);" class="a-button-xian">取消</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</section>
+

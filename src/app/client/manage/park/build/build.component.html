@@ -1,0 +1,125 @@
+﻿<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-iconfontwo"></i>新建园区
+		<a [routerLink]="['/client/park']" class="a-button-xian a-button-xian-grey float-r ma-t10 ma-r20">返回</a>
+	</div>
+	<form #form='ngForm' (ngSubmit)="onSubmit(form)">
+		<div class="content" [hidden]="isNext">
+			<div class="content-title">
+				<span class="title" name="2">基本信息</span>
+			</div>
+			<div class="form-box">
+					<ul>
+						<li>园区名称<span class="color-red size-18">*</span>
+							<p class="color-9 size-12 annotation"></p>
+						</li>
+						<li>
+						    <input type="text" name="companyName" [(ngModel)]="sellerPark.sellerParkName" class="k-textbox" required style="width: 100%;"/>
+
+						</li>
+						<li>地区<span class="color-red size-18">*</span></li>
+						<li>
+	    			        <kendo-dropdownlist 
+						    [value]="'山西'"
+						    disabled
+						    style="width: 188px;">
+					        </kendo-dropdownlist>
+					        <kendo-dropdownlist 
+						        [data]="cities"
+						        [(ngModel)]="sellerPark.city"
+						        name="City"
+							    [textField]="'name'"
+		      					[valueField]="'code'"
+		      					[valuePrimitive]="true"
+		      					[defaultItem]="citiesPlaceHolder"
+		      					class="float-r"
+						        required style="width: 188px;"
+						    >
+					        </kendo-dropdownlist>
+						</li>
+						<li>详细地址<span class="color-red size-18">*</span></li>
+						<li>
+							<input type="text" name="address" [(ngModel)]="sellerPark.address" class="k-textbox" required style="width: 100%;"/>
+						</li>
+					</ul>
+				
+			</div>
+		</div>
+		<div class="content">
+			<div class="content-title">
+				<span class="title" name="2">联系人信息</span>
+				<span class="color-blue float-r ma-r30 cur-p size-14" (click)="addContact()">添加联系人</span>
+			</div>
+			<div class="common-table">
+				<table>
+					<thead>
+						<tr>
+							<td>姓名</td>
+							<td>职务</td>
+							<td>联系方式</td>
+							<td>备注</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of parkContacts let i = index">
+							<td>{{item.contacts}}</td>
+							<td>{{item.position}}</td>
+							<td>{{item.tel}}</td>
+							<td>{{item.remark}}</td>
+							<td>
+								<span class="color-blue cur-p ma-r20" (click)="editHandler(item,i)">编辑</span>
+								<span class="color-red cur-p" (click)="removeHandler(item)">删除</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="no-data" *ngIf="parkContacts.length==0">暂无联系人信息</div>
+			</div>
+			<div class="btn-box text-center pd-b30">
+				<button class="a-button">保存</button>
+				<a class="a-button-xian">取消</a>
+			</div>
+		</div>
+	</form>
+</div>
+<kendo-dialog title="创建成功" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-okla.png">
+        <div style="line-height:24px;margin-top:20px;">
+            园区创建成功
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button" [routerLink]="['/client/park']">确定</a>
+    </kendo-dialog-actions>
+</kendo-dialog>
+<kendo-dialog *ngIf="active" (close)="closeContactDialog()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    {{ isNew ? '新增' : '编辑' }}
+  </kendo-dialog-titlebar>
+
+  <form novalidate [formGroup]="editForm">
+    <div class="form-group">
+      <label for="contacts" class="control-label"><span class="color-red">*</span>姓名</label>
+      <input type="text" class="k-textbox" formControlName="contacts" maxlength="20" />
+    </div>
+    <div class="form-group">
+      <label for="position" class="control-label">职位</label>
+      <input type="text" class="k-textbox" formControlName="position" maxlength="20"/>
+    </div>
+    <div class="form-group">
+      <label for="tel" class="control-label"><span class="color-red">*</span>联系方式</label>
+
+      <input type="text" class="k-textbox" formControlName="tel" maxlength="20"/>
+    </div>
+    <div class="form-group">
+      <label for="remark" class="control-label">备注</label>
+      <input type="text" class="k-textbox" formControlName="remark" maxlength="20"/>
+    </div>
+  </form>
+  <kendo-dialog-actions class="button-center">
+    <button class="a-button-xian a-button-xian-grey ma-r20" (click)="closeContactDialog($event)">取消</button>
+    <button class="a-button" (click)="onContactDialogSave($event)">保存</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

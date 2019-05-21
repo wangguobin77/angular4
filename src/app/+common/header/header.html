@@ -1,0 +1,87 @@
+﻿<header *ngIf="base.loggedIn">
+  <ul class="left">
+    <li class="head-portrait">
+      <img [attr.src]="base.currentSeller.logoUrl" alt="" *ngIf="base.currentSeller.logoUrl!=null&&base.currentSeller.logoUrl!=undefined&&base.currentSeller.logoUrl!=''">
+      <img src="assets/images/the_default_avatar.png" alt="" *ngIf="base.currentSeller.logoUrl==null||base.currentSeller.logoUrl==undefined||base.currentSeller.logoUrl==''">
+    </li>
+    <li class="size-18">
+      欢迎您，<span>{{base.currentSeller.name}}</span>
+    </li>
+    <li id="nowTradingCenter" class="nowTradingCenter">
+      <i class="iconfont icon-location color-9"></i><span id="nowTradingCenterCity">{{currentTCName}}</span><span class="tip-icon color-9 cur-p"
+        id="nowTradingCenterChange" (click)="openTradingCenterSelector()">切换</span>
+    </li>
+  </ul>
+  <div class="right">
+    <div class="AC" id="personSet">
+        <div (click)="subMenu()">
+            <i class="iconfont icon-iconfontwo"></i>
+            <span>{{base.currentUser.profile.name}}</span>
+            <i class="iconfont icon-1 ma-l10 show-down"  *ngIf="!displaySubMenu"></i>
+            <i class="iconfont icon-1 ma-l10 show-up" *ngIf="displaySubMenu">
+            </i>
+        </div>
+     	<ul class="person-set" *ngIf="!displaySubMenu">
+     		<li class="border-b"><a href=""><i class="iconfont icon-diandou color-blue"></i>电豆：{{base.currentSeller.remainingVMoney}}</a>
+            </li>
+            <li><a [routerLink]="['/myaccount']">账户信息</a></li>
+            <li><a [routerLink]="['/helpers']">帮助中心</a></li>
+            <li><a href="/logout">退出登录</a></li>
+        </ul>
+    </div>
+    <ul class="menu" id="menu">
+      <li class="change-list" data-index="0" [ngClass]="{active:activedMenu==0}"><a [routerLink]="['/workbench']" routerLinkActive="active"><i class="iconfont icon-work"></i>工作台</a></li>
+      <li class="change-list" data-index="1" [ngClass]="{active:activedMenu==1}"><a [routerLink]="[myapplink]"><i class="iconfont icon-shichangdongtai"></i>我的应用</a></li>
+      <li class="change-list" data-index="8" [ngClass]="{active:activedMenu==8}"><a [routerLink]="['/store']"><i class="iconfont icon-iconfontyingyong"></i>商城</a></li>
+      <li class="change-list" data-index="9" [ngClass]="{active:activedMenu==9}"><a [routerLink]="['/enterpriseinfo/sellerinfo']" routerLinkActive="active"><i class="iconfont icon-iconshezhi01"></i>企业信息</a></li>
+    </ul>
+  </div>
+  <div class="popup-box center" id="changeTradingCenter" *ngIf="displayPopup && ((tradingCenters != undefined && tradingCenters != null && tradingCenters.length > 0) && (route.snapshot._routerState.url !== '/workbench/unauthorized' && !route.snapshot._routerState.url.startsWith('/store') && route.snapshot._routerState.url !== '/enterprisesset' && route.snapshot._routerState.url !== '/authcode/useauthcode'))">
+    <div class="pop-content">
+      <div class="pop-title">
+        选择交易中心<i class="iconfont icon-guanbipsd float-r cur-p" id="popClose" (click)="closeTradingCenterSelector()"></i>
+      </div>
+      <div class="pop-c-b">
+        <div *ngFor="let tc of tradingCenters" (click)="changeTradingCenter(tc.id)" class="pop-img-box">
+          <img src="assets/images/guangzhou.png" alt="">
+          <span>{{tc.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup-box center" id="" *ngIf="displayPopup && ((tradingCenters === undefined || tradingCenters === null || tradingCenters.length === 0) && (route.snapshot._routerState.url !== '/workbench/unauthorized' && !route.snapshot._routerState.url.startsWith('/store') && route.snapshot._routerState.url !== '/enterprisesset' && route.snapshot._routerState.url !== '/authcode/useauthcode') && base.IsInRole('ITAdmin'))">
+    <div class="pop-content" style="width: 500px;">
+      <div class="pop-title">
+        选择交易中心<i class="iconfont icon-guanbipsd float-r cur-p" id="popClose" (click)="closeTradingCenterSelector()"></i>
+      </div>
+      <div class="pop-c-b">
+        <div class="pop-icon">
+          <i class="iconfont icon-ai30"></i>
+          <span class="label">已到期</span>
+        </div>
+        <p class="siz-18">尊敬的用户，您的售电云尚未购买交易中心内核引擎，或引擎已过期，系统功能暂不能使用。</p>
+        <p class="siz-18">售电云的功能暂不能使用。</p>
+      </div>
+      <div class="pop-footer">
+        <a [routerLink]="['/store/tradingCenter']" class="a-button ma-r10">前往商城购买</a>
+        <a [routerLink]="['/authcode/useauthcode']" class="a-button a-button-exactGreen">输入授权码</a>
+      </div>
+    </div>
+  </div>
+  <div class="popup-box center" id="" *ngIf="displayPopup && ((tradingCenters === undefined || tradingCenters === null || tradingCenters.length === 0) && (route.snapshot._routerState.url !== '/workbench/unauthorized' && !route.snapshot._routerState.url.startsWith('/store') && route.snapshot._routerState.url !== '/enterprisesset' && route.snapshot._routerState.url !== '/authcode/useauthcode') && !base.IsInRole('ITAdmin'))">
+    <div class="pop-content" style="width: 500px;">
+      <div class="pop-title">
+        选择交易中心<i class="iconfont icon-guanbipsd float-r cur-p" id="popClose" (click)="closeTradingCenterSelector()"></i>
+      </div>
+      <div class="pop-c-b">
+        <div class="pop-icon">
+          <i class="iconfont icon-ai30"></i>
+          <span class="label">已到期</span>
+        </div>
+        <p class="siz-18">尊敬的用户，贵公司购买的交易中心已到期，</p>
+        <p class="siz-18">售电云的功能暂不能使用，</p>
+        <p class="siz-18">您可以通知IT管理员在商城购买续费。</p>
+      </div>
+    </div>
+  </div>
+</header>

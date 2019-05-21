@@ -1,0 +1,54 @@
+﻿<section class="main">
+  <div class="main-center">
+    <div class="content-title">
+      <span>任务安排</span>
+      <a class="a-button-xian ma-l30" href="/workbench/">返回</a>
+      <button class="a-button float-r" id="calendarBtn">切换日期</button>
+      <div class="calendar-box" id="calendarBox">
+        <div id="calendar"></div>
+      </div>
+    </div>
+    <div class="schedule">
+      <div class="schedule-l">
+        <h2>{{model.day}}</h2>
+        <p>
+          {{model.month}}
+          <span></span>{{model.formatWeek}}
+        </p>
+      </div>
+      <div class="schedule-r">
+        <ul>
+          <li [id]="item.id" *ngFor="let item of model.sellerTaskVMList">
+            <div class="schedule-time">
+              <p>{{vData.timeToString(item.taskTime)}}</p>
+            </div>
+            <div class="schedule-box">
+              <span class="schedule-img"></span>
+              <div class="schedule-box-c">
+                <h3>
+
+                  <p class="float-l" *ngIf="item.taskLevel==1">
+                    <i class="iconfont icon-xingxing"></i>
+                  </p>
+                  {{item.title}}
+                  <p class="float-r">
+                    <i class="iconfont icon-guanbipsd size-18" *ngIf="item.taskStatus==2" id="closeTask" (click)="doClose(item.id)"></i>
+                    <i class="iconfont icon-shanchu1" id="delTask" (click)="doDel(item.id)"></i>
+                    <i class="iconfont icon-duihao" *ngIf="item.taskStatus==1" id="handerTask" (click)="doHandler(item.id)"></i>
+                  </p>
+                  <p class="float-r ma-r60 color-9" *ngIf="item.taskStatus==0">已关闭</p>
+                  <p class="float-r ma-r60" *ngIf="item.taskStatus==2">已处理</p>
+                  <p class="float-r ma-r60 color-red" *ngIf="item.taskStatus==1">未处理</p>
+                </h3>
+                <p>{{item.description}}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<footer></footer>
+<div id="dialog"></div>
+<div id="removedialog"></div>

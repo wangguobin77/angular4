@@ -1,0 +1,73 @@
+<div class="content">
+	<div class="content-t">
+		<div class="float-l">
+			<div class="content-t-l">
+				<p>{{titleData.count}}</p>
+				<p class="size-18">合约总数(份)</p>
+			</div>
+			<div class="content-t-l">
+				<p>{{titleData.plansCount}}</p>
+				<p class="size-18">总预购电量(万千瓦时)</p>
+			</div>
+			<div class="content-t-l">
+				<p>{{titleData.distributedAmount}}</p>
+				<p class="size-18">总交易电量(万千瓦时)</p>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="grid-box template-all-grid">
+		<div class="client-trace cM-client-trace">
+			 <kendo-grid [data]="view | async" [pageable]="true" [pageSize]="state.take" [skip]="state.skip"(dataStateChange)="onStateChange($event)">
+	            <kendo-grid-column field="Discontinued" title="Discontinued">
+	                <ng-template kendoGridCellTemplate let-dataItem>
+	                <div class="cM-box-list">
+	                	<div class="list-box">
+			               <div class="t-right float-r t-right-time">
+			                   <span class="color-9">合约有效期：</span>
+			                   <span>{{dataItem.beginDate | date:'y-MM-dd'}}&ensp;-&ensp;{{dataItem.endDate | date:'y-MM-dd'}}</span>
+			                   <i class="iconfont icon-guanbipsd close"></i>
+			               </div>
+			               <div class="t-left float-l ma-l30">
+			                    <span class="color-9">合约序号：</span>
+			                   <span>{{dataItem.serialNumber}}</span>
+			               </div>
+			               <div class="t-left float-l ma-l30">
+			                    <span class="color-9">能源方：</span>
+			                    <span>{{dataItem.subjectName}}</span>
+			                	<span class="tip-icon color-blue ma-l4">{{usedPowerType[dataItem.usedPowerType-1]}}</span>
+			               </div>
+			               <div class="t-right ma-r20 float-r">
+			                    <span class="color-9">方式：</span>
+			                   <span>{{contractTypeName[dataItem.contractType-1]}}</span>
+			               </div>
+			           </div>
+			           <div class="b-box">
+				           <div class="td-l-box">
+						      <div class="will-buy">
+							      	<div class="echart-box">
+							           <div class="bg-blue" [ngStyle]="{'width.%':dataItem.totalUsedProgressPercent>100?100-(dataItem.totalUsedProgressPercent%100):dataItem.totalUsedProgressPercent}">
+							           		<p class="echart-label" *ngIf="dataItem.totalUsedProgressPercent<100">用电量进度    <span class="color-blue">{{dataItem.totalUsedProgressPercent}}%</span></p>
+							           		<p class="echart-p first"><span class="color-9">总预购</span>  {{dataItem.plansCount}} 万千瓦时</p>
+							           </div>
+							           <div class="bg-red" [ngStyle]="{'width.%':dataItem.totalUsedProgressPercent>100?dataItem.totalUsedProgressPercent%100:0}">
+							           		<p class="echart-label" *ngIf="dataItem.totalUsedProgressPercent>100">用电量进度    <span class="color-red">{{dataItem.totalUsedProgressPercent}}%</span></p>
+							           		<p class="echart-p"><span class="color-9">总成交</span>  {{dataItem.distributedAmount}}  万千瓦时</p>
+							           </div>
+							      	</div>
+						        </div>
+					        </div>
+					        <div class="state" *ngIf="dataItem.statusString==='即将到期'"><span class="color-red">即将到期</span></div>
+					        <div class="state" *ngIf="dataItem.statusString==='正执行'"><span class="color-blue">正执行</span></div>
+					        <div class="state" *ngIf="dataItem.statusString==='已终止'"><span class="color-9">已终止</span></div>
+					        <div class="state" *ngIf="dataItem.statusString==='未开始'"><span>未开始</span></div>
+					        <div class="btn-box"><a class="a-button-xian" [routerLink]="['/sale/contracts/shanxi/detail',dataItem.contractId]">查看</a></div>
+				        </div>
+				       </div>
+	                </ng-template>
+	            </kendo-grid-column>
+	        </kendo-grid>
+		</div>
+	</div>
+</div>

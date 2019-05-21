@@ -1,0 +1,53 @@
+.cM-box-list{
+	border:1px solid #ddd;
+	border-radius:4px;
+	height:147px;
+
+	.list-box{
+		height:40px;
+		line-height:40px;
+		background:#f4f4f4;
+		padding-left: 10px;
+		label{
+			margin-top:12px;
+		}
+		input{
+			margin-top:12px;
+		}
+	}
+	.b-box{
+		display:flex;
+	    align-items: center;
+	    padding-left: 20px;
+	}
+	.td-l-box{
+		width:73%;
+		padding:14px 20px;
+		float:left;
+		font-size:0;
+		&>p{
+			width:33%;
+			line-height:40px;
+			display:inline-block;
+			font-size: 14px;
+			overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		}
+		.width-auto{
+			width:auto;
+		}
+	}
+	.btn-box{
+		width:22%;
+		float:right;
+		box-sizing: border-box;
+		text-align:center;
+		.a-button-xian{
+			margin:5px;
+		}
+	}
+}
+.forbidden:hover{
+	background-color:#ddd !important;
+}

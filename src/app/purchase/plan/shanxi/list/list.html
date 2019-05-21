@@ -1,0 +1,96 @@
+﻿<div class="content-box purchaseList">
+  <div class="pageTitle">
+    <i class="iconfont icon-30"></i>采购计划管理
+    <a [routerLink]="['/purchase/plan/shanxi/create']" class="a-button float-r ma-r20 ma-t10">创建</a>
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <span class="title" name="2">计划列表</span>
+      <div class="title-r float-r ma-r20">
+        <span class="float-r size-14 condition color-6 cur-p" id="selectCondition"  (click)="showFiltrateBox()">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+        <div class="searchBox float-r ma-r10 ma-t10">
+          <input type="text" placeholder="采购计划名称关键词搜索" #serchInput (keyup.enter)="searchPlan(serchInput.value)">
+          <i class="iconfont icon-sousuo" (click)="searchPlan(serchInput.value)"></i>
+        </div>
+      </div>
+    </div>
+    <div class="filtrate-box" *ngIf="filtrateBoxIsSHow">
+      <div>
+        <div>
+          <span>计划执行状态：</span>
+          <input type="checkbox" id="eq3" class="k-checkbox" value="1" (click)="checkStatusChange($event)">
+          <label class="k-checkbox-label" for="eq3">&ensp;已执行</label>
+          <input type="checkbox" id="eq4" class="k-checkbox" value="0" (click)="checkStatusChange($event)">
+          <label class="k-checkbox-label" for="eq4">&ensp;未执行</label>
+        </div>
+        
+        <div>
+          <button class="a-button-xian ma-r20" (click)='searchReset()'>重置</button>
+          <button class="a-button" (click)='conditionSearch()'>查询</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid-box separate-box client-list no-header">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="createDate" title="计划内容" width="350">
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list"  [attr.id]='dataItem.id'>
+                  <div class="list-box">
+                      <i *ngIf ="dataItem.executeStatus == 0" class="iconfont float-r ma-r20 size-14 cur-p del icon-guanbipsd" [attr.data-id]='dataItem.id' (click)="deleteClick($event)"></i>
+                      <div class="t-right float-r ma-r30">
+                      </div>
+                      <div class="t-left float-l ma-l20">
+                      <span class="color-9">计划名称：</span>
+                      <span>{{dataItem.name}}</span>
+                      </div>
+                      <div class="t-left float-l ma-l130">
+                      <span class="color-9">交易中心：</span>
+                      <span>{{dataItem.tradeCenterIdString}}</span>
+                      </div>
+                      </div>
+                  <div class="td-l-box">
+                      <p>
+                      <span class="color-9">采购方式：</span>
+                      <span>{{dataItem.typeString}}</span>
+                      </p>
+                      <p>
+                      <span class="color-9">用电时间：</span>
+                      <span>{{dataItem.durationString}}</span>
+                      </p>
+                      <p>
+                      <span class="color-9">采购电量：</span>
+                      <span>{{dataItem.dAmount}}万千瓦时</span>
+                      </p>
+                      <p>
+                      <span class="color-9">计划执行状态：</span>
+                      <span>{{dataItem.executeStatusString}}</span>
+                      </p>
+                      <p class="size-14 width-two">
+                      <span class="color-9">备注：</span>
+                      <span class="remark">{{dataItem.remark}}</span>
+                      </p>
+                 </div>
+                <div class="btn-box"><a class="a-button-xian detail" [routerLink]="['/purchase/plan/shanxi/detail',dataItem.id]">查看</a></div></div > 
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+  </div>
+</div>
+<kendo-dialog title="采购计划删除" *ngIf="opened" class="new-dialog" (close)="closeDialog()">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-warm.png">
+        <div class="ma-t20 dialog-text">确认删除该计划吗？</div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button" (click)="deletePlan()">确定</a>
+    </kendo-dialog-actions>
+</kendo-dialog>

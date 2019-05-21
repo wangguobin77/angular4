@@ -1,0 +1,23 @@
+<section class="slideBar" id="slideBar" style="margin-top:100px;padding-top:0">
+  <div class="link-box main-left" >
+        <a *ngFor="let menu of menuList let i = index" [ngClass]="{active:menu.isActive,new:menu.isNew}" [routerLink]='menu.url' (click)='changeActive($event,i)'>
+            <i [attr.class]="menu.icon"></i>
+            <span>{{menu.text}}</span>
+        </a>
+    </div>
+  <div class="logo"></div>
+</section>
+
+
+	
+	<div class="content-box">
+		<div class="pageTitle"><i class="iconfont icon-quanxian"></i>权限管理</div>
+		<div class="content">
+			<div class="content-title">
+				登录日志
+			</div>
+			<div class="pd-20">
+                <div id="grid"></div>
+            </div>
+		</div>
+	</div>

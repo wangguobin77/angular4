@@ -1,0 +1,295 @@
+﻿<div class="content-box contractDetail">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>查看合约
+    <a [routerLink]="['/sale/contracts/shanxi/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title title-tag">
+      <span class="title" name="2">合约概览</span>
+    </div>
+    <div class="cd-box">
+      <div class="line-box">
+        <p>
+          <span class="color-9">购电方：</span>
+          <span>{{model.contractSubject.subjectName}}</span>
+        </p>
+        <p>
+          <span class="color-9">交易中心：</span>
+          <span>{{model.contractSubject.tradingCenterString}}交易中心</span>
+        </p>
+        <p>
+          <span class="color-9">合约状态：</span>
+          <span class="color-red">{{model.contracts.statusString}}</span>
+        </p>
+        <p>
+          <span class="color-9">有效期：</span>
+          <span>{{model.contracts.validDate}}</span>
+        </p>
+        <p>
+          <span class="color-9">用电类型：</span>
+          <span>{{model.contractSubject.usedPowerTypeString}}</span>
+        </p>
+          <p>
+          <span class="color-9">合约名称：</span>
+          <span>{{model.contracts.name}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="c-echart">
+      <div class="will-buy">
+        <div class="echart-box">
+          <div class="bg-blue" [style.width]="model.contracts.planRatef">
+            <p class="echart-label">用电量进度    <span class="color-blue">{{ model.contracts.planRate}}</span></p>
+            <p class="echart-p" style="width:300px; margin-top:15px; position:initial"><span class="color-9">总预购</span>  {{model.contracts.plansCount}} 万千瓦时</p>
+          </div>
+          <div class="bg-red" [style.width]="model.contracts.tradeRatef">
+            <p class="echart-label" [hidden]="model.contracts.tradeRate=='0%'">用电量进度    <span class="color-red">{{ model.contracts.tradeRate}}</span></p>
+            <p class="echart-p" style="width:200px; text-align:right"><span class="color-9">总成交</span>  {{model.contracts.tradeCount}} 万千瓦时</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <a class="title ma-r60 cur-p color-9" name="2" [routerLink]="[historyUrl]">历史执行情况</a>
+      <a class="title active ma-r60 cur-p" name="2" [routerLink]="[currentUrl]">合约细则</a>
+    </div>
+    <div class="title-tag content-title border-0">能源方信息</div>
+    <div class="cd-box pd-t0">
+      <div class="pd-b20" *ngIf="model.contracts.IsPark">
+        <p>
+          <span class="color-9">用户主体：</span>
+          <span>{{model.contractSubject.subjectName}}</span>
+        </p>
+        <p>
+          <span class="color-9">所属交易中心：</span>
+          <span>{{model.contractSubject.tradingCenterString}}交易中心</span>
+        </p>
+        <p>
+          <span class="color-9">所在城市：</span>
+          <span>{{model.contractSubject.cityName}}</span>
+        </p>
+        <div>
+          <p>
+            <span class="color-9">详细地址：</span>
+            <span>{{model.contractSubject.address}}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="pd-b20" *ngIf="!model.contracts.IsPark">
+        <p>
+          <span class="color-9">用户主体：</span>
+          <span>{{model.contractSubject.subjectName}}</span>
+        </p>
+        <p>
+          <span class="color-9">所属交易中心：</span>
+          <span>{{model.contractSubject.tradingCenterString}}交易中心</span>
+        </p>
+        <p>
+          <span class="color-9">用电类型：</span>
+          <span>{{model.contractSubject.usedPowerTypeString}}</span>
+        </p>
+        <p>
+          <span class="color-9">行业类别：</span>
+          <span>{{model.contractSubject.industryCategoryName}}</span>
+        </p>
+        <p>
+          <span class="color-9">法定代表人：</span>
+          <span>{{model.contractSubject.legalPerson}}</span>
+        </p>
+        <p>
+          <span class="color-9">所在城市：</span>
+          <span>{{model.contractSubject.cityName}}</span>
+        </p>
+        <div>
+          <p>
+            <span class="color-9">详细地址：</span>
+            <span>{{model.contractSubject.address}}</span>
+          </p>
+        </div>
+        <p>
+          <span class="color-9">登记工商管理局：</span>
+          <span>{{model.contractSubject.registerManagePlace}}</span>
+        </p>
+        <p>
+          <span class="color-9">税务登记号：</span>
+          <span>{{model.contractSubject.taxNumber}}</span>
+        </p>
+        <p>
+          <span class="color-9">电压等级：</span>
+          <span>{{model.contractSubject.voltageLevelString}}</span>
+        </p>
+        <p>
+          <span class="color-9">总用电容量：</span>
+          <span>{{model.contractSubject.capacitance}} KW</span>
+        </p>
+        <p>
+          <span class="color-9">变压器容量：</span>
+          <span>{{model.contractSubject.transformerCapability}} KVA</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="title-tag content-title">合约信息</div>
+    <div class="cd-box pd-t20">
+      <div class="pd-b20">
+        <p>
+          <span class="color-9">合约编号：</span>
+          <span>{{model.contracts.contractNo}}</span>
+        </p>
+        <p>
+          <span class="color-9">合约有效期：</span>
+          <span>{{model.contracts.validDate}}</span>
+        </p>
+        <p>
+          <span class="color-9">合约方式：</span>
+          <span>{{model.contracts.contractTypeString}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="title-tag content-title">合约分解</div>
+    <div class="plan-box">
+      <p>
+        <span class="color-9">总预购电量:</span>
+        <span>{{model.contracts.plansCount}}万千瓦时</span>
+      </p>
+      <div class="table-c">
+        <div class="table-t">
+          <div class="table-t-l">
+            <div class="table-t-l-p">
+              <p>时间</p>
+              <p *ngIf="isLong == 1">长协电量(万千瓦时)</p>
+              <p *ngIf="isLong == 2">竞价电量(万千瓦时)</p>
+            </div>
+          </div>
+          <div class="table-t-l">
+            <div class="table-t-l-p">
+              <p>时间</p>
+              <p *ngIf="isLong == 1">长协电量(万千瓦时)</p>
+              <p *ngIf="isLong == 2">竞价电量(万千瓦时)</p>
+            </div>
+          </div>
+        </div>
+        <div class="table-box">
+          <div class="table-box-list-c" *ngFor="let item of model.contractPlans;let i=index;">
+            <div class="table-box-list-p" >
+              <p>{{item.planYear}}年{{item.planMonth}}月</p>
+              <p *ngIf="isLong == 1">{{item.longAmount}}</p>
+              <p *ngIf="isLong == 2">{{item.bidAmount}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title title-tag">
+      <span class="title" name="2">套餐选择</span>
+    </div>
+    <div class="cd-box pd-b20">
+      <div>
+        <div class="sub-title">套餐选择：{{packageModel.package.name}}</div>
+        <div>
+          <p *ngFor="let item of packageModel.settles.guarantees">
+            <span class="color-9">保底类：</span>
+            <span>{{item.min}}万千瓦时——{{item.max}}万千瓦时</span>
+            <span class="ma-l30">{{item.price}} {{packageModel.settles.isPrice?"元/千瓦时":"厘/千瓦时"}}</span>
+          </p>
+        </div>
+        <div>
+            <p *ngFor="let item of packageModel.settles.fixs">
+              <span class="color-9">固定类：</span>
+              <span>{{item.min}}万千瓦时——{{item.max}}万千瓦时</span>
+              <span class="ma-l30">{{item.price}} {{packageModel.settles.isPrice?"元/千瓦时":"厘/千瓦时"}}</span>
+            </p>
+        </div>
+        <div>
+            <p *ngFor="let item of packageModel.settles.rates">
+              <span class="color-9">分成类：</span>
+              <span>{{item.min}}万千瓦时——{{item.max}}万千瓦时</span>
+              <span class="ma-l30">{{item.price}} %</span>
+            </p>
+        </div>
+        <div class="sub-title" *ngIf="packageModel.extends.data.length>0">扩展选择</div>
+        <p style="width:200px" *ngFor="let item of packageModel.extends.data">
+          <span class="color-9">{{item.name}}：</span>
+          <span>{{item.value}} {{item.unit}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20" *ngIf="packageModel.offsets.items.length>0">
+    <div class="content-title title-tag">
+      <span class="title" name="2">偏差电量担保套餐</span>
+    </div>
+    <div class="cd-box pd-b20">
+      <div>
+        <div class="sub-title">套餐选择：{{packageModel.offsets.currentWay.name}}</div>
+        <div class="" *ngFor="let item of packageModel.offsets.items">
+          <p>
+            <span class="color-9">{{packageModel.offsets.currentWay.offset}}：</span>
+            <span>{{item.min}} —— {{item.max}} {{packageModel.offsets.currentWay.offset=="考核电量"?"万千瓦时":"%"}}</span>
+          </p>
+          <p>
+            <span class="color-9">{{packageModel.offsets.currentWay.fill}}：</span>
+            <span>{{item.price}} {{packageModel.offsets.currentWay.fill=="补偿单价"?"元/千瓦时":"%"}}</span>
+          </p>
+        </div>
+        <p>
+          <span class="color-9">担保最大金额：</span>
+          <span>{{packageModel.offsets.bao.value}}万元</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title title-tag">
+      <span class="title" name="2">单方终止协议违约</span>
+    </div>
+    <div class="cd-box pd-b20">
+      <div *ngIf="isHaveCompensatePrice">
+        <p>
+          <span class="color-9">赔付方式：</span>
+          <span>固定金额</span>
+        </p>
+        <p>
+          <span class="color-9">赔付金额：</span>
+          <span class="color-red">{{model.contracts.compensatePrice}}万</span>
+        </p>
+      </div>
+      <div *ngIf="isHavecompensateAmount">
+        <p>
+          <span class="color-9">赔付方式：</span>
+          <span>按总预购电量</span>
+        </p>
+        <p>
+          <span class="color-9">赔付金额：</span>
+          <span>{{model.contracts.compensateAmount}}厘/千瓦时</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20 ma-b30" *ngIf="model.contractAttachments.length>0">
+    <div class="content-title title-tag">
+      <span class="title" name="2">合约文本</span>
+    </div>
+    <div class="cd-box pd-b20 bigImg" id="bigImg">
+      <div class="img-box" *ngFor="let item of model.contractAttachments">
+        <img src="{{uploadroot+item.src}}" alt="">
+        <i class="iconfont icon-sousuo"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-cart center" style="display: none;" id="popBigImg">
+  <span class="arrow" id="arrowLeft"><i class="iconfont icon-arrowleft"></i></span>
+  <div class="img-big" id="imgImpose">
+    <div id="imgBox" class="img-box"></div>
+  </div>
+  <span class="arrow" id="arrowRight"><i class="iconfont icon-arrowright"></i></span>
+</div>

@@ -1,0 +1,95 @@
+﻿<div class="content-box purchaseExecuteDetail">
+  <div class="pageTitle">
+    <i class="iconfont icon-30"></i>采购执行
+    <a class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r" [routerLink]="['/purchase/execute/shanxi/list']">返回</a>
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <a class="title ma-r60">执行详情</a>
+    </div>
+    <div class="pd-20">
+      <div class="cM-box-list">
+        <div class="list-box">
+          <div class="t-left float-l ma-l20">
+            <span class="color-9">计划名称：</span>
+            <span>{{model.purchasePlanName}}</span>
+          </div>
+          <div class="t-left float-l ma-l130">
+            <span class="color-9">交易中心：</span>
+            <span>{{model.tradeCenterName}}</span>
+          </div>
+        </div>
+        <div class="td-l-box">
+          <p>
+            <span class="color-9">采购方式：</span>
+            <span>{{model.purchasePlanStyle}}</span>
+          </p>
+          <p>
+            <span class="color-9">用电时间：</span>
+            <span>{{model.timeShow}}</span>
+          </p>
+          <p>
+            <span class="color-9">采购电量：</span>
+            <span>{{model.amount}}万千瓦时</span>
+          </p>
+          <div>
+            <span class="color-9">备注：</span>
+            <span class="remark">{{model.remark}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form #form="ngForm" (ngSubmit)="submit($event,form)">
+    <div class="content ma-t20">
+      <div class="content-title">
+        <a class="title ma-r60">录入采购结果</a>
+      </div>
+      <div class="grid-box no-padding">
+        <kendo-grid [data]="gridData" >
+					<kendo-grid-column field="sellerSubjectName" title="客户名称">
+					</kendo-grid-column>
+					<kendo-grid-column field="dealAmount" title="成交电量(万千瓦时)">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-numerictextbox name="{{dataItem.dealAmount}}" [(ngModel)]="dataItem.dealAmount" [min]="0" required [max]="999999999" [format]="'#.####'" decimals="4" style="width: 80%;" (ngModelChange)="onValueChange(dataItem.dealAmount)"  ></kendo-numerictextbox>
+             </ng-template>
+					</kendo-grid-column>
+					<kendo-grid-column field="dealPrice" title="成价价格（元/千瓦时）">
+          <ng-template kendoGridCellTemplate let-dataItem>
+                   <kendo-numerictextbox name="{{dataItem.dealPrice}}" [(ngModel)]="dataItem.dealPrice" [min]="0" required [max]="999999" [format]="'#.####'" decimals="4" style="width: 80%;"></kendo-numerictextbox>
+           </ng-template>
+					</kendo-grid-column>
+      	</kendo-grid>
+        <div class="pd-b10 ma-t10"><span class="color-9">总成交电量：<span id="totle">{{totleCount}}</span></span>万千瓦时</div>
+      </div>
+
+    </div>
+    <div class="content ma-t20 ma-b30">
+      <div class="content-title">
+        <a class="title ma-r60">竞价确认书</a>
+      </div>
+      <ul class="pd-20">
+        <li>
+          <div class="demo-section k-content wide">
+            <div class="wrapper">
+              <div id="products"></div>
+              <div class="dropZoneElement">
+              </div>
+            </div>
+          </div>
+          <input name="files" id="files" type="file" />
+        </li>
+        <li class="text-center">
+          <button class="a-button ma-r20">保存采购结果</button>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>
+<div id="dialog"></div>
+<div id="errorDialog"></div>
+<div id="template" style="display:none">
+  <div class="product">
+    <img />
+  </div>
+</div>

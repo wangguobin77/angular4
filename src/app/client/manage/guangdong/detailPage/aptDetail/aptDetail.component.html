@@ -1,0 +1,26 @@
+<div class="content ma-t20">
+	<div class="content-title">
+		<span class="title" name="2">资质详情</span>
+	</div>
+	<div class="cpd-c-box">
+		<div>
+			<span>企业代码：</span>
+			<span class="color-6">{{aptData.enterpriseCode}}</span>
+		</div>
+		<div *ngFor="let item of aptData.aptitudeImformatiuonList let i = index">
+			<span>资质信息{{i+1}}：</span>
+			<span class="color-6">{{item.aptitudeTitle}}</span>
+			<div class="bigImg">
+				<span class="img-box" *ngFor="let imageList of item.imageDataList let i = index">
+					<img [src]="imageList.data" alt="">
+					<i class="iconfont icon-sousuo" (click)="setPic(item.imageDataList,i)"></i>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="popup-cart center" *ngIf="popShow" (click)="hidePop($event)" id="pop">
+	<div style="width: 600px">
+		<shuffling [shufflingPic]='shufflingPic'></shuffling>
+	</div>
+</div>

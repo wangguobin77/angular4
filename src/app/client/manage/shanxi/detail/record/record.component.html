@@ -1,0 +1,121 @@
+<div class="content">
+	<button class="setPrice a-button" (click)="setPrice()">创建报价</button>
+	<div class="grid-box separate-box client-list no-header">
+		<kendo-grid
+		      [data]="gridData"
+		    >
+		    <kendo-grid-column field="createDate" title="合约内容" width="350">
+		        <ng-template kendoGridCellTemplate let-dataItem>
+		        	<div class="offer-box">
+						<div class="offer-top">
+							<div class="t-right float-r ma-r30">
+								<span href="#" class="color-9">2016.02.02 13:20</span>
+							</div>
+							<div class="t-left float-l ma-l20">
+								<span class="color-9">套餐名称：</span>
+								<span>{{dataItem.name}}</span>
+							</div>
+							<div class="t-left float-l ma-l30">
+								<span class=" size-16">{{dataItem.packageDetail.priceSet.name}}</span>
+							</div>
+						</div>
+						<div class="offer">
+							<div class="offer-l">
+								<ul>
+									<li>
+										<div class="offer-l-t">
+											<p class="cf" *ngFor="let item of dataItem.packageDetail.priceSet.relatedMetas">
+												<span class="label" *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5"></span>
+												<span class="cf-n" *ngIf="item.metaType==1">保底</span>
+												<span class="cf-n" *ngIf="item.metaType==2">固定</span>
+												<span class="cf-n" *ngIf="item.metaType==4||item.metaType==5">分成</span>
+												<span class="color-9 size-12" *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5">万千瓦时</span>
+												<span class="color-9 size-12" *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5">厘/千瓦时</span>
+											</p>
+										</div>
+										<div class="offer-l-c">
+											<div class="cf-c" *ngFor="let item of dataItem.packageDetail.priceSetMetaDetail">
+												<div *ngIf="item.metaType==1||item.metaType==2||item.metaType==4||item.metaType==5">
+													<p *ngFor="let listItem of item.setDataValue"><span class="numer">{{listItem.lowerBound}} - {{listItem.upperBound}} </span><span class="numer">{{listItem.dataValue}}</span></p>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="offer-l-t">
+											<p class="cf">
+												<span class="label"></span>
+												<span class="cf-n">扩展选择</span>
+											</p>
+										</div>
+										<div class="offer-l-c">
+											<div class="cf-c" *ngFor="let item of dataItem.packageDetail.priceSetMetaDetail">
+												<p *ngIf="item.id=='C83C44A6-CA2A-4F74-926D-07E950F9593E'"><span class="color-9">赔偿收益：</span><span class="">{{item.setDataValue[0].dataValue}} 万元</span></p>
+												<p *ngIf="item.id=='5AEEC840-56F2-4FEE-A930-0B0BA55B847C'"><span class="color-9">上限价值：</span><span class="">{{item.setDataValue[0].dataValue}} 万元</span></p>
+												<p *ngIf="item.id=='08A0F6BD-1978-4F38-A44B-EFC3C5D790B1'"><span class="color-9">下限价值：</span><span class="">{{item.setDataValue[0].dataValue}} 万元</span></p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="offer-l-t">
+											<p class="cf">
+												<span class="label"></span>
+												<span class="cf-n">偏差担保 ： 百分比价差补偿</span>
+											</p>
+										</div>
+										<div class="offer-l-c">
+											<div class="cf-c" *ngFor="let item of dataItem.packageDetail.priceSetMetaDetail">
+												<div *ngIf="item.id==0||item.id=='AF77DE64-1D95-4231-B303-31619D230DB4'||item.id=='3E19EDBC-EF2F-4345-99F6-AF7D2729A235'||item.id=='873D66ED-3123-43FA-BD96-4819D0097304'||item.id=='5B0CA548-C78F-409C-88B7-DC971E4CFF89'||item.id=='5'">
+													<p *ngFor="let listItem of item.setDataValue let i=index"><span class="color-9">{{i==0?'偏差百分比：':''}}</span><span class="">{{listItem.lowerBound}} - {{listItem.upperBound}}</span></p>
+													<!-- <p class="ma-t10"><span class="color-9">担保最大金额：</span><span class="">500 万元</span></p> -->
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="offer-r">
+								<div class="offer-r-c">
+									<div class="offer-r-cc">
+										<div class="offer-r-img">
+											<img src="assets/images/offer.png"/>
+										</div>
+										<p class="size-16">贵公司暂未购买高级报价工具，购买后可计算套餐的收益。如需使用，请联系企业管理员进入售电云商城进行购买。</p>
+									</div>
+								</div>
+							</div>
+							<div class="offer-btn" *ngIf="dataItem.contractId!=null">
+								<span class="generate"><img src="assets/images/generate.png"/></span>
+								<a [routerLink]="['/sale/contracts/shanxi/detail',dataItem.contractId]" class="a-button-xian a-button-xian-blue">查看合约详情</a>
+							</div>
+							<div class="offer-btn" *ngIf="dataItem.contractId==null">
+								<a [routerLink]="['/sale/contracts/shanxi/create_package/',dataItem.id]" class="a-button" style="color:#fff;">创建合约</a>
+							</div>
+						</div>
+					</div>
+		        </ng-template>
+		    </kendo-grid-column>
+		</kendo-grid>
+
+	</div>
+</div>
+<form #form="ngForm">
+	<kendo-dialog *ngIf="priceActive" (close)="priceCloseForm()" title="创建报价" class="new-dialog">
+	    	<div class="text-center pd-b10 size-16">填写客户预购电量，以便匹配到最合适的套餐</div>
+	        <div class="form-group">
+	            <label class="control-label">预估年用电量</label>
+
+	            <div class="unit-input-list number-unit">
+		          	<kendo-numerictextbox name="priceCode" [(ngModel)]="priceCode" [min]="0" required [max]="9999999999" [format]="'#.####'" decimals="4" style="width: 100%;" #priceCodeT="ngModel"></kendo-numerictextbox>
+		          	<span class="unit ma-r20">万千瓦时</span>
+		        </div>
+	            <div class="k-tooltip k-tooltip-validation" [hidden]="priceCodeT.valid || priceCodeT.pristine">
+	                <i class="iconfont icon-zhuyi"></i>
+	                请输入预估年用电量
+	            </div>
+	        </div>
+	    <kendo-dialog-actions class="button-center">
+	        <button class="a-button" [disabled]="!form.form.valid" (click)="priceOnSave(form)">确认</button>
+	    </kendo-dialog-actions>
+	</kendo-dialog>
+</form>

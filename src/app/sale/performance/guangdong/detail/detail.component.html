@@ -1,0 +1,67 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-hetong"></i>业绩详情
+		<a [routerLink]="['/sale/performance/guangdong/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+	</div>
+	<div class="content">
+		<div class="grid-box separate-box client-list">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="false"
+		          [pageable]="false"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+				
+			    <kendo-grid-column>
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list" [attr.id]='dataItem.Id'>
+			        		<div class="list-box">'
+				               <div class="t-left float-l ma-l30">
+				                    <span class="color-9">客户名称：</span>
+				                   <span>{{dataItem.SubjectName}}</span>
+				               </div>
+							   <div class="t-left float-r ma-r30 color-blue cur-p">
+				                   <span (click)="changeCustomer.open(dataItem.Id)">转移客户</span>
+				               </div>
+				           </div>
+				           <div class="detail-box">
+								<p><span class="color-9">地区：</span><span>{{dataItem.AreaName}}</span></p>
+								<p><span class="color-9">合约数：</span><span>{{dataItem.ContractCount}}</span></p>
+								<p><span class="color-9">创建时间：</span><span>{{ dateToString(dataItem.CreateDate)}}</span></p>
+								<p><span class="color-9">总预购电量：</span><span>{{dataItem.PlansAmountTotal}} 万千瓦时</span></p>
+								<p><span class="color-9">总交易电量：</span><span>{{dataItem.ActualPurchaseAmountTotal}} 万千瓦时</span></p>
+								<p><span class="color-9">总实用电量：</span><span>{{dataItem.ActualUsedAmountTotal}} 万千瓦时</span></p>
+							</div>
+						</div>
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+	</div>
+</div>
+
+<kendo-dialog *ngIf="changeCustomer.opened" (close)="changeCustomer.close()" class="new-dialog" title="转移客户">
+    <form #form="ngForm">
+        <div class="form-group">
+			<kendo-dropdownlist [data]="changeCustomer.customers"
+                                  [defaultItem]="{ fullName: '--选择销售员--', id: null }"
+                                  textField="fullName"
+                                  valueField="id"
+                                  [valuePrimitive]="true"
+                                  [(ngModel)]="changeCustomer.transferSaleId"
+                                  name="changeCustomer"
+                                  style="width: 100%;"
+                                  required>
+              </kendo-dropdownlist>
+        </div>
+        <div class="form-group" *ngIf="errorTipIsShow"><span class="error-tip">{{errorTip}}</span></div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="changeCustomer.close()">取消</button>
+        <button class="a-button" (click)="changeCustomer.save()" [disabled]="changeCustomer.transferSaleId==null">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

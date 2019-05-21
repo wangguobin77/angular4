@@ -1,0 +1,210 @@
+<div class="main-box">
+     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+     <div class="title">填写企业信息</div>
+    <div class="note">企业名称一旦填写后将不可更改，请与营业执照保持一致</div>
+    <div class="list-box ma-t20">
+        <ul>
+            <li>企业名称</li>
+             <li>
+                <input type="text" class="k-textbox" maxlength="30"
+                       required
+                       [(ngModel)]="sellerName" name="sellerName"
+                       #sellerNameT="ngModel" [disabled]="isSellerName">
+                <div [hidden]="sellerNameT.valid || sellerNameT.pristine"
+                     class="error-tip">
+                     <i class="iconfont icon-zhuyi"></i>
+                  请输入公司名称
+                </div>
+             </li>
+        </ul>
+    </div>
+    <div class="title">填写发票信息</div>
+      <div class="list-box">
+          <ul id="fieldlist">
+               <li>发票抬头</li>
+                <li>
+                    <input type="text" class="k-textbox" maxlength="30"
+                           required
+                           [(ngModel)]="formData.title" name="title"
+                           #title="ngModel">
+                    <div [hidden]="title.valid || title.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                        请输入公司名称
+                    </div>
+                 </li>
+                 <li>纳税人识别号</li>
+                 <li>
+                    <input type="text" class="k-textbox"
+                           required
+                           [(ngModel)]="formData.taxerCode" name="taxerCode"
+                           #taxerCode="ngModel">
+                    <div [hidden]="taxerCode.valid || taxerCode.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                        请输入纳税人识别号
+                    </div>
+                 </li>
+                 <li>发票金额</li>
+                 <li>
+                     <input type="text" class="k-textbox price"  [value]="formData.amount" readonly />
+                 </li>
+                 <li>发票内容</li>
+                 <li>
+                     <kendo-dropdownlist
+                        name="invoiceType"
+                        [data]="invoiceTypes"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        [(ngModel)]="invoiceType"
+                        [defaultItem]="invoiceTypePlaceHolder"
+                        required
+                        [valuePrimitive]="true"
+                        #invoiceTypeT = "ngModel"
+                        style="width: 100%;"
+                    >
+                    </kendo-dropdownlist>
+                    <div [hidden]="invoiceTypeT.valid || invoiceTypeT.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                        请选择发票内容
+                    </div>
+                    
+                 </li>
+                 <li>联系人</li>
+                 <li>
+                    <input type="text" class="k-textbox" maxlength="30"
+                           required
+                           [(ngModel)]="formData.contactPerson" name="contactPerson"
+                           #contactPerson="ngModel">
+                           
+                    <div [hidden]="contactPerson.valid || contactPerson.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                      请输入联系人
+                    </div>
+                 </li>
+                 <li>联系方式</li>
+                 <li>
+                    <input type="text" class="k-textbox"
+                           required pattern="\d{10,20}" 
+                           [(ngModel)]="formData.contact" name="contact"
+                           #contact="ngModel">
+                    <div [hidden]="contact.valid || contact.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                      请输入正确的联系方式
+                    </div>
+                 </li>
+                 <li>省份城市</li>
+                 <li>
+                     <kendo-dropdownlist
+                        name="provinceDetail"
+                        [data]="province"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        [(ngModel)]="provinceDetail"
+                        [valuePrimitive]="true"
+                        [defaultItem]="{name:'请选择省份',code:null}"
+                        class="ma-r20" style="width: 188px;"
+                        required
+                        #provinceT="ngModel"
+                        (selectionChange)="provinceChange($event)"
+                    >
+                    </kendo-dropdownlist>
+                    <kendo-dropdownlist
+                        name="city"
+                        [data]="cities"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        [valuePrimitive]="true"
+                        [defaultItem]="{name:'请选择城市',code:null}"
+                        [(ngModel)]="city"
+                        required
+                        #cityT="ngModel"
+                        style="width: 188px;"
+                    >
+                    </kendo-dropdownlist>
+                    <div [hidden]="provinceT.valid || provinceT.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                      请输入正确的省份
+                    </div>
+                    <div [hidden]="cityT.valid || cityT.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                      请输入正确的城市
+                    </div>
+                 </li>
+                 <li>联系地址</li>
+                 <li>
+                    <input type="text" class="k-textbox"
+                           required
+                           [(ngModel)]="formData.address" name="address"
+                           #address="ngModel">
+                    <div [hidden]="address.valid || address.pristine"
+                         class="error-tip">
+                         <i class="iconfont icon-zhuyi"></i>
+                        请输入联系地址
+                    </div>
+                 </li>
+                 
+          </ul>
+            <div class="title">填写发票信息</div>
+      </div>
+      <div class="grid-box">
+          <kendo-grid [data]="gridData">
+                <kendo-grid-column field="Discontinued" title="应用" width="300">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="icon-box">
+                            <img src="assets/images/application.png" alt="" *ngIf="dataItem.app.iconUrl==undefined||dataItem.app.iconUrl==null">
+                            <img [attr.src]="dataItem.app.iconUrl" alt="" *ngIf="dataItem.app.iconUrl!=undefined&&dataItem.app.iconUrl!=null">
+                        </div>
+                        <p class="p-t"><span class="title-name">{{dataItem.app.name}}</span></p>
+                        <p class="p-t">
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.app.isPaid">限时免费</span>
+                            <span class="tips-icon color-blue" *ngIf="dataItem.app.isOfficial">官方</span>
+                        </p>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="quantity" title="数量" width="60">
+                </kendo-grid-column>
+                <kendo-grid-column field="subTotal" title="小计" width="120">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <span>{{dataItem.quantity*dataItem.app.price}}</span>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="endDate" title="有效日期" width="120">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <span>{{dataItem.endDate|date:'y-MM-dd hh:mm'}}</span>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+      </div>
+      <button class="a-button float-r ma-t10">提交订单</button>
+  </form>
+</div>
+<kendo-dialog title="购买成功" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-okla.png">
+        <div style="line-height:24px;margin-top:20px;">
+            恭喜！应用购买成功。
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button-xian ma-r20" [routerLink]="['/store']">继续购买应用</a>
+        <a class="a-button" [routerLink]="['/store/orderRecord/detail',orderId]">查看购买详情</a>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<kendo-dialog title="提示" *ngIf="errorDialog" (close)="errorClose('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-warm.png">
+        <div style="line-height:24px;margin-top:20px;">
+            {{errorContent}}
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button" (click)="errorClose()">确定</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

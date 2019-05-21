@@ -1,0 +1,81 @@
+﻿<div class="content-box">
+    <div class="pageTitle">
+        <i class="iconfont icon-30"></i>采购计划管理
+        <a [routerLink]="['/purchase/plan/anhui/list']" class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r">返回</a>
+    </div>
+    <div class="content">
+        <div class="content-title">
+            <a class="title ma-r60">创建计划</a>
+        </div>
+        <form #form="ngForm" (ngSubmit)="submit($event,form)">
+            <ul class="set-in-box">
+                <li>计划名称</li>
+                <li>
+                    <input type="text" class="k-textbox" required [(ngModel)]="planName" name="planName" #pName="ngModel">
+                    <div [hidden]="pName.valid || pName.pristine" class="error-tip">
+                        <i class="iconfont icon-zhuyi"></i>
+                        请输入计划名称
+                    </div>
+                </li>
+                <li>交易中心</li>
+                <li>
+                    <kendo-dropdownlist
+                        name="tradingCenter"
+                        [data]="tradingCenterData"
+                        [textField]="'name'"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+                        [(ngModel)]="tradingCenter"
+                        [defaultItem]=tradingCenterPlaceHolder
+                        required
+                        style="width: 100%;"
+                        #tradingCenterK="ngModel"
+                    >
+                    </kendo-dropdownlist>
+                    <div [hidden]="tradingCenterK.valid || tradingCenterK.pristine" class="error-tip">
+                        <i class="iconfont icon-zhuyi"></i>
+                        请选择交易中心
+                    </div>
+                </li>
+                <li>采购方式</li>
+                <li id="radioBox" class="error-tip-box">
+                    <input type="radio" name="engine" id="engine1" class="k-radio" value="long" [checked]="radioChecked"   (click)="setSelectDepth(true)">
+                    <label class="k-radio-label" for="engine1">&ensp;长协</label>
+                    <input type="radio" name="engine" id="engine2" class="k-radio" value="bid"  [checked]="!radioChecked" (click)="setSelectDepth(false)">
+                    <label class="k-radio-label ma-l20" for="engine2">&ensp;竞价</label>
+                    <div [hidden]="engineK" class="error-tip">
+                        <i class="iconfont icon-zhuyi"></i>
+                        请选择采购方式
+                    </div>
+                </li>
+                <li>用电时间</li>
+                <li>
+                   <div [ngClass]="{borderRed:!selectTimeK}">
+                        <div class="datepicker" [hidden]="!radioChecked"><input id="datepicker"  style="width: 100%"/></div>
+                        <div class="datepicker" [hidden]="radioChecked"><input id="datepickerMonth"  style="width: 100%;"/></div>
+                   </div>
+                    <div [hidden]="selectTimeK" class="error-tip">
+                        <i class="iconfont icon-zhuyi"></i>
+                        请选择用电时间
+                    </div>
+                </li>
+                <li>采购电量</li>
+                <li class="unit-input-list number-unit">
+                     <kendo-numerictextbox name="difEnd" [(ngModel)]="difEnd" [min]="0" required [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;" #difEndK="ngModel"></kendo-numerictextbox>
+                    <span class="unit r-20">万千瓦时</span>
+                    <a class="other-type cur-p" (click)="selectContract()">通过合约确定采购电量</a>
+                    <div [hidden]="difEndK.valid || difEndK.pristine" class="error-tip" style="margin-top: -16px;">
+                        <i class="iconfont icon-zhuyi"></i>
+                        请输入采购电量
+                    </div>
+                </li>
+                <li>备注</li>
+                <li>
+                    <textarea name="" id="" cols="30" rows="6"  [(ngModel)]="remark" name="remark" #remarkK="ngModel"></textarea>
+                </li>
+                <li><button class="a-button" [disabled]="!form.form.valid">保存</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+<div id="dialog"></div>

@@ -1,0 +1,60 @@
+<header>
+    <ul class="left">
+      <li class="head-portrait">
+        <img src="assets/images/headImg.png" alt="">
+      </li>
+      <li class="size-18">
+        欢迎您，<span>安徽科达售电有限公司</span>
+      </li>
+      <li id="nowTradingCenter" class="nowTradingCenter">
+        <i class="iconfont icon-location color-9"></i><span id="nowTradingCenterCity">安徽</span>交易中心<span class="tip-icon color-9 cur-p" id="nowTradingCenterChange">切换</span>
+      </li>
+    </ul>
+    <div class="right">
+      <div class="AC">
+        <i class="iconfont icon-iconfontwo"></i>
+        <span>yiniris@163.com</span>
+        <i class="iconfont icon-1 ma-l20 show-down" (click)="subMenu($event)" id="personSetIcon">
+        	<ul class="person-set" id="personSet">
+        		<li><a href="">aaaaa</a></li>
+        		<li><a href="">aaaaa</a></li>
+        		<li><a href="">aaaaa</a></li>
+        	</ul>
+        </i>
+      </div>
+      <ul class="menu" id="menu">
+        <li><a [routerLink]="['/workBench',0]"><i class="iconfont icon-work"></i>工作台</a></li>
+        <li class="menuMore">  
+          <span>... &nbsp;更多</span><i class="iconfont icon-xiangxia size-12 ma-l10"></i>
+          <ul id="menuMore">
+            <li data-index="0"><a href=""><i class="iconfont icon-shichangdongtai"></i>售电营销</a></li>
+            <li data-index="1"><a href=""><i class="iconfont icon-shoudian"></i>客户服务</a></li>
+            <li data-index="2"><a href=""><i class="iconfont icon-wangluo"></i>精细运营</a></li>
+            <li data-index="3"><a href=""><i class="iconfont icon-qingyingxiao"></i>商城</a></li>
+          </ul>
+        </li>
+        <li class="change-list" data-index="0"><i class="iconfont icon-shichangdongtai"></i>售电营销</li>
+        <li class="change-list" data-index="1"><a><i class="iconfont icon-kefu1"></i>客户服务</a></li>
+        <li class="change-list" data-index="2"><i class="iconfont icon-wangluo"></i>精细运营</li>
+        <li class="change-list" data-index="3"><a [routerLink]="['/application',1]"><i class="iconfont icon-iconfontyingyong"></i>商城</a></li>
+        <li class="active" data-index="3"><i class="iconfont icon-iconshezhi01"></i>企业设置</li>
+      </ul>
+    </div>
+    <div class="popup-box center" id="changeTradingCenter" style="display: none;">
+        <div class="pop-content">
+            <div class="pop-title">
+                选择交易中心<i class="iconfont icon-guanbipsd float-r cur-p" id="popClose"></i>
+            </div>
+            <div class="pop-c-b">
+                <div class="pop-img-box">
+                    <img src="assets/images/guangzhou.png" alt="">
+                    <span>广州</span>
+                </div>
+                <div class="pop-img-box">
+                    <img src="assets/images/anhui.png" alt="">
+                    <span>安徽</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,118 @@
+﻿
+	<div class="content-box contractStatistics">
+		<div class="pageTitle">
+			<i class="iconfont icon-hetong"></i>售电合约统计分析
+		</div>
+		<div class="content">
+			<div class="content-t">
+				<div id="tLeft">
+					<div class="content-t-l">
+						<p>{{contractDetail.totatCount}}</p>
+						<p class="size-18">合约总数</p>
+					</div>
+					<div class="content-t-r l-r">
+						<div>
+							<p>
+								<span class="color-9">当月新增：</span>
+								<span>{{contractDetail.monthAddCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">近三月新增：</span>
+								<span>{{contractDetail.threeMonthAddCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">年度新增：</span>
+								<span>{{contractDetail.yearAddCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">正执行：</span>
+								<span>{{contractDetail.executingCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">未开始：</span>
+								<span>{{contractDetail.unStartCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">已终止：</span>
+								<span>{{contractDetail.stopCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">长协：</span>
+								<span>{{contractDetail.longCount}}</span>
+							</p>
+							<p>
+								<span class="color-9">竞价：</span>
+								<span>{{contractDetail.bidCount}}</span>
+							</p>
+						
+						</div>
+					</div>
+				</div>
+				<div class="float-r tRight" id="tRight">
+					<div class="content-t-l">
+						<p>{{contractDetail.totalPreAmount}}</p>
+						<p class="size-18">总预购电量(万千瓦时)</p>
+					</div>
+					<div class="content-t-r" style="width: 60%;height: 100%;">
+						<p>
+							<span class="color-9">总交易电量(万千瓦时)：</span>
+							<span>{{contractDetail.totalBuyAmount}}</span>
+						</p>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content ma-t20">
+			<div class="content-title">
+				<span class="title" name="2">合约列表</span>
+				<div class="title-r float-r ma-r20">
+				
+					<span class="float-r size-14 condition color-6 cur-p" id="selectCondition">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+					<div class="searchBox float-r ma-r10 ma-t10">
+					  <input type="text" id="conText" placeholder="合约编号，用电主体名称关键词搜索">
+					  <i class="iconfont icon-sousuo" id="iSearch"></i>
+					</div>
+				</div>
+			</div>
+			<div class="filtrate-box" id="filtrateBox" style="display: none;"> 
+				<div>
+					<div>
+						<span>合约方式：</span>
+						<span>
+							<input type="checkbox" id="eq1" class="k-checkbox">
+							<label class="k-checkbox-label" for="eq1">长协</label>
+						</span>
+						<span>
+							<input type="checkbox" id="eq2" class="k-checkbox">
+							<label class="k-checkbox-label" for="eq2">竞价</label>
+						</span>
+					
+					</div>
+					<div>
+						<span>合约状态：</span>
+					
+						<span>
+							<input type="checkbox" id="eq3" class="k-checkbox">
+							<label class="k-checkbox-label" for="eq3">正执行</label>
+						</span>
+						<span>
+							<input type="checkbox" id="eq4" class="k-checkbox">
+							<label class="k-checkbox-label" for="eq4">未开始</label>
+						</span>
+						<span>
+							<input type="checkbox" id="eq5" class="k-checkbox">
+							<label class="k-checkbox-label" for="eq5">已终止</label>
+						</span>
+					</div>
+					<div>
+						<button class="a-button-xian ma-r10" id="resetSeCondition">重置</button>
+						<button class="a-button" id="ibtnSearch">查询</button>
+					</div>
+				</div>
+			</div>
+			<div class="grid-box"><div id="grid"></div></div>
+		</div>
+	</div>
+	<div id="dialog"></div>
+

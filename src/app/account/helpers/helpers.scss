@@ -1,0 +1,101 @@
+﻿.appHelp{
+.main-left{
+    width:300px;
+    float:left;
+    .m-l-top{
+        height:60px;
+        line-height: 60px;
+        p{
+            margin-top:0px;
+            i{
+                margin-right: 10px;
+                color: #999;
+                font-size: 18px;
+            }
+        }
+    }
+    .link-box{
+        a{
+            text-align: center;
+            padding-left: 0;
+            cursor: pointer;
+        }
+    }
+}
+.main-right{
+        width:885px;
+        float:right;
+        background: #eee;
+        border: none;
+        .main-right-box{
+            background:#fff;
+            box-sizing:border-box;
+            border:1px #ddd solid;
+            margin-bottom: 10px;
+            .main-right-c{
+                padding: 35px 35px 5px 35px;
+                .main-right-c-list{
+                    padding-bottom: 30px;
+                    position: relative;
+                    &:before{
+                        content: '';
+                        width: 1px;
+                        height: 100%;
+                        background: #3399ff;
+                        position: absolute;
+                        top: 0;
+                        left: 15px;
+                        z-index: 1;
+                    }
+                    &:last-child:before{
+                        display: none;
+                    }
+                    .main-right-c-t{
+                        height: 30px;
+                        line-height: 30px;
+                        margin-bottom: 10px;
+                        position: relative;
+                        .number{
+                            display: inline-block;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            background: #3399ff;
+                            text-align: center;
+                            color: #fff;
+                            z-index: 2;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                        }
+                        .size-16{
+                            padding-left: 50px;
+                        }
+                    }
+                    p{
+                        padding-left: 50px;
+                    }
+                }
+            }
+            .tese{
+                &>p{
+                    padding-left: 50px;
+                    padding-bottom: 20px;
+                }
+                .main-right-c-list{
+                    &:before{
+                        display: none;
+                    }
+                    .main-right-c-t{
+                        .number{
+                            width: 10px;
+                            height: 10px;
+                            top: 10px;
+                            left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}

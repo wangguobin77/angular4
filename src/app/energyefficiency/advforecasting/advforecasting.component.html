@@ -1,0 +1,59 @@
+<div class="content-box">
+    <div class="pageTitle"><i class="iconfont icon-fuhe"></i>高级负荷预测</div>
+    <div class="content">
+        <div class="content-r">
+            <div class="content-title">
+                <a class="title active ma-r60 cur-p" name="2">用电量预测</a>
+                <a class="title ma-r60 color-9 cur-p" name="2">负荷预测</a>
+                <span class="color-9 cur-p size-14 float-r ma-r20" id="selectCondition">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+                <button class="a-button float-r ma-r20 ma-t10" id="startPrediced">开始预测</button>
+            </div>
+            <div class="filtrate-box" id="filtrateBox">
+                <div>
+                    <span>预测模型：</span><input type="text" id="predictionModel" class="drop-down ma-r20" style="width:140px;">
+                    <span>时间类型：</span><input type="text" id="dateType" name="dateType" class="drop-down">
+                    <div class="ma-t20">
+                        <span class="ma-l30">时间段：</span>
+                        <input id="monthpicker" style="width:110px;" />
+                        <span class="ma-l10 ma-r10">至</span>
+                        <input id="endMonthpicker" style="width:110px;" />
+                    </div>
+                    <p class="color-9 ma-t20 pd-b20">最多预测12个月/31天跨度的趋势</p>
+                </div>
+            </div>
+            <div class="list-box my-chart-box" style="display:none;">
+                <div class="echart-t">
+                    <div class="float-r">
+                        <i class="iconfont icon-zhexianicon active changeType" data-type="line"></i>
+                        <i class="iconfont icon-zhuzhuangtuicon changeType" data-type="column"></i>
+                        <i class="iconfont icon-xiazaiicon export-pdf"></i>
+                    </div>
+                </div>
+                <div class="demo-section k-content wide">
+                    <div id="chart"></div>
+                </div>
+            </div>
+            <div class="list-box my-chart-box" style="display:none;">
+                <div class="echart-small">
+                    <div id="chartSmall" style="height: 91px;"></div>
+                </div>
+            </div>
+            <div class="list-box table-box my-chart-box" style="display:none;">
+                <div class="text-center">
+                    预测数据表
+                    <i class="iconfont icon-xiazaiicon float-r color-9 cur-p ma-r10" id="saveTable"></i>
+                </div>
+                <div class="table-c">
+                    <div class="table-title dw-table-title">
+                        <p>时间</p>
+                        <p>真实用电量(万千瓦时)</p>
+                        <p>预测用电量(万千瓦时)</p>
+                    </div>
+                    <div class="table-impose" id="dtTb">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialog"></div>

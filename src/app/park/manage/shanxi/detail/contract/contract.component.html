@@ -1,0 +1,104 @@
+<div class="content">
+	<div class="content-t">
+		<div class="float-l">
+			<div class="content-t-l">
+				<p>3</p>
+				<p class="size-18">合约总数(份)</p>
+			</div>
+			<div class="content-t-r">
+				<p>
+					<span class="color-9">未开始合约数(份)：</span>
+					<span>3</span>
+				</p>
+				<p>
+					<span class="color-9">正执行合约数(份)：</span>
+					<span>3</span>
+				</p>
+				<p>
+					<span class="color-9">即将到期合约数(份)：</span>
+					<span>3</span>
+				</p>
+			</div>
+		</div>
+		<div class="float-r">
+			<div class="content-t-l">
+				<p>50000</p>
+				<p class="size-18">总预购电量(万千瓦时)</p>
+			</div>
+			<div class="content-t-r pd-t20">
+				<p>
+					<span class="color-9">总已购电量(万千瓦时)：</span>
+					<span>3</span>
+				</p>
+				<p>
+					<span class="color-9">总已用电量(万千瓦时)：</span>
+					<span>3</span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="grid-box template-all-grid">
+		<div class="client-trace cM-client-trace">
+			 <kendo-grid [data]="gridData" [pageable]="true" [pageable]="true" [pageSize]="5">
+	            <kendo-grid-column field="Discontinued" title="Discontinued">
+	                <ng-template kendoGridCellTemplate let-dataItem>
+	                	<div class="cM-box-list">
+	                   		<div class="list-box">
+                               <div class="t-right float-r ma-r30">
+                                   <span class="color-9">合约有效期：</span>
+                                   <span>2017.08.12&ensp;-&ensp;2017.08.12</span>
+                               </div>
+                               <div class="t-left float-l ma-l30">
+                                    <span class="color-9">合约序号：</span>
+                                   <span>D20170812112302</span>
+                               </div>
+                               <div class="t-left float-l ma-l30">
+                                    <span class="color-9">交易方式：</span>
+                                   <span>长协</span>
+                               </div>
+                           </div>
+                        <div class="b-box">
+	                        <div class="td-l-box">
+							<div class="will-buy">
+								<p class="echart-title">
+					               <span class="color-9">总预购：</span>
+					               <span><span class="count">3000</span>万千瓦时</span>
+					            </p>
+					            <p class="echart-box">
+					               <span class="bg-blue"></span>
+					            </p>
+				           </div>
+				           <div class="bought">
+								<p class="echart-title">
+					               <span class="color-9">总已购：</span>
+					               <span><span class="count">20000</span>万千瓦时</span>
+					            </p>
+					            <p class="echart-box">
+					               <span class="bg-lightBlue"></span>
+					            </p>
+				           </div>
+				           <div class="used">
+								<p class="echart-title">
+					               <span class="color-9">总已用：</span>
+					               <span><span class="count">50000</span>万千瓦时</span>
+					            </p>
+					            <p class="echart-box">
+					               <span class="bg-exactGreen"></span>
+					            </p>
+				           </div>
+				        </div>
+		        				<div class="state"><span class="color-red">即将到期</span></div>
+		        				<div class="btn-box">
+		        					<a class="a-button-xian">查看</a>
+		        					<a class="a-button-xian a-button-xian-grey">编辑</a>
+		    					</div>
+		    				</div>
+		    			</div>
+	                </ng-template>
+	            </kendo-grid-column>
+	        </kendo-grid>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,268 @@
+﻿.contractList .title-r {
+  font-size: 0;
+}
+.contractList .title-r .condition {
+  font-size: 14px;
+  -webkit-user-select: none;
+}
+.contractList .title-r .condition i {
+  color: #666;
+}
+.contractList .content-box .content {
+  min-width: 1174px;
+}
+.contractList .content-box .list-box {
+  min-width: 1000px;
+}
+.contractList .filtrate-box {
+  padding: 30px 20px 10px;
+}
+.contractList .filtrate-box > div {
+  text-align: right;
+}
+.contractList .filtrate-box > div > div {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.contractList .filtrate-box > div > div label {
+  margin-right: 10px;
+}
+.contractList .grid-box {
+  clear: both;
+  padding: 0 30px 40px;
+}
+.contractList .grid-box .client-trace {
+  border: 0 !important;
+}
+.contractList .grid-box .client-trace table {
+  border: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+.contractList .grid-box .client-trace .k-grid-content {
+  overflow: hidden;
+}
+.contractList .grid-box .client-trace .k-grid-header {
+  padding: 0 !important;
+}
+.contractList .grid-box .client-trace .k-grid-header {
+  display: none;
+}
+.contractList .grid-box .client-trace td {
+  border: 0 !important;
+  padding: 0 !important;
+}
+.contractList .grid-box .client-trace.cM-client-trace td {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.contractList .grid-box .date-Grid .k-grid-content {
+  overflow: hidden;
+}
+.contractList .grid-box .date-Grid .k-grid-header {
+  padding: 0 !important;
+}
+.contractList .grid-box .date-Grid th.k-header {
+  border-width: 0;
+  background: #ddd;
+  line-height: 40px;
+  color: #333;
+}
+.contractList .grid-box .date-Grid th.k-header .k-link {
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+}
+.contractList .grid-box .date-Grid th.k-header:first-child {
+  padding-left: 30px;
+}
+.contractList .grid-box .date-Grid td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+}
+.contractList .dialog-c-box {
+  padding: 20px;
+}
+.contractList .dialog-c-box textarea {
+  width: 320px;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+  padding: 20px;
+}
+.contractList .cM-box-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  height: 170px;
+}
+.contractList .cM-box-list .list-box {
+  height: 40px;
+  line-height: 40px;
+  background: #f4f4f4;
+  overflow: hidden;
+  position: relative;
+}
+.contractList .cM-box-list .list-box > div:last-child {
+  width: 120px;
+}
+.contractList .cM-box-list .list-box i {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  display: none;
+  cursor: pointer;
+  color: #999;
+}
+.contractList .cM-box-list .list-box i:hover {
+  color: #333;
+}
+.contractList .cM-box-list .list-box .t-right-time {
+  margin-right: 40px;
+}
+.contractList .cM-box-list:hover i {
+  display: block;
+}
+.contractList .cM-box-list .td-l-box {
+  width: 60%;
+  padding: 20px 30px;
+  float: left;
+}
+.contractList .cM-box-list .td-l-box > div {
+  line-height: 30px;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box {
+  width: 100%;
+  height: 10px;
+  display: inline-block;
+  background: #eee;
+  border-radius: 5px;
+  position: relative;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .echart-p {
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-blue {
+  width: 60%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-blue .echart-label {
+  min-width: 182px;
+  text-align: center;
+  padding: 3px 10px;
+  border: 1px solid #90c5fa;
+  background: #ebf5fe;
+  border-radius: 3px;
+  position: absolute;
+  top: -45px;
+  left:0;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-blue .echart-label:after {
+  content: '';
+  border-left: 4px solid #ebf5fe;
+  border-right: 4px solid #ebf5fe;
+  border-top: 5px solid #ebf5fe;
+  border-color: #ebf5fe transparent transparent transparent;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -2px;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-blue .echart-label:before {
+  content: '';
+  border-left: 5px solid #90c5fa;
+  border-right: 5px solid #90c5fa;
+  border-top: 6px solid #90c5fa;
+  border-color: #90c5fa transparent transparent transparent;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  margin-left: -3px;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-red {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 5px;
+  background: #ff3333;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-red:before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #eee;
+  position: absolute;
+  left: -1px;
+  top: 0;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-red .echart-label {
+  min-width: 112px;
+  text-align: center;
+  padding: 3px 10px;
+  border: 1px solid #90c5fa;
+  background: #ebf5fe;
+  border-radius: 3px;
+  position: absolute;
+  top: -45px;
+  margin-left: -68px;
+  left: 50% ;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-red .echart-label:after {
+  content: '';
+  border-left: 4px solid #ebf5fe;
+  border-right: 4px solid #ebf5fe;
+  border-top: 5px solid #ebf5fe;
+  border-color: #ebf5fe transparent transparent transparent;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -2px;
+}
+.contractList .cM-box-list .td-l-box > div .echart-box .bg-red .echart-label:before {
+  content: '';
+  border-left: 5px solid #90c5fa;
+  border-right: 5px solid #90c5fa;
+  border-top: 6px solid #90c5fa;
+  border-color: #90c5fa transparent transparent transparent;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  margin-left: -3px;
+}
+.contractList .cM-box-list .state {
+  width: 10%;
+  float: left;
+  height: 130px;
+  line-height: 130px;
+  text-align: center;
+}
+.contractList .cM-box-list .btn-box {
+  width: 23%;
+  float: left;
+  box-sizing: border-box;
+  text-align: center;
+}
+.contractList .cM-box-list .btn-box .a-button-xian {
+  margin: 10px 10px;
+}
+.contractList .cM-box-list .b-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.contractList .cM-client-trace table {
+  border-collapse: separate;
+}

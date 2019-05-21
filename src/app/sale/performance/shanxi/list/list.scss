@@ -1,0 +1,36 @@
+@import  "../../../../../assets/style/setscss";
+.content-t{
+	padding:30px 20px;
+	&>div{
+		font-size:0;
+		width:100%;
+		box-sizing:border-box;
+		height:140px;
+		border:1px solid #ddd;
+		border-radius:4px;
+		padding:20px;
+		box-sizing:border-box;
+		display:flex;
+	    justify-content: space-around;
+	    margin-bottom: 20px;
+		.content-t-l{
+			font-size:14px;
+			height:100px;
+			text-align:center;
+			box-sizing:border-box;
+			p{
+				&:first-child{
+					font-size:40px;
+					color:$blue;
+					line-height:62px;
+				}
+			}
+		}
+	}
+}
+.k-grid a{
+	color:$blue;
+}
+.grid-box{
+	padding:30px 40px;
+}

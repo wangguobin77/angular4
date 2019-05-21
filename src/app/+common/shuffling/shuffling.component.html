@@ -1,0 +1,19 @@
+<div class="shuffling arrow-show" id="shuffling">
+    <ul>
+        <li *ngFor="let sPicList of shufflingPic.pic" [hidden]="!sPicList.isShow">
+            <a [href]="sPicList.url" *ngIf="sPicList.url != ''&&sPicList.url != null&&sPicList.url != undefined">
+                <img [src]="sPicList.imgUrl" class="shuffling-img-list">   
+            </a>
+            <div *ngIf="sPicList.url == ''||sPicList.url == null||sPicList.url == undefined">
+                <img [src]="sPicList.imgUrl" class="shuffling-img-list">   
+            </div>
+        </li>
+    </ul>
+    <div class="arrow-box">
+        <div class="arrow-l" (click)="arrowLeft()"><i class="iconfont icon-arrowleft"></i></div>
+        <div class="arrow-r" (click)="arrowRight()"><i class="iconfont icon-arrowright"></i></div>
+    </div>
+    <div class="shuffling_btn" *ngIf="shufflingPic.btnShow">
+        <span *ngFor="let sPicList of shufflingPic.pic let i = index" (click)="changePic(i)"></span>
+    </div>
+</div>

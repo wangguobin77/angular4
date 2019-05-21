@@ -1,0 +1,94 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-jingjia"></i>竞价价格预测
+		<a [routerLink]="['/riskManage/bid/create']" class="a-button ma-r20 ma-t10 float-r">新增预测</a>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title">
+			<span class="title" name="2">竞价价格预测列表</span>
+			<div class="title-r float-r ma-r20">
+				<a href="#" class="a-button float-r ma-t10 ma-r10">查询</a>
+				<div class="searchBox float-r ma-r10 ma-t10">
+				  <input type="text" placeholder="搜索任务名称">
+				  <i class="iconfont icon-sousuo"></i>
+				</div>
+				<div class="float-r ma-r10 size-14">
+					<span class="ma-l30">时间段：</span>
+					<input id="monthpicker" value="November 2011"/>
+					<span class="ma-l10 ma-r10">至</span>
+					<input id="endMonthpicker" value="November 2011" />
+				</div>
+			</div>
+		</div>
+		<div class="filtrate-box" *ngIf="filtrateBoxIsSHow"> 
+			<div>
+				<div>
+					<span>时间段：</span>
+					<kendo-dropdownlist 
+                        [data]="province"
+                        [defaultItem]="provincePlaceHolder"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        (selectionChange)="provinceChange($event)"
+                    >
+				    </kendo-dropdownlist>
+				    <span class="ma-r10 ma-l10">至</span>
+					<kendo-dropdownlist 
+				        [data]="cities"
+					    [textField]="'name'"
+      					[valueField]="'code'"
+      					[defaultItem]="citiesPlaceHolder"
+      					(selectionChange)="citiesChange($event)"
+				    >
+			        </kendo-dropdownlist>
+				</div>
+				<div>
+					<button class="a-button" (click)='conditionSearch()'>搜索</button>
+				</div>
+			</div>
+		</div>
+		<div class="grid-box pd-20">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (remove)="removeHandler($event)"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="ForecastName" title="预测名称"></kendo-grid-column>
+			    <kendo-grid-column field="AdministrativeArea" title="行政区域"></kendo-grid-column>
+			    <kendo-grid-column title="时间跨度">
+			    	<ng-template kendoGridCellTemplate let-dataItem>
+			    	    {{dataItem.BeginForecastTime | date:'y.MM'}}-{{dataItem.EndForecastTime | date:'y.MM'}}
+			    	</ng-template>   
+			    </kendo-grid-column>
+			    <kendo-grid-column field="ModelName" title="模型名称"></kendo-grid-column>
+			    <kendo-grid-column field="CreateTime" title="操作时间">
+			    	<ng-template kendoGridCellTemplate let-dataItem>
+			    	    {{dataItem.CreateTime | date:'y.MM.dd hh:mm'}}
+			    	</ng-template> 
+			    </kendo-grid-column>
+			    <kendo-grid-column field="createDate" title="操作">
+			    	<ng-template kendoGridCellTemplate>
+			    	    <button kendoGridRemoveCommand>删除</button>
+			    	</ng-template>   
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+	</div>
+</div>
+<kendo-dialog title="确认删除" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-warm.png">
+        <div style="line-height:24px;margin-top:20px;">
+            是否确认删除该预测结果？
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button-xian ma-r20" (click)="close()">取消</a>
+        <a class="a-button" (click)="deleteSubmit()">确认</a>
+    </kendo-dialog-actions>
+</kendo-dialog>

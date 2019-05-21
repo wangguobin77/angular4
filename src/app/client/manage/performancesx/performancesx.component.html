@@ -1,0 +1,199 @@
+﻿﻿<div class="content-box" style="background: #EEEEEE">
+
+    <div class="pageTitle"  style="background: #fff;margin-top: -35px">
+
+      <i class="iconfont icon-hetong"></i>客户统计分析
+
+    </div>
+
+    <div class="content">
+      <div class="content-t">
+        <div>
+          <div class="content-t-l">
+            <p  style="color: #33CCFF">{{data.customerSum}}</p>
+            <p class="size-18">客户总数</p>
+          </div>
+          <div class="content-t-r">
+
+            <div class="pd-t20" style="width: 50%;float:left">
+              <p>
+                <span class="color-9">有合同客户数(人)：</span>
+                <span>{{data.havaContractCustomerSum}}</span>
+              </p>
+              <p>
+                <span class="color-9">近三月新增客户数(人)：</span>
+                <span>{{data.threeMonthCustomerSum}}</span>
+              </p>
+            </div>
+            <div class="pd-t20" style="width: 50%;float:right">
+              <p>
+                <span class="color-9">当月新增客户数(人)：</span>
+                <span>{{data.monthAddCustomerSum}}</span>
+              </p>
+              <p>
+                <span class="color-9">年度新增客户数(人)：</span>
+                <span>{{data.yearAddCustomerSum}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="float-r">
+          <div class="content-t-l">
+            <p style="color: #33CCFF">{{data.plansCount}}</p>
+            <p class="size-18">总签约电量(万千瓦时)</p>
+          </div>
+          <div class="content-t-r pd-t20" style="width: 60%;">
+            <p>
+              <span class="color-9">总已购电量(万千瓦时)：</span>
+              <span>{{data.distributedAmount}}</span>
+            </p>
+            <p>
+              <span class="color-9">总已用电量(万千瓦时)：</span>
+              <span>{{data.quantity}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content ma-t20">
+
+      <div class="content-title">
+
+        <div class="title-r float-r ma-r20">
+
+          <span class="float-r size-14 condition color-6 cur-p" id="selectCondition" (click)="showFiltrateBox()">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+
+          <div class="searchBox float-r ma-r10 ma-t10">
+            <input type="text" placeholder="客户名称关键词搜索" #serchInput (keyup.enter)="searchSub(serchInput.value)" id='conText'>
+
+            <i class="iconfont icon-sousuo" id="iSearch" (click)="searchSub(serchInput.value)"></i>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="filtrate-box" id="filtrateBox"  *ngIf="filtrateBoxIsSHow">
+
+        <div>
+          <div>
+
+            <span>合同状态：</span>
+
+
+              <input type="checkbox" id="eq1" class="k-checkbox" value="1" (click)="checkChange($event)"
+                [(ngModel)]="isChecked[1].boo">
+
+              <label class="k-checkbox-label" for="eq1">&ensp;正执行</label>
+
+              <input type="checkbox" id="eq2" class="k-checkbox" [(ngModel)]="isChecked[0].boo" value="1" (click)="checkChange($event)"
+                >
+
+              <label class="k-checkbox-label" for="eq2">&ensp;未开始</label>
+
+              <input type="checkbox" id="eq3" class="k-checkbox" value="2" (click)="checkChange($event)"
+                >
+
+              <label class="k-checkbox-label" for="eq3" [(ngModel)]="isChecked[2].boo">&ensp;已终止</label>
+          </div>
+
+          <div>
+
+
+
+            <button class="a-button-xian ma-r10" id="resetSeCondition" (click)='searchReset()'>重置</button>
+
+            <button class="a-button" id="ibtnSearch" (click)='conditionSearch()'>查询</button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="grid-box">
+
+        <div id="grid">
+
+
+
+          <kendo-grid
+
+              [data]="view | async"
+
+              [pageSize]="state.take"
+
+              [skip]="state.skip"
+
+              [pageable]="true"
+
+              [scrollable]="'none'"
+
+              (dataStateChange)="dataStateChange($event)"
+
+          >
+
+
+
+                  <kendo-grid-column field="subjectName" title="用电主体">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="areaName" title="地区">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="contractCount" title="合同总数">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="contractExecutionCount" title="正执行">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="contractNoStartCount" title="未开始">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="contractEndCount" title="已终止">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="plansCount" title="总预约电量(万千瓦时)">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="distributedAmount" title="总已购电量(万千瓦时)">
+
+                  </kendo-grid-column>
+
+                  <kendo-grid-column field="quantity" title="总已用电量(万千瓦时)人员">
+
+                  </kendo-grid-column>
+
+              </kendo-grid>
+
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+

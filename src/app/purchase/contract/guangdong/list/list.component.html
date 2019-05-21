@@ -1,0 +1,79 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-30"></i>采购合约管理
+		<span class="a-button float-r ma-r20 ma-t10" [routerLink]="['/purchase/contract/guangdong/create',0]">创建</span>
+	</div>
+	<div class="content">
+        <div class="content-title">
+            <span class="title" name="2">合约列表</span>
+            <div class="title-r float-r ma-r20">
+				<div class="searchBox float-r ma-r10 ma-t10">
+				  <input type="text" placeholder="合约名称、电厂名称关键词检索" #serchInput (keyup.enter)="searchContract(serchInput.value)">
+				  <i class="iconfont icon-sousuo" (click)="searchContract(serchInput.value)"></i>
+				</div>
+            </div>
+        </div>
+        
+        
+        <div class="grid-box separate-box client-list no-header">
+			<kendo-grid
+			      [data]="view | async"
+		          [pageSize]="state.take"
+		          [skip]="state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (dataStateChange)="dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="createDate" title="合约内容" width="350">
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list" [attr.id]='dataItem.id'>
+			        		<div class="list-box">
+				               <div class="t-right float-r ma-r30">
+                                    <span class="color-9">有效期：</span>
+                                    <span>{{dataItem.beginDate|date:"y-MM-dd"}} 至 {{dataItem.endDate|date:"y-MM-dd"}}</span>
+                                </div>
+                                <div class="t-left float-l ma-l20">
+                                    <span class="color-9">合约名称：</span>
+                                    <span> {{dataItem.name}} </span>
+                                </div>
+				           </div>
+                           <div class="b-box">
+    				           <div class="td-l-box">
+                                    <p>
+                                    <span class="color-9">电厂名称：</span>
+                                    <span> {{dataItem.electricityFactoryName}} </span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">合约方式：</span>
+                                    <span> {{dataItem.contractTypeString}} </span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">实购电量：</span>
+                                    <span> {{dataItem.actualPurchaseAmount}} 万/千瓦时</span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">成交价差：</span>
+                                    <span> {{dataItem.dealUnitPrice}} 厘/千瓦时</span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">用电时间：</span>
+                                    <span> {{dataItem.durationString}} </span>
+                                    </p>
+                                    <p>
+                                    <span class="color-9">交易中心：</span>
+                                    <span> {{dataItem.tradeCenterString}} </span>
+                                    </p>
+    	           		        </div>
+                                <div class="btn-box">
+                                    <a class="a-button-xian" [routerLink]="['/purchase/contract/guangdong/detail',dataItem.id]" >查看</a>
+                                    <a class="a-button-xian a-button-xian-grey" [routerLink]="['/purchase/contract/guangdong/edit',dataItem.id]" >编辑</a>
+                                </div>
+                            </div>
+			        	</div>
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+    </div>
+</div>

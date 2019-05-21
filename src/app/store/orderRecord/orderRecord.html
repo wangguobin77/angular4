@@ -1,0 +1,75 @@
+<div class="main-title">
+   <i class="iconfont icon-order"></i>订单记录
+   <button class="a-button float-r ma-t10 ma-r20" (click)="showDialog()">汇款单填写示例</button>
+</div>
+<div class="grid-title">
+   <div>全部订单</div>
+</div>
+<div class="grid-box orderRecord">
+    <kendo-grid
+          [data]="view | async"
+          [pageSize]="state.take"
+          [skip]="state.skip"
+          [sortable]="true"
+          [pageable]="true"
+          [scrollable]="'none'"
+          (dataStateChange)="dataStateChange($event)"
+        >
+        <kendo-grid-column field="ProductID" title="订单内容" width="350">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <p *ngFor="let item of dataItem.details">
+                   <span>{{item.name}}</span>
+                   <span class="color-9">&ensp;|&ensp;数量：{{item.count}} </span>
+               </p>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitPrice" title="金额" width="120">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span>总额<span class="color-9">￥</span><span class="color-9">{{dataItem.amount}}</span></span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitPrice" title="订单状态" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span class="color-yellow" *ngIf="dataItem.state==1">待开发票</span>
+                <span class="color-newGreen" *ngIf="dataItem.state==2">已开发票</span>
+                <span class="color-yellow" *ngIf="dataItem.state==3">等待打款</span>
+                <span class="color-newGreen" *ngIf="dataItem.state==4">已发货</span>
+                <span class="color-exactGreen" *ngIf="dataItem.state==5">交易完成</span>
+                <span class="color-9" *ngIf="dataItem.state==10">交易关闭</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitPrice" title="操作" width="150">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <a class="a-button-xian" [routerLink]="['detail',dataItem.id]">订单详情</a>
+                <button class="a-button-xian a-button-xian-grey ma-t10" *ngIf="dataItem.state==1" [attr.uid]="dataItem.id" (click)="deleteOrder(dataItem.id)">关闭订单</button>
+                <button class="a-button-xian a-button-xian-grey ma-t10" *ngIf="dataItem.state==5||dataItem.state==10" [attr.uid]="dataItem.id" (click)="buyAgain(dataItem.id)">重新购买</button>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitsInStock" title="&ensp;" width="1">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="list-box">
+                    <div class="t-right float-r">
+                        <span class="color-9">订单时间：</span>
+                        <span>{{dataItem.orderTime| date:'y-MM-dd hh:mm'}}</span>
+                    </div>
+                    <div class="t-left float-l">
+                        <span class="color-9">订单号：</span>
+                        <span>{{dataItem.orderNo}}</span>
+                    </div>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+</div>
+<kendo-dialog title="提示" *ngIf="opened" (close)="close('cancel')" class="new-dialog" width="600">
+    <div  class="dialog-c">
+           <p class="text-center">汇款填写示例如下：填写汇款时一定要注明订单号，否则可能会购买不成功。</p>
+           <div>
+               <p class="ma-t10">我司账户信息：</p>
+               <p class="ma-t10"><span class="color-9">全称：</span>上海朋迈能源科技有限公司</p>
+               <p class="ma-t10"><span class="color-9">账号：</span>1219 2376 5910 501</p>
+               <p class="ma-t10"><span class="color-9">开户行名称：</span>招商银行上海分行古北支行</p>
+           </div>
+           <img src="assets/images/invoice.jpg">
+     </div>
+</kendo-dialog>

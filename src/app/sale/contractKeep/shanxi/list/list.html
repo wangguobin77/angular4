@@ -1,0 +1,53 @@
+﻿<div class="content-box contractPigeonhole">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>售电合约文本管理
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <span class="title" name="2">合约文本列表</span>
+      <div class="title-r float-r ma-r20">
+        <span class="float-r size-14 condition color-6 cur-p" id="selectCondition">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+        <div class="searchBox float-r ma-r10 ma-t10">
+          <input type="text" id="conText" placeholder="合约编号，用电主体名称关键词搜索">
+          <i class="iconfont icon-sousuo" class="iSearchName"></i>
+        </div>
+      </div>
+    </div>
+    <div class="filtrate-box" id="filtrateBox" style="display: none;"> 
+      <div>
+        <div>
+          <span>合约方式：</span>
+          <span>
+            <input type="checkbox" id="eq1" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq1">长协</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq2" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq2">竞价</label>
+          </span>
+        
+        </div>
+        <div>
+          <span>合约状态：</span>
+          <span>
+            <input type="checkbox" id="eq3" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq3">正执行</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq4" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq4">未开始</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq5" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq5">已终止</label>
+          </span>
+        </div>
+        <div>
+          <button class="a-button-xian ma-r10" id="resetSeCondition">重置</button>
+          <button class="a-button" id="iSearch">查询</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid-box"><div id="grid"></div></div>
+  </div>
+</div>

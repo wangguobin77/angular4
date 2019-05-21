@@ -1,0 +1,18 @@
+<div class="main-left">
+    <div class="m-l-top">
+         <div class="img-impose">
+            <img [attr.src]="base.currentSeller.logoUrl" alt="" *ngIf="base.currentSeller.logoUrl!=null&&base.currentSeller.logoUrl!=undefined&&base.currentSeller.logoUrl!=''">
+             <img src="assets/images/the_default_avatar.png" alt="" *ngIf="base.currentSeller.logoUrl==null||base.currentSeller.logoUrl==undefined||base.currentSeller.logoUrl==''">
+         </div>
+        <p>{{base.currentSeller.name}}</p>
+    </div>
+    <div class="link-box">
+        <a *ngFor="let menu of menuList let i = index" [ngClass]="{active:menu.isActive,new:menu.isNew}" [routerLink]='menu.url'>
+            <i [attr.class]="menu.icon"></i>
+            <span>{{menu.text}}</span>
+        </a>
+    </div>
+    <div class="logo">
+        <img src="assets/images/logo_black.png" alt="">
+    </div>
+</div>

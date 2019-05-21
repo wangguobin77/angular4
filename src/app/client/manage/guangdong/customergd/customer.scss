@@ -1,0 +1,173 @@
+
+.content-box.customer {
+    .customer-table {
+        margin: 20px auto;
+        width: 479px;
+        height: 38px;
+        border: 1px solid #3399ff;
+        border-radius: 3px;
+        overflow: hidden;
+        a {
+            display: block;
+            float: left;
+            width: 119px;
+            text-align: center;
+            line-height: 38px;
+            cursor: pointer;
+            background: #fff;
+            color: #3399ff;
+            font-size:16px;
+
+            border-right: 1px solid #3399ff;
+            &:last-child {
+                border: none;
+            }
+            &.active {
+                background: #3399ff;
+                color: #fff;
+            }
+            &.none {
+                color: #999;
+                background: #f4f4f4;
+            }
+        }
+    }
+    .grid-box {
+        padding: 20px 30px 40px;
+        .grid-s {
+            padding-bottom: 20px;
+        }
+        .k-grid-content {
+            overflow: hidden;
+        }
+        .k-grid-header {
+            padding: 0 !important;
+        }
+        .grid-box-t{
+            padding-bottom: 40px;
+            .float-l{
+                i{
+                    margin-right: 10px;
+                }
+            }
+            .label-box{
+                p{
+                    display: inline-block;
+                    margin-left: 30px;
+                    span{
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .content-c-box {
+        width: 1000px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        &.edit {
+            p {
+                margin-bottom: 20px;
+                position: relative;
+                .k-tooltip-validation {
+                    position: absolute;
+                    top: 40px;
+                    left: 124px;
+                }
+                .k-numeric-wrap {
+                    .k-tooltip-validation {
+                        left: 0px;
+                        .k-icon {
+                            height: 19px;
+                        }
+                    }
+                }
+            }
+        }
+        p {
+            display: inline-block;
+            width: 50%;
+            &>span {
+                display: inline-block;
+                height: 40px;
+                line-height: 40px;
+                .k-select {
+                    .k-icon {
+                        height: 20px;
+                        line-height: 20px;
+                    }
+                }
+                input {
+                    height: 40px;
+                    padding: 0;
+                }
+                &:first-child {
+                    display: inline-block;
+                    width: 120px;
+                    text-align: right;
+                }
+                .unit {
+                    top: 0;
+                }
+            }
+            &.width-auto {
+                width: 100%;
+            }
+        }
+        .btn-box {
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+    .offer{
+        padding: 20px 30px 40px;
+        overflow: hidden;
+        .offer-l{
+            width: 50%;
+            float: left;
+            li{
+                margin-bottom: 20px;
+                h3{
+                    padding: 15px 0;
+                    border-bottom: 1px solid #ddd;
+                    span{
+                        display: inline-block;
+                        width: 8px;
+                        height: 8px;
+                        background: #3399ff;
+                        border-radius: 50%;
+                        margin-right: 5px;
+                        margin-bottom: 2px;
+                    }
+                }
+                &>div{
+                    padding: 15px 0 0px 60px;
+                    p{
+                        line-height: 26px;
+                        .color-9{
+                            display: inline-block;
+                            width: 110px;
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+        }
+        .offer-r{
+            width: 50%;
+            float: left;
+            text-align: center;
+            .offer-r-img{
+                padding: 100px 0 30px;
+            }
+            p{
+                line-height: 32px;
+                font-size: 18px;
+            }
+        }
+    }
+}

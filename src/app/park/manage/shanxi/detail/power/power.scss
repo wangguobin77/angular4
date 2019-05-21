@@ -1,0 +1,81 @@
+@import "../../../../../../assets/style/setscss";
+.note {
+    width: 700px;
+    margin: 20px auto 0;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #52c0ff;
+    background: #cfeeff;
+    text-align: center;
+}
+.grid-box{
+	padding:40px 30px;
+	position: relative;
+	.k-grid-toolbar{
+		position: absolute;
+		top: -175px;
+		right: -10px;
+		background: #fff;
+		border: 0;
+	    .k-button{
+	    	background-color: $exactBlue;
+    	    border-color: $exactBlue;
+    	    color: #fff;
+    	    padding: 6px 20px;
+    	    &:hover{
+		    	background:$exactBlue !important;
+		    	border-color:$exactBlue !important;
+		    }
+	    }
+	}
+	.k-grid-content{
+		overflow: hidden;
+	}
+	.k-grid-header{
+		padding:0 !important;
+	}
+	th.k-header{
+		border-width:0;
+		background:#ddd;
+		line-height:40px;
+		color:#333;
+		.k-link{
+			height:40px;
+			line-height:40px;
+			color:#333;
+		}
+		&:first-child{
+			padding-left:70px;
+		}
+	}
+	td{
+		border:0;
+		height:48px;
+		border-bottom: 1px solid #ddd;
+	}
+	tr{
+		td:first-child{
+			padding-left:70px;
+		}
+	}
+}
+.k-edit-form-container{
+	// width:300px;
+}
+.k-edit-label{
+	float: left; 
+	clear: both;
+	width: 60%;
+	padding: .4em 2em 1em;
+	margin-left: 2%;
+	text-align: left;
+}
+.k-edit-field{
+	width:80%;
+	float:left;
+	padding: 0 2em 1em;
+	.k-input{
+		width:100%;
+		height:40px;
+	}
+}

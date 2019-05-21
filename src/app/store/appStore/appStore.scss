@@ -1,0 +1,60 @@
+.main-r-box{
+	.icon-box{
+		display:block;
+		width:60px;
+		height:60px;
+		border-radius:16px;
+		font-size:36px;
+		text-align:center;
+		line-height:60px;
+		color:#fff;
+		overflow:hidden;
+		img{
+			width:100%;
+			height:100%;
+		}
+	}
+}
+.banner{
+	height:200px;
+	img{
+		width:100%;
+		height:200px;
+	}
+}
+.list{
+	width:49%;
+	display:inline-block;
+	margin-top:38px;
+	.icon-box{
+		float:left;
+		margin-right:10px;
+	}
+	.content-r{
+		margin-top:-6px;
+		&>span{
+			font-size:16px;
+		}
+		&>p{
+			margin-top:6px;
+			&:last-child{
+				color:#999;
+			}
+		}
+	}
+}
+.content-list{
+	padding-bottom: 40px;
+}
+.list-box{
+	article{
+		line-height:24px;
+		p{
+			width:100px;
+		}
+		div{
+			width:685px;
+			float:right;
+		}
+	}
+}

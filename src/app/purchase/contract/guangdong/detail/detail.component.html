@@ -1,0 +1,119 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-guanxiaobaotubiao16"></i>能源合约
+		<a [routerLink]="['/purchase/contract/guangdong/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+	</div>
+	<div class="content">
+		<div class="content-title title-tag">
+			<span class="title" name="2">电厂信息</span>
+		</div>
+		<div class="p-list-box">
+			<p>
+				<span class="color-9">电厂名称：</span>
+				<span>{{detailData.electricityFactoryName}}</span>
+			</p>
+			<p>
+				<span class="color-9">发电类型：</span>
+				<span>{{detailData.typeString}}</span>
+			</p>
+			<p>
+				<span class="color-9">联系人：</span>
+				<span>{{detailData.contactName}}</span>
+			</p>
+			<p>
+				<span class="color-9">联系方式：</span>
+				<span>{{detailData.contactTel}}</span>
+			</p>
+			<p>
+				<span class="color-9">地区：</span>
+				<span>{{detailData.provinceString}} {{detailData.cityString}}</span>
+			</p>
+			<p class="width-two">
+				<span class="color-9">详细地址：</span>
+				<span>{{detailData.address}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title title-tag">
+			<span class="title" name="2">合约信息</span>
+		</div>
+		<div class="p-list-box">
+			<p>
+				<span class="color-9">合约名称：</span>
+				<span>{{detailData.name}}</span>
+			</p>
+			<p>
+				<span class="color-9">合约序号：</span>
+				<span>{{detailData.contractNo}}</span>
+			</p>
+			<p>
+				<span class="color-9">合约有效期：</span>
+				<span>{{detailData.beginDate|date:"y-MM-dd"}} -- {{detailData.endDate|date:"y-MM-dd"}}</span>
+			</p>
+			<p>
+				<span class="color-9">合约备案日期：</span>
+				<span>{{detailData.recordDate|date:"y-MM-dd"}}</span>
+			</p>
+			<p>
+				<span class="color-9">合约方式：</span>
+				<span>{{detailData.contractTypeString}}</span>
+			</p>
+			<p class="width-two">
+				<span class="color-9">交易中心：</span>
+				<span>{{detailData.tradeCenterString}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title title-tag">
+			<span class="title" name="2">购电信息</span>
+		</div>
+		<div class="p-list-box">
+			<p>
+				<span class="color-9">实购电量：</span>
+				<span>{{detailData.actualPurchaseAmount}}万千瓦时</span>
+			</p>
+			<p>
+				<span class="color-9">成交价差：</span>
+				<span>{{detailData.dealUnitPrice}}厘/千瓦时</span>
+			</p>
+			<p>
+				<span class="color-9">用电时间：</span>
+				<span>{{detailData.durationString}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title title-tag">
+			<span class="title" name="2">合约文件</span>
+		</div>
+		<div class="pd-20 contract-img bigImg" id="bigImg">
+			<div class="img-box" *ngFor="let item of files; let i=index" [attr.data-index]="i">
+							<img src="{{item.src}}" alt="">
+							<i class="iconfont icon-sousuo" (click)="setPic(files,i)"></i>
+			</div>
+			<!--<div class="img-box" data-index="0">
+				<img src="/images/building.png" alt="">
+				<i class="iconfont icon-sousuo"></i>
+			</div>
+			<div class="img-box" data-index="1">
+				<img src="/images/Koala.jpg" alt="">
+				<i class="iconfont icon-sousuo"></i>
+			</div>
+			<div class="img-box" data-index="2">
+				<img src="/images/building.png" alt="">
+				<i class="iconfont icon-sousuo"></i>
+			</div>
+			<div class="img-box" data-index="3">
+				<img src="/images/Koala.jpg" alt="">
+				<i class="iconfont icon-sousuo"></i>
+			</div>-->
+		</div>
+	</div>
+</div>
+<div class="popup-cart center" *ngIf="popShow" (click)="hidePop($event)" id="pop">
+	<div style="width: 600px">
+		<shuffling [shufflingPic]='shufflingPic'></shuffling>
+	</div>
+</div>

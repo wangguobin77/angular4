@@ -1,0 +1,21 @@
+<div class="sc-content">
+    <div class="icon-box"><i class="iconfont icon-chenggong"></i></div>
+    <div class="note-box">
+        <p>您的订单已提交成功，我们会尽快将发票邮寄给您们，请贵公司收到发票后将金额打到我司账户。</p>
+        <p>填写汇款时，请一定要注明订单号。收到款项后，我们会为您开通该功能。</p>
+    </div>
+    <div class="btn-box">
+        <a class="a-button-xian" [routerLink]="['/store/orderRecord/detail',orderId]">查看购买详情</a>
+        <a class="a-button" [routerLink]="['/store']">继续购买应用</a>
+    </div>
+    <div class="note">汇款填写示例如下：填写汇款时一定要<span class="color-red">注明订单号</span>，否则可能会购买不成功。</div>
+    <div class="bill-box">
+        <div class="bb-top">
+            <div>我司账户信息</div>
+            <p><span>全</span>称：上海朋迈能源科技有限公司</p>
+            <p><span>账</span>号：1219 2376 5910 501</p>
+            <p>开户行名称：招商银行上海分行古北支行</p>
+        </div>
+        <img src="assets/images/invoice.jpg" alt="">
+    </div>
+</div>

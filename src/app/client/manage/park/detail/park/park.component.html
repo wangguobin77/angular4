@@ -1,0 +1,178 @@
+﻿<div class="content">
+	<div class="title-tag title-list border-0">基本信息
+		<span class="color-blue cur-p size-14 float-r ma-r60" (click)="baseInEdit()">编辑</span>
+	</div>
+	<div class="content-c-box" id="informationBox">
+		<p>
+			<span class="color-9">园区名称：</span>
+			<span *ngIf="!isEdit&&basicInfo.sellerParkName!=null&&!isEdit&&basicInfo.sellerParkName!=''">{{basicInfo.sellerParkName}}</span>
+			<span *ngIf="!isEdit&&basicInfo.sellerParkName==null||!isEdit&&basicInfo.sellerParkName==''">未填写</span>
+			<span *ngIf="isEdit">
+				<input type="text" [(ngModel)]='editInfo.sellerParkName' [attr.value]='basicInfo.sellerParkName' class="k-textbox" maxlength="14" required style="width: 200px;" />
+			</span>
+		</p >
+		<p>
+			<span class="color-9">地区：</span>
+			<span *ngIf="!isEdit&&basicInfo.areaName!=null&&!isEdit&&basicInfo.areaName!=''">{{basicInfo.areaName}}</span>
+			<span *ngIf="!isEdit&&basicInfo.areaName==null||!isEdit&&basicInfo.areaName==''">未填写</span>
+			<kendo-dropdownlist 
+		    [value]="'山西'"
+		    disabled *ngIf="isEdit"
+		    class="ma-r10" style="width: 93px;">
+	        </kendo-dropdownlist>
+	        <kendo-dropdownlist 
+	        	name="city"
+		        [data]="cities"
+		        [(ngModel)]="editInfo.city"
+			    [textField]="'name'"
+				[valueField]="'code'"
+				[valuePrimitive]="true"
+				[defaultItem]="citiesPlaceHolder"
+				*ngIf="isEdit"
+		        required style="width: 93px;"
+		    >
+	        </kendo-dropdownlist>
+		</p>
+		<p>
+			<span class="color-9">创建时间：</span>
+			<span>{{basicInfo.createDate}}</span>
+		</p>
+		<p class="width-auto">
+			<span class="color-9">详细地址：</span>
+			<span *ngIf="!isEdit&&basicInfo.address!=null&&!isEdit&&basicInfo.address!=''">{{basicInfo.address}}</span>
+			<span *ngIf="!isEdit&&basicInfo.address==null||!isEdit&&basicInfo.address==''">未填写</span>
+			<span *ngIf="isEdit">
+				<input type="text" [(ngModel)]='editInfo.address' [attr.value]='basicInfo.address' class="k-textbox" required style="width: 200px;" />
+			</span>
+		</p>
+		<div class="btn-box" *ngIf="isEdit">
+			<button class="a-button ma-r20" (click)='submitBaseInfo()'>保存</button>
+			<span class="a-button-xian a-button-xian-grey" (click)='cancelBaseInfo()'>取消</span>
+		</div>
+	</div>
+</div>
+<div class="ma-t20 ma-r20 double-box content ma-b30" style="min-width: 1040px;">
+	<div class="centerLine"></div>
+	<div class="c-left">
+		<div>
+			<div class="title-tag title-list border-0">联系人信息</div>
+			<div class="c-content contractMan">
+				<div class="grid-box no-padding">
+					<kendo-grid
+				          [data]="view | async" [pageable]="true" [pageSize]="state.take" [skip]="state.skip"
+				          (edit)="editHandler($event)" (remove)="removeHandler($event)"
+				          (add)="addHandler($event)" (dataStateChange)="onStateChange($event)"
+				        >
+				        <ng-template kendoGridToolbarTemplate>
+				            <span kendoGridAddCommand>新增联系人</span>
+				        </ng-template>
+				        <kendo-grid-column field="contacts" title="姓名" width='136'>
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.contacts == null?"":dataItem.contacts}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="position" title="职务">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.position == null?"":dataItem.position}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="tel" title="联系方式">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.tel == null?"":dataItem.tel}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="remark" title="备注">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.remark == null?"":dataItem.remark}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-command-column title="操作" width="150">
+				            <ng-template kendoGridCellTemplate>
+				                <button kendoGridEditCommand class="k-primary">编辑</button>
+				                <button kendoGridRemoveCommand>删除</button>
+				            </ng-template>
+				        </kendo-grid-command-column>
+				    </kendo-grid>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="c-right">
+		<div>
+			<div class="title-tag title-list border-0">园区客户
+				<div class="float-r">
+					<span class="ma-r20">
+						<label>园区客户数：</label>
+						<span>{{parkcustomer.totle}}</span>
+					</span>
+					<!--<span class="ma-r20">
+						<label>最高电圧等级：</label>
+						<span>1000</span>
+					</span>-->
+				</div>
+			</div>
+			<div class="c-content contractMan">
+				<div class="grid-box no-padding">
+					<kendo-grid
+				          [data]="customerview | async" [pageable]="true" [pageSize]="customerstate.take" [skip]="customerstate.skip" (dataStateChange)="onCustomerChange($event)">
+				        <ng-template kendoGridToolbarTemplate>
+				            <a [routerLink]="['/client/shanxi/build',id]" class="bar">创建用户</a>
+				        </ng-template>
+				        <kendo-grid-column field="id" title="序号" width='136'>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="subjectName" title="园区客户名称">
+				        </kendo-grid-column>
+				        <kendo-grid-column field="voltageLevel" title="电压等级（KV）">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.voltageLevel == null?"--":dataItem.voltageLevel}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="isPack" title="参与园区打包">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.isPack == null?"":dataItem.isPack}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-command-column title="操作" width="150">
+				            <ng-template kendoGridCellTemplate let-dataItem>
+				                <a class="color-blue" [routerLink]="['/client/shanxi/detail/client',dataItem.id]">查看</a>
+				            </ng-template>
+				        </kendo-grid-command-column>
+				    </kendo-grid>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<kendo-dialog *ngIf="active" (close)="closeContactDialog()" class="new-dialog">
+ <kendo-dialog-titlebar>
+   {{ isNew ? '新增' : '编辑' }}
+ </kendo-dialog-titlebar>
+
+   <form novalidate [formGroup]="editForm">
+       <div class="form-group">
+           <label for="contacts" class="control-label"><span class="color-red">*</span>姓名</label>
+
+           <input type="text" class="k-textbox" formControlName="contacts"/>
+       </div>
+       <div class="form-group">
+           <label for="position" class="control-label">职位</label>
+
+           <input type="text" class="k-textbox" formControlName="position"/>
+       </div>
+       <div class="form-group">
+           <label for="tel" class="control-label"><span class="color-red">*</span>联系方式</label>
+
+           <input type="text" class="k-textbox" formControlName="tel"/>
+       </div>
+       <div class="form-group">
+           <label for="remark" class="control-label">备注</label>
+
+           <input type="text" class="k-textbox" formControlName="remark"/>
+       </div>
+   </form>
+
+   <kendo-dialog-actions class="button-center">
+       <button class="a-button-xian a-button-xian-grey ma-r20" (click)="closeContactDialog($event)">取消</button>
+       <button class="a-button" (click)="onContactDialogSave($event)">保存</button>
+   </kendo-dialog-actions>
+</kendo-dialog>

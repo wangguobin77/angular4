@@ -1,0 +1,58 @@
+<div class="basci-package" [attr.id]='basicPackageData.id'>
+	  <div class="list-box">
+	     <div class="title">
+	         套餐购买
+	         <a class="float-r a-button-xian a-button-xian-grey size-16" style="margin-top: -13px;" [routerLink]="['/store/appStore']">返回</a>
+	     </div>
+	     <div class="main-content bp-main-t">
+	          <div>
+	              <p class="size-18">基础套餐包括</p>
+	              <p class="color-6">工作台、应用管理、企业设置、销售管理、客户管理、售电合约管理、只能报价（基础版）、风险管理、电豆100颗。此套餐将满足企业日常购售电工作需求，为企业用户提供更好的购售电体验。</p>
+	          </div>
+	          <div>
+	              <p class="ma-b30" *ngIf="basicPackageData.packageState != 1&&basicPackageData.packageState != 0">价格：￥<span class="color-red">3000</span></p>
+	              <span *ngIf="basicPackageData.packageState == 1" class="color-exactBlue">已购买</span>
+	              <span *ngIf="basicPackageData.packageState == 2" class="color-exactBlue">已加入购物车</span>
+	              <span *ngIf="basicPackageData.packageState == 3" class="a-button" (click)="addToCart(basicPackageData.id)">立即购买</span>
+	          </div>
+	     </div>
+	  </div>
+	 <div class="sub-title">
+	     套餐包含应用
+	 </div>
+	 <div class="bp-content-list">
+	    <div class="list" *ngFor="let bubItem of basicPackageData.appList">
+            <div class="icon-box" [attr.id]="bubItem.id" [attr.paymentType]="bubItem.paymentType">
+                <img [attr.src]="bubItem.iconUrl" alt="">
+            </div>
+            <div class="content-r">
+                <span>{{bubItem.name}}</span>
+                <p>
+                    <span class="tips-icon color-blue" *ngIf="!bubItem.isPaid">限时免费</span>
+                    <span class="tips-icon color-blue" *ngIf="bubItem.isOfficial">官方</span>
+                </p>
+                <p>{{bubItem.introduction}}</p>
+            </div>
+        </div>
+	</div>
+	  <div class="sub-title">
+	     收费详情
+	 </div>
+	 <article class="color-6">收费，价格3000元。</article>
+	 <div class="sub-title">
+	     开发商信息
+	 </div>
+	 <p>
+	      <span class="color-9 ma-r10">全称</span>
+	      <span class="color-6">上海朋迈能源科技有限公司</span>
+	 </p>
+	 <p>
+	      <span class="color-9 ma-r10">官网</span>
+	      <a href="http://www.gaoenergy.com/" class="color-blue">http://www.gaoenergy.com/</a>
+	 </p>
+	 <p>
+	      <span class="color-9 ma-r10">简介</span>
+	      <span class="color-6">上海朋迈能源科技有限公司致力于打造一个以信息技术及大数据分析为基础的、公平、公正、开放的第三方服务平台，为购
+售双方提供撮合交易、售电经营、用电服务、电力咨询等一站式智慧电力交易服务。</span>
+	 </p>
+</div>

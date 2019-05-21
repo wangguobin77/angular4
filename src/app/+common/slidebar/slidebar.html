@@ -1,0 +1,20 @@
+﻿<section class="slideBar">
+	<ul id="slideBar">
+		<span *ngFor="let item of model.menus; let i=index">
+			<li class="list" [ngClass]="{active: model.sec==item.id}" (click)="switch(item.id)" *ngIf="auth.IsInRole(item.roleRequired)">
+				<i class="iconfont" [ngClass]="item.icon"></i>
+				<a>{{item.name}}</a>
+				<i class="iconfont icon-xiangxia xia-arrow"></i>
+			</li>
+			<li class="content">
+				<ul [hidden]="model.sec!=item.id">
+					<li *ngFor="let sec of item.childs" [ngClass]="{active: model.thr==sec.id}">
+						<span class="circle" *ngIf="auth.IsInRole(sec.roleRequired)"></span>
+						<a [routerLink]='sec.url' *ngIf="auth.IsInRole(sec.roleRequired)">{{sec.name}}</a>
+					</li>
+				</ul>
+			</li>
+		</span>
+    </ul>
+	
+</section>

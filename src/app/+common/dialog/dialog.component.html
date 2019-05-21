@@ -1,0 +1,11 @@
+<kendo-dialog title="提示" *ngIf="opened" (close)="close('cancel')">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-warm.png">
+        <div style="line-height:24px;margin-top:20px;">
+            请选择商品
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <button (click)="close('yes')" class="a-button">确定</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

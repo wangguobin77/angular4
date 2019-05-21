@@ -1,0 +1,200 @@
+<div class="content-box">
+		<div class="pageTitle">
+			<i class="iconfont icon-30"></i>采购计划管理
+			<a [routerLink]="['/purchase/execute/anhui/list']" class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r">返回</a>
+		</div>
+		<div class="content">
+			<div class="content-title">
+				<a class="title ma-r60">执行详情</a>
+			</div>
+			<div class="pd-20">
+				<div class="cM-box-list">
+					<div class="list-box">
+		               <div class="t-left float-l ma-l20">
+		                    <span class="color-9">计划名称：</span>
+		                   <span>{{model.purchasePlanName}}</span>
+		               </div>
+		               <div class="t-left float-l ma-l130">
+		                    <span class="color-9">交易中心：</span>
+		                   <span>{{model.tradeCenterName}}</span>
+		               </div>
+		           </div>
+		           <div class="td-l-box">
+	       				<p>
+	       	               <span class="color-9">采购方式：</span>
+	       	               <span>{{model.purchasePlanStyle}}</span>
+	       	            </p>
+	       	            <p>
+	       	               <span class="color-9">用电时间：</span>
+	       	               <span>{{model.timeShow}}</span>
+	       	            </p>
+	       	            <p>
+	       	               <span class="color-9">采购电量：</span>
+	       	               <span>{{model.amount}}万千瓦时</span>
+	       	            </p>
+	       	            <p>
+	       	               <span class="color-9">大工业采购电量：</span>
+	       	               <span>{{model.planDetailIndustry}}万千瓦时</span>
+	       	            </p>
+	       	            <p>
+	       	               <span class="color-9">一般工商业采购电量：</span>
+	       	               <span>{{model.planDetailBusiness}}万千瓦时</span>
+	       	            </p>
+	       	             <div>
+	       	               <span class="color-9">备注：</span>
+	       	               <span class="remark">{{model.remark}}</span>
+	       	            </div>
+	               </div>
+				</div>
+			</div>
+		</div>
+		<form id="ticketsForm">
+		<div class="content ma-t20">
+			<div class="content-title">
+				<a class="title ma-r60">录入采购结果</a>
+			</div>
+			<div class="p-list-box">
+				<p>
+					<span class="color-9">大工业交易电量：</span>
+					<span>{{model.bigIndustryAmount}} 万千瓦时</span>
+				</p>
+				<p>
+					<span class="color-9">一般工商业交易电量：</span>
+					<span>{{model.generalBusinessAmount}}元/千瓦时</span>
+				</p>
+				<p>
+					<span class="color-9">交易价格：</span>
+					<span>{{model.dealPrice}} 元/千瓦时</span>
+				</p>
+				<p class="width-two">
+					<span class="color-9">电厂：</span>
+					<span>{{model.factoryName}}</span>
+				</p>
+			</div>
+		</div>
+		<div class="content ma-t20">
+			<div class="content-title">
+				<a class="title ma-r60">交易电量分月计划表<span class="color-9 size-12">(填写交易电量的月度计划)</span></a>
+			</div>
+			<div class="table-box" id="tableBox">
+				<table>
+					<thead>
+						<tr>
+							<th>月度</th>
+							<th>电量（万千瓦时）</th>
+							<th>月度</th>
+							<th>电量（万千瓦时）</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>
+								{{monthlyQtys.month1}}
+							</td>
+							<td>2</td>
+							<td>
+								{{monthlyQtys.month2}}
+							</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>
+								{{monthlyQtys.month3}}
+							</td>
+							<td>4</td>
+							<td>
+								{{monthlyQtys.month4}}
+							</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>
+								{{monthlyQtys.month5}}
+							</td>
+							<td>6</td>
+							<td>
+								{{monthlyQtys.month6}}
+							</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>
+								{{monthlyQtys.month7}}
+							</td>
+							<td>8</td>
+							<td>
+								{{monthlyQtys.month8}}
+							</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td>
+								{{monthlyQtys.month9}}
+							</td>
+							<td>10</td>
+							<td>
+								{{monthlyQtys.month10}}
+							</td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>
+								{{monthlyQtys.month11}}
+							</td>
+							<td>12</td>
+							<td>
+								{{monthlyQtys.month12}}
+							</td>
+						</tr>
+						<tr>
+							<td>年度合计：</td>
+							<td id="yearTotle" colspan = "3" style="text-align: left;">{{model.monthlyplanSum}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="content ma-t20">
+			<div class="content-title">
+				<a class="title ma-r60">关联售电合约</a>
+			</div>
+			<div class="grid-box">
+				<!--<div id="grid"></div>-->
+				<kendo-grid [data]="gridData">
+                <kendo-grid-column field="contractsName" title="合约名称">
+                </kendo-grid-column>
+                <kendo-grid-column field="contractTypeName" title="合约方式">
+                </kendo-grid-column>
+                <kendo-grid-column field="subjectName" title="公司名称">
+                </kendo-grid-column>
+                <kendo-grid-column field="usedPowerTypeName" title="用电类型">
+                </kendo-grid-column>
+                <kendo-grid-column field="purchaseAmountValue" title="应购电量(万千瓦时)">
+                </kendo-grid-column>
+            	</kendo-grid>
+			</div>
+		</div>
+		<div class="content ma-t20 ma-b30">
+			<div class="content-title">
+				<a class="title ma-r60">合约电子档</a>
+			</div>
+			<div class="contract-img bigImg" id="bigImg">
+				<div class="img-box" *ngFor="let item of files; let i=index" [attr.data-index]="i">
+						<img src="{{item.imageSrc}}" alt="">
+						<i class="iconfont icon-sousuo" (click)="setPic(files,i)"></i>
+				</div>
+			</div>
+			<div class="text-center pd-b20">
+				  <a class="a-button" *ngIf="model.energyContractsId != null" [routerLink]="['/purchase/contract/anhui/detail',model.energyContractsId]" >查看能源合约</a>
+				  <a class="a-button" *ngIf="model.energyContractsId == null" [routerLink]="['/purchase/contract/anhui/create',model.purchaseExecuteId]" >关联能源合约</a>
+			</div>
+		</div>
+		</form>
+	</div>
+
+<div class="popup-cart center" *ngIf="popShow" (click)="hidePop($event)" id="pop">
+	<div style="width: 600px">
+		<shuffling [shufflingPic]='shufflingPic'></shuffling>
+	</div>
+</div>

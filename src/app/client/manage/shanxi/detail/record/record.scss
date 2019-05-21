@@ -1,0 +1,280 @@
+
+.customer-table {
+    margin: 20px auto;
+    width: 479px;
+    height: 38px;
+    border: 1px solid #3399ff;
+    border-radius: 3px;
+    overflow: hidden;
+    a {
+        display: block;
+        float: left;
+        width: 119px;
+        text-align: center;
+        line-height: 38px;
+        cursor: pointer;
+        background: #fff;
+        color: #3399ff;
+        border-right: 1px solid #3399ff;
+        &:last-child {
+            border: none;
+        }
+        &.active {
+            background: #3399ff;
+            color: #fff;
+        }
+        &.none {
+            color: #999;
+            background: #f4f4f4;
+        }
+    }
+}
+.grid-box {
+    padding: 20px 30px 40px;
+    .grid-s {
+        padding-bottom: 20px;
+    }
+    .k-grid-content {
+        overflow: hidden;
+    }
+    .k-grid-header {
+        padding: 0 !important;
+    }
+    .grid-box-t{
+        padding-bottom: 40px;
+        .float-l{
+            i{
+                margin-right: 10px;
+            }
+        }
+        .label-box{
+            p{
+                display: inline-block;
+                margin-left: 30px;
+                span{
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+.content-c-box {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    &.edit {
+        p {
+            margin-bottom: 20px;
+            position: relative;
+            .k-tooltip-validation {
+                position: absolute;
+                top: 40px;
+                left: 124px;
+            }
+            .k-numeric-wrap {
+                .k-tooltip-validation {
+                    left: 0px;
+                    .k-icon {
+                        height: 19px;
+                    }
+                }
+            }
+        }
+    }
+    p {
+        display: inline-block;
+        width: 50%;
+        &>span {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            .k-select {
+                .k-icon {
+                    height: 20px;
+                    line-height: 20px;
+                }
+            }
+            input {
+                height: 40px;
+                padding: 0;
+            }
+            &:first-child {
+                display: inline-block;
+                width: 120px;
+                text-align: right;
+            }
+            .unit {
+                top: 0;
+            }
+        }
+        &.width-auto {
+            width: 100%;
+        }
+    }
+    .btn-box {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+.offer{
+    overflow: hidden;
+    .offer-l{
+        width: 60%;
+        float: left;
+        ul{
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            min-height:340px;
+        }
+        li{
+            .offer-l-t{
+                padding: 15px 0;
+                border-bottom: 1px solid #ddd;
+                overflow: hidden;
+                .cf{
+                    width: 33.333%;
+                    float: left;
+                    .cf-n{
+                        padding-right: 10px;
+                    }
+                    .color-9{
+                        padding-right: 60px;
+                    }
+                }
+                .label{
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    background: #3399ff;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                    margin-bottom: 2px;
+                }
+            }
+            .offer-l-c{
+                padding-top: 15px;
+                overflow: hidden;
+                .cf-c{
+                   width: 33.333%;
+                   float: left; 
+                   p{
+                       padding-bottom: 8px;
+                       padding-left: 61px;
+                       .color-9{
+                           display: inline-block;
+                           width: 98px;
+                           text-align: right;
+                       }
+                       .numer{
+                           padding-right: 60px;
+                       }
+                   }
+                   
+                }
+            }
+        }
+    }
+    .offer-r{
+        width: 25%;
+        float: left;
+        text-align: center;
+        .offer-r-c{
+            padding: 35px;
+            display: flex;
+            min-height:310px;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #ddd;
+            .offer-r-img{
+                padding: 0px 0 30px;
+            }
+            .size-16{
+                line-height: 28px;
+            }
+        }
+        
+        .offer-r-t{
+            text-align: left;
+            padding:  35px 30px;
+            border-right: 1px solid #ddd;
+            &>div{
+                margin-bottom: 35px;
+            }
+            p{
+                font-size: 16px;
+                padding-bottom: 18px;
+            }
+            .color-red{
+                font-size: 30px;
+                padding: 10px 10px 0 0;
+            }
+        }
+    }
+    .offer-btn{
+        width: 15%;
+        float: left;
+        position: relative;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        .generate{
+            position: absolute;
+            left: 50%;
+            margin-left: -41px;
+            top: 100px;
+        }
+        a{
+            margin-top: 251px;
+        }
+    }
+}
+.offer-box{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    .offer-top{
+        height: 40px;
+        line-height: 40px;
+        background: #f4f4f4;
+        border-bottom: 1px solid #ddd;
+    }
+    .offer{
+    }
+}
+.content{
+    position:relative;
+}
+.setPrice{
+    position:absolute;
+    top:-50px;
+    right:20px;
+}
+.form-group{
+    margin-bottom: 20px;
+    &.last-form-group{
+        margin-bottom: 0;
+    }
+    .k-textbox{
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        text-indent: 10px;
+        overflow: hidden;
+    }
+    .control-label{
+        display: block;
+        margin-bottom: 10px;
+    }
+    textarea{
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding:10px;
+        box-sizing:border-box;
+    }
+}

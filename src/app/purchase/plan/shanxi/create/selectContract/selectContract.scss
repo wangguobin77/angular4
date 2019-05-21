@@ -1,0 +1,15 @@
+.table-title{
+	height:40px;
+	line-height:40px;
+	padding:10px 30px 0;
+}
+.selectContract.grid-box{
+	padding:10px 30px 40px;
+	position: relative;
+	.as-select-all{
+		position:absolute;
+		top:32px;
+		left: 44px;
+		z-index: 99;
+	}
+}

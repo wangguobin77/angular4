@@ -1,0 +1,170 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-iconfontwo"></i>电力客户
+		<a [routerLink]="['/client/anhui']" class="a-button-xian a-button-xian-grey float-r ma-t10 ma-r20">返回</a>
+	</div>
+	<div class="content" [hidden]="isNext">
+		<div class="content-title">
+			<span class="title" name="2">创建客户</span>
+		</div>
+		<div class="form-box">
+			<form [formGroup]="buildFirstForm" (ngSubmit)="onNext($event)">
+				<ul>
+					<li>用户类型<span class="color-red size-18">*</span></li>
+					<li>
+					    <kendo-dropdownlist 
+					    [data]="powerUsedType" 
+					    formControlName="UsedPowerType"
+					    [textField]="'text'"
+					    [(ngModel)]="UsedPowerType"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+					    [defaultItem]="powerUsedTypePlaceHolder"
+					     required class="ma-r20" style="width: 100%;">
+				        </kendo-dropdownlist>
+					</li>
+					<li>公司名称<span class="color-red size-18">*</span>
+						<p class="color-9 size-12 annotation">( 请与对方营业执照上的公司名称保持一致。如为子公司，也须填写完整。)</p>
+					</li>
+					<li>
+					    <input type="text" id="companyName" name="companyName" class="k-textbox" required placeholder="请输入公司名称" style="width: 100%;" formControlName="SubjectName"/>
+
+					</li>
+					<li>用电客户类别<span class="color-red size-18">*</span></li>
+					<li>
+				        <kendo-dropdownlist
+	                        formControlName="IndustryCategoryFirstId"
+	                        [data]="CategoryName"
+	                        [(ngModel)]="IndustryCategoryFirstId"
+	                        [defaultItem]="placeHolder"
+	                        [textField]="'categoryName'"
+	                        [valueField]="'id'"
+	                        [valuePrimitive]="true"
+	                        required
+	                        (selectionChange)="categoryNameChange($event)"
+	                        class="ma-r20" style="width: 188px;"
+	                    >
+	                    </kendo-dropdownlist>
+
+				        <kendo-dropdownlist
+	                        formControlName="IndustryCategorySecondId"
+	                        [data]="subCategoryName"
+	                        [(ngModel)]="IndustryCategorySecondId"
+	                        [defaultItem]="placeHolder"
+	                        [textField]="'categoryName'"
+	                        [valueField]="'id'"
+	                        [valuePrimitive]="true"
+	                        required
+	                        style="width: 188px;"
+	                    >
+	                    </kendo-dropdownlist>
+					</li>
+					<li>客户地址<span class="color-red size-18">*</span></li>
+					<li>
+    			        <kendo-dropdownlist 
+					    [value]="'安徽'"
+					    disabled
+					    class="ma-r20" style="width: 188px;">
+				        </kendo-dropdownlist>
+				        <kendo-dropdownlist 
+					        [data]="cities"
+					        [(ngModel)]="City"
+						    [textField]="'name'"
+	      					[valueField]="'code'"
+	      					[valuePrimitive]="true"
+	      					formControlName="City"
+	      					[defaultItem]="citiesPlaceHolder"
+					        required style="width: 188px;"
+					    >
+				        </kendo-dropdownlist>
+					</li>
+					<li>用电规模<span class="color-red size-18">*</span></li>
+					<li class="unit-input-list">
+						<kendo-numerictextbox name="electricityScale" [min]="0" required [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;" formControlName="ElectricityAmount"></kendo-numerictextbox>
+					    <span class="unit r-20">万千瓦时</span>
+					</li>
+				</ul>
+				<button class="a-button" [disabled]="!buildFirstForm.valid">下一步</button>
+			</form>
+		</div>
+	</div>
+
+	
+	<div class="content" [hidden]="!isNext">
+		<div class="content-title">
+			<span class="title" name="2">创建客户</span>
+		</div>
+		<div class="note">
+			完善客户信息，便于您更好管理
+		</div>
+		<div class="form-box">
+				<ul>
+					<li>销售人员</li>
+					<li>
+					   <kendo-dropdownlist
+	                        [data]="SaleUserData"
+	                        [(ngModel)]="secondFormData.SaleUserId"
+	                        [defaultItem]="{fullName:'请选择销售人员',id:null}"
+	                        [textField]="'fullName'"
+	                        [valueField]="'id'"
+	                        [valuePrimitive]="true"
+	                        style="width: 100%;"
+	                    >
+	                    </kendo-dropdownlist>
+					</li>
+					<li>法定代表人</li>
+					<li>
+					    <input type="text" id="legalRepresentative" name="legalRepresentative" [(ngModel)]="secondFormData.LegalPerson" class="k-textbox" placeholder="请输入法定代表人" style="width: 100%;"/>
+					</li>
+					<li>登记工商管理局</li>
+					<li>
+					    <input type="text" id="AIC" name="AIC" [(ngModel)]="secondFormData.RegisterManagePlace" class="k-textbox" placeholder="请输入登记工商管理局" style="width: 100%;"/>
+					</li>
+					<li>详细地址</li>
+					<li>
+					    <input type="text" id="detailLocation" name="detailLocation" [(ngModel)]="secondFormData.Address" class="k-textbox" style="width: 100%;" placeholder="请输入详细地址"/>
+					</li>
+					<li>电压等级</li>
+					<li>
+					    <kendo-dropdownlist
+	                        name="voltageLevel"
+	                       	[(ngModel)]="secondFormData.VoltageLevel"
+	                        [data]="voltageLevelData"
+	                        [textField]="'text'"
+	                        [valueField]="'value'"
+	                        [valuePrimitive]="true"
+	                        [defaultItem]="{text:'请选择电压等级',value:null}"
+	                       
+	                        style="width: 100%;"
+	                    >
+	                    </kendo-dropdownlist>
+					</li>
+					<li>总用电容量</li>
+					<li class="unit-input-list">
+					    <kendo-numerictextbox name="electricityScaleT" [(ngModel)]="secondFormData.Capacitance" [min]="0" [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;"></kendo-numerictextbox>
+					    <span class="unit r-20">KW</span>
+					</li>
+					<li>变压器容量</li>
+					<li class="unit-input-list">
+					    <kendo-numerictextbox [min]="0" [(ngModel)]="secondFormData.TransformerCapability" [max]="999999999" [format]="'#.####'" decimals="4" style="width: 100%;"></kendo-numerictextbox>
+					    <span class="unit r-20">KVA</span>
+					</li>
+				</ul>
+				<div class="btn-box">
+					<button class="a-button" (click)="onSubmit($event)">保存</button>
+					<a class="a-button-xian" (click)="skip()">跳过</a>
+				</div>
+		</div>
+	</div>
+</div>
+<kendo-dialog title="创建成功" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-okla.png">
+        <div style="line-height:24px;margin-top:20px;">
+            客户成功。
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button" [routerLink]="['/client/anhui']">确定</a>
+    </kendo-dialog-actions>
+</kendo-dialog>

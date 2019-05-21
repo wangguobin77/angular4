@@ -1,0 +1,84 @@
+.content-box{
+	.content{
+		min-width: 1100px;
+	}
+}
+.content-r{
+    .list-box{
+        padding: 20px;
+        overflow: hidden;
+        .float-r{
+            padding: 100px 0 70px;
+            text-align: left;
+            h4{
+                font-size: 22px;
+                padding: 20px 0 10px 50px;
+            }
+            p{
+                padding-left: 50px;
+            }
+        }
+    }
+}
+.filtrate-box{
+	padding:30px 20px 0;
+	&>div{
+		text-align:right;
+		&>div{
+			display:inline-block;
+			margin:10px 10px 0 10px;
+			text-align:left;
+			label{
+				margin-right: 10px;
+			}
+		}
+		.k-datepicker{
+			width: 200px;
+			height:36px;
+			margin-top: -8px;
+			input{
+				height:36px;
+				line-height:36px;
+			}
+			.k-select{
+				line-height:40px;
+			}
+			.k-picker-wrap{
+				border-radius:4px;
+			}
+		}
+	}
+}
+.grid-box{
+	padding:40px 30px;
+	.k-grid-content{
+		overflow: hidden;
+	}
+	.k-grid-header{
+		padding:0 !important;
+	}
+	th.k-header{
+		border-width:0;
+		background:#ddd;
+		line-height:40px;
+		color:#333;
+		.k-link{
+			height:40px;
+			line-height:40px;
+			color:#333;
+		}
+		&:first-child{
+			padding-left:70px;
+		}
+	}
+	td{
+		border:0;
+		height:48px;
+		border-bottom: 1px solid #ddd;
+	}
+	tr{
+		td:first-child{
+			padding-left:70px;
+		}
+	}
+}

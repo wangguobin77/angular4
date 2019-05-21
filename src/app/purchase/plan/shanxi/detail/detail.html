@@ -1,0 +1,97 @@
+﻿
+<div class="content-box planDetail">
+		<div class="pageTitle">
+			<i class="iconfont icon-30"></i>采购计划管理
+			<a [routerLink]="['/purchase/plan/shanxi/list']" class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r">返回</a>
+		</div>
+		<div class="content">
+			<div class="content-title">
+				<a class="title ma-r60">计划详情</a>
+			</div>
+			<div class="pd-20">
+				<div class="cM-box-list">
+        <div class="list-box">
+          <div class="t-left float-l ma-l20">
+            <span class="color-9">计划名称：</span>
+            <span>{{detailData.name}}</span>
+          </div>
+          <div class="t-left float-l ma-l130">
+            <span class="color-9">交易中心：</span>
+            <span>{{detailData.tradeCenterIdString}}</span>
+          </div>
+        </div>
+        <div class="td-l-box">
+          <p>
+            <span class="color-9">采购方式：</span>
+            <span>{{detailData.typeString}}</span>
+          </p>
+          <p>
+            <span class="color-9">用电时间：</span>
+            <span> {{detailData.durationString}}</span>
+          </p>
+          <p style="overflow: inherit;">
+            <span class="color-9">采购电量： </span>
+            <span> {{detailData.dAmount}}万千瓦时</span>
+          </p>
+          <p>
+            <span class="color-9">计划创建员：</span>
+            <span> {{detailData.createUserName}}</span>
+          </p>
+          <p>
+            <span class="color-9">创建时间：</span>
+            <span>{{detailData.createTime|date:"y-MM-dd"}}</span>
+          </p>
+          <div>
+            <span class="color-9">备注：</span>
+            <span class="remark">{{detailData.remark}}</span>
+          </div>
+          <p>
+            <span class="color-9">计划执行状态：</span>
+            <span>{{detailData.executeStatusString}}</span>
+          </p>
+          <p>
+            <span class="color-9">执行人员：</span>
+            <span>{{detailData.executeUserName}}</span>
+          </p>
+          <p>
+            <span class="color-9">执行时间：</span>
+            <span>{{detailData.executeTime|date:"y-MM-dd"}}</span>
+          </p>
+        </div>
+      </div>
+			</div>
+		</div>
+
+		<div class="content ma-t20">
+			<div class="content-title">
+				<a class="title ma-r60">详细信息</a>
+        <div class="title-r float-r ma-r20">
+                <div class="searchBox float-r ma-t10 ma-r10">
+                  <input type="text" placeholder="客户名称，合约名称关键词搜索" [(ngModel)]="searchContent">
+                  <i class="iconfont icon-sousuo" (click)="searchContract()"></i>
+                </div>
+       </div>
+			</div>
+			<div class="grid-box">
+        <div class="pd-b10"><span class="color-9">申报总电量：<span id="totle">{{detailData.dDetailAmount}}</span></span>万千瓦时</div>
+				<kendo-grid [data]="gridData" >
+                <kendo-grid-column field="subjectName" title="客户名称">
+                </kendo-grid-column>
+                <kendo-grid-column field="contractName" title="合约名称">
+                </kendo-grid-column>
+                <kendo-grid-column field="contractType" title="合约方式">
+                </kendo-grid-column>
+                <kendo-grid-column field="dAmount" title="申报电量(万千瓦时)">
+                </kendo-grid-column>
+                <kendo-grid-column field="costPrice" title="成本价格（元/千瓦时）">
+                </kendo-grid-column>
+                <kendo-grid-column field="costSpread" title="成本价差（厘/千瓦时）">
+                </kendo-grid-column>
+            </kendo-grid>
+      <a class="a-button-xian ma-t20" href="{{environment.sellerEnergyPurchaseApi+'api/SXPurchasePlan/GetExportFile/'+detailData.id}}">下载计划</a>
+      </div>
+      
+		</div>
+		
+		
+	</div>

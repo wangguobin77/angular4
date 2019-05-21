@@ -1,0 +1,132 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-dian"></i>新建电厂
+		<a [routerLink]="['/purchase/eFactory/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+	</div>
+	<div class="content">
+		<div class="content-title">
+			<span class="title" name="2">基本信息</span>
+		</div>
+		<form #form="ngForm" (ngSubmit)="onsubmit($event,form)">
+			<ul class="eFactory-create set-in-box">
+				<li>电厂名称</li>
+				<li>
+					<kendo-autocomplete
+		              name="name"
+		              [data]="powerPlantData"
+		              [(ngModel)]="name"
+		              [placeholder]="'选择电厂'"
+		              style="width: 100%;"
+		              [valueField]="'factoryName'"
+		              [tabIndex]="'factoryId'"
+		              required
+		              #powerPlantNameT="ngModel"
+		            >
+			        </kendo-autocomplete>
+					<div [hidden]="powerPlantNameT.valid||powerPlantNameT.pristine" class="error-tip">
+						<i class="iconfont icon-zhuyi"></i>
+						请输入电厂名称
+					</div>
+				</li>
+				<li>地区</li>
+				<li>
+					<kendo-dropdownlist
+                        name="province"
+                        [data]="provinceData"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        [valuePrimitive]="true"
+                        [(ngModel)]="province"
+                        [defaultItem]="provincePlaceHolder"
+                        #provinceT="ngModel"
+                        required
+                        style="width: 190px;margin-right: 14px;"
+                        (selectionChange)="provinceChange($event)"
+                    >
+                    </kendo-dropdownlist>
+                    <kendo-dropdownlist
+                        name="city"
+                        [data]="cities"
+                        [textField]="'name'"
+                        [valueField]="'code'"
+                        [valuePrimitive]="true"
+                        [defaultItem]="cityPlaceHolder"
+                        [(ngModel)]="city"
+                        #cityT="ngModel"
+                        required
+                        style="width: 190px;"
+                    >
+                    </kendo-dropdownlist>
+                    <div [hidden]="provinceT.valid||provinceT.pristine" class="error-tip">
+                    	<i class="iconfont icon-zhuyi"></i>
+                    	请选择省份
+                    </div>
+                    <div [hidden]="cityT.valid||cityT.pristine" class="error-tip">
+                    	<i class="iconfont icon-zhuyi"></i>
+                    	请选择城市
+                    </div>
+				</li>
+				<li>地址</li>
+				<li>
+					<input type="text" required  class="k-textbox" name="address" [(ngModel)]="address" #addressT="ngModel"/>
+					<div [hidden]="addressT.valid||addressT.pristine" class="error-tip">
+						<i class="iconfont icon-zhuyi"></i>
+						请输入详细地址
+					</div>
+				</li>
+				<li>发电类型</li>
+				<li>
+					<kendo-multiselect 
+						[data]="types" 
+						[(ngModel)]="type" 
+						textField="text"
+        				valueField="value" 
+        				name="type"
+        				required
+						[valuePrimitive]="true"
+						placeholder="请选择发电类型"
+        				#typeT = "ngModel" 
+        				style="width: 100%;">
+        			</kendo-multiselect>
+					<div [hidden]="typeT.valid||typeT.pristine" class="error-tip">
+						<i class="iconfont icon-zhuyi"></i>
+						请选择发电类型
+					</div>
+				</li>
+				<li>总装机容量</li>
+				<li class="unit-input-list number-unit">
+		          	<kendo-numerictextbox name="totalCapacity" [(ngModel)]="totalCapacity" [min]="0" required [max]="100000" [format]="'#.####'" decimals="4" 	style="width: 100%;" #totalCapacityK="ngModel"></kendo-numerictextbox>
+		          	<span class="unit r-20">兆瓦</span>
+		          	<div [hidden]="totalCapacityK.valid||totalCapacityK.pristine" class="error-tip">
+						<i class="iconfont icon-zhuyi"></i>
+						请选择总装机容量
+					</div>
+		        </li>
+				<li>电压等级</li>
+				<li>
+					<kendo-dropdownlist
+                        name="voltageLevel"
+                        [data]="voltageLevelData"
+                        [textField]="'text'"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+                        [defaultItem]="voltageLevelPlaceHolder"
+                        [(ngModel)]="voltageLevel"
+                        #voltageLevelT="ngModel"
+                        required
+                        style="width: 100%;"
+                    >
+                    </kendo-dropdownlist>
+					<div [hidden]="voltageLevelT.valid||voltageLevelT.pristine" class="error-tip">
+						<i class="iconfont icon-zhuyi"></i>
+						请选择电压等级
+					</div>
+				</li>
+			</ul>
+			<div class="text-center pd-b20">
+				<button class="a-button ma-r20" [disabled]="!form.form.valid">保存</button>
+				<a [routerLink]="['/purchase/eFactory/anhui/list']" class="a-button-grey a-button">取消</a>
+			</div>
+		</form>
+	</div>
+</div>

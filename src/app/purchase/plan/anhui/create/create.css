@@ -1,0 +1,70 @@
+﻿.set-in-box {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.set-in-box li:nth-child(2n-1) {
+  margin: 20px 0 10px;
+}
+.set-in-box li .other-type {
+  position: relative;
+  left: 420px;
+  top: -18px;
+  color: #3399ff;
+}
+.set-in-box li .other-type:hover {
+  color: #348ce3;
+}
+.set-in-box .r-20 {
+  right: 20px !important;
+}
+.set-in-box input[type=text] {
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+  text-indent: 10px;
+  overflow: hidden;
+}
+.set-in-box .k-numeric-wrap {
+  border-color: #ddd;
+  position: relative;
+}
+.set-in-box .k-numeric-wrap .k-tooltip-validation {
+  position: absolute;
+  top: 39px;
+  left: 0;
+}
+.set-in-box .k-numeric-wrap .k-tooltip-validation .k-i-warning {
+  float: left;
+  height: 18px;
+}
+.set-in-box .k-numeric-wrap .k-select {
+  padding: 0;
+}
+.set-in-box .k-select {
+  height: 38px;
+  padding-top: 4px;
+}
+.set-in-box .k-select .k-icon {
+  height: 20px;
+  line-height: 18px;
+}
+.set-in-box .k-autocomplete.k-state-default {
+  border-color: #ddd;
+}
+.set-in-box textarea {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  width: 360px;
+  line-height: 20px;
+}
+
+.k-datepicker {
+  position: relative;
+}
+.k-datepicker .k-tooltip {
+  position: absolute;
+  top: 40px;
+  left: 0;
+}

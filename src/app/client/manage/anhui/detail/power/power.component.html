@@ -1,0 +1,60 @@
+<div class="content">
+	<div class="pd-20">
+		<div class="note">说明：用电信息将用于该客户的偏差预警等功能，为使结果更准确、请尽可能添加历史用电量。</div>
+		<div class="grid-box no-padding">
+			<kendo-grid
+		          [data]="view | async" [pageable]="true" [pageSize]="state.take" [skip]="state.skip"
+                  (edit)="editHandler($event)" (remove)="removeHandler($event)"
+                  (add)="addHandler($event)" (dataStateChange)="onStateChange($event)"
+		        >
+		        <ng-template kendoGridToolbarTemplate>
+		            <span kendoGridAddCommand>新增</span>
+		        </ng-template>
+		        <kendo-grid-column field="recordYear" title="时间(年/月)">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.recordYear}}-{{dataItem.recordMonth}}
+                    </ng-template>      
+                </kendo-grid-column>
+		        <kendo-grid-column field="recordQuantity" title="实用电量(万千瓦时)"></kendo-grid-column>
+		        <kendo-grid-column  title="操作">
+                      <ng-template kendoGridCellTemplate>
+                          <button kendoGridEditCommand class="k-primary">编辑</button>
+                          <button kendoGridRemoveCommand>删除</button>
+                      </ng-template>      
+                </kendo-grid-column>
+		    </kendo-grid>
+		</div>
+	</div>
+</div>
+<kendo-dialog [ngClass]="{disNone:active}" (close)="closeForm()" class="new-dialog">
+  <kendo-dialog-titlebar>
+    {{ isNew ? '新增' : '编辑' }}
+  </kendo-dialog-titlebar>
+    <form #form="ngForm">
+        <div class="form-group">
+            <label class="control-label">时间</label>
+
+            <input id="datepickerMonth"  style="width: 100%;height: 38px;" required/>
+
+            <!-- <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.contactName.valid || editForm.controls.contactName.pristine">
+            	<i class="iconfont icon-zhuyi"></i>
+                请输入姓名
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label class="control-label">实用电量</label>
+
+            <kendo-numerictextbox name="Quantity" [(ngModel)]="Quantity" [min]="0" required [max]="999999999" [format]="'#.####'" decimals="4"   style="width: 100%;" #totalCapacityK="ngModel"></kendo-numerictextbox>
+            <!-- <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.position.valid || editForm.controls.position.pristine">
+                <i class="iconfont icon-zhuyi"></i>
+                请输入职务
+            </div> -->
+        </div>
+        <div class="form-group" *ngIf="errorTipIsShow"><span class="error-tip">{{errorTip}}</span></div>
+    </form>
+
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button a-button-grey ma-r20" (click)="closeForm()">取消</button>
+        <button class="a-button" (click)="onSave(form)">保存</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

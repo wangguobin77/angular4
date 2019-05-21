@@ -1,0 +1,76 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-30"></i>采购计划管理
+		<a [routerLink]="['/purchase/execute/guangdong/list']" class="a-button-xian a-button-xian-grey ma-t10 ma-r20 float-r">返回</a>
+	</div>
+	<div class="content">
+		<div class="content-title">
+			<a class="title ma-r60">执行详情</a>
+		</div>
+		<div class="pd-20">
+			<div class="cM-box-list">
+				<div class="list-box">
+	               <div class="t-left float-l ma-l20">
+	                    <span class="color-9">计划名称：</span>
+	                   <span>{{model.purchasePlanName}}</span>
+	               </div>
+	               <div class="t-left float-l ma-l130">
+	                    <span class="color-9">交易中心：</span>
+	                   <span>{{model.tradeCenterName}}</span>
+	               </div>
+	           </div>
+	           <div class="td-l-box">
+       				<p>
+       	               <span class="color-9">采购方式：</span>
+       	               <span>{{model.purchasePlanStyle}}</span>
+       	            </p>
+       	            <p>
+       	               <span class="color-9">用电时间：</span>
+       	               <span>{{model.timeShow}}</span>
+       	            </p>
+       	            <p>
+       	               <span class="color-9">采购电量：</span>
+       	               <span>{{model.amount}}万千瓦时</span>
+       	            </p>
+       	             <div>
+       	               <span class="color-9">备注：</span>
+       	               <span class="remark">{{model.remark}}</span>
+       	            </div>
+               </div>
+			</div>
+		</div>
+	</div>
+	<form id="ticketsForm">
+		<div class="content ma-t20 ma-b30">
+			<div class="content-title">
+				<a class="title ma-r60">采购结果</a>
+			</div>
+			<div class="p-list-box">
+				<p>
+					<span class="color-9">实购电量：</span>
+					<span>{{model.dealAmount}}万千瓦时</span>
+				</p>
+				<p>
+					<span class="color-9">交易价差：</span>
+					<span>{{model.dealUnitPrice}}厘/千瓦时</span>
+				</p>
+			</div>
+		</div>
+		<div class="content ma-t20 ma-b30">
+			<div class="content-title">
+				<a class="title ma-r60">竞价确认书</a>
+			</div>
+			<div class="contract-img bigImg" id="bigImg">
+				<div class="img-box" *ngFor="let item of files; let i=index" [attr.data-index]="i">
+						<img src="{{item.imageSrc}}" alt="">
+						<i class="iconfont icon-sousuo" (click)="setPic(files,i)"></i>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="popup-cart center" *ngIf="popShow" (click)="hidePop($event)" id="pop">
+	<div style="width: 600px">
+		<shuffling [shufflingPic]='shufflingPic'></shuffling>
+	</div>
+</div>

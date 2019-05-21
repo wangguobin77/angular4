@@ -1,0 +1,66 @@
+<div class="pd-20 detail-box">
+<div class="list-box">
+       <div class="title">
+           应用详情
+           <a class="float-r a-button-xian a-button-xian-grey size-16" style="margin-top: -13px;" [routerLink]="['/store/appStore']">返回</a>
+       </div>
+       <div class="main-content">
+			<div class="mc-top">
+				<div class="icon-box" [attr.id]="storeDetailDataApp.iconId">
+                    <img [attr.src]="storeDetailDataApp.iconUrl" alt="">
+                </div>
+				<div class="mc-top-c">
+					<p class="siz-18">{{storeDetailDataApp.name}}</p>
+					<p>
+						<span class="tip-icon color-pink" *ngIf="storeDetailDataApp.isOfficial">官方</span>
+						<span class="tip-icon color-orange" *ngIf="storeDetailDataApp.isPaid">付费</span>
+					</p>
+					<p class="color-9">{{storeDetailDataApp.introduction}}</p>
+				</div>
+				<div class="mc-top-r ma-t20">
+            <i class="iconfont icon-wancheng color-exactGreen float-r ma-r20" *ngIf="storeDetailData.appState == 1">&ensp;已购买</i>
+            <i class="iconfont icon-goumai color-exactBlue float-r ma-r20" *ngIf="storeDetailData.appState == 2">&ensp;已加入购物车</i>
+            <!-- <i class="iconfont icon-zhuyi color-red float-r ma-r20" *ngIf="storeDetailData.appState == 3">&ensp;未购买</i> -->
+            <span class="a-button" *ngIf="storeDetailData.appState == 3" (click)="addToCart(storeDetailData.app.id)">加入购物车</span>
+				</div>
+			</div>
+       </div>
+    </div>
+    <shuffling [shufflingPic]='shufflingPic' *ngIf="storeDetailDataApp.name!='电豆'"></shuffling>
+   <div class="sub-title">
+       应用描述
+   </div>
+   <article class="color-6">{{storeDetailDataApp.description}}</article>
+	<div class="sub-title" *ngIf="flag">
+       组件信息
+   </div>
+   <div class="element-list" *ngFor="let item of storeDetailData.componentList">
+   		<div class="img-box">
+   			<img src="/assets/images/application.png" alt="" *ngIf="item.iconUrl == ''||item.iconUrl == null||item.iconUrl==undefined">
+            <img [attr.src]="item.iconUrl" *ngIf="item.iconUrl != ''&&item.iconUrl != null&&item.iconUrl!=undefined">
+   		</div>
+   		<div class="pd-l68">
+   			<p class="size-18">{{item.name}}</p>
+   			<p class="color-6">{{item.description}}</p>
+   		</div>
+   </div>
+   <div class="sub-title">
+       付费说明
+   </div>
+   <p>{{storeDetailDataApp.paymentDescription}}</p>
+   <div class="sub-title">
+       开发商信息
+   </div>
+   <p>
+   		<span class="color-9 ma-r10">全称</span>
+   		<span class="color-6" [attr.id]="developer.id">{{developer.name}}</span>
+   </p>
+   <p>
+   		<span class="color-9 ma-r10">官网</span>
+   		<a href="http://www.gaoenergy.com/" class="color-blue">{{developer.officialWebsite}}</a>
+   </p>
+   <p>
+   		<span class="color-9 ma-r10">简介</span>
+   		<span class="color-6">{{developer.introduction}}</span>
+   </p>
+</div>

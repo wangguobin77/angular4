@@ -1,0 +1,49 @@
+﻿<section class="slideBar" id="slideBar" style="margin-top:100px;padding-top:0">
+  <div class="link-box main-left">
+    <a *ngFor="let menu of menuList let i = index" [ngClass]="{active:menu.isActive,new:menu.isNew}" [routerLink]='menu.url' (click)='changeActive($event,i)'>
+      <i [attr.class]="menu.icon"></i>
+      <span>{{menu.text}}</span>
+    </a>
+  </div>
+  <div class="logo"></div>
+</section>
+<div class=content-box>
+  <div class=pageTitle><i class="iconfont icon-yingyeting"></i>企业公告</div>
+  <div class="content ma-t20">
+    <div class=content-title>
+      <span class='title' name=2>公告列表</span>
+      <div class="title-r float-r ma-r20" style="display: none">
+        <div class="float-r size-14 condition color-6 cur-p"><button id="btnSearch" class=a-button>搜索</button></div>
+        <div class="searchBox float-r ma-r10 ma-t10"><input id="txtTitleKeyWord" type=text placeholder=搜索标题></div>
+        <a class="a-button ma-r10">新增公告</a>
+        <input id=monthpicker disabled=""> <span class="color-blue ma-l10 ma-r10">至</span> <input disabled="" id=endMonthpicker class=ma-r20>
+      </div>
+    </div>
+    <div class=grid-box style="height:100%">
+      <div id=grid>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog"></div>
+
+
+
+<!-- 删除-->
+<form [formGroup]="passForm" style="margin:0;padding:0" *ngIf="a" (ngSubmit)="submit($event)">
+  <kendo-dialog title="删除" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          <p>
+            <input value="{{delModel.id}}"
+            class="k-textbox" style="width: 300px;height:40px" formControlName="id"  type="hidden" />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:100px">
+        <button class="a-button" style="margin-right:10px" [disabled]="!passForm.valid">提交</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>

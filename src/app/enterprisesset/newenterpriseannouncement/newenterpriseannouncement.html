@@ -1,0 +1,28 @@
+﻿
+
+<div class=content-box>
+    <div class=pageTitle><i class="iconfont icon-gonggaoguanli"></i>公告管理
+    <!-- <div class="float-r size-14 condition color-6 cur-p" style="margin-right: 1%"><button id="btnSearch" class=a-button><a style="text-decoration:none;color:#fff" [routerLink]="['/enterprisesset/enterpriseannouncement']" routerLinkActive="active"><i class="iconfont icon-fanhui ma-r10" style="color:#fff"></i>返回</a></button></div> -->
+     <button class="a-button-xian a-button-xian-grey float-r ma-t10" style="margin-right: 1%"><a [routerLink]="['/enterprisesset/enterpriseannouncement']" routerLinkActive="active" style="color:#000">返回</a></button>
+    </div>
+    <div id=example>
+        <div class=example-top>
+            <label>标题：&nbsp;</label><input id="txtTitle" value="" (onblur)="fnValidator('txtTitle', 'pTitle')" type=text class="k-textbox k-invalid">
+            <p id="pTitle" style="display:none;color:red;padding-left:45px;" class=tishi>标题不能为空</p>
+        </div>
+        <div class=textarea-box>
+            <label class="textarea-label">内容：</label>
+            <div class=textarea-c style="margin-left:0;margin-top:50px">
+                <textarea (onblur)="fnValidator('editor', 'pEditor')" id="editor" rows=10 cols=30 style="width:100%;height:400px;"></textarea>
+            </div>
+            <p id="pEditor" style="display:none;color:red;padding-left:45px;padding-top:10px;" class='tishi'>标题不能为空</p>
+        </div>
+        <div class=example-btn>
+          <!--   <button id="btnSubmit" (click)="addAnnouncement()" class="k-button k-primary" type="submit" style="background:#3399FF;line-height: 35px">发布</button> -->
+             <li class="text-center" style="float:left;margin-left:-45px">
+              <button class="a-button ma-r20" id="btnSubmit" (click)="addAnnouncement()">发布</button>
+
+            </li>
+        </div>
+    </div>
+</div>

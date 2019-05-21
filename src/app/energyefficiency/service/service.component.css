@@ -1,0 +1,43 @@
+main-box {
+  padding: 20px 20px 80px;
+  .list-box {
+    ul {
+      width: 400px;
+      margin: 0 auto 30px;
+    }
+    li:nth-child(2n-1) {
+      margin-top: 20px;
+    }
+    li:nth-child(2n) {
+      margin-top: 4px;
+    }
+    input {
+      height: 40px;
+      width: 100%;
+      &.price {
+        color: red;
+      }
+    }
+    textarea {
+      height: 100px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 10px;
+    }
+    .k-widget.k-dropdown {
+      .k-dropdown-wrap {
+        height: 40px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        margin-right: 10px;
+        height: 38px;
+        background: #fff;
+        span {
+          line-height: 36px;
+        }
+      }
+    }
+  }
+}

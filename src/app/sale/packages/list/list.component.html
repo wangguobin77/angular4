@@ -1,0 +1,137 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-hetong"></i>售电套餐
+		<a class="a-button float-r ma-r20 ma-t10" [routerLink]="['/sale/packages/create']">创建</a>
+	</div>
+	<div class="content">
+		<div class="content-title">
+			<span class="title" name="2">套餐列表</span>
+			<div class="title-r float-r ma-r20">
+				<span class="float-r size-14 condition color-6 cur-p" (click)="filters.toggle()">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+				<div class="searchBox float-r ma-r10 ma-t10">
+				  <input type="text" placeholder="套餐名称关键词搜索" #fastInput (keyup.enter)="filters.fast(fastInput.value)">
+				  <i class="iconfont icon-sousuo" (click)="filters.fast(fastInput.value)"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="filtrate-box" *ngIf="filters.isShow"> 
+			<div>
+				<div class="filtrate-item">
+					<span class="filtrate-title">套餐方式：</span>
+					<span class="filtrate-ckb">
+						<input type="checkbox" id="pk1" class="k-checkbox" [(ngModel)]="filters.params.packageType.guarantee">
+						<label class="k-checkbox-label" for="pk1">保底类</label>
+					</span>
+					<span class="filtrate-ckb">
+						<input type="checkbox" id="pk2" class="k-checkbox" [(ngModel)]="filters.params.packageType.fix">
+						<label class="k-checkbox-label" for="pk2">固定类</label>
+					</span>
+					<span class="filtrate-ckb">
+						<input type="checkbox" id="pk3" class="k-checkbox" [(ngModel)]="filters.params.packageType.rate">
+						<label class="k-checkbox-label" for="pk3">分成类</label>
+					</span>
+				</div>
+				<div class="filtrate-item">
+					<span class="filtrate-title">合约方式：</span>
+					<span class="filtrate-ckb">
+						<input type="checkbox" id="ct1" class="k-checkbox" [(ngModel)]="filters.params.contractType.two">
+						<label class="k-checkbox-label" for="ct1">双边</label>
+					</span>
+					<span class="filtrate-ckb">
+						<input type="checkbox" id="ct2" class="k-checkbox" [(ngModel)]="filters.params.contractType.bid">
+						<label class="k-checkbox-label" for="ct2">竞价</label>
+					</span>
+				</div>
+				<div class="filtrate-item">
+					<span class="filtrate-title">建议购电区间：</span>
+					<span>
+						<div class="fix-input">
+							<kendo-numerictextbox placeholder="输入最小购电量" style="width: 100%;" decimals="4" [format]="'#.####'" [min]="0" [max]="100000000000" name="pminA" [(ngModel)]="filters.params.purchaseAmount.min"></kendo-numerictextbox>
+							<span class="unit r-20">万千瓦时</span>
+						</div>
+						<span>到</span>
+						<div class="fix-input">
+							<kendo-numerictextbox placeholder="输入最大购电量" style="width: 100%;" decimals="4" [format]="'#.####'" [min]="filters.params.purchaseAmount.min==null?0:filters.params.purchaseAmount.min" [max]="100000000000" name="pmaxA" [(ngModel)]="filters.params.purchaseAmount.max"></kendo-numerictextbox>
+							<span class="unit r-20">万千瓦时</span>
+						</div>
+					</span>
+				</div>
+				<div class="filtrate-search">
+					<button class="a-button-xian ma-r10" (click)="filters.reset()">重置</button>
+					<button class="a-button" (click)="filters.search()">搜索</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="grid-box client-list no-header">
+			<kendo-grid
+			      [data]="grid.view | async"
+		          [pageSize]="grid.state.take"
+		          [skip]="grid.state.skip"
+		          [sortable]="true"
+		          [pageable]="true"
+		          [scrollable]="'none'"
+		          (dataStateChange)="grid.dataStateChange($event)"
+			    >
+			    <kendo-grid-column field="createDate" title="订单内容" width="350">
+			        <ng-template kendoGridCellTemplate let-dataItem>
+			        	<div class="cM-box-list" [attr.id]='dataItem.id'>
+			        		<div class="list-box">
+				               <div class="t-left float-l w30">
+				                    <span class="color-9">套餐名称：</span>
+				                   <span>{{dataItem.name}}</span>
+				               </div>
+				               <div class="t-left float-l w30">
+				                    <span class="color-9">类型：</span>
+				                   <span>{{dataItem.typeStr}}</span>
+				               </div>
+				               <div class="t-left float-l">
+				                    <span class="color-9">使用次数：</span>
+				                   <span>{{dataItem.usedCount}}</span>
+				               </div>
+							   <div class="t-right float-r">
+							   	<i class="iconfont icon-guanbipsd close cur-p" title="删除" (click)="delete.open(dataItem.id)"></i>
+							   </div>
+				           </div>
+				           <div class="td-l-box">
+           						<p class="w60">
+           			               <span class="color-9">套餐方式：</span>
+           			               <span>{{ dataItem.priceSetName}}</span>
+           			            </p>
+           			            <p class="w40">
+           			               <span class="color-9">合约方式：</span>
+           			               <span>{{dataItem.contractTypeStr}}</span>
+           			            </p>
+           			             <p class="w60">
+           			               <span class="color-9">建议购电区间：</span>
+           			               <span>{{dataItem.minAmount}} 万千瓦时 - {{dataItem.maxAmount}} 万千瓦时</span>
+           			            </p>
+           			             <p class="w40">
+           			               <span class="color-9">标签：</span>
+           			               <span>{{dataItem.packageTagStr}}</span>
+           			            </p>
+	           		        </div>
+	           		        <div class="btn-box">
+								<a [routerLink]="['/sale/packages/detail',dataItem.id]" class="a-button-xian">查看</a>
+							   	<a [routerLink]="['/sale/packages/edit',dataItem.id]" class="a-button-xian a-button-xian-grey ma-l10 ma-r20">编辑</a>
+							</div>
+			        	</div>
+			        </ng-template>
+			    </kendo-grid-column>
+			</kendo-grid>
+		</div>
+	</div>
+</div>
+
+<form *ngIf="delete.opened" (ngSubmit)="delete.submit()" class="new-dialog">
+  <kendo-dialog title="删除套餐" (close)="delete.close()">
+    <div class="text-center">
+	  <p>是否确认删除？</p>
+    </div>
+    <kendo-dialog-actions class="button-center">
+      <button class="a-button" style="margin-right:10px">确认</button>
+      <button (click)="delete.close()" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>

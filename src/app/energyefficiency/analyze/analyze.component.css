@@ -1,0 +1,408 @@
+.content-l {
+  width: 360px;
+  float: left;
+}
+
+.content-l .c-l-box {
+  width: 358px;
+  max-height: 900px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.content-l .c-l-box .content-title {
+  border: 0;
+}
+
+.content-l .c-l-box .searchBox {
+  width: 100%;
+  background: #f4f4f4;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.content-l .c-l-box .searchBox input {
+  width: 300px;
+  background: #f4f4f4;
+}
+
+.content-l .k-grid-header {
+  display: none;
+}
+
+.content-l .select-all {
+  height: 58px;
+  line-height: 58px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: -3px;
+}
+
+.content-l .select-all.active {
+  background: #d1e8ff;
+}
+
+.content-r {
+  padding-left: 380px;
+  background: #eee;
+}
+
+.content-r>div {
+  background: #fff;
+}
+
+.content-r.arePredicted-r {
+  padding-left: 0;
+}
+
+.content-r .echart-t {
+  height: 60px;
+  padding-top: 20px;
+  position: absolute;
+  right: 15px;
+  top: -6px;
+  z-index: 99;
+}
+
+.content-r .echart-t.ec-echart-t {
+  right: 80px;
+}
+
+.content-r .echart-t .drop-down {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.content-r .echart-t i {
+  color: #999;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.content-r .echart-t i.active {
+  color: #33ccff;
+}
+
+.content-r .echart-small {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+
+.content-r .list-box {
+  padding: 0 30px 30px 30px;
+  position: relative;
+}
+
+.content-r .table-content {
+  margin-top: 20px;
+}
+
+.content-r .table-content>div {
+  background: #fff;
+}
+
+.k-chart-tooltip {
+  box-shadow: 0 0 9px #ddd !important;
+  text-align: left;
+  padding-right: 20px;
+}
+
+.k-chart-tooltip .color-9 {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+
+.grid-box .k-grid-content {
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.grid-box .k-grid-content tr.active {
+  background: #d1e8ff;
+}
+
+.grid-box .k-grid-content tr.active .company-name {
+  color: #333;
+}
+
+.grid-box .k-grid-content .company-name {
+  display: inline-block;
+  width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.grid-box .k-grid-content i {
+  position: relative;
+  top: -4px;
+  margin-left: 10px;
+}
+
+.grid-box .k-grid-header {
+  padding: 0 !important;
+}
+
+.grid-box td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+  overflow: initial;
+}
+
+.mCSB_inside>.mCSB_container {
+  margin-right: 0 !important;
+}
+
+.mCSB_scrollTools {
+  width: 0 !important;
+}
+
+.table-box.price-table td {
+  border-left: 0 !important;
+}
+
+.table-box table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.table-box table th {
+  width: 25%;
+  text-align: left;
+  height: 40px;
+  background: #ddd;
+  padding-left: 40px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.table-box table th:last-child {
+  padding-right: 20px;
+}
+
+.table-box table td {
+  width: 25%;
+  height: 50px;
+  padding-left: 40px;
+  border-top: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.table-box table td:last-child {
+  padding-right: 20px;
+}
+
+.dialog-box .drop-down {
+  width: 80px;
+  text-align: left;
+  margin: 0 10px;
+}
+
+.filtrate-box {
+  padding: 30px 20px 0;
+  text-align: right;
+}
+
+.filtrate-box>div>div {
+  display: inline-block;
+  text-align: left;
+}
+
+.filtrate-box>div>div label {
+  margin-right: 10px;
+}
+
+.filtrate-box>div .k-datepicker {
+  width: 200px;
+  height: 36px;
+  margin-top: -8px;
+}
+
+.filtrate-box>div .k-datepicker input {
+  height: 36px;
+  line-height: 36px;
+}
+
+.filtrate-box>div .k-datepicker .k-select {
+  line-height: 40px;
+}
+
+.filtrate-box>div .k-datepicker .k-picker-wrap {
+  border-radius: 4px;
+}
+
+.filtrate-box>div .drop-down {
+  text-align: left;
+  width: 104px;
+}
+
+.grid-c-box .k-grid-content {
+  height: auto;
+  overflow: hidden;
+}
+
+.grid-c-box .k-grid-header {
+  padding: 0 !important;
+}
+
+.grid-c-box th.k-header {
+  border-width: 0;
+  background: #ddd;
+  line-height: 40px;
+  color: #333;
+  text-align: center;
+}
+
+.grid-c-box th.k-header .k-link {
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+}
+
+.grid-c-box td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.select-show-data-type {
+  position: absolute;
+  top: 0;
+  left: 114px;
+  z-index: 99;
+  padding-top: 12px;
+  font-size: 16px;
+}
+
+.select-show-data-type span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.select-show-data-type span.active {
+  color: #33ccff;
+}
+
+.echart-small .k-selector {
+  top: 0 !important;
+  height: 91px !important;
+}
+
+.echart-small .k-selection-bg {
+  background-color: rgba(51, 153, 255, 0.3) !important;
+}
+
+.echart-small .k-handle {
+  background: #3399ff;
+}
+
+.table-box.price-table td {
+  border-left: 0 !important;
+}
+
+.table-box .table-c {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.table-box .table-title {
+  height: 91px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  border-right: 0;
+  min-width: 100px;
+  float: left;
+  margin-top: 10px;
+  white-space: nowrap;
+  background: #fff;
+}
+
+.table-box .table-title p {
+  padding: 0 20px;
+  border-top: 1px solid #ddd;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.table-box .table-title p:first-child {
+  height: 40px;
+  line-height: 41px;
+  text-align: center;
+  font-weight: bold;
+  background: #ddd;
+}
+
+.table-box .table-title.dw-table-title {
+  height: 143px;
+}
+
+.table-box .table-title.dw-table-title p:first-child {
+  height: 40px;
+}
+
+.table-box .table-impose {
+  display: inline-block;
+  width: 90%;
+  overflow-x: scroll;
+  position: relative;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.table-box table {
+  border-collapse: collapse;
+  vertical-align: top;
+  overflow-x: scroll;
+  margin: 0;
+}
+
+.table-box table th {
+  text-align: left;
+  height: 40px;
+  background: #ddd;
+  min-width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.table-box table th:last-child {
+  padding-right: 20px;
+}
+
+.table-box table td {
+  height: 50px;
+  min-width: 100px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  white-space: nowrap;
+  background: #fff;
+}
+
+.table-box table td:last-child {
+  padding-right: 20px;
+}
+
+.table-box table thead {
+  width: 100%;
+}
+
+.table-box table tbody {
+  width: 100%;
+}
+
+.set-other-line th {
+  line-height: initial !important;
+  vertical-align: middle !important;
+}

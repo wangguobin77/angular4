@@ -1,0 +1,338 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-30"></i>新建合约
+		<a [routerLink]="['/purchase/contract/guangdong/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+	</div>
+	<form #form="ngForm" (ngSubmit)="onsubmit($event,form)">
+		<div class="content">
+			<div class="content-title  title-tag">
+				<span class="title">合约信息</span>
+			</div>
+			<div class="select-list">
+				<div>
+					<div class="cs-list">
+						<p>合约名称</p>
+						<div>
+							<input type="text" required  class="k-textbox" name="name" [(ngModel)]="name" #contractNameT="ngModel"/>
+							<div [hidden]="contractNameT.valid||contractNameT.pristine" class="error-tip">
+								<i class="iconfont icon-zhuyi"></i>
+								请输入合约名称
+							</div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>合约编号</p>
+						<div>
+							<input type="text" required  class="k-textbox" name="contractNo" [(ngModel)]="contractNo" #contractNnumT="ngModel"/>
+							<div [hidden]="contractNnumT.valid||contractNnumT.pristine" class="error-tip">
+								<i class="iconfont icon-zhuyi"></i>
+								请输入合约编号
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="cs-list">
+						<p>合约有效期</p>
+						<div>
+							<kendo-datepicker
+								name="beginDate"
+				                [max]="endDate"
+				                [(ngModel)]="beginDate"
+				                #beginDateModel="ngModel"
+				                [format]="'yyyy MM dd'"
+								(valueChange)="onDateChange($event)"
+				                required
+				                style="width: 150px;margin-right: 14px;"
+				            ></kendo-datepicker>
+				            <kendo-datepicker
+				            	name="endDate"
+				                [min]="beginDate"
+				                [(ngModel)]="endDate"
+				                [format]="'yyyy MM dd'"
+				                #endDateModel="ngModel"
+								(valueChange)="onDateChange($event)"
+				                required
+				                style="width: 150px;"
+				            ></kendo-datepicker>
+				            <div [hidden]="beginDateModel.valid||beginDateModel.pristine" class="error-tip">
+				            	<i class="iconfont icon-zhuyi"></i>
+				            	请选择合约开始日期
+				            </div>
+				            <div [hidden]="endDateModel.valid||endDateModel.pristine" class="error-tip">
+				            	<i class="iconfont icon-zhuyi"></i>
+				            	请选择合约截止日期
+				            </div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>合约备案日期</p>
+						<div>
+							<kendo-datepicker
+								name="recordDate"
+				                [(ngModel)]="recordDate"
+				                #recordDateModel="ngModel"
+				                style="width: 100%;"
+				                [format]="'yyyy MM dd'"
+				                required
+				            ></kendo-datepicker>
+				            <div [hidden]="recordDateModel.valid||recordDateModel.pristine" class="error-tip">
+				            	<i class="iconfont icon-zhuyi"></i>
+				            	请选择合约备案日期
+				            </div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="cs-list">
+						<p>合约方式</p>
+						<div>
+							<kendo-dropdownlist
+	                            name="contractType"
+	                            [data]="contractTypes"
+	                            [textField]="'text'"
+	                            [valueField]="'value'"
+	                            [(ngModel)]="contractType"
+	                            [defaultItem]="contractTypePlaceHolder"
+	                            required
+	                            [valuePrimitive]="true"
+	                            #contractTypeT = "ngModel"
+	                            style="width: 100%;"
+	                        >
+	                        </kendo-dropdownlist>
+	                        <div [hidden]="contractTypeT.valid||contractTypeT.pristine" class="error-tip">
+	                        	<i class="iconfont icon-zhuyi"></i>
+	                        	请选择合约方式
+	                        </div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>交易中心</p>
+						<div>
+							<kendo-dropdownlist
+	                            name="tradeCenterId"
+	                            [data]="tradingCenters"
+	                            [textField]="'text'"
+	                            [valueField]="'value'"
+	                            [(ngModel)]="defaultData.tradeCenterId"
+	                            [defaultItem]="tradingCenterPlaceHolder"
+	                            required
+	                            [valuePrimitive]="true"
+	                            #tradingCenterT = "ngModel"
+	                            style="width: 100%;"
+	                        >
+	                        </kendo-dropdownlist>
+	                        <div [hidden]="tradingCenterT.valid||tradingCenterT.pristine" class="error-tip">
+	                        	<i class="iconfont icon-zhuyi"></i>
+	                        	请选择交易中心
+	                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content ma-t20">
+			<div class="content-title  title-tag">
+				<span class="title">电厂信息</span>
+			</div>
+			<div class="select-list">
+				<div>
+					<div class="cs-list">
+						<p>电厂名称</p>
+						<div>
+							<kendo-autocomplete
+				              name="electricityFactoryName"
+				              [data]="powerPlantData"
+				              [(ngModel)]="electricityFactoryName"
+				              [placeholder]="'选择电厂'"
+				              style="width: 100%;"
+				              [valueField]="'factoryName'"
+				              [tabIndex]="'factoryId'"
+				              required
+				              #powerPlantNameT="ngModel"
+				              (valueChange)="powerPlantValueChange($event)"
+				            >
+					        </kendo-autocomplete>
+							<div [hidden]="powerPlantNameT.valid||powerPlantNameT.pristine" class="error-tip">
+								<i class="iconfont icon-zhuyi"></i>
+								请输入电厂名称
+							</div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>地区</p>
+						<div>
+							<kendo-dropdownlist
+	                            name="province"
+	                            [data]="provinceData"
+	                            [textField]="'name'"
+	                            [valueField]="'code'"
+	                            [valuePrimitive]="true"
+	                            [(ngModel)]="powerPlantGetData.province"
+	                            [defaultItem]="provincePlaceHolder"
+	                            #provinceT="ngModel" disabled
+	                            style="width: 150px;margin-right: 14px;"
+	                            (selectionChange)="provinceChange($event)"
+	                        >
+	                        </kendo-dropdownlist>
+	                        <kendo-dropdownlist
+	                            name="city"
+	                            [data]="cities"
+	                            [textField]="'name'"
+	                            [valueField]="'code'"
+	                            [valuePrimitive]="true"
+	                            [defaultItem]="cityPlaceHolder"
+	                            [(ngModel)]="powerPlantGetData.city"
+	                            #cityT="ngModel" disabled
+	                            style="width: 150px;"
+	                        >
+	                        </kendo-dropdownlist>
+	                        <div [hidden]="provinceT.valid||provinceT.pristine" class="error-tip">
+	                        	<i class="iconfont icon-zhuyi"></i>
+	                        	请选择省份
+	                        </div>
+	                        <div [hidden]="cityT.valid||cityT.pristine" class="error-tip">
+	                        	<i class="iconfont icon-zhuyi"></i>
+	                        	请选择城市
+	                        </div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="cs-list">
+						<p>详细地址</p>
+						<div>
+							<input type="text" disabled  class="k-textbox" name="address" [(ngModel)]="powerPlantGetData.address" #addressT="ngModel"/>
+							<div [hidden]="addressT.valid||addressT.pristine" class="error-tip">
+								<i class="iconfont icon-zhuyi"></i>
+								请输入详细地址
+							</div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>发电类型</p>
+						<div>
+							<kendo-multiselect 
+								[data]="types" 
+								[(ngModel)]="powerPlantGetData.type" 
+								textField="text"
+		        				valueField="value" 
+		        				name="type"
+		        				placeholder="请选择发电类型"
+								[valuePrimitive]="true"
+		        				#typeT = "ngModel"  disabled
+		        				style="width: 100%;">
+		        			</kendo-multiselect>
+	                        <div [hidden]="typeT.valid||typeT.pristine" class="error-tip">
+	                        	<i class="iconfont icon-zhuyi"></i>
+	                        	请选择发电类型
+	                        </div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="cs-list">
+						<p>联系人</p>
+						<div>
+							<input type="text" disabled  class="k-textbox" name="contactName" [(ngModel)]="powerPlantGetData.contactName" #personT="ngModel"/>
+							<div [hidden]="personT.valid||personT.pristine" class="error-tip">
+								<i class="iconfont icon-zhuyi"></i>
+								请输入联系人
+							</div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>联系方式</p>
+						<div>
+							<input type="text" class="k-textbox"
+                               disabled pattern="\d{10,20}" 
+                               [(ngModel)]="powerPlantGetData.contactTel" name="contactTel"
+                               #contactT="ngModel">
+                           <div [hidden]="contactT.valid||contactT.pristine" class="error-tip">
+                           	<i class="iconfont icon-zhuyi"></i>
+                           	请输入正确的联系方式
+                           </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content ma-t20">
+			<div class="content-title  title-tag">
+				<span class="title">购电信息</span>
+			</div>
+			<div class="select-list">
+				<div>
+					<div class="cs-list">
+						<p>实购电量</p>
+						<div class="unit-input-list number-unit">
+							<kendo-numerictextbox name="actualPurchaseAmount" [(ngModel)]="defaultData.dAmount" [min]="0" required [max]="9999999999" [format]="'#.####'" decimals="4" style="width: 100%;" #greatIndustryDealEqK="ngModel"></kendo-numerictextbox>
+          					<span class="unit r-20">万千瓦时</span>
+          					<div [hidden]="greatIndustryDealEqK.valid||greatIndustryDealEqK.pristine" class="error-tip">
+          						<i class="iconfont icon-zhuyi"></i>
+          						请输入实购电量
+          					</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="cs-list">
+						<p>成交价差</p>
+						<div class="unit-input-list number-unit">
+							<kendo-numerictextbox name="dealUnitPrice" [(ngModel)]="defaultData.dealUnitPrice" [min]="-9999" required [max]="9999" [format]="'#.##'" decimals="2" style="width: 100%;" #dealPriceK="ngModel"></kendo-numerictextbox>
+          					<span class="unit r-20">厘/千瓦时</span>
+          					<div [hidden]="dealPriceK.valid||dealPriceK.pristine" class="error-tip">
+          						<i class="iconfont icon-zhuyi"></i>
+          						请输入成交价差
+          					</div>
+						</div>
+					</div>
+					<div class="cs-list float-r">
+						<p>用电时间</p>
+						<div>
+							<!-- <kendo-datepicker
+								name="duration"
+				                [max]="usetimeImpose"
+				                [(ngModel)]="defaultData.duration"
+				                #usebeginDateModel="ngModel"
+				                style="width: 100%;"
+				                [format]="'yyyy'"
+				                required
+				            ></kendo-datepicker> -->
+				            <div class="datepicker"><input id="datepicker"  style="width: 100%"/></div>
+				            <!-- <div [hidden]="usebeginDateModel.valid||usebeginDateModel.pristine" class="error-tip">
+				            	<i class="iconfont icon-zhuyi"></i>
+				            	请选择用电时间
+				            </div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content ma-t20 ma-b30">
+		  <div class="content-title">
+		    <a class="title ma-r60">合约电子档</a>
+		  </div>
+		  <ul class="pd-20">
+		    <li>
+		      <div class="demo-section k-content wide">
+		        <div class="wrapper">
+		          <div id="products"></div>
+		          <div class="dropZoneElement">
+		          </div>
+		        </div>
+		      </div>
+		      <input name="files" id="files" type="file" />
+		      <div [hidden]="filesModel.isValid||filesModel.isPristine" class="error-tip">
+	            	<i class="iconfont icon-zhuyi"></i>
+	            	请选择合约电子档
+	            </div>
+		    </li>
+		    <li class="text-center">
+		      <button class="a-button ma-r20">保存采购结果</button>
+		    <!--<button class="a-button">保存并关联能源合约</button> 改成点击保存后，显示提示框 是否关联能源合约-->
+		    </li>
+		  </ul>
+		</div>
+	</form>
+</div>

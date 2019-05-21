@@ -1,0 +1,62 @@
+﻿
+
+
+<section class="main enterpriseInformation">
+  <div class="main-center">
+    <div class="content-title"><i class="iconfont icon-qiye"></i>企业信息</div>
+    <div class="en-box">
+      <div class="en-img">
+        <img src="/assets/images/enterpriseInformation.png"/>
+      </div>
+      <div class="en-c">
+        <div class="en-logo">
+          <img [src]="data.logoPicSrc==null?'/assets/images/addrole.png':data.logoPicSrc"/>
+        </div>
+        <div class="en-text">
+          <h3>{{data.sellerName}}</h3>
+          <p class="en-p"><span class="name">公司简述：</span><span class="en-pc">{{data.sellerDescription}}</span></p>
+                <p class="en-p"><span class="name">所在城市：</span><span class="en-pc">{{data.areaFamilyName}}</span></p>
+                  <p class="en-p"><span class="name">公司地址：</span><span class="en-pc">{{data.sellerAddress}}</span></p>
+                  <div class="licence">
+                    <h3>证照信息</h3>
+                    <ul>
+                      <li *ngFor="let item of businessLicenseImg;let i=index">
+                        <div class="licence-img">
+                          <img [src]="item.imageDataList[0].data==null?'/assets/images/build02.png':item.imageDataList[0].data"/>
+                          <span class="bg"></span>
+                          <span class="licence-i"><i class="iconfont icon-sousuo" (click)="setPic(businessLicenseImg,i)"></i></span>
+                        </div>
+                        <p>{{cardItem.businessLicense}}</p>
+                        <p class="color-9">营业执照</p>
+                      </li>
+                      <li *ngFor="let item of organizationCodeImg;let i=index">
+                        <div class="licence-img">
+                          <img [src]="item.imageDataList[0].data==null?'/assets/images/build02.png':item.imageDataList[0].data"/>
+                          <span class="bg"></span>
+                          <span class="licence-i"><i class="iconfont icon-sousuo" (click)="setPic(organizationCodeImg,i)"></i></span>
+                        </div>
+                        <p>{{cardItem.organizationCode}}</p>
+                        <p class="color-9">组织机构</p>
+                      </li>
+                      <li *ngFor="let item of taxNumberImg;let i=index">
+                        <div class="licence-img">
+                          <img [src]="item.imageDataList[0].data==null?'/assets/images/build02.png':item.imageDataList[0].data"/>
+                          <span class="bg"></span>
+                          <span class="licence-i"><i class="iconfont icon-sousuo" (click)="setPic(taxNumberImg,i)"></i></span>
+                        </div>
+                        <p>{{cardItem.taxNumber}}</p>
+                        <p class="color-9">税务登记证</p>
+                      </li>
+                    </ul>
+                  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="popup-cart center" *ngIf="popShow" (click)="hidePop($event)" id="pop">
+	<div style="width: 600px">
+		<shuffling [shufflingPic]='shufflingPic'></shuffling>
+	</div>
+</div>

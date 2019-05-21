@@ -1,0 +1,9 @@
+<section class="slideBar" id="slideBar">
+  <div class="link-box main-left" >
+        <a *ngFor="let menu of menuList let i = index" [ngClass]="{active:menu.isActive,new:menu.isNew}" [routerLink]='menu.url' (click)='changeActive($event,i)'>
+            <i [attr.class]="menu.icon"></i>
+            <span>{{menu.text}}</span>
+        </a>
+    </div>
+  <div class="logo"></div>
+</section>

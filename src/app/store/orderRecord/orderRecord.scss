@@ -1,0 +1,100 @@
+@import  "../../../assets/style/setscss";
+.grid-title{
+	padding:30px;
+	div{
+		width:80px;
+		text-align: center;
+		padding-bottom:10px;
+		border-bottom: 2px solid $blue;
+	}
+}
+.orderRecord.grid-box{
+	padding:0 30px 40px;
+	.k-grid{
+		border-width:0;
+		.k-grid-header{
+			margin-bottom: 20px;
+		}
+	}
+	.k-grid-content{
+		overflow: hidden;
+	}
+	.k-grid-header{
+		padding:0 !important;
+	}
+	th.k-header{
+		border-width:0;
+		background:#f4f4f4;
+		line-height:40px;
+		color:#333;
+		.k-link{
+			height:40px;
+			line-height:40px;
+			color:#333;
+		}
+		&:first-child{
+			padding-left:30px;
+		}
+	}
+	table{
+		border-collapse: separate;
+		border-spacing: 0 20px;
+	}
+	tbody{
+		tr{
+			min-height:151px;
+			margin-bottom:20px;
+			border:1px solid #ddd !important;
+			.list-box{
+				position: absolute;
+			    padding: 0 30px;
+			    top: 0;
+			    right: 0;
+			    width: 821px;
+			    height: 39px;
+			    line-height: 39px;
+			    box-sizing: border-box;
+			    background: #f4f4f4;
+				border-bottom: 1px solid #ddd;
+				border-radius: 3px 3px 0 0;
+			}
+			td{
+				border-width:0;
+				border-bottom:1px solid #ddd;
+				border-top:1px solid #ddd;
+				padding-top: 50px;
+				position: relative;
+				overflow: inherit;
+				min-height:150px;
+				&:first-child{
+					border-left: 1px solid #ddd;
+					border-radius: 4px 0 0 4px;
+					padding-left:30px !important;
+					p{
+						line-height: 28px;
+					}
+				}
+				&:last-child{
+					border-right: 1px solid #ddd;
+					border-radius: 0 4px 4px 0;
+				}
+			}
+			td:first-child{
+				padding-left:70px;
+			}
+		}
+	}
+}
+.dialog-c{
+	&>div{
+		width:400px;
+		margin:0 auto;
+	}
+	img{
+		width:100%;
+		margin-top:20px;
+	}
+}
+.k-dialog{
+	top:100px !important;
+}

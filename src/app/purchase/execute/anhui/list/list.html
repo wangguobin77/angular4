@@ -1,0 +1,35 @@
+﻿<div class="content-box purchaseExecute">
+  <div class="pageTitle">
+    <i class="iconfont icon-30"></i>采购执行
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <a class="title ma-r60 cur-p active" name="0">未执行</a>
+      <a class="title ma-r60 color-9 cur-p" name="1">已执行</a>
+      <div class="title-r float-r ma-r20">
+        <span class="float-r size-14 condition color-6 cur-p" id="selectCondition">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+        <div class="searchBox float-r ma-r10 ma-t10">
+          <input id="searchVal" type="text" placeholder="采购计划关键词检索">
+          <i id="iSearch" class="iconfont icon-sousuo"></i>
+        </div>
+      </div>
+    </div>
+    <div class="filtrate-box" id="filtrateBox" style="display: none;">
+      <div>
+        <div>
+          <span>采购方式：</span>
+          <input type="checkbox" id="eq1" class="k-checkbox">
+          <label class="k-checkbox-label" for="eq1">&ensp;长协</label>
+          <input type="checkbox" id="eq2" class="k-checkbox">
+          <label class="k-checkbox-label" for="eq2">&ensp;竞价</label>
+        </div>
+
+        <div>
+          <button id="resetButton" class="a-button-xian ma-r20">重置</button>
+          <button id="searchButton" class="a-button">查询</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid-box"><div id="grid" class="cM-client-trace"></div></div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+.customer-table {
+    margin: 20px auto;
+    width: 479px;
+    height: 38px;
+    border: 1px solid #3399ff;
+    border-radius: 3px;
+    overflow: hidden;
+    a {
+        display: block;
+        float: left;
+        width: 119px;
+        text-align: center;
+        line-height: 38px;
+        cursor: pointer;
+        background: #fff;
+        color: #3399ff;
+        font-size:16px;
+
+        border-right: 1px solid #3399ff;
+        &:last-child {
+            border: none;
+        }
+        &.active {
+            background: #3399ff;
+            color: #fff;
+        }
+        &.none {
+            color: #999;
+            background: #f4f4f4;
+        }
+    }
+}

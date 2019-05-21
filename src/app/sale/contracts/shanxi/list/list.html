@@ -1,0 +1,95 @@
+﻿
+<div class="content-box contractList">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>售电合约管理
+    <span class="a-button float-r ma-r20 ma-t10" id="addNew" [routerLink]="['/sale/contracts/shanxi/create']">创建</span>
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <span class="title" name="2">合约列表</span>
+      <div class="title-r float-r ma-r20">
+        <span class="a-button-xian float-l ma-r10 ma-t10" id="setLimitDate">申报期限设定</span>
+        <span class="float-r size-14 condition color-6 cur-p" id="selectCondition">筛选条件<i class="iconfont icon-1 ma-l10"></i></span>
+        <div class="searchBox float-r ma-r10 ma-t10">
+          <input id="txtKey" type="text" placeholder="合约名称，购电方名称关键词搜索">
+          <i class="iconfont icon-sousuo" id="iSearch"></i>
+        </div>
+      </div>
+    </div>
+    <div class="filtrate-box" id="filtrateBox" style="display: none;">
+      <div>
+        <div>
+          <span>用电类型：</span>
+          <input id="electricityTypeSelect" value="" required class="drop-down" />
+        </div>
+        <div>
+          <span>合约方式：</span>
+          <span>
+            <input type="checkbox" id="eq1" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq1">长协</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq2" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq2">竞价</label>
+          </span>
+          <!--<span>
+            <input type="checkbox" id="eq3" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq3">长协+竞价</label>
+          </span>-->
+        </div>
+        <div>
+          <span>合约状态：</span>
+          <span>
+            <input type="checkbox" id="eq4" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq4">即将到期</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq5" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq5">正执行</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq6" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq6">未开始</label>
+          </span>
+          <span>
+            <input type="checkbox" id="eq7" class="k-checkbox">
+            <label class="k-checkbox-label" for="eq7">已终止</label>
+          </span>
+        </div>
+        <div>
+          <button class="a-button-xian ma-r10" id="resetSeCondition">重置</button>
+          <button class="a-button" id="btnSearch">查询</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid-box">
+      <div id="gridContracts" class="client-trace cM-client-trace"></div>
+    </div>
+  </div>
+</div>
+<div id="dialog"></div>
+<div id="dialogCreat"></div>
+<div id="dialogDeleteList"></div>
+
+
+<form [formGroup]="setDay.form" *ngIf="setDay.opened" (ngSubmit)="setDay.submit($event)" class="new-dialog">
+  <kendo-dialog title="申报期限设定" (close)="setDay.close()">
+    <div class="text-center">
+      <span>设置申报期限为每月</span>
+      <kendo-dropdownlist formControlName="day"
+            [data]="setDay.days"
+            [(ngModel)]="setDay.defaultDay"
+            [textField]="'text'"
+            [valueField]="'value'"
+            [valuePrimitive]="true"
+            required
+            style="width:100px">
+      </kendo-dropdownlist>
+      <span>日的23:59:59</span>
+    </div>
+    <kendo-dialog-actions class="button-center">
+      <button class="a-button" style="margin-right:10px">提交</button>
+      <button (click)="setDay.close()" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>

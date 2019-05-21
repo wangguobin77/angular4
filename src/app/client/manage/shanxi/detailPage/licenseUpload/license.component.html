@@ -1,0 +1,114 @@
+<div class="content">
+	<div class="content-title title-tag">
+		<span class="title" name="2">证照上传</span>
+	</div>
+	<div class="content">
+		<div class="note">说明：各类证照请上传原件扫描件。要求为jpg、png或gif格式，单张图片小于2M。</div>
+		<div class="c-box">
+			<div>
+				<p>法人代码</p>
+				<input type="text" class="k-textbox" [(ngModel)]="licenseData.legalCode">
+			</div>
+			<div class="demo-section k-content wide">
+		        <div class="wrapper">
+		            <div>
+		            	<div class='product' *ngFor="let image of licenseData.certificates.legalCodeInformation.imageDataList let i = index">
+		            		<img [src]="image.data" alt="image preview"/>
+		            		<i class='iconfont icon-guanbipsd del' (click)="deleteImg(1,licenseData.certificates.legalCodeInformation.fileDataId[i])"></i>
+		            	</div>
+		            </div>
+		         </div>
+            	 <kendo-upload
+		         	[autoUpload]="false"
+				    (select)="selectEventHandler($event,licenseData.certificates.legalCodeInformation)"
+				    [restrictions]="myRestrictions"
+				    >
+				  </kendo-upload>
+		    </div>
+		    <div class="ma-t30">
+				<p>营业执照<span class="float-r">多证合一&ensp;
+					<kendo-switch 
+						[(ngModel)]="licenseData.isNew"
+						[onLabel]="'是'"
+          				[offLabel]="'否'"
+          				(click)="switchChange()"
+					>
+					</kendo-switch></span>
+				</p>
+				<input type="text" class="k-textbox" [(ngModel)]="licenseData.businessCode">
+			</div>
+			<div class="demo-section k-content wide">
+		        <div class="wrapper">
+		            <div>
+		            	<div class='product' *ngFor="let image of licenseData.certificates.businessCodeInformation.imageDataList let i = index">
+		            		<img [src]="image.data" alt="image preview"/>
+		            		<i class='iconfont icon-guanbipsd del' (click)="deleteImg(2,licenseData.certificates.businessCodeInformation.fileDataId[i])"></i>
+		            	</div>
+		            </div>
+		         </div>
+            	 <kendo-upload
+		         	[autoUpload]="false"
+				    (select)="selectEventHandler($event,licenseData.certificates.businessCodeInformation)"
+				    [restrictions]="myRestrictions"
+				    >
+				  </kendo-upload>
+		    </div>
+		    <div *ngIf="!licenseData.isNew">
+			    <div class="ma-t20">
+					<p>组织机构代码</p>
+					<input type="text" class="k-textbox" [(ngModel)]="licenseData.orgCode">
+				</div>
+				<div class="demo-section k-content wide">
+			        <div class="wrapper">
+			            <div>
+			            	<div class='product' *ngFor="let image of licenseData.certificates.orgCodeInformation.imageDataList let i = index">
+			            		<img [src]="image.data" alt="image preview"/>
+			            		<i class='iconfont icon-guanbipsd del' (click)="deleteImg(3,licenseData.certificates.orgCodeInformation.fileDataId[i])"></i>
+			            	</div>
+			            </div>
+			         </div>
+	            	 <kendo-upload
+			         	[autoUpload]="false"
+					    (select)="selectEventHandler($event,licenseData.certificates.orgCodeInformation)"
+					    [restrictions]="myRestrictions"
+					    >
+					  </kendo-upload>
+			    </div>
+			    <div class="ma-t20">
+					<p>税务登记证</p>
+					<input type="text" class="k-textbox" [(ngModel)]="licenseData.taxCode">
+				</div>
+				<div class="demo-section k-content wide">
+			        <div class="wrapper">
+			            <div>
+			            	<div class='product' *ngFor="let image of licenseData.certificates.taxCodeInformation.imageDataList let i = index">
+			            		<img [src]="image.data" alt="image preview"/>
+			            		<i class='iconfont icon-guanbipsd del' (click)="deleteImg(4,licenseData.certificates.taxCodeInformation.fileDataId[i])"></i>
+			            	</div>
+			            </div>
+			         </div>
+	            	 <kendo-upload
+			         	[autoUpload]="false"
+					    (select)="selectEventHandler($event,licenseData.certificates.taxCodeInformation)"
+					    [restrictions]="myRestrictions"
+					    >
+					  </kendo-upload>
+			    </div>
+			</div>
+		    <div class="btn-box">
+		    	<button class="a-button" (click)="onSubmit()">保存</button>
+		    </div>
+		</div>
+	</div>
+</div>
+<kendo-dialog title="购买成功" *ngIf="opened" (close)="close()" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-okla.png">
+        <div style="line-height:24px;margin-top:20px;">
+            保存成功！
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <a class="a-button" [routerLink]="['/client/shanxi/detail/client',pageId]">确定</a>
+    </kendo-dialog-actions>
+</kendo-dialog>

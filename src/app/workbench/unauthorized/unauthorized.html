@@ -1,0 +1,18 @@
+﻿<section class="main">
+  <div class="main-center">
+    <div class="success">
+      <div class="success-icon">
+        <i class=" iconfont icon-ai30"></i>
+        <span>未授权</span>
+      </div>
+      <p class="success-p">尊敬的用户，您的售电云尚未购买交易中心内核引擎，或引擎已过期，系统功能暂不能使用。</p>
+      <div class="ma-t30">
+        <a [routerLink]="['/store/tradingCenter']" class="a-button ma-r10">开通交易中心</a>
+        <a [routerLink]="['/authcode/useauthcode']" class="a-button bg-green">已有授权码，直接授权</a>
+      </div>
+    </div>
+  </div>
+  <div class="unauthorized-bg" style="margin:0 auto">
+    <img src="assets/images/weishouquan.png" style="display:block;margin:0 auto;vertical-align:center"/>
+  </div>
+</section>

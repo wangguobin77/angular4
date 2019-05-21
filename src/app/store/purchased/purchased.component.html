@@ -1,0 +1,17 @@
+<div class="main-title">
+    <i class="iconfont icon-lecloud_wodeyingyong"></i>已购应用
+</div>
+<div class="main-r-box pd-20">
+	<div class="list-box" *ngFor="let items of purchaseItems">
+		<div class="title">{{items.name}}</div>
+		<div class="content">
+			<div class="list" *ngFor="let item of items.apps">
+				<div class="icon-box">
+					<img [attr.src]="item.iconUrl" alt="" *ngIf="item.iconUrl!=''&&item.iconUrl!=null">
+					<img src="assets/images/application.png" alt="" *ngIf="item.iconUrl==''||item.iconUrl==null">
+				</div>
+				<span>{{item.name}}</span>
+			</div>
+		</div>
+	</div>
+</div>

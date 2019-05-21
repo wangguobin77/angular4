@@ -1,0 +1,582 @@
+﻿package-edit{
+ .select-list {
+  width: 727px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+ .select-list > div {
+  margin-bottom: 30px;
+}
+ .select-list .cs-list {
+  display: inline-block;
+  width: 600px;
+  clear: both;
+}
+ .select-list .cs-list > p {
+  margin-bottom: 8px;
+}
+ .select-list .cs-list input[type=text] {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  /*border: 1px solid #ddd;*/
+  text-indent: 10px;
+  overflow: hidden;
+}
+ .select-list .cs-list .k-numeric-wrap .k-select {
+  padding: 0;
+}
+ .select-list .cs-list .k-select {
+  height: 38px;
+  padding-top: 4px;
+}
+ .select-list .cs-list .k-select .k-icon {
+  height: 20px;
+  line-height: 18px;
+}
+ .select-list .cs-list .k-widget > span {
+  /*border-color: #ddd;*/
+}
+ .select-list .cs-list .k-widget input {
+  border: 0;
+  /*text-indent: 10px;*/
+}
+ .select-list .cs-list .unit-input-list.number-unit .unit {
+  right: 28px;
+}
+ .select-list .cs-list .drop-down {
+  width: 149px;
+}
+ .select-list .cs-list .date-box .k-datepicker {
+  width: 140px;
+}
+ .select-list .cs-list .km-switch {
+  margin-top: 31px;
+}
+ .btn-box {
+  padding: 20px;
+  text-align: center;
+}
+ .table-box {
+  padding: 46px;
+}
+ .table-box table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+ .table-box table th {
+  width: 25%;
+  text-align: left;
+  height: 40px;
+  background: #ddd;
+  padding-left: 40px;
+}
+ .table-box table td {
+  width: 25%;
+  height: 50px;
+  padding-left: 40px;
+  border-top: 1px solid #ddd;
+}
+ .table-box table td:nth-child(3n) {
+  border-left: 1px solid #ddd;
+}
+ .k-radio:checked + .k-radio-label:after {
+  left: 4px;
+  top: 4px;
+}
+ .forbidden {
+  color: #999 !important;
+  -webkit-user-select: none;
+}
+ .forbidden input {
+  background: #f4f4f4 !important;
+}
+ .k-numerictextbox {
+  position: relative;
+}
+ .k-numerictextbox .k-tooltip {
+  position: absolute;
+  top: 41px;
+  left: 0;
+}
+ .k-numerictextbox .k-tooltip .k-icon {
+  height: 16px;
+}
+ .k-picker-wrap {
+  position: relative;
+}
+ .k-picker-wrap .k-tooltip {
+  position: absolute;
+  left: 0px;
+  top: 41px;
+}
+ .k-picker-wrap {
+  background: #fff !important;
+}
+ .k-i-warning {
+  display: inline !important;
+  padding-right: 18px !important;
+}
+ .dropZoneElement {
+  position: relative;
+  display: inline-block;
+  background-color: #f8f8f8;
+  border: 1px solid #c7c7c7;
+  width: 230px;
+  height: 110px;
+  text-align: center;
+}
+ .textWrapper {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 100%;
+  font-size: 24px;
+  line-height: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+ .dropImageHereText {
+  color: #c7c7c7;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+ .product {
+  float: left;
+  position: relative;
+  margin: 0 10px 10px 0;
+  padding: 0;
+}
+ .product i {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 0 0 0 10px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+}
+ .product img {
+  width: 110px;
+  height: 110px;
+}
+ .wrapper:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+ .k-autocomplete {
+  border: 0 !important;
+}
+ .k-autocomplete input {
+  border: 1px solid #ddd !important;
+}
+ .k-autocomplete > span {
+  position: absolute;
+  padding-left: 27px;
+}
+ .k-autocomplete > span > span {
+  position: absolute;
+  left: -2px;
+}
+ table tbody .k-numerictextbox .k-icon {
+  height: 14px;
+}
+ .package {
+  padding: 30px;
+  overflow: hidden;
+}
+ .package .choice {
+  float: left;
+}
+ .package .choice .choiceBox {
+  float: left;
+  border: 1px solid #eee;
+  margin-right: 60px;
+  position: relative;
+  min-height:423px;
+}
+ .package .choice .choiceBox > i {
+  position: absolute;
+  right: -45px;
+  top: 210px;
+  font-size: 28px;
+  color: #999;
+}
+ .package .choice .choiceBox h4 {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #ddd;
+  border-bottom: 1px solid #ddd;
+}
+ .package .choice .choiceBox ul {
+  padding: 36px;
+}
+ .package .choice .choiceBox ul li {
+  margin-bottom: 20px;
+}
+ .package .choice .choiceBox ul li p {
+  width: 120px;
+  height: 38px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #eee;
+}
+ .package .choice .choiceBox ul li p.active {
+  background: #33ccff;
+  border: 1px solid #33ccff;
+  color: #fff;
+}
+ .package .choice .SortInto {
+  overflow: hidden;
+  position: relative;
+}
+ .package .choice .SortInto .xian {
+  width: 1px;
+  height: 220px;
+  background: #ddd;
+  position: absolute;
+  left: 50%;
+  top: 96px;
+}
+ .package .choice .SortInto .SortInto-l {
+  float: left;
+  padding: 36px;
+}
+ .package .choice .SortInto .SortInto-l h5 {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+ .package .choice .SortInto .SortInto-l ul {
+  padding: 0;
+}
+ .package .choice .SortInto .SortInto-l ul.prohibit li p {
+  background: #ddd;
+  border: 1px solid #ddd;
+  color: #999;
+}
+ .package .result {
+  float: left;
+  border: 1px solid #eee;
+  border-radius: 3px;
+}
+ .package .result h4 {
+  line-height: 60px;
+  padding-left: 28px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+ .package .result h4 span {
+  display: inline-block;
+  width: 6px;
+  height: 20px;
+  background: #3399ff;
+  position: absolute;
+  left: 0;
+  top: 20px;
+}
+ .package .result .result-c {
+  min-width: 330px;
+  height: 242px;
+  padding: 15px 20px;
+  overflow-y:auto;
+}
+ .package .result .result-c li {
+  margin-bottom: 10px;
+}
+ .package .result .result-c li p {
+  cursor: pointer;
+  line-height: 50px;
+  padding-left: 18px;
+}
+ .package .result .result-c li p.active {
+  background: #d1e8ff;
+  border: 1px solid #3399ff;
+  border-radius: 3px;
+}
+ .package .result .result-c .result-c-none {
+  width: 100%;
+  text-align: center;
+}
+ .package .result .result-c .result-c-none img {
+  padding-top: 20px;
+}
+ .package .result .result-b {
+  background: #eee;
+  padding: 20px;
+}
+ .package .result .result-b .size-16 {
+  padding-bottom: 10px;
+}
+ .extend {
+  padding: 25px 0 30px;
+  border-top: 1px solid #ddd;
+}
+ .extend .extend-t {
+  padding-left: 45px;
+  position: relative;
+  padding-bottom: 15px;
+  line-height: 16px;
+}
+ .extend .extend-t:before {
+  content: '';
+  width: 5px ;
+  height: 16px;
+  background: #3399ff;
+  position: absolute;
+  left: 30px;
+  top: 0px;
+}
+ .extend .extend-c {
+  padding: 10px 45px;
+  overflow: hidden;
+}
+ .extend .extend-c .extend-box {
+  float: left;
+  width: 30%;
+}
+ .extend .extend-c .extend-c-label {
+  margin-bottom: 15px;
+}
+ .extend .extend-c .extend-c-label:after {
+  content: '';
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  display: block;
+}
+ .extend .extend-c .extend-c-label .extend-check {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  /*border: 1px solid #ddd;*/
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  float: left;
+  margin-right: 5px;
+}
+ .extend .extend-c .extend-c-label .extend-check input {
+  
+}
+ .extend .extend-c .extend-c-label p {
+  position: relative;
+  float: left;
+  line-height: 20px;
+}
+ .extend .extend-c .extend-c-label p span {
+  display: block;
+  position: absolute;
+  top: 18px;
+  left: 5px;
+  width: 160px;
+  padding: 3px 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  z-index: 2;
+  display: none;
+}
+ .extend .extend-c .extend-c-label p:hover span {
+  display: block;
+}
+ .extend .extend-input {
+  width: 298px;
+  line-height: 40px;
+  border-radius: 3px;
+  position: relative;
+}
+ .extend .extend-input input {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  /*border: 1px solid #ddd;*/
+  text-indent: 10px;
+  overflow: hidden;
+}
+ .extend .extend-input .unit {
+  position: absolute;
+  top: 2px;
+  right: 40px;
+}
+ .settlement {
+  padding: 10px 45px;
+}
+ .settlement .engineBox {
+  display: inline-block;
+  margin-right: 100px;
+}
+ .settlement-c {
+  padding: 20px 45px;
+}
+ .settlement-c .settlement-list {
+  padding-bottom: 10px;
+}
+ .settlement-c .settlement-list .settlement-ss {
+  margin-bottom: 15px;
+}
+ .settlement-c .settlement-list .settlement-ss .extend-input {
+  display: inline-block;
+  margin: 0 15px;
+}
+ .settlement-c .settlement-list .settlement-ss p {
+  display: inline-block;
+  margin-left: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}
+ .settlement-c .settlement-list .settlement-ss p i {
+  padding-right: 10px;
+}
+ .settlement-c .settlement-list .settlement-ss p.zengjia {
+  color: #3399ff;
+}
+ .settlement-c .settlement-list .settlement-ss p.delete {
+  color: #999;
+}
+ .package-c {
+  margin-left: 250px;
+  padding: 20px 0;
+}
+ .package-c .package-list {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+ .package-c .package-list .package-box {
+  position: relative;
+}
+ .package-c .package-list .package-box p {
+  position: relative;
+  padding-bottom: 8px;
+}
+ .package-c .package-list .package-box p i {
+  padding-left: 5px;
+}
+ .package-c .package-list .package-box p span {
+  display: block;
+  position: absolute;
+  top: 18px;
+  left: 0px;
+  padding: 3px 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  z-index: 2;
+  display: none;
+}
+ .package-c .package-list .package-box p:hover span {
+  display: block;
+}
+ .package-c .package-list .package-box .input-box {
+  width: 298px;
+}
+ .package-c .package-list .package-box .remarks {
+  position: absolute;
+  left: 310px;
+  top: 38px;
+}
+ .package-c .package-list .extend-input {
+  width: 298px;
+  line-height: 40px;
+  border-radius: 3px;
+  position: relative;
+  display: inline-block;
+}
+ .package-c .package-list .extend-input input {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  text-indent: 10px;
+  overflow: hidden;
+}
+ .package-c .package-list .extend-input .unit {
+  position: absolute;
+  top: 2px;
+  right: 40px;
+}
+
+.content-box .content .table-c {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+.content-box .content .table-c .table-t {
+  text-align: left;
+  height: 40px;
+  background: #ddd;
+  overflow: hidden;
+}
+.content-box .content .table-c .table-t .table-t-l {
+  width: 50%;
+  float: left;
+}
+.content-box .content .table-c .table-t .table-t-l .table-t-l-p {
+  padding-left: 40px;
+}
+.content-box .content .table-c .table-t .table-t-l .table-t-l-p p {
+  display: inline-block;
+  line-height: 48px;
+  width: 49%;
+}
+.content-box .content .table-c .table-box .table-box-list-c {
+  height: 50px;
+  line-height: 50px;
+  width: 50%;
+  float: left;
+  border-bottom: 1px solid #ddd;
+}
+.content-box .content .table-c .table-box .table-box-list-c .table-box-list-p {
+  border-right: 1px solid #ddd;
+  padding-left: 40px;
+}
+.content-box .content .table-c .table-box .table-box-list-c p {
+  display: inline-block;
+  width: 49%;
+  line-height: 50px;
+}
+.content-box .content .table-c .table-box .table-box-list-c:nth-child(2n+2) .table-box-list-p {
+  border-right: none;
+}
+.content-box .content .table-c .table-box {
+  padding:0;
+}
+textarea{
+    width: 600px;
+    height: 80px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.fix-input{
+		width: 280px;
+		line-height: 40px;
+		border-radius: 3px;
+		position: relative;
+		display: inline-block;
+		.unit{
+			position: absolute;
+			top: 2px;
+			right: 40px;
+		}
+	}
+  .mar5{
+    margin: 5px;
+  }
+  .pack-ckb{
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+}

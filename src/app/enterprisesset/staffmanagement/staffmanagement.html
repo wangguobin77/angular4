@@ -1,0 +1,127 @@
+﻿
+<div class=content-box>
+	<div class=pageTitle style="background:#FFFFFF;padding-right: 20px;"><i class="iconfont icon-iconshezhi01"></i>员工管理 <button class="a-button" (click)="addy($event)">添加员工</button></div>
+	
+	  <div class=staff-list style="padding-left:0px">
+	        <div class=list-box>
+	          <!--   <div class=title-box>
+              <div class="searchBox float-r" style="margin-top: 10px">
+                <input type="text" id="content" placeholder="搜索员工">
+                <i class="iconfont icon-sousuo" id="iSearch" (click)="filterTitleRead()"></i>
+            </div>
+	                <span class= title id=titleBranch name=2></span> 
+	                <span style="color:gray">批量操作</span>
+	                <select onchange="operatorListChange(this)">
+	                    <option>请选择</option>
+	                    <option value="0" (click)="ResetPassword($event)">重置密码</option>
+	                    <option value="1">停用</option>
+	                    <option value="2">启用</option>
+	                </select>
+                  
+	            </div> -->
+	             <div id="example">
+           			 <div id="grid">
+           			 </div>
+				        </div>
+	        </div>
+	    </div>
+</div>
+
+
+
+<!-- 添加员工 -->
+<form [formGroup]="addForm" style="margin:0;padding:0" *ngIf="add" (ngSubmit)="addyg($event)">
+  <kendo-dialog title="添加员工" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          <h4>员工姓名</h4>
+          <p>
+            <input class="k-textbox" placeholder="请输入员工姓名" style="width: 300px;height:40px" formControlName="fullName" />
+          </p>
+          <h4>账号</h4>
+          <p>
+            <input class="k-textbox" placeholder="请输入员工账号" style="width: 300px;height:40px" formControlName="userName" />
+          </p>
+          <h4>密码</h4>
+          <p>
+            <input class="k-textbox" placeholder="请输入员工密码" type="password" style="width: 300px;height:40px" formControlName="newPassword" />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:4px">
+        <button class="a-button" style="margin-right:10px" [disabled]="!passForm.valid">确定</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+
+<!-- kendo dialog 编辑-->
+<form [formGroup]="passForm" style="margin:0;padding:0" *ngIf="opened" (ngSubmit)="submit($event)">
+  <kendo-dialog title="编辑" (close)="close('cancel')" class="new-dialog">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          <h4>修改姓名</h4>
+          <p>
+            <input value="{{bidAmountModel.fullName}}"
+            class="k-textbox" placeholder="请输入姓名" style="width: 300px;height:40px" formControlName="fullName" />
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:4px">
+        <button class="a-button" style="margin-right:10px" [disabled]="!passForm.valid">提交</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+<!-- <div id="dialog"></div>
+<div id="dialogT"></div> -->
+
+
+
+<!-- 重置密碼 -->
+<form  [formGroup]="mmForm"   style="margin:0;padding:0" *ngIf="a" (ngSubmit)="reset($event)">
+  <kendo-dialog title="重置密码" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          <h4>修改密码</h4>
+          <p>
+            <input value="{{bidAmountModel.newPassword}}"
+            class="k-textbox" placeholder="请输入新密碼" style="width: 300px;height:40px" formControlName="newPassword" required type="password" validationMessage="字母，数字，符号及其组合，字符数6-20"/>
+          </p>
+      </div>
+      <div style="color:gray;margin:10px;">
+                字母，数字，符号及其组合，字符数6-20。
+                重置后请及时告知企业员工
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:4px">
+        <button class="a-button" style="margin-right:10px" [disabled]="!mmForm.valid">提交</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+
+
+
+<!-- 状态  -->
+<form  [formGroup]="statuForm"  style="margin:0;padding:0" *ngIf="b" (ngSubmit)="statu($event)" >
+  <kendo-dialog title="状态" (close)="close('cancel')">
+    <div class="edit-box">
+      <div style="margin-top:20px">
+          <h4>修改状态</h4>
+          <p>
+            是否更改状态？
+          </p>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center" style="padding-left:4px">
+        <button class="a-button" style="margin-right:10px" [disabled]="!statuForm.valid">确认</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>
+
+

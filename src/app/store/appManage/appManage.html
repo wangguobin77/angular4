@@ -1,0 +1,147 @@
+<div class="main-title">
+    <i class="iconfont icon-yingyongguanli"></i>应用管理
+    <button [routerLink]="['/store']" class="float-r a-button ma-t10 ma-r20">添加应用</button>
+</div>
+<div class="tab-box">
+	<div id="tabstrip">
+        <ul>
+            <li class="k-state-active">已有应用（{{effectiveApps.length}}）</li>
+            <li>即将到期（{{comingExpirationApps.length}}）</li>
+            <li>已过期（{{expirationApps.length}}）</li>
+        </ul>
+        <div class="grid-box">
+        	<kendo-grid [data]="effectiveApps">
+                <kendo-grid-column field="" title="" width="80">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <input type="checkbox" class="k-checkbox" [attr.id]="dataItem.id" [attr.checked]="dataItem.isChecked" [(ngModel)]="dataItem.isChecked"  (ngModelChange)="onChange()">
+                        <label class="k-checkbox-label" id="selectAllBtn" [attr.for]="dataItem.id"></label>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="ProductName" title="已购应用" width="450">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="icon-box" [attr.id]="dataItem.iconId">
+                            <img src="assets/images/application.png" alt="" *ngIf="dataItem.iconUrl==null&&dataItem.iconUrl==undefined">
+                            <img [attr.src]="dataItem.iconUrl" alt="" *ngIf="dataItem.iconUrl!=null&&dataItem.iconUrl!=undefined">
+                        </div>
+                        <p class="p-t">
+                            <span class="title-name">{{dataItem.name}}</span>
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.isPaid">限时免费</span>
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.isOfficial">官方</span>
+                        </p>
+                        <p class="noteT">{{dataItem.introduction}}</p>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="Category.CategoryName" title="有效期">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <span class="color-9" *ngIf="!dataItem.isForever">有效期至：</span><span *ngIf="!dataItem.isForever">{{dataItem.validity|date:"y-MM-dd"}}</span>
+                        <span *ngIf="dataItem.isForever">永久</span>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="UnitPrice" title="操作" width="180">
+                </kendo-grid-column>
+            </kendo-grid>	
+        	<div class="operate">
+        		<div class="checkbox-box">
+            		<input type="checkbox" class="k-checkbox" id="select1" [attr.checked]="isSelectAll" [(ngModel)]="isSelectAll" (ngModelChange)="isSelectAllChange(isSelectAll)">
+            		<label class="k-checkbox-label" for="select1"></label>
+            		<span>全选</span>
+            		<span class="color-9">（已选中<span class="selected-count">{{selectedCount}}</span>个应用）</span>
+        		</div>
+        		<button class="a-button-xian a-button-xian-grey" (click)="renew()">批量续费</button>
+        	</div>	
+        </div>
+        <div class="grid-box">
+            <kendo-grid [data]="comingExpirationApps">
+                <kendo-grid-column field="" title="" width="80">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <input type="checkbox" class="k-checkbox" [attr.id]="dataItem.id" [attr.checked]="dataItem.isChecked" [(ngModel)]="dataItem.isChecked"  (ngModelChange)="onCeChange()">
+                        <label class="k-checkbox-label" id="selectAllBtn" [attr.for]="dataItem.id"></label>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="ProductName" title="已购应用" width="450">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="icon-box" [attr.id]="dataItem.iconId">
+                            <img src="assets/images/application.png" alt="" *ngIf="dataItem.iconUrl==null&&dataItem.iconUrl==undefined">
+                            <img [attr.src]="dataItem.iconUrl" alt="" *ngIf="dataItem.iconUrl!=null&&dataItem.iconUrl!=undefined">
+                        </div>
+                        <p class="p-t">
+                            <span class="title-name">{{dataItem.name}}</span>
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.isPaid">限时免费</span>
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.isOfficial">官方</span>
+                        </p>
+                        <p class="noteT">{{dataItem.introduction}}</p>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="Category.CategoryName" title="有效期">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <span class="color-9" *ngIf="!dataItem.isForever">有效期至：</span><span>{{dataItem.validity|date:"y-MM-dd"}}</span>
+                        <span *ngIf="dataItem.isForever">永久</span>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="UnitPrice" title="操作" width="180">
+                </kendo-grid-column>
+            </kendo-grid>   
+            <div class="operate">
+                <div class="checkbox-box">
+                    <input type="checkbox" class="k-checkbox" id="select2" [attr.checked]="ceIsSelectAll" [(ngModel)]="ceIsSelectAll" (ngModelChange)="ceIsSelectAllChange(ceIsSelectAll)">
+                    <label class="k-checkbox-label" for="select2"></label>
+                    <span>全选</span>
+                    <span class="color-9">（已选中<span class="selected-count">{{ceSelectedCount}}</span>个应用）</span>
+                </div>
+                <button class="a-button-xian a-button-xian-grey" (click)="ceRenew()">批量续费</button>
+            </div>  
+        </div>
+        <div class="grid-box">
+            <kendo-grid [data]="expirationApps">
+                <kendo-grid-column field="" title="" width="80">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <input type="checkbox" class="k-checkbox" [attr.id]="dataItem.id" [attr.checked]="dataItem.isChecked" [(ngModel)]="dataItem.isChecked"  (ngModelChange)="onCChange()">
+                        <label class="k-checkbox-label" id="selectAllBtn" [attr.for]="dataItem.id"></label>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="ProductName" title="已购应用" width="450">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="icon-box" [attr.id]="dataItem.iconId">
+                            <img src="assets/images/application.png" alt="" *ngIf="dataItem.iconUrl==null&&dataItem.iconUrl==undefined">
+                            <img [attr.src]="dataItem.iconUrl" alt="" *ngIf="dataItem.iconUrl!=null&&dataItem.iconUrl!=undefined">
+                        </div>
+                        <p class="p-t">
+                            <span class="title-name">{{dataItem.name}}</span>
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.isPaid">限时免费</span>
+                            <span class="tips-icon color-blue" *ngIf="!dataItem.isOfficial">官方</span>
+                        </p>
+                        <p class="noteT">{{dataItem.introduction}}</p>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="Category.CategoryName" title="有效期">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <span class="color-9" *ngIf="!dataItem.isForever">有效期至：</span><span>{{dataItem.validity|date:"y-MM-dd"}}</span>
+                        <span *ngIf="dataItem.isForever">永久</span>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="UnitPrice" title="操作" width="180">
+                </kendo-grid-column>
+            </kendo-grid>   
+            <div class="operate">
+                <div class="checkbox-box">
+                    <input type="checkbox" class="k-checkbox" id="select3" [attr.checked]="cIsSelectAll" [(ngModel)]="cIsSelectAll" (ngModelChange)="cIsSelectAllChange(cIsSelectAll)">
+                    <label class="k-checkbox-label" for="select3"></label>
+                    <span>全选</span>
+                    <span class="color-9">（已选中<span class="selected-count">{{cSelectedCount}}</span>个应用）</span>
+                </div>
+                <button class="a-button-xian a-button-xian-grey" (click)="cRenew()">批量续费</button>
+            </div>  
+        </div>
+    </div>
+</div>
+<kendo-dialog title="提示" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-warm.png">
+        <div style="line-height:24px;margin-top:20px;">
+            请选择需要续费的应用
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <button (click)="close('yes')" class="a-button">确定</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

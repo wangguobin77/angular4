@@ -1,0 +1,88 @@
+<div class="grid-box">
+    <kendo-grid [data]="gridData">
+        <kendo-grid-column field="Discontinued" title="" width="80">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <input type="checkbox" class="k-checkbox" [attr.id]="dataItem.id" [attr.checked]="dataItem.isChecked" [(ngModel)]="dataItem.isChecked"  (ngModelChange)="onChange(dataItem.isChecked)">
+                <label class="k-checkbox-label" id="selectAllBtn" [attr.for]="dataItem.id"></label>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Discontinued" title="应用" width="320">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="icon-box">
+                    <img src="assets/images/application.png" alt="" *ngIf="dataItem.app.iconUrl == undefined||dataItem.app.iconUrl == null">
+                    <img [attr.src]="dataItem.app.iconUrl" alt="" *ngIf="dataItem.app.iconUrl != undefined&&dataItem.app.iconUrl != null">
+                </div>
+                <p class="p-t"><span class="title-name">{{dataItem.app.name}}</span></p>
+                <p class="p-t">
+                    <span class="tips-icon color-blue" *ngIf="!dataItem.app.isPaid">限时免费</span>
+                    <span class="tips-icon color-blue" *ngIf="dataItem.app.isOfficial">官方</span>
+                </p>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="ProductID" title="收费标准" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span>{{dataItem.app.price}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="ProductName" title="数量" width="200">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-numerictextbox 
+                    [(ngModel)]="dataItem.quantity" 
+                    [value]="dataItem.quantity"
+                    decimals="0"
+                    [format]="'#'" (valueChange)="onCountChange()">
+                </kendo-numerictextbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Category.CategoryName" title="小计"  width="150">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span class="color-jacinth">￥<span class="subtotal">{{dataItem.quantity*dataItem.app.price}}</span></span>
+                <i class="iconfont icon-guanbipsd del" (click)="cartDelete(dataItem.app.id)"></i>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>   
+    <div class="operate pd-30">
+        <div class="checkbox-box">
+            <input type="checkbox" class="k-checkbox" id="select" [attr.checked]="isSelectAll" [(ngModel)]="isSelectAll" (ngModelChange)="isSelectAllChange(isSelectAll)">
+            <label class="k-checkbox-label" id="selectAllBtn" for="select"></label>
+            <span>全选</span>
+            <span class="color-blue ma-l20 cur-p ma-r30" (click)="delAll()">删除选中应用</span>
+            <span>已选中<span id="selectedCount" class="color-blue">{{totleCount}}</span>件商品</span>
+            <div  class="float-r right-box">
+                <p><span class="right-title">总价：</span><span>￥</span><span>{{totlePrice}}</span></p>
+                <p class="ma-t10"><span class="right-title">可抵扣金额：</span><span>￥</span><span>{{deduction}}</span></p>
+            </div>
+        </div>
+        <div class="checkbox-box pd-t20">
+            <input type="checkbox" class="k-checkbox" id="select2" [attr.checked]="isUsedEBeans" [(ngModel)]="isUsedEBeans" (ngModelChange)="isUsedEBeansChange(isUsedEBeans)">
+            <label class="k-checkbox-label" for="select2"></label>
+            <span>使用电豆抵扣</span>
+            <span class=" ma-l20 cur-p ma-r30">电豆数量</span>
+            <span>{{EBeans}}</span>
+            <div  class="float-r right-box">
+                <p><span class="right-title">抵扣：</span><span class="color-exactGreen">-￥</span><span class="color-exactGreen">{{beansDeduction}}</span></p>
+            </div>
+            <div class="atention-tip color-9">
+                <i class="iconfont icon-zhuyi"></i>
+                <span>电豆抵扣不能抵扣购买的电豆，移动销售工具费用，营业厅个性化配置及基础套餐购买。</span>
+            </div>
+        </div>
+        <div class="totlePrice">
+            <div  class="float-r right-box">
+                <p><span class="right-title" style="margin-top: 6px;">应付：</span><span class="color-red">￥</span><span class="color-red size-24">{{totlePrice-beansDeduction}}</span></p>
+                <button class="a-button ma-l20" (click)="nextStep()">下一步</button>
+            </div>
+        </div>
+    </div>  
+</div>
+<kendo-dialog title="提示" *ngIf="opened" (close)="close('cancel')" class="new-dialog">
+    <div class="text-center dialog-box">
+        <img src="assets/images/pic-warm.png">
+        <div style="line-height:24px;margin-top:20px;">
+            请选择商品
+        </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <button (click)="close('yes')" class="a-button">确定</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

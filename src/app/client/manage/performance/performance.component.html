@@ -1,0 +1,151 @@
+﻿<div class="content-box customerStatistics">
+    <div class="pageTitle">
+      <i class="iconfont icon-kehuguanlion"></i>客户统计与分析
+    </div>
+    <div class="content ma-t20">
+      <div class="statistics">
+        <ul>
+          <li>
+            <div class="statistics-c">
+              <p class="number">{{data.signCount}}</p>
+              <p>签约客户总数</p>
+            </div>
+          </li>
+          <li>
+            <div class="statistics-c">
+              <p class="number">{{data.currentMonthCount}}</p>
+              <p>本月新签客户数</p>
+            </div>
+          </li>
+          <li>
+            <div class="statistics-c">
+              <p class="number">{{data.lastestThreeMonthCount}}</p>
+              <p>近三月新签客户数</p>
+            </div>
+          </li>
+          <li>
+            <div class="statistics-c border-0">
+              <p class="number">{{data.signCount}}</p>
+              <p>年度新签客户数</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="content ma-t20">
+      <div class="content-title">
+        <span class="title" name="2">月新签客户数</span>
+        <div class="title-r float-r ma-r30 size-14">
+          <span>用电年份：</span><input id="years" required class="drop-down"  />
+      </div>
+      </div>
+      <div class="grid-box"><p class="grid-s">电量（万千万时）</p><div id="chart"></div></div>
+    </div>
+    <div class="modular">
+      <ul>
+
+
+        <li class="modular-li">
+          <div class="content ma-t20">
+            <div class="content-title">
+              <span class="title" name="2">客户等级</span>
+            </div>
+            <div class="grid-box"><div id="ringChart"></div></div>
+          </div>
+        </li>
+
+      <!-- // 预估年用电量分布
+       -->
+
+      <li class="modular-li">
+          <div class="content ma-t20">
+            <div class="content-title">
+              <span class="title" name="2">区域分布</span>
+            </div>
+            <div class="grid-box"><div id="chart1"></div></div>
+          </div>
+        </li>
+
+       <!--  <li class="modular-li">
+          <div class="content ma-t20">
+            <div class="content-title">
+              <span class="title" name="2">区域分布</span>
+            </div>
+            <div class="grid-box"><div id="grid"></div></div>
+            <div class="grid-box"><div id="ringChart"></div></div>
+          </div>
+        </li> -->
+
+    <!-- //行业分布 -->
+
+        <li class="modular-li">
+          <div class="content ma-t20">
+            <div class="content-title">
+              <span class="title" name="2">行业分布</span>
+            </div>
+            <div class="grid-box"><div id="chart2"></div></div>
+          </div>
+        </li>
+
+
+
+  <!-- 预估年用电量分布 -->
+
+        <li class="modular-li">
+          <div class="content ma-t20">
+            <div class="content-title">
+              <span class="title" name="2">预估年用电量分布</span>
+              <div class="title-r float-r ma-r30 size-14">
+                单位：万千瓦时
+              </div>
+            </div>
+            <div class="grid-box"><div id="grid"></div></div>
+          </div>
+        </li>
+
+      </ul>
+
+
+    </div>
+    <div class="content ma-t20">
+      <div class="content-title">
+        <span class="title" name="2">月新签客户数</span>
+        <div class="title-r float-r ma-r30 size-14">
+          单位：万千瓦时
+        </div>
+      </div>
+      <div class="grid-box">
+        <div class="td-l-box">
+          <div class="will-buy">
+            <p class="echart-title">
+                     <span class="color-9">预购电量：</span>
+                     <span class="count">60000</span>
+                  </p>
+                  <p class="echart-box">
+                     <span class="bg-blue"></span>
+                  </p>
+               </div>
+               <div class="bought">
+            <p class="echart-title">
+                     <span class="color-9">交易电量：</span>
+                     <span class="count">30000</span>
+                  </p>
+                  <p class="echart-box">
+                     <span class="bg-lightBlue"></span>
+                  </p>
+               </div>
+               <div class="used">
+            <p class="echart-title">
+                     <span class="color-9">实用电量：</span>
+                     <span class="count">40000</span>
+                  </p>
+                  <p class="echart-box">
+                     <span class="bg-exactGreen"></span>
+                  </p>
+               </div>
+             </div>
+      </div>
+    </div>
+  </div>

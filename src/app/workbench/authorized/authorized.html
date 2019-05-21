@@ -1,0 +1,316 @@
+<section class="main" style="background: #eee">
+  <div class="main-top">
+    <span class="corner"><img src="assets/images/corner.png"/></span>
+    <div class="main-t-l" style="width:399px;height:0">
+      <div class="user">
+        <img src="{{data.picUrl}}" />
+      </div>
+      <div class="own-msg">
+        <p class="pm-title">{{data.userName}}，下午好</p>
+        <p class="color-9 jiaose" id="jiaose">
+
+          <!-- <span *ngFor="let item of items">{{item.nameCN}},</span> -->
+          <a href="#" style="display:inline-block;height:20px;color: #999999" >我的角色：</a>
+          <a style="display:inline-block;height:20px;color: #999999;" id="role" [title]="rolenames">{{rolenames}}</a>
+          <p class="color-9">最后登录:{{data.localLoginTime}}</p>
+      </div>
+    </div>
+    <div class="main-t-r">
+      <ul>
+        <li>
+          <div class="dataNumber">
+            <div class="dataNumber-icon">
+              <i class="iconfont icon-yonghu color-blue"></i>
+            </div>
+            <div class="dataNumber-p">
+              <p class="number">{{workdata.monthAddCustomerCount}}</p>
+              <p class="color-9">本月新增客户(个)</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="dataNumber">
+            <div class="dataNumber-icon">
+              <i class="iconfont icon-hetong2 color-blueWathet"></i>
+            </div>
+            <div class="dataNumber-p">
+              <p class="number">{{workdata.executeContractCount}}</p>
+              <p class="color-9">正执行合约(份)</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="dataNumber">
+            <div class="dataNumber-icon">
+              <i class="iconfont icon-dian1 color-lightGreen"></i>
+            </div>
+            <div class="dataNumber-p">
+              <p class="number">{{workdata.purchaseElectricity}}</p>
+              <p class="color-9">{{workdata.electricityUnit}}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-c">
+    <div class="main-c-l" style="height: 338px">
+      <div class="title-list calendar-title">
+        <span class="size-18">任务</span>
+        <span class="size-14 float-r cur-p" id="spTaskAdd">
+              <i class="iconfont icon-zengjia color-blue"></i>创建
+            </span>
+      </div>
+      <div class="calendar-box">
+        <div id="calendar"></div>
+      </div>
+    </div>
+    <div class="main-c-r" style="height: 338px">
+      <div class="title-list">
+        <span class="size-18">任务流程</span>
+        <!--<span class="size-14 float-r cur-p">
+            <a href=""><i class="iconfont icon-wenhao color-9"></i></a>
+        </span>-->
+      </div>
+      <div class="process">
+        <ul>
+          <li>
+            <p class="process-t">客户销售</p>
+            <div class="process-c">
+              <a [routerLink]="vRole.getUrl(vRole.url.listCustomer,100)"><span class="process-icon" [ngClass]="{'color-blue active':vRole.hasFun(100),no:!vRole.hasFun(100)}"><i class="iconfont icon-sale"></i></span></a>
+              <div class="operation">
+                <a [routerLink]="vRole.getUrl(vRole.url.bidSmart,101)"><p [ngClass]="{'color-blue':vRole.hasFun(101),no:!vRole.hasFun(101)}"><span class="operation-icon "><i class="iconfont icon-zhineng"></i></span><span class="operation-n">智能报价</span></p></a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <p class="process-t">售电合约</p>
+            <div class="process-c">
+              <a [routerLink]="vRole.getUrl(vRole.url.listContract,102)"><span class="process-icon" [ngClass]="{'color-lightBlue':vRole.hasFun(102),no:!vRole.hasFun(102)}"><i class="iconfont icon-hetong2"></i></span></a>
+              <div class="operation">
+                <a [routerLink]="vRole.getUrl(vRole.url.bidForecast,104)"><p [ngClass]="{'color-lightBlue':vRole.hasFun(104),no:!vRole.hasFun(104)}"><span class="operation-icon"><i class="iconfont icon-san" ></i></span><span class="operation-n">风险控制</span></p></a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <p class="process-t">采购计划</p>
+            <div class="process-c">
+              <a [routerLink]="vRole.getUrl(vRole.url.listPurchasePlan,103)"><span class="process-icon" [ngClass]="{'color-green':vRole.hasFun(103),no:!vRole.hasFun(103)}"><i class="iconfont icon-jihua"></i></span></a>
+            </div>
+          </li>
+          <li>
+            <p class="process-t">采购执行</p>
+            <div class="process-c">
+              <a [routerLink]="vRole.getUrl(vRole.url.listPurchaseExec,105)"><span class="process-icon" [ngClass]="{'color-violet':vRole.hasFun(105),no:!vRole.hasFun(105)}"><i class="iconfont icon-jinlingyingcaiwangtubiao07"></i></span></a>
+            </div>
+          </li>
+          <li>
+            <p class="process-t">合约执行</p>
+            <div class="process-c">
+              <a [routerLink]="vRole.getUrl(vRole.url.listContractExec,107)"><span class="process-icon" [ngClass]="{'color-blue':vRole.hasFun(107),no:!vRole.hasFun(107)}"><i class="iconfont icon-zhihang"></i></span></a>
+              <div class="operation-last">
+                <img src="/assets/images/xian.png"/>
+                <a [routerLink]="vRole.getUrl(vRole.url.listSettlement,106)"><p [ngClass]="{'color-blue':vRole.hasFun(106),no:!vRole.hasFun(106)}"><span class="operation-icon "><i class="iconfont icon-qiandai"></i></span><span class="operation-n">财务结算</span></p></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main-c">
+    <div class="main-c-l mainl" style="height: 288px;">
+        <div class="title-list">
+          <span class="size-18">最新信息</span>
+            <a [routerLink]="['/messagelist']" routerLinkActive="active">
+                <span class="size-14 float-r cur-p">
+                  <i class="iconfont icon-jiantou1 color-9"></i>
+                </span>
+            </a>
+        </div>
+
+
+
+      <div class="news">
+        <div class="news-list" *ngFor="let message of messages;let i=index;">
+          <div class="news-t">
+            <p class="title" ><span [ngClass]="{'bg-blue':i==0,'bg-lightBlue':i==1,'bg-exactGreen':i==2}"></span>[{{message.cType}}]</p>
+            <p class="color-9 float-r">{{message.loaclPublishDate}}</p>
+          </div>
+          <div class="news-c" (click)="doclick($event,message)" style="cursor:pointer">
+            {{message.content}}
+          </div>
+        </div>
+
+
+        <!--  <div class="news-list">
+              <div class="news-t">
+                <p class="title"><span class="bg-lightBlue"></span>我的消息</p>
+                <p class="color-9 float-r">2017-1-19 20:23</p>
+              </div>
+
+              <div class="news-c">
+                算法驱动设计：人工智能的设计颠覆之道人工智能的设计颠覆之道人工智能的设计颠覆之道人工智能的设计颠覆之道
+              </div>
+            </div>
+            <div class="news-list">
+              <div class="news-t">
+                <p class="title"><span class="bg-exactGreen"></span>我的消息</p>
+                <p class="color-9 float-r">2017-1-19 20:23</p>
+              </div>
+              <div class="news-c">
+                算法驱动设计：人工智能的设计颠覆之道人工智能的设计颠覆之道人工智能的设计颠覆之道
+              </div>
+            </div> -->
+      </div>
+    </div>
+    <div class="main-c-r" style="height: 288px;">
+      <div class="title-list">
+        <span class="size-18">快捷入口</span>
+      </div>
+      <div class="entrance">
+        <ul>
+          <li>
+            <a class="bg-ddd" *ngIf="!vRole.hasFun(201)"><i class="iconfont icon-jinru"></i>创建客户</a>
+            <a class="bg-exactBlue" *ngIf="vRole.hasFun(201)" [routerLink]="vRole.url.createCustomer"><i class="iconfont icon-jinru"></i>创建客户</a>
+          </li>
+          <li>
+            <a class="bg-ddd" *ngIf="!vRole.hasFun(202)"><i class="iconfont icon-jinru"></i>创建合约</a>
+            <a class="bg-lightBlue" *ngIf="vRole.hasFun(202)" [routerLink]="vRole.url.createContract"><i class="iconfont icon-jinru"></i>创建合约</a>
+          </li>
+          <li>
+            <a class="bg-ddd" *ngIf="!vRole.hasFun(203)"><i class="iconfont icon-jinru"></i>创建采购计划</a>
+            <a class="bg-exactGreen" *ngIf="vRole.hasFun(203)" [routerLink]="vRole.url.createPurchasePlan"><i class="iconfont icon-jinru"></i>创建采购计划</a>
+          </li>
+        </ul>
+        <!-- <ul>
+              <li>
+                <a class="bg-ddd" *ngIf="!vRole.hasFun(204)"><i class="iconfont icon-jinru"></i>报价响应</a>
+                <a class="bg-violet" *ngIf="vRole.hasFun(204)" [routerLink]="vRole.url.bidRespone"><i class="iconfont icon-jinru"></i>报价响应</a>
+              </li>
+            </ul>-->
+        <!--     <ul>
+              <li><a href="" class="bg-exactGreen"><i class="iconfont icon-jinru"></i>竞价价格预测</a></li>
+              <li><a href="" class="bg-exactGreen"><i class="iconfont icon-jinru"></i>竞价复盘</a></li>
+            </ul> -->
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- <footer style="height:30px;width: 1200px;margin:0 auto;line-height: 30px;text-align: center;background: #000;margin-top: 300px;color:#777777;">
+    版权所有 ©上海朋迈能源科技有限公司备案号：沪ICP备17004203号-1
+</footer> -->
+
+<div class="popup-cart center" style="display: none;z-index: 999;" id="divTaskAdd">
+  <div class="pop-box">
+    <div class="pop-top">
+      <p>添加任务</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <ul>
+        <li>
+          <label class="required">任务名称</label>
+          <div class="input-box">
+            <input type="text" class="pop-input" id="txtTaskName" placeholder="" />
+            <span class="remarks"><label><input type="checkbox" id="ckbLevel" value="1" />&nbsp;重要任务</label></span>
+            <span class="tishi"></span>
+          </div>
+        </li>
+        <li>
+          <label class="required">任务时间</label>
+          <div class="input-box">
+            <div class="calendar-inputbox">
+              <input type="text" id="txtTaskTime" />
+              <span class="tishi" id="tsTaskTime" style="margin-top:-5px"></span>
+            </div>
+            <select id="selTime" class="pop-select">
+                            <option [value]="item" *ngFor="let item of task.dates">{{item}}</option>
+                        </select>
+          </div>
+        </li>
+        <li>
+          <label class="required">选择客户</label>
+          <div class="input-box">
+            <select class="pop-select pop-select-long" id="selCustomer">
+                      <option [value]="item.id" *ngFor="let item of task.customers">{{item.name}}</option>
+                    </select>
+          </div>
+        </li>
+        <li>
+          <label class="required">任务内容</label>
+          <div class="textarea-box">
+            <textarea id="txtDescription" rows="8" cols="50" placeholder="输入任务内容，还可以输入200字" maxlength="200" style="border:1px solid #ddd; width:420px;padding:5px"></textarea>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pop-footer">
+      <a type="button" id="btnSubmit" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+<!--工作台管理器-->
+<div class="popup-cart center" style="display: none;z-index: 999;" id="">
+  <div class="pop-box" style="width: 662px">
+    <div class="pop-top">
+      <p>工作台管理器</p>
+      <span class="pop-del"><i class="iconfont icon-guanbipsd"></i></span>
+    </div>
+    <div class="pop-content">
+      <div class="workbench-of">
+        <img src="assets/images/application-03.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-05.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-09.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-10.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-03.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-05.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-09.png" />
+        <p>合约管理</p>
+      </div>
+      <div class="workbench-of">
+        <img src="assets/images/application-10.png" />
+        <p>合约管理</p>
+      </div>
+    </div>
+    <div class="pop-footer">
+      <a type="button" class="pop-button cancel-button">取消</a>
+      <a type="button" class="pop-button confirm-button">确认</a>
+    </div>
+  </div>
+</div>
+
+<div class="guide" id="guide" index="6" style="display:none;position: absolute; top: 0;left: 0;opacity:9999">
+  <div class="center-note">
+    <img src="assets/images/cgkt.png" alt="">
+    <p>贵公司已成功开通售电云公有云版</p>
+  </div>
+  <div class="guide-list-box" id="guideBox">
+    <div class="del" onclick="closeGuide()"></div>
+  </div>
+</div>

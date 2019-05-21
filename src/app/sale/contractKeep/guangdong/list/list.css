@@ -1,0 +1,63 @@
+﻿.contractPigeonhole .filtrate-box {
+  padding: 30px 20px 0;
+}
+.contractPigeonhole .filtrate-box > div {
+  text-align: right;
+}
+.contractPigeonhole .filtrate-box > div > div {
+  display: inline-block;
+  margin: 10px 10px 0 10px;
+  text-align: left;
+}
+.contractPigeonhole .filtrate-box > div > div label {
+  margin-right: 10px;
+}
+.contractPigeonhole .filtrate-box > div .k-datepicker {
+  width: 200px;
+  height: 36px;
+  margin-top: -8px;
+}
+.contractPigeonhole .filtrate-box > div .k-datepicker input {
+  height: 36px;
+  line-height: 36px;
+}
+.contractPigeonhole .filtrate-box > div .k-datepicker .k-select {
+  line-height: 40px;
+}
+.contractPigeonhole .filtrate-box > div .k-datepicker .k-picker-wrap {
+  border-radius: 4px;
+}
+.contractPigeonhole .grid-box {
+  padding: 40px 30px;
+}
+.contractPigeonhole .grid-box .k-grid-content {
+  overflow: hidden;
+}
+.contractPigeonhole .grid-box .k-grid-header {
+  padding: 0 !important;
+}
+.contractPigeonhole .grid-box th.k-header {
+  border-width: 0;
+  background: #ddd;
+  line-height: 40px;
+  color: #333;
+}
+.contractPigeonhole .grid-box th.k-header .k-link {
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+}
+.contractPigeonhole .grid-box th.k-header:first-child {
+  padding-left: 70px;
+}
+.contractPigeonhole .grid-box td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+}
+.contractPigeonhole .grid-box td a {
+  color: #3399ff;
+}
+.contractPigeonhole .grid-box tr td:first-child {
+  padding-left: 70px;
+}

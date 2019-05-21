@@ -1,0 +1,87 @@
+﻿<div class="content-box contractHistory">
+  <div class="pageTitle">
+    <i class="iconfont icon-hetong"></i>查看合约
+    <a [routerLink]="['/sale/contracts/anhui/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title title-tag">
+      <span class="title" name="2">合约概览</span>
+    </div>
+    <div class="cd-box">
+      <div class="line-box">
+        <p>
+          <span class="color-9">购电方：</span>
+          <span>{{contractInfo.SubjectName}}</span>
+        </p>
+        <p>
+          <span class="color-9">所属交易中心：</span>
+          <span>安徽交易中心</span>
+        </p>
+        <p>
+          <span class="color-9">合约状态：</span>
+          <span class="color-red">{{contractInfo.StatusString}}</span>
+        </p>
+        <p>
+          <span class="color-9">合约有效期：</span>
+          <span>{{contractInfo.ValidDate}}</span>
+        </p>
+        <p>
+          <span class="color-9">用电类型：</span>
+          <span>{{contractInfo.UsedPowerTypeString}}</span>
+        </p>
+         <p>
+          <span class="color-9">合约名称：</span>
+          <span>{{contractInfo.ContractName}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="c-echart">
+      <div class="will-buy">
+        <div class="echart-box">
+          <div class="bg-blue" [style.width]="contractInfo.PlanRatef">
+            <p class="echart-label">用电量进度    <span class="color-blue">{{ contractInfo.PlanRate}}</span></p>
+            <p class="echart-p" style="width:300px; margin-top:15px; position:initial"><span class="color-9">总预购</span>  {{contractInfo.PlansCount}} 万千瓦时</p>
+          </div>
+          <div class="bg-red" [style.width]="contractInfo.TradeRatef">
+            <p class="echart-label" [hidden]="contractInfo.TradeRate=='0%'">用电量进度    <span class="color-red">{{ contractInfo.TradeRate}}</span></p>
+            <p class="echart-p" style="width:200px; text-align:right"><span class="color-9">总成交</span>  {{contractInfo.TradeCount==null?0:contractInfo.TradeCount}} 万千瓦时</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content ma-t20">
+    <div class="content-title">
+      <a class="title active ma-r60 cur-p" name="2" [routerLink]="[currentUrl]">历史执行情况</a>
+      <a class="title ma-r60 color-9 cur-p" name="2" [routerLink]="[detailUrl]">合约细则</a>
+      <!--<span class="a-button float-r ma-r20 ma-t10" id="edit">编辑</span>
+      <span class="a-button-xian float-r ma-r20 ma-t10" id="save" style="display: none;">保存</span>-->
+    </div>
+    <div class="cd-box pd-t0">
+      <div class="grid-box"><div id="grid"></div></div>
+    </div>
+  </div>
+</div>
+
+
+
+<form [formGroup]="bidAmountForm" style="margin:0;padding:0" *ngIf="opened" (ngSubmit)="submit($event)">
+  <kendo-dialog title="月度竞价申报" (close)="close('cancel')">
+    <div class="edit-box">
+      <p>
+        <label>用电周期：{{bidAmountModel.date}}</label>
+      </p>
+      <div style="margin-top:20px">
+        <label>总预购电量(万千瓦时)：</label>
+        <span class="unit-input-list" style="margin-top:5px;">
+          <!--<input id="planBuy" type="number" name="UnitsInStock" required validationMessage="不能为空" data-bind="value:UnitsInStock" style="width: 100%;height: 32px;" />-->
+          <kendo-numerictextbox required formControlName="bidAmount"></kendo-numerictextbox>
+        </span>
+      </div>
+    </div>
+    <kendo-dialog-actions class="button-center">
+        <button class="a-button" style="margin-right:10px" [disabled]="!bidAmountForm.valid">提交</button>
+        <button (click)="close('yes')" class="a-button a-button-grey">取消</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>

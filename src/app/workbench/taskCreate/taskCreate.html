@@ -1,0 +1,56 @@
+ 
+<!-- 任务创建 -->
+        <div class="popup-cart center" style="z-index: 999;" id="">
+            <div class="pop-box" style="width: 662px">
+                <div class="pop-top">
+                    <p>添加任务安排</p>
+                    <a [routerLink]="['/workbench']" routerLinkActive="active" style="text-decoration:none"> <span class="pop-del"><i class="iconfont icon-guanbipsd" style="color:#333"></i></span></a>
+                </div>
+                <div class="pop-content">
+                    <ul>
+                        <li>
+                            <label class="required">任务名称</label>
+                            <div class="input-box">
+                                <input type="text" class="pop-input" id="" value="" placeholder="" />
+                                <span class="remarks"><span class="color-red">* </span>重要任务</span>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="required">任务时间</label>
+                            <div class="input-box">
+                                <div class="calendar-inputbox">
+                                    <input type="text" class="pop-input" id="txtTaskTime" value="" placeholder="" />
+                                </div>
+                                <select name="" class="pop-select">
+                                    <option value="">00:30</option>
+                                    <option value="">01:30</option>
+                                    <option value="">02:30</option>
+                                    <option value="">03:30</option>
+                                    <option value="">04:30</option>
+                                    <option value="">05:30</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="required">选择客户</label>
+                            <div class="input-box">
+                                <select name="" class="pop-select pop-select-long">
+                                    <option value="">无</option>
+                                    <option value="">安徽高朋科技有限公司</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li style="margin-top: 20px">
+                            <label class="required">任务内容</label>
+                            <div class="textarea-box">
+                                <textarea name="" rows="8" cols="50" placeholder="输入任务内容，还可以输入200字" style="width:100%"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pop-footer" >
+                    <a type="button" class="pop-button cancel-button">取消</a>
+                    <a type="button" class="pop-button confirm-button">确认</a>
+                </div>
+            </div>
+        </div>

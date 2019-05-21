@@ -1,0 +1,367 @@
+<div class="content">
+	<div class="title-tag title-list border-0">基础信息
+		<span class="color-blue cur-p size-14 float-r ma-r60" (click)="baseInEdit()">编辑</span>
+	</div>
+	<div class="content-c-box" id="informationBox">
+		<p>
+			<span class="color-9">用户主体：</span>
+			<span>{{basicInfo.subjectName}}</span>
+		</p >
+		<p>
+			<span class="color-9">客户编号：</span>
+			<span>{{basicInfo.customerNum}}</span>
+		</p>
+		<p>
+			<span class="color-9">密钥：</span>
+			<span>{{basicInfo.secretKey}}</span>
+		</p>
+		<p>
+			<span class="color-9">所在城市：</span>
+			<span>{{basicInfo.formatProviceCity}}</span>
+		</p>
+		<p>
+			<span class="color-9">预估年用电：</span>
+			<span *ngIf="!isEdit&&basicInfo.electricityAmount!=null&&!isEdit&&basicInfo.electricityAmount!=''"><span id="forecastEleUsedText">{{basicInfo.electricityAmount}}</span> 万千瓦时</span>
+			<span class="unit-input-list four-bit" *ngIf="isEdit">
+				<kendo-numerictextbox
+                    [(ngModel)] = "editInfo.electricityAmount" style="width: 200px;"
+                ></kendo-numerictextbox>
+				<span class="unit ma-r20">万千瓦时</span>
+			</span>
+			<span *ngIf="!isEdit&&basicInfo.electricityAmount==null||!isEdit&&basicInfo.electricityAmount==''">未填写</span>
+		</p>
+		<p>
+			<span class="color-9">用电类型：</span>
+			<span id="eleUserTypeText">{{basicInfo.formatUsedPowerType}}</span>
+		</p>
+		<p>
+			<span class="color-9">法定代表人：</span>
+			<span id="manInLawText" *ngIf="!isEdit&&basicInfo.legalPerson!=null&&!isEdit&&basicInfo.legalPerson!=''">{{basicInfo.legalPerson}}</span>
+			<span *ngIf="!isEdit&&basicInfo.legalPerson==null||!isEdit&&basicInfo.legalPerson==''">未填写</span>
+			<span *ngIf="isEdit">
+				<input [(ngModel)]='editInfo.legalPerson' [attr.value]='basicInfo.legalPerson' type="text" class="k-textbox" maxlength="14" required validationMessage="请输入法定代表人;" style="width: 200px;"/>
+			</span>
+		</p>
+		<p class="width-more">
+			<span class="color-9">登记工商管理局：</span>
+			<span id="checkInAICText" *ngIf="!isEdit&&basicInfo.registerManagePlace!=null&&!isEdit&&basicInfo.registerManagePlace!=''">{{basicInfo.registerManagePlace}}</span>
+			<span *ngIf="!isEdit&&basicInfo.registerManagePlace==null||!isEdit&&basicInfo.registerManagePlace==''">未填写</span>
+			<span *ngIf="isEdit">
+				<input type="text" [(ngModel)]='editInfo.registerManagePlace' [attr.value]='basicInfo.registerManagePlace' class="k-textbox" maxlength="14" required validationMessage="请输入登记工商管理局;" style="width: 200px;" />
+			</span>
+		</p>
+		<p>
+			<span class="color-9">电压等级：</span>
+			<span *ngIf="!isEdit&&basicInfo.voltageLevel!=null&&!isEdit&&basicInfo.voltageLevel!=''"><span id="KVgradeText">{{voltageLevelArr[basicInfo.voltageLevel-1]}}</span> </span>
+			<span *ngIf="!isEdit&&basicInfo.voltageLevel==null||!isEdit&&basicInfo.voltageLevel==''">未填写</span>
+			<span *ngIf="isEdit">
+				<kendo-dropdownlist
+                    name="voltageLevel"
+                   	[(ngModel)]="editInfo.voltageLevel"
+                    [data]="voltageLevelData"
+                    [textField]="'text'"
+                    [valueField]="'value'"
+                    [valuePrimitive]="true"
+                    [defaultItem]="{text:'请选择电压等级',value:null}"
+                    style="width: 200px;"
+                >
+                </kendo-dropdownlist>
+			</span>
+		</p>
+		<p>
+			<span class="color-9">变压器容量：</span>
+			<span *ngIf="!isEdit&&basicInfo.transformerCapability!=null&&!isEdit&&basicInfo.transformerCapability!=''"><span id="KVAText">{{basicInfo.transformerCapability}}</span>KVA</span>
+			<span *ngIf="!isEdit&&basicInfo.transformerCapability==null||!isEdit&&basicInfo.transformerCapability==''">未填写</span>
+			<span class="unit-input-list  two-bit" *ngIf="isEdit">
+				<kendo-numerictextbox
+                    [(ngModel)] = "editInfo.transformerCapability"
+                    [format]="'#.####'"
+                    [decimals]=4
+                     style="width: 200px;"
+                ></kendo-numerictextbox>
+				<span class="unit ma-r20">KV</span>
+			</span>
+		</p>
+		<p>
+			<span class="color-9">总用电容量：</span>
+			<span *ngIf="!isEdit&&basicInfo.capacitance!=null&&!isEdit&&basicInfo.capacitance!=''"><span id="eleUsedCapacityText">{{basicInfo.capacitance}}</span>KW</span>
+			<span *ngIf="!isEdit&&basicInfo.capacitance==null||!isEdit&&basicInfo.capacitance==''">未填写</span>
+			<span class="unit-input-list  two-bit" *ngIf="isEdit">
+				<kendo-numerictextbox
+                    [(ngModel)] = "editInfo.capacitance" style="width: 200px;"
+                ></kendo-numerictextbox>
+				<span class="unit ma-r20">KW</span>
+			</span>
+		</p>
+		<p>
+			<span class="color-9">创建时间：</span>
+			<span>{{basicInfo.formatCreateDate}}</span>
+		</p>
+		<p>
+			<span class="color-9">详细地址：</span>
+			<span *ngIf="!isEdit&&basicInfo.address!=null&&!isEdit&&basicInfo.address!=''">{{basicInfo.address}}</span>
+			<span *ngIf="!isEdit&&basicInfo.address==null||!isEdit&&basicInfo.address==''">未填写</span>
+			<span *ngIf="isEdit">
+				<input type="text" [(ngModel)]='editInfo.address' [attr.value]='basicInfo.address' class="k-textbox" required validationMessage="请输入详细地址" style="width: 200px;" />
+			</span>
+		</p>
+		<p style="width: 66%;">
+			<span class="color-9">行业：</span>
+			<span *ngIf="!isEdit&&basicInfo.formatCategory!=null&&!isEdit&&basicInfo.formatCategory!=''"><span data-value="1">{{basicInfo.formatCategory}}</span>行业</span>
+			<span *ngIf="!isEdit&&basicInfo.formatCategory==null||!isEdit&&basicInfo.formatCategory==''">未填写</span>
+    		<kendo-dropdownlist
+    			*ngIf="isEdit"
+                [data]="CategoryName"
+                [(ngModel)]="editInfo.industryCategoryFirstId"
+                [defaultItem]="placeHolder"
+                [textField]="'categoryName'"
+                [valueField]="'id'"
+                [valuePrimitive]="true"
+                (selectionChange)="categoryNameChange($event)"
+                class="ma-r20" style="width: 188px;"
+            >
+            </kendo-dropdownlist>
+    		<kendo-dropdownlist
+    			*ngIf="isEdit"
+                [data]="subCategoryName"
+                [(ngModel)]="editInfo.industryCategorySecondId"
+                [defaultItem]="placeHolder"
+                [textField]="'categoryName'"
+                [valueField]="'id'"
+                [valuePrimitive]="true"
+                style="width: 188px;"
+            >
+            </kendo-dropdownlist>
+		</p>
+		<div class="btn-box" *ngIf="isEdit">
+			<button class="a-button ma-r20" (click)='submitBaseInfo()'>保存</button>
+			<span class="a-button-xian a-button-xian-grey" (click)='cancelBaseInfo()'>取消</span>
+		</div>
+	</div>
+</div>
+<div class="ma-t20 ma-r20 double-box content" style="min-width: 1040px;">
+	<div class="centerLine"></div>
+	<div class="c-left" *ngIf="aptIsNew">
+		<div>
+			<div class="title-tag title-list border-0">购电资质
+				<!-- <span class="color-blue cur-p size-14 float-r ma-r20">
+					<span class="ma-r10">提醒销售人员确定</span>
+					<kendo-switch 
+						[(ngModel)]="checked"
+						[onLabel]="'是'"
+          				[offLabel]="'否'"
+					>
+					</kendo-switch>
+				</span> -->
+			</div>
+			<div class="c-content">
+				<div class="up-load-box">
+					<span>暂无资质信息</span>
+					<a [routerLink]="['/client/anhui/detailPage/aptitudeUpload',id]" class="a-button">资质上传</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="c-left" *ngIf="!aptIsNew">
+		<div>
+			<div class="title-tag title-list border-0">购电资质
+				<a class="color-blue cur-p size-14 float-r ma-r20" [routerLink]="['/client/anhui/detailPage/aptDetail',id]">查看</a>
+				<a class="color-blue cur-p size-14 float-r ma-r20" [routerLink]="['/client/anhui/detailPage/aptitudeUpload',id]">编辑</a>
+			</div>
+			<div class="c-content">
+				<table class="zizhi">
+					<thead>
+						<tr>
+							<th colspan="2">资质信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>企业代码</td>
+							<td>{{aptData[0].enterpriseCode}}</td>
+						</tr>
+						<tr *ngFor="let item of aptData let i = index">
+							<td>资质信息{{i+1}}</td>
+							<td>{{item.fileTitle}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="c-right" *ngIf="licenseIsNew">
+		<div>
+			<div class="title-tag title-list border-0">证照</div>
+			<div class="c-content">
+				<div class="up-load-box">
+					<span>暂无证照信息</span>
+					<a [routerLink]="['/client/anhui/detailPage/licenseUpload',id]" class="a-button">证照上传</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="c-right" *ngIf="!licenseIsNew">
+		<div>
+			<div class="title-tag title-list border-0">证照
+				<a class="color-blue cur-p size-14 float-r ma-r20" [routerLink]="['/client/anhui/detailPage/licenseDetail',id]">查看</a>
+				<a class="color-blue cur-p size-14 float-r ma-r20" [routerLink]="['/client/anhui/detailPage/licenseUpload',id]">编辑</a>
+			</div>
+			<div class="c-content">
+				<table>
+					<thead>
+						<tr>
+							<th>证照名称</th>
+							<th colspan="2">证照号码</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>法人代码</td>
+							<td colspan="2">{{licenseData.legalCode}}</td>
+						</tr>
+						<tr>
+							<td>营业执照</td>
+							<td>{{licenseData.businessLicense}}</td>
+							<td class="color-blue"><span *ngIf="licenseData.isNewBusinessLicense">(多证合一)</span></td>
+						</tr>
+						<tr *ngIf="!licenseData.isNewBusinessLicense">
+							<td>组织机构代码证</td>
+							<td colspan="2">{{licenseData.orgCode}}</td>
+						</tr>
+						<tr *ngIf="!licenseData.isNewBusinessLicense">
+							<td>税务登记证</td>
+							<td colspan="2">{{licenseData.registrationCode}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ma-t20 ma-r20 double-box content ma-b30" style="min-width: 1040px;">
+	<div class="centerLine"></div>
+	<div class="c-left">
+		<div>
+			<div class="title-tag title-list border-0">联系人</div>
+			<div class="c-content contractMan">
+				<!-- <table>
+					<thead>
+						<tr>
+							<th>重要联系人</th>
+						</tr>
+					</thead>
+					<tbody id="contractListBox">
+						<tr>
+							<td>
+								<span class="userName">张全蛋</span>
+								<span class="post">业务经理</span>
+								<span class="phone">135465415456</span>
+								<span class="border-0 noteT" title="文字文字文字文字文字文字文字文字">文字文字文字文字文字文字文字文字</span>
+								<div class="color-9">
+									<i class="iconfont icon-dingdan ma-r10 cur-p edit-list"></i>
+									<i class="iconfont icon-shanchu1 cur-p del-list"></i>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table> -->
+				<div class="grid-box no-padding">
+					<kendo-grid
+				          [data]="view | async" [pageable]="true" [pageSize]="state.take" [skip]="state.skip"
+				          (edit)="editHandler($event)" (remove)="removeHandler($event)"
+				          (add)="addHandler($event)" (dataStateChange)="onStateChange($event)"
+				        >
+				        <ng-template kendoGridToolbarTemplate>
+				            <span kendoGridAddCommand>新增联系人</span>
+				        </ng-template>
+				        <kendo-grid-column field="contacts" title="重要联系人" width='136'>
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.contacts == null?"":dataItem.contacts}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="position" title="">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.position == null?"":dataItem.position}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="tel" title="">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.tel == null?"":dataItem.tel}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-column field="remark" title="">
+				        	<ng-template kendoGridCellTemplate let-dataItem>
+				        		{{dataItem.remark == null?"":dataItem.remark}}
+				        	</ng-template>
+				        </kendo-grid-column>
+				        <kendo-grid-command-column title="" width="150">
+				            <ng-template kendoGridCellTemplate>
+				                <button kendoGridEditCommand class="k-primary">编辑</button>
+				                <button kendoGridRemoveCommand>删除</button>
+				            </ng-template>
+				        </kendo-grid-command-column>
+				    </kendo-grid>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<kendo-dialog *ngIf="active" (close)="closeContactDialog()" class="new-dialog">
+ <kendo-dialog-titlebar>
+   {{ isNew ? '新增' : '编辑' }}
+ </kendo-dialog-titlebar>
+
+   <form novalidate [formGroup]="editForm">
+       <div class="form-group">
+           <label for="contacts" class="control-label"><span class="color-red">*</span>姓名</label>
+
+           <input type="text" class="k-textbox" formControlName="contacts"/>
+
+           <!-- <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.ProductName.valid || editForm.controls.ProductName.pristine">
+               ProductName is required
+           </div> -->
+       </div>
+       <div class="form-group">
+           <label for="position" class="control-label">职位</label>
+
+           <input type="text" class="k-textbox" formControlName="position"/>
+       </div>
+       <div class="form-group">
+           <label for="tel" class="control-label"><span class="color-red">*</span>联系方式</label>
+
+           <input type="text" class="k-textbox" formControlName="tel"/>
+
+           <!-- <div class="k-tooltip k-tooltip-validation" [hidden]="editForm.controls.UnitsInStock.valid || editForm.controls.UnitsInStock.pristine">
+               Units must be between 0 and 99
+           </div> -->
+       </div>
+       <div class="form-group">
+           <label for="remark" class="control-label">备注</label>
+
+           <input type="text" class="k-textbox" formControlName="remark"/>
+       </div>
+       <!-- <div class="form-group">
+   			<div class="demo-section k-content wide">
+   		        <div class="wrapper">
+   		            <div id="picThree">
+   		            	<div class='product' *ngFor="let image of item.imageDataList let i = index">
+   		            		<img [src]="image.data" alt="image preview"/>
+   		            		<i class='iconfont icon-guanbipsd del' (click)="deleteImg(item.fileDataId[i])"></i>
+   		            	</div>
+   		            </div>
+   		         </div>
+               	 <kendo-upload
+   		         	[autoUpload]="false"
+   				    (select)="selectEventHandler($event,item)"
+   				    [restrictions]="myRestrictions"
+   				    >
+   				  </kendo-upload>
+   		    </div>
+       </div> -->
+   </form>
+
+   <kendo-dialog-actions class="button-center">
+       <button class="a-button-xian a-button-xian-grey ma-r20" (click)="closeContactDialog($event)">取消</button>
+       <button class="a-button" (click)="onContactDialogSave($event)">保存</button>
+   </kendo-dialog-actions>
+</kendo-dialog>

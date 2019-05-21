@@ -1,0 +1,10 @@
+<section class="slideBar">
+	<ul id="slideBar">
+        <li *ngFor="let slideBarItem of slideBarItems let i=index"
+        [attr.class]="slideBarItem.itClass" (click)="changeShowItem(i)"><i [attr.class]="slideBarItem.icon" *ngIf="slideBarItem.list">{{slideBarItem.name}}</i><i class="iconfont icon-xiangxia xia-arrow" *ngIf="slideBarItem.list&&slideBarItem.isSub"></i>
+        	<ul *ngIf="!slideBarItem.list" [hidden]="!slideBarItem.isShow">
+        		<li *ngFor="let contentList of slideBarItem.sec" [ngClass]="{active: contentList.isActive}"><span class="circle"></span><a [routerLink]='contentList.url'>{{contentList.name}}</a></li>
+			</ul>
+        </li>
+    </ul>
+</section>

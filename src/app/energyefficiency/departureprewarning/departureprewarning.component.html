@@ -1,0 +1,54 @@
+<div class="content-box">
+    <div class="pageTitle">
+        <i class="iconfont icon-fengxianpingguguanli"></i>偏差预警
+    </div>
+    <div class="content">        
+        <div class="content-r">
+            <section class="text-list-box">
+                <div style="width:800px;">
+                    <p><span class="color-9">当月计划用电量：</span> <span id="planCount"></span>万千瓦时</p>
+                    <p><span class="color-9">当月已用电量：</span> <span id="usedCount"></span>万千瓦时</p>
+                    <p><span class="color-9">当月平均每日已用电量：</span> <span id="usedDay"></span>万千瓦时</p>
+                    <p><span class="color-9">建议之后平均用电量：</span> <span id="suggestDay"></span>万千瓦时</p>
+                    <p><span class="color-9">省份电量偏差范围：</span> +/-<span id="centerDeviation"></span>%</p>
+                </div>
+            </section>
+            <div class="content-title">
+                <a class="title ma-r60 color-9 cur-p">当月用电数据图</a>
+            </div>
+            <div class="list-box my-chart-box">
+                <div class="echart-t">
+                    <div class="float-r">
+                        <i class="iconfont icon-zhexianicon active changeType" data-type="line"></i>
+                        <i class="iconfont icon-zhuzhuangtuicon changeType" data-type="column"></i>
+                        <i class="iconfont icon-xiazaiicon export-pdf"></i>
+                    </div>
+                </div>
+                <div class="demo-section k-content wide">
+                    <div id="chart"></div>
+                </div>
+            </div>
+            <div class="list-box table-box  my-chart-box">
+                <div class="text-center">
+                    当月用电数据表
+                    <i class="iconfont icon-xiazaiicon float-r color-9 cur-p ma-r10" id="saveTable"></i>
+                </div>
+                <div class="table-c">
+                    <div class="table-title dw-table-title" style=" width: 675px;">
+                        <p>时间</p>
+                        <p>实际用电量(万千瓦时)</p>
+                        <p>日用电偏差(万千瓦时)</p>
+                    </div>
+                    <div class="table-impose" id="dtTb">
+                    </div>
+                </div>
+            </div>
+            <div style="padding:0 30px 60px;">
+                <h3>提示:当日及当月剩余日期的用电数据暂未统计完成，故显示为0.</h3>
+                <h3>用电建议:</h3>
+                <h4 id="suggestedBox"></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialog"></div>

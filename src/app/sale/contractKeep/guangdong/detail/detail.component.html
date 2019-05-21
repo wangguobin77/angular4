@@ -1,0 +1,58 @@
+<div class="content-box">
+	<div class="pageTitle">
+		<i class="iconfont icon-guanxiaobaotubiao16"></i>售电合约文本管理
+		<a [routerLink]="['/sale/contractkeep/guangdong/list']" class="a-button-xian a-button-xian-grey float-r ma-r20 ma-t10">返回</a>
+	</div>
+	<div class="content ma-t20">
+		<div class="content-title">
+			<span class="title" name="2">相关文件</span>
+		</div>
+		<div class="cpd-c-box">
+			<div>
+				<span>合约编号：</span>
+				<span class="color-6">{{contractDetail.SerialNumber}}</span>
+			</div>
+			<div>
+				<span>合约名称：</span>
+				<span class="color-6">{{contractDetail.Name}}</span>
+			</div>
+			<div>
+				<span>合约类型：</span>
+				<span class="color-6">{{contractDetail.ContractTypeName}}</span>
+			</div>
+			<div>
+				<span>合约扫描件：</span>
+				<div class="bigImg">
+					<span class="img-box" *ngFor="let item of contractDetail.Attachments;let i=index;">
+						<img [src]="item.Src" alt="">
+						<i class="iconfont icon-sousuo" (click)="setPic(contractDetail.Attachments,i)"></i>
+					</span>
+				</div>
+			</div>
+			<div>
+				<span>用电主体资质：</span>
+				<div class="bigImg">
+					<span class="img-box" *ngFor="let item of contractDetail.FileTypeTwo;let i=index;"  >
+						<img [src]="item.Src" alt="">
+						<i class="iconfont icon-sousuo" (click)="setPic(contractDetail.FileTypeTwo,i)"></i>
+					</span>
+				</div>
+			</div>
+			<div>
+				<span>用电主体证照：</span>
+				<div class="bigImg">
+					<span class="img-box" *ngFor="let item of contractDetail.FilesTypeOne;let i=index;"  >
+						<img [src]="item.Src" alt="">
+						<i class="iconfont icon-sousuo" (click)="setPic(contractDetail.FilesTypeOne,i)"></i>
+
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup-cart center" *ngIf="popShow" (click)="hidePop($event)" id="pop">
+		<div style="width: 600px">
+			<shuffling [shufflingPic]='shufflingPic'></shuffling>
+		</div>
+	</div>
+</div>

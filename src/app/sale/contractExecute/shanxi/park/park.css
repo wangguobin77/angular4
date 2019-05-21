@@ -1,0 +1,144 @@
+﻿.content-box.contractExecutionImplement .content {
+  min-width: 1100px;
+}
+.content-box.contractExecutionImplement .EI {
+  padding: 40px 0;
+}
+.content-box.contractExecutionImplement .EI .EI-box {
+  width: 49%;
+  float: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+.content-box.contractExecutionImplement .EI .EI-box .float-l {
+  text-align: center;
+}
+.content-box.contractExecutionImplement .EI .EI-box .float-l h3 {
+  color: #3399ff;
+  font-size: 40px;
+  padding-bottom: 10px;
+}
+.content-box.contractExecutionImplement .EI .EI-box .float-r {
+  padding-top: 20px;
+  float: left;
+  margin-left: 10%;
+}
+.content-box.contractExecutionImplement .EI .EI-box .EI-p {
+  position: relative;
+  line-height: 40px;
+}
+.content-box.contractExecutionImplement .EI .EI-box .EI-p .EI-text {
+  position: absolute;
+  top: 35px;
+  right: -150px;
+  width: 300px;
+  padding: 15px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: none;
+  z-index: 9;
+}
+.content-box.contractExecutionImplement .EI .EI-box .EI-p .EI-text p {
+  /*text-align: right;*/
+  line-height: 28px;
+  font-size: 14px;
+}
+.content-box.contractExecutionImplement .EI .EI-box .EI-p:hover .EI-text {
+  display: block;
+}
+.content-box.contractExecutionImplement .EI .EI-box:first-child {
+  border-right: 1px solid #ddd;
+}
+.content-box.contractExecutionImplement .EI.EI:after {
+  width: 0;
+  height: 0;
+  display: block;
+  content: '';
+  clear: both;
+  visibility: hidden;
+}
+.content-box.contractExecutionImplement .searchBox {
+  box-sizing: inherit;
+  width: 300px;
+}
+.content-box.contractExecutionImplement .searchBox input {
+  width: 256px;
+}
+.content-box.contractExecutionImplement .grid-box {
+  padding: 20px 30px 40px;
+}
+.content-box.contractExecutionImplement .grid-box .k-grid-content {
+  overflow: hidden;
+}
+.content-box.contractExecutionImplement .grid-box .k-grid-header {
+  padding: 0 !important;
+}
+.content-box.contractExecutionImplement .grid-box th.k-header {
+  border-width: 0;
+  background: #ddd;
+  color: #333;
+  padding: .5em 0 !important;
+  text-align: center;
+  vertical-align: middle;
+  line-height:24px;
+}
+.content-box.contractExecutionImplement .grid-box th.k-header .k-link {
+  color: #333;
+}
+.content-box.contractExecutionImplement .grid-box td {
+  border: 0;
+  height: 48px;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  padding: 0;
+  text-align: center;
+}
+.dialog-c li {
+  margin-bottom: 20px;
+}
+.dialog-c li p {
+  margin-bottom: 10px;
+}
+.dialog-c .k-numeric-wrap.k-state-default {
+  border-color: #ddd;
+}
+.r-20 {
+  right: 20px !important;
+}
+.k-numerictextbox .k-icon {
+  height: 20px;
+}
+
+
+.content-box.conEIPark .content .cd-box {
+  padding: 30px 40px 0 40px;
+  font-size: 0;
+}
+.content-box.conEIPark .content .cd-box div {
+  font-size: 14px;
+}
+.content-box.conEIPark .content .cd-box > .line-box {
+  padding-bottom: 20px;
+  font-size: 14px;
+}
+.content-box.conEIPark .content .cd-box p {
+  display: inline-block;
+  font-size: 14px;
+  width: 450px;
+  line-height: 30px;
+  white-space: nowrap;
+}
+.content-box.conEIPark .content .cd-box p > span {
+  display: inline-block;
+}
+.content-box.conEIPark .content .cd-box p > span:first-child {
+  width: 130px;
+  text-align: right;
+}
